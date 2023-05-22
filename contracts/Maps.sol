@@ -6,6 +6,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/AccessControl.sol";
 import "@openzeppelin/contracts/utils/Counters.sol";
 
+import "./Perlin.sol";
+
 contract Map is ERC721, ERC721Enumerable, AccessControl {
     using Counters for Counters.Counter;
 
