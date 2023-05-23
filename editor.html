@@ -1,27 +1,43 @@
 <!DOCTYPE html>
-<html>
+<html class="fs">
 
 <head>
     <title>My ETHPage</title>
-    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
-        integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/fabric.js/5.3.1/fabric.min.js"
-        integrity="sha512-CeIsOAsgJnmevfCi2C7Zsyy6bQKi43utIjdA87Q0ZY84oDqnI0uwfM9+bKiIkI75lUeI00WG/+uJzOmuHlesMA=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="
+        https://cdn.jsdelivr.net/npm/pts@0.11.3/dist/pts.min.js
+        "></script>
 </head>
 
-<body>
+<body class="fs">
 
+    <div class="fs" id="c"></div>
 
-    <h1>My First Heading</h1>
-    <p>My first paragraph.</p>
 
     <script>
-        $(document).ready(function () {
-            console.log("ready");
+        var run = Pts.quickStart("#c", "red");
+
+        run((time, ftime) => {
+            let c1 = Circle.fromCenter(space.pointer, space.size.y / 4);
+            let c2 = Circle.fromCenter(space.pointer, space.size.y / 8);
+            let ct = Circle.fromCenter(space.center, space.size.y / 4);
+            let ins1 = Circle.intersectCircle2D(c1, ct);
+            let ins2 = Circle.intersectCircle2D(c2, ct);
+            form.fillOnly("#0c6").circle(c1);
+            form.fill("#fe3").circle(c2);
+            form.fill("rgba(70,30,240,.2)").circle(ct);
+            form.fill("rgba(70,30,240, .3)").points(ins1, 10, "circle");
+            form.fill("#f06").points(ins2, 5, "circle");
         });
 
     </script>
 </body>
+
+<style>
+    .fs {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+    }
+</style>
 
 </html>
