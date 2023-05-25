@@ -8,7 +8,7 @@
         integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs/editor/editor.main.min.css"
         rel="stylesheet">
-   
+
 
 
 </head>
@@ -39,15 +39,28 @@
 
     <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
     <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
-    <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
+    <script src="
+    https://cdn.jsdelivr.net/npm/@luckyunicorn/web3modal@1.9.6/dist/index.min.js
+    "></script>    <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
     <script type="text/javascript"
         src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
-    <script type="text/javascript" src="web3modal.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/fortmatic@2.0.6/dist/fortmatic.js"></script>
+
+    <script type="text/javascript" src="./web3modal.js"></script>
 
 </body>
 
-<script>
+<script type="importmap">
+    {
+      "imports": {
+        "wagmi": "https://unpkg.com/lodash-es@4.17.21/startCase.js",
+        "viem": ""
+      }
+    }
+  </script>
+
+
+<script type="module">
 
     const defaultHTML = ``
     const defaultCSS = ``
