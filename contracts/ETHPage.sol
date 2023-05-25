@@ -12,7 +12,7 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     Counters.Counter private _tokenIdCounter;
 
-    constructor() ERC721("Map", "MAP") {
+    constructor() ERC721("ETHPage", "PAGE") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
     }
@@ -25,14 +25,18 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
 
     // The following functions are overrides required by Solidity.
 
-    function _beforeTokenTransfer(address from, address to, uint256 tokenId, uint256 batchSize)
-        internal
-        override(ERC721, ERC721Enumerable)
-    {
+    function _beforeTokenTransfer(
+        address from,
+        address to,
+        uint256 tokenId,
+        uint256 batchSize
+    ) internal override(ERC721, ERC721Enumerable) {
         super._beforeTokenTransfer(from, to, tokenId, batchSize);
     }
 
-    function supportsInterface(bytes4 interfaceId)
+    function supportsInterface(
+        bytes4 interfaceId
+    )
         public
         view
         override(ERC721, ERC721Enumerable, AccessControl)
@@ -41,4 +45,31 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
         return super.supportsInterface(interfaceId);
     }
 
+    function concatHTML(string memory _body, string memory _style, string memory _script) public pure returns (string memory) {
+        return string(
+            abi.encodePacked('<!DOCTYPE html><html><body>', _body,'</body><style>', _style,'</style><script>', _script,'</script></html>'));
+    }
+
+    function getHTML(uint256 _tokenId) public pure returns (string memory) {
+        return '<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>';
+    }
+
+    function tokenURI(
+        uint256 _tokenId
+    ) public view virtual override returns (string memory) {
+        string memory description = "ETHPage";
+        string memory name = "ETHPage";
+        string memory json = string(
+            abi.encodePacked(
+                '{name:"',
+                name,
+                '", description:"',
+                description,
+                '", animation_url:"',
+                getHTML(_tokenId),
+                '"}'
+            )
+        );
+        return json;
+    }
 }
