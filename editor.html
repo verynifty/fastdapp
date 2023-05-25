@@ -3,41 +3,69 @@
 
 <head>
     <title>My ETHPage</title>
-    <script src="
-        https://cdn.jsdelivr.net/npm/pts@0.11.3/dist/pts.min.js
-        "></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs/editor/editor.main.min.css"
+        rel="stylesheet">
+    <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
+
+
 </head>
 
-<body class="fs">
-
-    <div class="fs" id="c"></div>
+<body class="h-screen">
 
 
-    <script>
-        var run = Pts.quickStart("#c", "red");
+    <div class="h-1/2">
+        hsjsdkjsd
+    </div>
+    <div class="h-1/2 flex">
+        <div class="flex-1">
+            <p class="w-full bg-violet-600 text-white">HTML</p>
+            <div id="editor_html" style="height:100%;" class=""></div>
+        </div>
+        <div class="flex-1 h-full">
+            <p class="w-full bg-violet-600 text-white">CSS</p>
 
-        run((time, ftime) => {
-            let c1 = Circle.fromCenter(space.pointer, space.size.y / 4);
-            let c2 = Circle.fromCenter(space.pointer, space.size.y / 8);
-            let ct = Circle.fromCenter(space.center, space.size.y / 4);
-            let ins1 = Circle.intersectCircle2D(c1, ct);
-            let ins2 = Circle.intersectCircle2D(c2, ct);
-            form.fillOnly("#0c6").circle(c1);
-            form.fill("#fe3").circle(c2);
-            form.fill("rgba(70,30,240,.2)").circle(ct);
-            form.fill("rgba(70,30,240, .3)").points(ins1, 10, "circle");
-            form.fill("#f06").points(ins2, 5, "circle");
-        });
+            <div id="editor_css" style="height:100%;" class=""></div>
+        </div>
+        <div class="flex-1 h-full">
+            <p class="w-full bg-violet-600 text-white">JS</p>
+            <div id="editor_js" style="height:100%;" class=""></div>
+        </div>
+    </div>
 
-    </script>
+
+
+
+
 </body>
 
+<script>
+
+    const defaultHTML = ``
+    const defaultCSS = ``
+    const defaultJS = ``
+
+    require.config({ paths: { 'vs': 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs' } });
+
+    require(['vs/editor/editor.main'], function () {
+        var editor_js = monaco.editor.create(document.getElementById('editor_js'), {
+            value: defaultJS,
+            language: "javascript",
+        });
+        var editor_css = monaco.editor.create(document.getElementById('editor_css'), {
+            value: defaultJS,
+            language: "css",
+        });
+        var editor_html = monaco.editor.create(document.getElementById('editor_html'), {
+            value: defaultJS,
+            language: "html",
+        });
+    })
+
+</script>
+
 <style>
-    .fs {
-        margin: 0;
-        padding: 0;
-        height: 100%;
-    }
+
 </style>
 
 </html>

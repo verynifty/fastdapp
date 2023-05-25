@@ -8,12 +8,12 @@ const hre = require("hardhat");
 
 async function main() {
 
-
+  console.log("Deploying ETHPage...");
   const Lock = await hre.ethers.getContractFactory("ETHPage");
   const lock = await Lock.deploy();
 
   await lock.deployed();
-
+  console.log(lock.address);
 
 }
 
