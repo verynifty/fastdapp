@@ -4,9 +4,11 @@
 <head>
     <title>My ETHPage</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"
+        integrity="sha256-tG5mcZUtJsZvyKAxYLVXrmjKBVLd6VpVccqz/r4ypFE=" crossorigin="anonymous"></script>
     <link href="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs/editor/editor.main.min.css"
         rel="stylesheet">
-    <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
+   
 
 
 </head>
@@ -35,7 +37,13 @@
 
 
 
-
+    <script src="https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs/loader.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3@1.2.11/dist/web3.min.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script>
+    <script type="text/javascript" src="https://unpkg.com/evm-chains@0.2.0/dist/umd/index.min.js"></script>
+    <script type="text/javascript"
+        src="https://unpkg.com/@walletconnect/web3-provider@1.2.1/dist/umd/index.min.js"></script>
+    <script type="text/javascript" src="web3modal.js"></script>
 
 </body>
 
@@ -44,6 +52,21 @@
     const defaultHTML = ``
     const defaultCSS = ``
     const defaultJS = ``
+
+    $(document).ready(async function () {
+
+        OnConnected = async function () {
+            console.log("ON CONNECTED")
+
+        }
+
+        while (!window.hasOwnProperty("CONTRACT")) // define the condition as you like
+        {
+            console.log("wait")
+            await new Promise(resolve => setTimeout(resolve, 1000));
+        }
+        OnConnected()
+    })
 
     require.config({ paths: { 'vs': 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs' } });
 
