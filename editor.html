@@ -59,9 +59,8 @@
     const defaultJS = ``
 
     $(document).ready(async function () {
-        
+
         const Web3Modal = window.Web3Modal.default;
-        const WalletConnectProvider = window.WalletConnectProvider.default;
         const evmChains = window.evmChains;
 
         // Web3modal instance
@@ -73,6 +72,62 @@
         // Address of the selected account
         let selectedAccount;
 
+        function w3init() {
+            const providerOptions = {
+                walletconnect: {
+                    package: window.WalletConnectProvider.default,
+                    options: {
+                        // Mikko's test key - don't copy as your mileage may vary
+                        infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
+                    },
+                },
+            };
+
+            web3Modal = new Web3Modal({
+                cacheProvider: true, // optional
+                providerOptions, // required
+                disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
+            });
+
+            console.log("Web3Modal instance is", web3Modal);
+
+        }
+
+        async function w3connect() {
+            try {
+                provider = await web3Modal.connect();
+                window.w3 = new Web3(provider);
+                /*
+                window.CONTRACT = new w3.eth.Contract(
+                    CONTRACT_ABI,
+                    CONTRACT_ADDRESS
+                );
+                */
+                console.log("Connected")
+            } catch (e) {
+                console.log("Could not get a wallet connection", e);
+                return;
+            }
+
+            // Subscribe to accounts change
+            provider.on("accountsChanged", (accounts) => {
+                fetchAccountData();
+            });
+
+            // Subscribe to chainId change
+            provider.on("chainChanged", (chainId) => {
+                fetchAccountData();
+            });
+
+            // Subscribe to networkId change
+            provider.on("networkChanged", (networkId) => {
+                fetchAccountData();
+            });
+
+           // await refreshAccountData();
+        }
+        w3init()
+        w3connect()
     })
 
     require.config({ paths: { 'vs': 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs' } });
