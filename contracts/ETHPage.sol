@@ -98,15 +98,16 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
         string memory name = "B";
         string memory json = string(
             abi.encodePacked(
-                "{name:'",
+                '{"name":"',
                 name,
-                "', description:'",
+                '", "description":"',
                 description,
-                "', animation_url:'data:text/html;base64,",
+                '", "animation_url":"data:text/html;base64,',
                 encodeBase64(bytes(getHTML(_tokenId))),
-                "'}"
+                '", "image":"https://static.beyondnft.io/adamas/images/default.png"}'
             )
         );
+        json = string(abi.encodePacked("data:application/json;base64,", encodeBase64(bytes(json))));
         return json;
     }
 
