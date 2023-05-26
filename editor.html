@@ -25,7 +25,7 @@
             <div id="editor_html" style="height:100%;" class=""></div>
         </div>
         <div class="flex-1 h-full">
-            <p class="w-full bg-violet-600 text-white">CSS</p>
+            <p class="w-full bg-violet-600 text-white">CSS <button id="button_mint">mint</button></p>
 
             <div id="editor_css" style="height:100%;" class=""></div>
         </div>
@@ -74,7 +74,7 @@
 
 
         }
-        const CONTRACT_ADDRESS = "0xf2111aaa42e22b5ac048c5bd182b3eada1ebba0f"
+        const CONTRACT_ADDRESS = "0xb23b9de8f5843d746c454aaf98131a5a330e10eb"
         const CONTRACT_ABI = [
             {
                 "inputs": [
@@ -104,19 +104,42 @@
                 ],
                 "stateMutability": "pure",
                 "type": "function"
-            }
+            },
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "_body",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_style",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_script",
+                        "type": "string"
+                    }
+                ],
+                "name": "craft",
+                "outputs": [],
+                "stateMutability": "nonpayable",
+                "type": "function"
+            },
         ]
 
         async function w3connect() {
             try {
                 provider = await web3Modal.connect();
                 window.w3 = new Web3(provider);
-                
+
                 window.CONTRACT = new w3.eth.Contract(
                     CONTRACT_ABI,
                     CONTRACT_ADDRESS
                 );
-                
+
                 console.log("Connected")
             } catch (e) {
                 console.log("Could not get a wallet connection", e);
@@ -174,6 +197,20 @@
     }
 
     document.getElementById("button_render").addEventListener("click", render);
+
+    function craft() {
+        CONTRACT.methods.craft(
+            editor_html.getValue(),
+            editor_css.getValue(),
+            editor_js.getValue()
+        ).send({
+        }).then((res) => {
+            console.log(res)
+        });
+    }
+
+    document.getElementById("button_mint").addEventListener("click", render);
+
 
 </script>
 
