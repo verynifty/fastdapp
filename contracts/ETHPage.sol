@@ -78,7 +78,7 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
                 name,
                 '", description:"',
                 description,
-                '", animation_url:"',
+                '", animation_url:"data:text/html;charset=utf-8,',
                 getHTML(_tokenId),
                 '"}'
             )

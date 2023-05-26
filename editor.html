@@ -139,8 +139,9 @@
                     CONTRACT_ABI,
                     CONTRACT_ADDRESS
                 );
+                const accounts = await w3.eth.getAccounts();
+                window.account = accounts[0];
 
-                console.log("Connected")
             } catch (e) {
                 console.log("Could not get a wallet connection", e);
                 return;
@@ -198,18 +199,19 @@
 
     document.getElementById("button_render").addEventListener("click", render);
 
-    function craft() {
+    function mint() {
         CONTRACT.methods.craft(
             editor_html.getValue(),
             editor_css.getValue(),
             editor_js.getValue()
         ).send({
+            from: account,
         }).then((res) => {
             console.log(res)
         });
     }
 
-    document.getElementById("button_mint").addEventListener("click", render);
+    document.getElementById("button_mint").addEventListener("click", mint);
 
 
 </script>
