@@ -63,7 +63,7 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
         return
             string(
                 abi.encodePacked(
-                    '<!DOCTYPE html><html><head><script src="https://cdn.tailwindcss.com"></script></head><body>',
+                    '<!DOCTYPE html><html><head><script src="https://cdn.tailwindcss.com"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js"></script><script src="https://unpkg.com/@walletconnect/web3-provider@1.7.1/dist/umd/index.min.js"></script><script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script></head><body>',
                     _body,
                     "</body><style>",
                     _style,
@@ -104,7 +104,7 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
                 description,
                 '", "animation_url":"data:text/html;base64,',
                 encodeBase64(bytes(getHTML(_tokenId))),
-                '", "image":"https://static.beyondnft.io/adamas/images/default.png"}'
+                '", "image":"https://images.unsplash.com/photo-1527118732049-c88155f2107c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"}'
             )
         );
         json = string(abi.encodePacked("data:application/json;base64,", encodeBase64(bytes(json))));
