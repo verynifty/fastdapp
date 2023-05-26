@@ -16,12 +16,12 @@
 <body class="h-screen">
 
 
-    <div class="h-1/2">
+    <iframe class="h-1/2" id="render">
         hsjsdkjsd
-    </div>
+    </iframe>
     <div class="h-1/2 flex">
         <div class="flex-1">
-            <p class="w-full bg-violet-600 text-white">HTML</p>
+            <p class="w-full bg-violet-600 text-white">HTML <button id="button_render">render</button></p>
             <div id="editor_html" style="height:100%;" class=""></div>
         </div>
         <div class="flex-1 h-full">
@@ -42,15 +42,6 @@
 
 </body>
 
-<script type="importmap">
-    {
-      "imports": {
-        "wagmi": "https://unpkg.com/lodash-es@4.17.21/startCase.js",
-        "viem": ""
-      }
-    }
-  </script>
-
 
 <script type="module">
 
@@ -70,31 +61,62 @@
                 walletconnect: {
                     package: window.WalletConnectProvider.default,
                     options: {
-                        // Mikko's test key - don't copy as your mileage may vary
                         infuraId: "8043bb2cf99347b1bfadfb233c5325c0",
                     },
                 },
             };
 
             web3Modal = new window.Web3Modal.default({
-                cacheProvider: true, // optional
-                providerOptions, // required
-                disableInjectedProvider: false, // optional. For MetaMask / Brave / Opera.
+                cacheProvider: true,
+                providerOptions,
+                disableInjectedProvider: false,
             });
 
 
         }
+        const CONTRACT_ADDRESS = "0xab0995c148ff03fd17b430452e75c1b85e15a4f0"
+        const CONTRACT_ABI = [
+            {
+                "inputs": [
+                    {
+                        "internalType": "string",
+                        "name": "_body",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_style",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "_script",
+                        "type": "string"
+                    }
+                ],
+                "name": "concatHTML",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "pure",
+                "type": "function"
+            }
+        ]
 
         async function w3connect() {
             try {
                 provider = await web3Modal.connect();
                 window.w3 = new Web3(provider);
-                /*
+                
                 window.CONTRACT = new w3.eth.Contract(
                     CONTRACT_ABI,
                     CONTRACT_ADDRESS
                 );
-                */
+                
                 console.log("Connected")
             } catch (e) {
                 console.log("Could not get a wallet connection", e);
@@ -116,7 +138,7 @@
                 fetchAccountData();
             });
 
-           // await refreshAccountData();
+            // await refreshAccountData();
         }
         w3init()
         w3connect()
@@ -125,19 +147,33 @@
     require.config({ paths: { 'vs': 'https://cdn.bootcdn.net/ajax/libs/monaco-editor/0.20.0/min/vs' } });
 
     require(['vs/editor/editor.main'], function () {
-        var editor_js = monaco.editor.create(document.getElementById('editor_js'), {
+        window.editor_js = monaco.editor.create(document.getElementById('editor_js'), {
             value: defaultJS,
             language: "javascript",
         });
-        var editor_css = monaco.editor.create(document.getElementById('editor_css'), {
+        window.editor_css = monaco.editor.create(document.getElementById('editor_css'), {
             value: defaultJS,
             language: "css",
         });
-        var editor_html = monaco.editor.create(document.getElementById('editor_html'), {
+        window.editor_html = monaco.editor.create(document.getElementById('editor_html'), {
             value: defaultJS,
             language: "html",
         });
     })
+
+    function render() {
+        console.log("render")
+        CONTRACT.methods.concatHTML(
+            editor_html.getValue(),
+            editor_css.getValue(),
+            editor_js.getValue()
+        ).call().then((res) => {
+            console.log(res)
+            document.getElementById("render").src = "data:text/html;charset=utf-8," + res
+        });
+    }
+
+    document.getElementById("button_render").addEventListener("click", render);
 
 </script>
 
