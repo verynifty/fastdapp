@@ -12,6 +12,10 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
     Counters.Counter private _tokenIdCounter;
 
+    mapping(uint256 => string) private mBody;
+    mapping(uint256 => string) private mStyle;
+    mapping(uint256 => string) private mScript;
+
     constructor() ERC721("ETHPage", "PAGE") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
@@ -47,11 +51,20 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
 
     function concatHTML(string memory _body, string memory _style, string memory _script) public pure returns (string memory) {
         return string(
-            abi.encodePacked('<!DOCTYPE html><html><body>', _body,'</body><style>', _style,'</style><script>', _script,'</script></html>'));
+            abi.encodePacked('<!DOCTYPE html><html><head><script src="https://cdn.tailwindcss.com"></script></head><body>', _body,'</body><style>', _style,'</style><script>', _script,'</script></html>'));
     }
 
-    function getHTML(uint256 _tokenId) public pure returns (string memory) {
-        return '<!DOCTYPE html><html><body><h1>My First Heading</h1><p>My first paragraph.</p></body></html>';
+    function getHTML(uint256 _tokenId) public view returns (string memory) {
+        return concatHTML(mBody[_tokenId], mStyle[_tokenId], mScript[_tokenId]);
+    }
+
+    function craft(string memory _body, string memory _style, string memory _script) public {
+        uint256 tokenId = _tokenIdCounter.current();
+        _tokenIdCounter.increment();
+        _safeMint(msg.sender, tokenId);
+        mBody[tokenId] = _body;
+        mStyle[tokenId] = _style;
+        mScript[tokenId] = _script;
     }
 
     function tokenURI(
