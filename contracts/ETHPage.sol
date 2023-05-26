@@ -16,7 +16,7 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
     mapping(uint256 => string) private mStyle;
     mapping(uint256 => string) private mScript;
 
-    constructor() ERC721("ETHPage", "PAGE") {
+    constructor() ERC721("B", "B") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
         _grantRole(MINTER_ROLE, msg.sender);
     }
@@ -70,17 +70,17 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
     function tokenURI(
         uint256 _tokenId
     ) public view virtual override returns (string memory) {
-        string memory description = "ETHPage";
-        string memory name = "ETHPage";
+        string memory description = 'B';
+        string memory name = 'B';
         string memory json = string(
             abi.encodePacked(
-                '{name:"',
+                "{name:'",
                 name,
-                '", description:"',
+                "', description:'",
                 description,
-                '", animation_url:"data:text/html;charset=utf-8,',
+                "', animation_url:'",
                 getHTML(_tokenId),
-                '"}'
+                "'}"
             )
         );
         return json;

@@ -74,8 +74,27 @@
 
 
         }
-        const CONTRACT_ADDRESS = "0xb23b9de8f5843d746c454aaf98131a5a330e10eb"
+        const CONTRACT_ADDRESS = "0xf32f7d6ab740C4FE96807367e286BBcd4Fbc435B"
         const CONTRACT_ABI = [
+            {
+                "inputs": [
+                    {
+                        "internalType": "uint256",
+                        "name": "_tokenId",
+                        "type": "uint256"
+                    }
+                ],
+                "name": "tokenURI",
+                "outputs": [
+                    {
+                        "internalType": "string",
+                        "name": "",
+                        "type": "string"
+                    }
+                ],
+                "stateMutability": "view",
+                "type": "function"
+            },
             {
                 "inputs": [
                     {
@@ -187,6 +206,9 @@
 
     function render() {
         console.log("render")
+        CONTRACT.methods.tokenURI(1).call().then((res) => {
+            console.log(res)
+        });
         CONTRACT.methods.concatHTML(
             editor_html.getValue(),
             editor_css.getValue(),
