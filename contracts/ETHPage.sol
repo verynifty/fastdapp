@@ -63,11 +63,11 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
         return
             string(
                 abi.encodePacked(
-                    '<!DOCTYPE html><html><head><script src="https://cdn.tailwindcss.com"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js"></script><script src="https://unpkg.com/@walletconnect/web3-provider@1.7.1/dist/umd/index.min.js"></script><script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script></head><body>',
+                    '<!DOCTYPE html><html><head><script src="https://cdn.tailwindcss.com"></script><script src="https://code.jquery.com/jquery-3.7.0.slim.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/web3/3.0.0-rc.5/web3.min.js"></script><script src="https://unpkg.com/@walletconnect/web3-provider@1.7.1/dist/umd/index.min.js"></script><script type="text/javascript" src="https://unpkg.com/web3modal@1.9.0/dist/index.js"></script></head><body>',
                     _body,
                     "</body><style>",
                     _style,
-                    "</style><script>",
+                    "</style><script type='module'>",
                     _script,
                     "</script></html>"
                 )
