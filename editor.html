@@ -15,10 +15,7 @@
 
 <body class="h-screen">
 
-
-    <iframe class="h-1/2" id="render">
-        
-    </iframe>
+    <iframe class="h-1/2" id="render" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" frameborder="0" height="100%" id="AssetMedia--frame" sandbox="allow-scripts" width="100%" style="min-height: 100px;"></iframe>
     <div class="h-1/2 flex">
         <div class="flex-1">
             <p class="w-full bg-violet-600 text-white">HTML <button id="button_render">render</button></p>
@@ -74,7 +71,7 @@
 
 
         }
-        const CONTRACT_ADDRESS = "0xeaBFBA2506f5295780794dbA5c41347FE7bB8f0A"
+        const CONTRACT_ADDRESS = "0x4E068a66BCa20776d3138D49667e2A56679Da4F1"
         const CONTRACT_ABI = [
             {
                 "inputs": [
@@ -214,8 +211,8 @@
             editor_css.getValue(),
             editor_js.getValue()
         ).call().then((res) => {
-            console.log(res)
-            document.getElementById("render").src = "data:text/html;charset=utf-8," + res
+            //console.log(res)
+            document.getElementById("render").srcdoc = "" + res
         });
     }
 

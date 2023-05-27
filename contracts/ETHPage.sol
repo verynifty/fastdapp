@@ -63,11 +63,11 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
         return
             string(
                 abi.encodePacked(
-                    '<!DOCTYPE html><html><head><script src="https://cdn.tailwindcss.com"></script></head><body>',
-                    _body,
-                    "</body><style>",
+                    '<!DOCTYPE html><html><head><title>TEST</title><script src="https://cdn.tailwindcss.com"></script><style>',
                     _style,
-                    "</style><script type='module'>",
+                    "</style></head><body>",
+                    _body,
+                    "</body><script type='module'>",
                     _script,
                     "</script></html>"
                 )
@@ -107,14 +107,21 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
                 '", "image":"https://images.unsplash.com/photo-1527118732049-c88155f2107c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=987&q=80"}'
             )
         );
-        json = string(abi.encodePacked("data:application/json;base64,", encodeBase64(bytes(json))));
+        json = string(
+            abi.encodePacked(
+                "data:application/json;base64,",
+                encodeBase64(bytes(json))
+            )
+        );
         return json;
     }
 
-      /**
+    /**
      * @dev Converts a `bytes` to its Bytes64 `string` representation.
      */
-    function encodeBase64(bytes memory data) internal pure returns (string memory) {
+    function encodeBase64(
+        bytes memory data
+    ) internal pure returns (string memory) {
         /**
          * Inspired by Brecht Devos (Brechtpd) implementation - MIT licence
          * https://github.com/Brechtpd/base64/blob/e78d9fd951e7b0977ddca77d92dc85183770daf4/base64.sol
@@ -159,13 +166,22 @@ contract ETHPage is ERC721, ERC721Enumerable, AccessControl {
                 // and finally write it in the result pointer but with a left shift
                 // of 256 (1 byte) - 8 (1 ASCII char) = 248 bits
 
-                mstore8(resultPtr, mload(add(tablePtr, and(shr(18, input), 0x3F))))
+                mstore8(
+                    resultPtr,
+                    mload(add(tablePtr, and(shr(18, input), 0x3F)))
+                )
                 resultPtr := add(resultPtr, 1) // Advance
 
-                mstore8(resultPtr, mload(add(tablePtr, and(shr(12, input), 0x3F))))
+                mstore8(
+                    resultPtr,
+                    mload(add(tablePtr, and(shr(12, input), 0x3F)))
+                )
                 resultPtr := add(resultPtr, 1) // Advance
 
-                mstore8(resultPtr, mload(add(tablePtr, and(shr(6, input), 0x3F))))
+                mstore8(
+                    resultPtr,
+                    mload(add(tablePtr, and(shr(6, input), 0x3F)))
+                )
                 resultPtr := add(resultPtr, 1) // Advance
 
                 mstore8(resultPtr, mload(add(tablePtr, and(input, 0x3F))))
