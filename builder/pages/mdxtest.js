@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote } from 'next-mdx-remote'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 
 
 import Editor from '@monaco-editor/react';
@@ -26,7 +26,7 @@ async function handleEditorChange(_value, event) {
 export default function TestPage({ source }) {
     editorRef = useRef(null);
     const [content, setContent] = React.useState(0);
-
+    let hello = "hello";
 
             /*<Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
                 onMount={handleEditorDidMount} defaultValue="// some comment" />;*/
@@ -35,7 +35,7 @@ export default function TestPage({ source }) {
     return (
         <div className="wrapper">
             <div className="wrapper">
-                <MDXRemote {...source} components={components} />
+                <MDXRemote source={hello} components={components} />
             </div>
 
 
