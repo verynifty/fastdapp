@@ -3,7 +3,7 @@ import React, { useRef, Suspense } from 'react';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
 
-import { watchAccount, getAccount } from '@wagmi/core'
+import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
 
 
@@ -34,7 +34,17 @@ export default function TestPage({ source }) {
 
     let account = getAccount();
 
-    let scope = { account: account, hello: hello };
+    const getBalance = async function () {
+        console.log("get balance")
+        let res = await fetchBalance({
+            address: '0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4',
+        })
+        console.log("get balance", res)
+        return res;
+
+    }
+
+    let scope = { account: account, hello: getAccount, getBalance, fetchToken: async function (address) { return fetchToken({ address: address }) } };
 
     /*<Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
         onMount={handleEditorDidMount} defaultValue="// some comment" />;*/
@@ -43,8 +53,8 @@ export default function TestPage({ source }) {
     return (
         <div className="wrapper">
             <div className="wrapper">
-            <Suspense>
-                <MDXRemote {...source} components={components} scope={scope}/>
+                <Suspense>
+                    <MDXRemote {...source} components={components} scope={scope} />
                 </Suspense>
             </div>
 
@@ -64,9 +74,14 @@ export async function getStaticProps() {
     <Balance address={'0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4'} /> haha
     {a}
     # h
+    {hello().address}
+    # h2
     {account.address}
+    # token name
+    nothing
+    # get balance 
+    {getBalance().symbol}
     `
     const mdxSource = await serialize(source)
     return { props: { source: mdxSource } }
 }
-
