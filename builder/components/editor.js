@@ -1,9 +1,8 @@
-'use client';
 /* eslint-disable react-hooks/exhaustive-deps */
 import { default as React, useEffect, useRef } from 'react';
 import EditorJS from '@editorjs/editorjs';
 import Header from '@editorjs/header';
-import BlockNumber from 'app/components/blockNumber';
+import BlockNumber from 'components/blockNumber';
 
 const DEFAULT_INITIAL_DATA = () => {
     return {
@@ -32,11 +31,11 @@ const Editor = (props) => {
             initEditor();
         }
         return () => {
-            if (!ejInstance.current) {
-                return;
+            if (ejInstance.current != null) {
+                ejInstance.current.destroy();
+                ejInstance.current = null;
             }
-            ejInstance.current.destroy();
-            ejInstance.current = null;
+
         }
     }, []);
 

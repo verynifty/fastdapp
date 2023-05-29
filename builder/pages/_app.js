@@ -35,11 +35,14 @@ const wagmiConfig = createConfig({
   webSocketPublicClient
 });
 
+import { ConnectButton } from '@rainbow-me/rainbowkit';
+
+
 function MyApp({ Component, pageProps }) {
   return (
     <WagmiConfig config={wagmiConfig}>
-        <p>ddd</p>
       <RainbowKitProvider chains={chains}>
+      <ConnectButton />
         <Component {...pageProps} />
       </RainbowKitProvider>
     </WagmiConfig>
