@@ -2,7 +2,7 @@ import { default as React } from 'react';
 import ReactDOM from 'react-dom';
 import BN from 'components/bn';
 export default class BlockNumber {
- 
+
 
   static get toolbox() {
     return {
@@ -10,27 +10,27 @@ export default class BlockNumber {
       title: 'BlockNumber',
     };
   }
- 
+
   static get isReadOnlySupported() {
     return true;
   }
- 
+
   constructor({ data, config, api, readOnly }) {
     this.api = api;
     this.readOnly = readOnly;
     this.data = {
-      
+
     };
- 
+
     this.CSS = {
       wrapper: 'blockNumber',
     };
- 
+
     this.nodes = {
       holder: null,
     };
   }
- 
+
   render() {
     const rootNode = document.createElement('div');
     rootNode.setAttribute('class', this.CSS.wrapper);
@@ -50,7 +50,7 @@ export default class BlockNumber {
 
     return this.nodes.holder;
   }
- 
+
   save() {
     return this.data;
   }

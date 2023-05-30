@@ -1,4 +1,3 @@
-'use client'
 import React, { useRef, Suspense } from 'react';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
@@ -53,12 +52,8 @@ export default function TestPage({ source }) {
     return (
         <div className="wrapper">
             <div className="wrapper">
-                <Suspense>
-                    <MDXRemote {...source} components={components} scope={scope} />
-                </Suspense>
+                <MDXRemote {...source} components={components} scope={scope} />
             </div>
-
-
         </div>
     )
 }
@@ -82,6 +77,10 @@ export async function getStaticProps() {
     # get balance 
     {getBalance().symbol}
     `
-    const mdxSource = await serialize(source)
+    const source2 = `
+    # hello
+    <p>{hello().address}</p>
+    `
+    const mdxSource = await serialize(source2)
     return { props: { source: mdxSource } }
 }
