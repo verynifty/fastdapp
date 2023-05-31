@@ -1,6 +1,8 @@
 import React, { useRef, Suspense } from 'react';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
+import MDX from '@mdx-js/runtime';
+
 
 import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
@@ -15,23 +17,29 @@ let value = "// some comment";
 const components = { BN, Balance }
 let editorRef;
 
-function handleEditorDidMount(editor, monaco) {
-    editorRef.current = editor;
-}
 
-async function handleEditorChange(_value, event) {
-    console.log('here is the current model value:', value);
-    //const mdxSource = await serialize(source)
-    value = _value;
-
-}
 
 export default function TestPage({ source }) {
+
+
     editorRef = useRef(null);
-    const [content, setContent] = React.useState(0);
-    let hello = "hello";
+    const [content, setContent] = React.useState(`
+# Hello, world!
+<BN />
+    `);
 
     let account = getAccount();
+
+    function handleEditorDidMount(editor, monaco) {
+        editorRef.current = editor;
+    }
+
+    async function handleEditorChange(value, event) {
+        console.log('here is the current model value:', value);
+        //const mdxSource = await serialize(source)
+        setContent(value)
+
+    }
 
     const getBalance = async function () {
         console.log("get balance")
@@ -45,14 +53,18 @@ export default function TestPage({ source }) {
 
     let scope = { account: account, hello: getAccount, getBalance, fetchToken: async function (address) { return fetchToken({ address: address }) } };
 
-    /*<Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
-        onMount={handleEditorDidMount} defaultValue="// some comment" />;*/
+    <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
+        onMount={handleEditorDidMount} defaultValue="// some comment" />;
 
 
     return (
         <div className="wrapper">
             <div className="wrapper">
-                <MDXRemote {...source} components={components} scope={scope} />
+                {content}
+                <BN />
+                <MDX components={components} >{content}</MDX>
+                <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
+                    onMount={handleEditorDidMount} defaultValue={content} />;
             </div>
         </div>
     )

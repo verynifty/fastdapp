@@ -1,39 +1,38 @@
 import { watchBlockNumber } from '@wagmi/core'
-import { default as React, useEffect, useRef } from 'react';
+import { default as React, useState, useRef } from 'react';
 
-const BN = (props) => {
-
-    let unwatch = useRef();
+class BN extends React.Component {
 
 
-    useEffect(() => {
-        if (!unwatch) {
-            unwatch();
-            unwatch = null;
-            console.log("unwatch")
+
+    constructor(props) {
+
+        super(props);
+        this.state = {
+            blockNumber: "0",
         }
-        console.log("useEffect")
-        unwatch = watchBlockNumber(
+    }
+
+    componentDidMount() {
+        this.state.unwatch = watchBlockNumber(
             {
                 listen: true,
             },
             (newBlockNumber) => {
-                console.log(newBlockNumber)
-                setBlockNumber("" + newBlockNumber)
+                console.log(newBlockNumber, this.state)
+                this.setState({blockNumber: ("" + newBlockNumber)})
             }
         )
-    });
-
-
-    const [blockNumber, setBlockNumber] = React.useState(0);
+    }
 
 
 
-    return (
-        <React.Fragment>
-            {blockNumber}
-        </React.Fragment>
-    );
+    render() {
+
+        return (
+            <div> {this.state.blockNumber} ddd</div>
+        );
+    }
 }
 
 
