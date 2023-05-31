@@ -8,7 +8,7 @@ import { default as React, useState, useRef } from 'react';
 
 import BN from 'components/bn';
 import Balance from 'components/balance';
-import SendTransaction from 'components/sendTransaction';
+import SendTransaction from 'components/sendTransactionTwo';
 
 let value = "// some comment";
 const components = { "BN": BN, "Balance": Balance, "SendTransaction": SendTransaction }
