@@ -1,3 +1,4 @@
+'use client'
 import React, { useRef, Suspense } from 'react';
 import { serialize } from 'next-mdx-remote/serialize'
 import { MDXRemote } from 'next-mdx-remote'
@@ -16,15 +17,17 @@ import Balance from 'components/balance';
 let value = "// some comment";
 const components = { BN, Balance }
 let editorRef;
+let a;
 
 
 
 export default function TestPage({ source }) {
 
-
     editorRef = useRef(null);
     const [content, setContent] = React.useState(`
 # Hello, world!
+<div>{ getAccount().address }</div>
+<div>{account.address}</div>
 <BN />
     `);
 
@@ -51,7 +54,7 @@ export default function TestPage({ source }) {
 
     }
 
-    let scope = { account: account, hello: getAccount, getBalance, fetchToken: async function (address) { return fetchToken({ address: address }) } };
+    let scope = { account: account, getAccount: getAccount, getBalance, fetchToken: async function (address) { return fetchToken({ address: address }) } };
 
     <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
         onMount={handleEditorDidMount} defaultValue="// some comment" />;
@@ -60,9 +63,7 @@ export default function TestPage({ source }) {
     return (
         <div className="wrapper">
             <div className="wrapper">
-                {content}
-                <BN />
-                <MDX components={components} >{content}</MDX>
+                <MDX components={components} scope={scope} >{content}</MDX>
                 <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
                     onMount={handleEditorDidMount} defaultValue={content} />;
             </div>

@@ -3,10 +3,7 @@ import { default as React, useState, useRef } from 'react';
 
 class BN extends React.Component {
 
-
-
     constructor(props) {
-
         super(props);
         this.state = {
             blockNumber: "0",
@@ -20,9 +17,15 @@ class BN extends React.Component {
             },
             (newBlockNumber) => {
                 console.log(newBlockNumber, this.state)
-                this.setState({blockNumber: ("" + newBlockNumber)})
+                this.setState({ blockNumber: ("" + newBlockNumber) })
             }
         )
+    }
+
+    componentWillUnmount() {
+        if (this.state.unwatch) {
+            this.state.unwatch();
+        }
     }
 
 
