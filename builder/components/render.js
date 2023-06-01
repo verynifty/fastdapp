@@ -6,12 +6,14 @@ import { watchBlockNumber } from '@wagmi/core'
 import { default as React, useState, useRef } from 'react';
 
 
-import BlockNumber from 'components/blockNumber';
-import Balance from 'components/balance';
-import SendTransaction from 'components/sendTransaction';
+import BlockNumber from 'components/render/blockNumber';
+import SendTransaction from 'components/render/sendTransaction';
+import Balance from 'components/render/balance';
+
+import TokenBalance from 'components/render/tokenBalance';
 
 let value = "// some comment";
-const components = { "BlockNumber": BlockNumber, "Balance": Balance, "SendTransaction": SendTransaction }
+const components = { "BlockNumber": BlockNumber, "Balance": Balance, "TokenBalance": TokenBalance, "SendTransaction": SendTransaction }
 
 class Render extends React.Component {
 

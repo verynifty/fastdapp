@@ -16,13 +16,6 @@ const SendTransaction = (props) => {
 
     }, []);
 
-    const { config } = usePrepareSendTransaction({
-      request: {
-        to: to,
-        value: amount,
-      },
-    })
-
     return (
         <React.Fragment>
             <div class="grid grid-cols-1 gap-x-6 sm:grid-cols-12 md:col-span-2">
