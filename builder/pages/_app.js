@@ -15,6 +15,7 @@ import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
+import Header from 'components/commons/header';
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [
@@ -40,13 +41,12 @@ const wagmiConfig = createConfig({
     webSocketPublicClient
 });
 
-import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 function MyApp({ Component, pageProps }) {
     return (
         <WagmiConfig config={wagmiConfig}>
             <RainbowKitProvider chains={chains} showRecentTransactions={true}>
-                    <ConnectButton />
+                <Header />
                     <Component {...pageProps} />
             </RainbowKitProvider>
         </WagmiConfig>

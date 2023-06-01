@@ -6,12 +6,12 @@ import { watchBlockNumber } from '@wagmi/core'
 import { default as React, useState, useRef } from 'react';
 
 
-import BN from 'components/bn';
+import BlockNumber from 'components/blockNumber';
 import Balance from 'components/balance';
 import SendTransaction from 'components/sendTransaction';
 
 let value = "// some comment";
-const components = { "BN": BN, "Balance": Balance, "SendTransaction": SendTransaction }
+const components = { "BlockNumber": BlockNumber, "Balance": Balance, "SendTransaction": SendTransaction }
 
 class Render extends React.Component {
 

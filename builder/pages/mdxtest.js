@@ -22,12 +22,12 @@ export default function TestPage({ source }) {
 
     editorRef = useRef(null);
     const [content, setContent] = React.useState(`
-<SendTransaction />
-
 # Hello, world!
 
+Here is the current block number: <BlockNumber />
 
-<BN />
+
+# Here you can send some eth to me:
 <SendTransaction to="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" />
 
     `);
@@ -51,12 +51,16 @@ export default function TestPage({ source }) {
 
 
     return (
-        <div className="wrapper">
-            <div className="wrapper">
+        <div className="min-h-screen flex">
+            <div className="flex-1">
                 <Render content={content} />
-                <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
+                
+            </div>
+            <div className="flex-1">
+            <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
                     onMount={handleEditorDidMount} defaultValue={content} />;
             </div>
+
         </div>
     )
 }
