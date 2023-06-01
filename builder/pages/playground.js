@@ -33,6 +33,7 @@ Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5
 <SendTransaction to="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" />
 
     `);
+    const [rendered, setRendered] = React.useState(content);
 
     let account = getAccount();
 
@@ -42,9 +43,12 @@ Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5
 
     async function handleEditorChange(value, event) {
         console.log('here is the current model value:', value);
-        //const mdxSource = await serialize(source)
         setContent(value)
+    }
 
+    function handleRender() {
+        console.log('rendering');
+        setRendered(content)
     }
 
 
@@ -62,6 +66,7 @@ Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5
                 </div>
                 <div className="mt-4 flex md:ml-4 md:mt-0">
                     <button
+                        onClick={handleRender}
                         type="button"
                         className="inline-flex items-center rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
                     >
@@ -77,7 +82,7 @@ Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5
             </div>
             <div className=" flex">
                 <div className="flex-1">
-                    <Render content={content} />
+                    <Render content={rendered} />
 
                 </div>
                 <div className="flex-1">
