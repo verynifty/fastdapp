@@ -10,13 +10,18 @@ const TokenBalance = (props) => {
     // This will run only once
     useEffect(() => {
         async function getBalance() {
-            const balance = await fetchBalance({
-                address: props.address,
-                token: props.token,
-            })
-            setBalance(balance.value);
-            setFormatted(balance.formatted);
-            setSymbol(balance.symbol);
+            try {
+                const balance = await fetchBalance({
+                    address: props.address,
+                    token: props.token,
+                })
+                setBalance(balance.value);
+                setFormatted(balance.formatted);
+                setSymbol(balance.symbol);
+            } catch (error) {
+                setFormatted("Error: token doesn't exsit or is in a different network?");
+            }
+          
         }
         getBalance();
     }, []);
