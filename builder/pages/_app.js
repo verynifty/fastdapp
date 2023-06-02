@@ -15,7 +15,7 @@ import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
-import Header from 'components/commons/header';
+import { Header } from '@/components/Header'
 
 const { chains, publicClient, webSocketPublicClient } = configureChains(
     [
