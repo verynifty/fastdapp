@@ -10,14 +10,15 @@ import BlockNumber from 'components/render/blockNumber';
 import SendTransaction from 'components/render/sendTransaction';
 import Balance from 'components/render/balance';
 
-import { readContract } from '@wagmi/core'
+import { readContract, getAccount } from '@wagmi/core'
+
 
 
 import TokenBalance from 'components/render/tokenBalance';
 
 let value = "// some comment";
 const components = { "BlockNumber": BlockNumber, "Balance": Balance, "TokenBalance": TokenBalance, "SendTransaction": SendTransaction }
-const scope = { value: 55, readContract: readContract};
+const scope = { value: 55, readContract: readContract, getAccount: getAccount};
 class Render extends React.Component {
 
     constructor(props) {

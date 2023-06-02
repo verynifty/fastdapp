@@ -30,7 +30,10 @@ Here is your balance of token: <TokenBalance address="0x4B5922ABf25858d012d12bb1
 
 Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" />
 # Here you can send some eth to me:
-<SendTransaction to="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" />
+<SendTransaction to={getAccount().address} />
+
+# Connected acount
+<div>{ getAccount().address }</div>
 
 # Here is a contract read
 <div>{value}</div>
