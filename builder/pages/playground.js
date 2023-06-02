@@ -4,7 +4,7 @@ import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
 import Editor from '@monaco-editor/react';
 
-import Render from 'components/rendertest';
+import Render from 'components/render';
 
 
 let editorRef;
@@ -22,16 +22,21 @@ export default function TestPage({ source }) {
 # Variables
 
 
-
 # Basic components
+
+<div>{tokenAddress = "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81"}</div>
 
 Here is the current block number: <BlockNumber />
 
-Here is your balance of token: <TokenBalance address="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" token="0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81" />
+Token address = <DisplayVariable variable={tokenAddress} />
+
+<div>{userAddress}</div>
+
+
+Here is your balance of token: <TokenBalance address="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" token={tokenAddress} />
 
 Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" />
 # Here you can send some eth to me:
-{value}
 # Connected acount
 
 # Here is a contract read

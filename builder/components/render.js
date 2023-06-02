@@ -3,7 +3,7 @@
 import MDX from '@mdx-js/runtime';
 
 import { watchBlockNumber } from '@wagmi/core'
-import { default as React, useState, useRef } from 'react';
+import { default as React, useState, useRef, useEffect } from 'react';
 
 import DisplayVariable from 'components/render/displayVariable';
 import BlockNumber from 'components/render/blockNumber';
@@ -18,49 +18,45 @@ import TokenBalance from 'components/render/tokenBalance';
 
 let value = "// some comment";
 const components = { "DisplayVariable": DisplayVariable, "BlockNumber": BlockNumber, "Balance": Balance, "TokenBalance": TokenBalance, "SendTransaction": SendTransaction }
-const scope = { "useState": useState, value: 55, readContract: readContract, getAccount: getAccount};
-class Render extends React.Component {
+const scope = { "useState": useState, value: 55, readContract: readContract, getAccount: getAccount };
 
-    constructor(props) {
-        super(props);
+
+
+
+
+const Render = (props) => {
+
+    const [isLoaded, setIsLoaded] = React.useState(false);
+
+    // This will run only once
+    useEffect(() => {
+        async function load() {
+            try {
+                const account = await getAccount();
+                scope.userAddress = account.address;
+                setIsLoaded(true);
+            } catch (error) {
+            }
+
+        }
+        load();
+    }, []);
+
+    const getRender = () => {
+        if (!isLoaded) {
+            return (<div>loading</div>);
+        } else {
+            console.log(scope.userAddress)
+            return (<MDX components={components} scope={scope}>{props.content}</MDX>);
+        }
     }
 
-    componentDidMount() {
-        /*
-        readContract({"address": "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81", "abi": [{
-            "inputs": [
-              
-            ],
-            "name": "totalSupply",
-            "outputs": [
-              {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-              }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-          }], "method": "totalSupply"}).then((result) => {
-            console.log("@@@@@@@@@@@", result)
-          })
-          */
-    }
 
-    componentWillUnmount() {
-    
-    }
-
-
-
-    render() {
-
-        return (
-            <MDX components={components} scope={scope} >{this.props.content}</MDX>
-        );
-    }
+    return (
+        <React.Fragment>
+            {getRender()}
+        </React.Fragment>
+    );
 }
-
-
 
 export default Render;
