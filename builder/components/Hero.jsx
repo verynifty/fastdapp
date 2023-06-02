@@ -2,12 +2,8 @@ import Image from 'next/image'
 
 import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
-import logoLaravel from '@/images/logos/laravel.svg'
-import logoMirage from '@/images/logos/mirage.svg'
-import logoStatamic from '@/images/logos/statamic.svg'
-import logoStaticKit from '@/images/logos/statickit.svg'
-import logoTransistor from '@/images/logos/transistor.svg'
-import logoTuple from '@/images/logos/tuple.svg'
+import logoWagmi from '@/images/logos/wagmi.svg'
+import logoRainbow from '@/images/logos/rainbow-logo-medium.png'
 
 export function Hero() {
   return (
@@ -56,14 +52,9 @@ export function Hero() {
         >
           {[
             [
-              { name: 'Transistor', logo: logoTransistor },
-              { name: 'Tuple', logo: logoTuple },
-              { name: 'StaticKit', logo: logoStaticKit },
-            ],
-            [
-              { name: 'Mirage', logo: logoMirage },
-              { name: 'Laravel', logo: logoLaravel },
-              { name: 'Statamic', logo: logoStatamic },
+              { name: 'Mirage', logo: logoRainbow },
+              { name: 'Wagmi', logo: logoWagmi },
+              { name: 'Rainbow', logo: logoRainbow },
             ],
           ].map((group, groupIndex) => (
             <li key={groupIndex}>
@@ -72,7 +63,7 @@ export function Hero() {
                 className="flex flex-col items-center gap-y-8 sm:flex-row sm:gap-x-12 sm:gap-y-0"
               >
                 {group.map((company) => (
-                  <li key={company.name} className="flex">
+                  <li key={company.name} className="flex-1">
                     <Image src={company.logo} alt={company.name} unoptimized />
                   </li>
                 ))}
