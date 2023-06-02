@@ -1,13 +1,7 @@
 'use client'
 import React, { useRef, Suspense } from 'react';
-import { serialize } from 'next-mdx-remote/serialize'
-import { MDXRemote } from 'next-mdx-remote'
-import MDX from '@mdx-js/runtime';
-
 
 import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
-
-
 
 import Editor from '@monaco-editor/react';
 
@@ -22,7 +16,17 @@ export default function TestPage({ source }) {
 
     editorRef = useRef(null);
     const [content, setContent] = React.useState(`
+import Render from 'components/render';
+
+
 # Hello, world!
+
+# Variables
+
+
+<p><DisplayVariable variable={value} /></p>
+
+# Basic components
 
 Here is the current block number: <BlockNumber />
 
