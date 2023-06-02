@@ -9,13 +9,14 @@ import DisplayVariable from 'components/render/displayVariable';
 import BlockNumber from 'components/render/blockNumber';
 import SendTransaction from 'components/render/sendTransaction';
 import Balance from 'components/render/balance';
+import TokenBalance from 'components/render/tokenBalance';
 import ContractRead from 'components/render/contractRead';
+import Uniswap from 'components/render/uniswap';
 
 import { readContract, getAccount } from '@wagmi/core'
 
 
 
-import TokenBalance from 'components/render/tokenBalance';
 
 import ERC20ABI from 'ABIS/ERC20.json';
 import ERC721ABI from 'ABIS/ERC721.json';
@@ -28,7 +29,8 @@ const components = {
     "Balance": Balance,
     "TokenBalance": TokenBalance,
     "SendTransaction": SendTransaction,
-    "ContractRead": ContractRead
+    "ContractRead": ContractRead,
+    "Uniswap": Uniswap
 }
 const scope = {
     "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },
