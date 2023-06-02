@@ -19,7 +19,7 @@ const Uniswap = (props) => {
     return (
         <div className="Uniswap">
         <SwapWidget  
-    defaultInputTokenAddress={NATIVE}
+      defaultInputTokenAddress={NATIVE}
       defaultInputAmount={defaultInputAmount}
       defaultOutputTokenAddress={defaultOutputTokenAddress} />
       </div>
