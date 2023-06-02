@@ -9,6 +9,7 @@ import DisplayVariable from 'components/render/displayVariable';
 import BlockNumber from 'components/render/blockNumber';
 import SendTransaction from 'components/render/sendTransaction';
 import Balance from 'components/render/balance';
+import ContractRead from 'components/render/contractRead';
 
 import { readContract, getAccount } from '@wagmi/core'
 
@@ -16,13 +17,27 @@ import { readContract, getAccount } from '@wagmi/core'
 
 import TokenBalance from 'components/render/tokenBalance';
 
+import ERC20ABI from 'ABIS/ERC20.json';
+import ERC721ABI from 'ABIS/ERC721.json';
+import ERC1155ABI from 'ABIS/ERC1155.json';
+
 let value = "// some comment";
-const components = { "DisplayVariable": DisplayVariable, "BlockNumber": BlockNumber, "Balance": Balance, "TokenBalance": TokenBalance, "SendTransaction": SendTransaction }
-const scope = { "useState": useState, value: 55, readContract: readContract, getAccount: getAccount };
-
-
-
-
+const components = {
+    "DisplayVariable": DisplayVariable,
+    "BlockNumber": BlockNumber,
+    "Balance": Balance,
+    "TokenBalance": TokenBalance,
+    "SendTransaction": SendTransaction,
+    "ContractRead": ContractRead
+}
+const scope = {
+    "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },
+    "userAddress": "",
+    "useState": useState,
+    "value": 55,
+    "readContract": readContract,
+    "getAccount": getAccount
+};
 
 const Render = (props) => {
 
