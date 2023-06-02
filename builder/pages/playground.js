@@ -32,6 +32,26 @@ Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5
 # Here you can send some eth to me:
 <SendTransaction to="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" />
 
+# Here is a contract read
+<div>{value}</div>
+<div>{ JSON.stringify(readContract({"address": "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81", "abi": [{
+    "inputs": [
+      
+    ],
+    "name": "totalSupply",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }], "method": "totalSupply"}).then((result) => {
+    value = result;
+  })) }</div>
+
     `);
     const [rendered, setRendered] = React.useState(content);
 
