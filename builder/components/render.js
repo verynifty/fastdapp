@@ -26,6 +26,7 @@ class Render extends React.Component {
     }
 
     componentDidMount() {
+        /*
         readContract({"address": "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81", "abi": [{
             "inputs": [
               
@@ -43,6 +44,7 @@ class Render extends React.Component {
           }], "method": "totalSupply"}).then((result) => {
             console.log("@@@@@@@@@@@", result)
           })
+          */
     }
 
     componentWillUnmount() {
