@@ -63,7 +63,6 @@ const Render = (props) => {
         if (!isLoaded) {
             return (<div>loading</div>);
         } else {
-            console.log(scope.userAddress)
             return (<MDX components={components} scope={scope}>{props.content}</MDX>);
         }
     }

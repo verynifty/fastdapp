@@ -18,11 +18,13 @@ const Publish = (props) => {
         const obj = { content: props.content }
         const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
         let filename = hash(obj) + '.json';
+        let filename2 = "hello.json"
         const files = [
-            new File([blob], filename)
+            new File([blob], filename2)
         ]
         const cid = await client.put(files)
         let path = "ipfs://" + cid + "/" + filename;
+        console.log(path)
         setIsLoading(false);
     }
 
