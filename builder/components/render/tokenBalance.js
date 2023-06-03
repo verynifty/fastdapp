@@ -21,7 +21,7 @@ const TokenBalance = (props) => {
             } catch (error) {
                 setFormatted("Error: token doesn't exsit or is in a different network?");
             }
-          
+
         }
         getBalance();
     }, []);

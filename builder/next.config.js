@@ -6,6 +6,8 @@ const nextConfig = {
       config.resolve.fallback = { fs: false, net: false, tls: false };
       return config;
     },
+    env: {
+    }
   };
   
   module.exports = nextConfig;

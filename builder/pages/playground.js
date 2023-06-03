@@ -5,6 +5,7 @@ import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 import Editor from '@monaco-editor/react';
 
 import Render from 'components/render';
+import Publish from 'components/publish';
 
 
 let editorRef;
@@ -56,6 +57,7 @@ defaultOutputTokenAddress={tokenAddress}
  />
     `);
     const [rendered, setRendered] = React.useState(content);
+    const [isPublishing, setIsPublishing] = React.useState(false);
 
     let account = getAccount();
 
@@ -72,6 +74,22 @@ defaultOutputTokenAddress={tokenAddress}
         console.log('rendering');
         setRendered(content)
     }
+
+    function handlePublish() {
+        setIsPublishing(!isPublishing)
+    }
+
+    function RightPanel() {
+        if (isPublishing) {
+            return (<Publish content={rendered} />);
+        } else {
+            return (
+                <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
+                onMount={handleEditorDidMount} defaultValue={content} />
+            );
+        }
+    }
+
 
 
     <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
@@ -95,10 +113,11 @@ defaultOutputTokenAddress={tokenAddress}
                         Render
                     </button>
                     <button
+                        onClick={handlePublish}
                         type="button"
                         className="ml-3 inline-flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
                     >
-                        Publish
+                        {!isPublishing ? 'Publish' : 'Edit'}
                     </button>
                 </div>
             </div>
@@ -108,8 +127,7 @@ defaultOutputTokenAddress={tokenAddress}
 
                 </div>
                 <div className="flex-1">
-                    <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
-                        onMount={handleEditorDidMount} defaultValue={content} />;
+                   {RightPanel()}
                 </div>
 
             </div>
