@@ -1,5 +1,3 @@
-'use client';
-
 import MDX from '@mdx-js/runtime';
 
 import { watchBlockNumber } from '@wagmi/core'

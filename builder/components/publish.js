@@ -1,11 +1,13 @@
 import { default as React, useState, useRef, useEffect } from 'react';
 import { Web3Storage } from 'web3.storage'
 var hash = require('object-hash');
-
+import { useRouter } from 'next/router'
+import axios from 'axios';
 
 const Publish = (props) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const client = new Web3Storage({ token: process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN })
+    const router = useRouter()
 
     // This will run only once
     useEffect(() => {
@@ -18,15 +20,26 @@ const Publish = (props) => {
         const obj = { content: props.content }
         const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
         let filename = hash(obj) + '.json';
-        let filename2 = "hello.json"
         const files = [
-            new File([blob], filename2)
+            new File([blob], filename)
         ]
         const cid = await client.put(files)
         let path = "ipfs://" + cid + "/" + filename;
         console.log(path)
-        setIsLoading(false);
-    }
+        while (true) {
+            console.log("checking if file is uploaded")
+            try {
+                await new Promise(r => setTimeout(r, 1000));
+                let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
+                let f = await axios.get(file_url)
+                setIsLoading(false);
+                router.replace("/page", "/page?ipfs=" + encodeURIComponent(path), {query: { ipfs: path }})
+                return;
+             } catch (error) {
+                
+            }
+        }
+           }
 
     function button() {
         if (isLoading) {
