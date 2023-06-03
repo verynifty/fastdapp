@@ -18,7 +18,6 @@ export default function TestPage({ source }) {
     const [rendered, setRendered] = React.useState(false);
 
     async function load() {
-        console.log("LOADING")
         //setIsLoaded(true);
         if (router.query.ipfs != null) {
             let urlSplit = router.query.ipfs.split('/')
@@ -28,15 +27,24 @@ export default function TestPage({ source }) {
             let f = await axios.get(file_url)
             console.log(f);
             setRendered((f.data).content)
+            setIsLoaded(true);
         }
 
     }
 
     load();
 
+    function render() {
+        if (isLoaded) {
+            return (<Render content={rendered} />)
+        } else {
+            return (<div>Loading...</div>)
+        }
+    }
+
     return (
         <div>
-            <Render content={rendered} />
+            {render()}
         </div>
     )
 }
