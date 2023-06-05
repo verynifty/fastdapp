@@ -9,6 +9,8 @@ import SendTransaction from 'components/render/sendTransaction';
 import Balance from 'components/render/balance';
 import TokenBalance from 'components/render/tokenBalance';
 import ContractRead from 'components/render/contractRead';
+import ContractWrite from 'components/render/contractWrite';
+
 import Uniswap from 'components/render/uniswap';
 
 import { readContract, getAccount } from '@wagmi/core'
@@ -28,6 +30,7 @@ const components = {
     "TokenBalance": TokenBalance,
     "SendTransaction": SendTransaction,
     "ContractRead": ContractRead,
+    "ContractWrite": ContractWrite,
     "Uniswap": Uniswap
 }
 const scope = {

@@ -32,14 +32,14 @@ const Publish = (props) => {
                 await new Promise(r => setTimeout(r, 1000));
                 let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
                 let f = await axios.get(file_url)
+                router.replace("/page?ipfs=" + encodeURIComponent(path), "/page?ipfs=" + encodeURIComponent(path), { query: { ipfs: path } })
                 setIsLoading(false);
-                router.replace("/page", "/page?ipfs=" + encodeURIComponent(path), {query: { ipfs: path }})
                 return;
-             } catch (error) {
-                
+            } catch (error) {
+                console.log("File not uploaded yet...")
             }
         }
-           }
+    }
 
     function button() {
         if (isLoading) {

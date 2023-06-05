@@ -27,6 +27,7 @@ export default function TestPage({ source }) {
 
 <div>{tokenAddress = "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81"}</div>
 <div>{VNFTAddress = "0x57f0B53926dd62f2E26bc40B30140AbEA474DA94"}</div>
+<div>{FireAddress = "0x3dbb10bde369a8272f7106d88c510829af49c813"}</div>
 
 Here is the current block number: <BlockNumber />
 
@@ -48,6 +49,20 @@ Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5
 and another 
 
 <ContractRead args={[0]} address={VNFTAddress} abi={[{"inputs":[{"internalType":"uint256","name":"_itemId","type":"uint256"}],"name":"getItemInfo","outputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"uint256","name":"_price","type":"uint256"},{"internalType":"uint256","name":"_points","type":"uint256"},{"internalType":"uint256","name":"_timeExtension","type":"uint256"}],"stateMutability":"view","type":"function"}]} functionName="getItemInfo" args="1" returnValue={0} />
+
+# Here is a contract write
+
+<ContractWrite address={FireAddress} abi={ABIs.ERC20} abi={[{
+    "inputs": [
+      
+    ],
+    "name": "mint",
+    "outputs": [
+      
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }]} functionName="mint" />
 
 # Here is Uniswap
 

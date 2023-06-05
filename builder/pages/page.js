@@ -21,6 +21,7 @@ export default function TestPage({ source }) {
 
     async function load() {
         //setIsLoaded(true);
+        console.log("Loading page", router.query)
         if (router.query.ipfs != null) {
             let urlSplit = router.query.ipfs.split('/')
             let cid = urlSplit[2]
