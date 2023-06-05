@@ -7,6 +7,7 @@ const WriteContract = (props) => {
     const [balance, setBalance] = React.useState(0);
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
+    const args = [];
 
     console.log(props);
     // This will run only once
@@ -17,7 +18,7 @@ const WriteContract = (props) => {
 
     return (
         <span>
-            <SendTransactionButton transactionDescription={props.functionName} transaction={usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName })} />
+            <SendTransactionButton transactionDescription={props.functionName} transaction={usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: args }).config} />
         </span >
     );
 }
