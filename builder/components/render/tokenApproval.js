@@ -3,7 +3,7 @@ import { usePrepareContractWrite } from 'wagmi'
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
 
-const WriteContract = (props) => {
+const TokenApproval = (props) => {
     const [balance, setBalance] = React.useState(0);
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
@@ -23,4 +23,4 @@ const WriteContract = (props) => {
     );
 }
 
-export default WriteContract;
+export default TokenApproval;

@@ -8,6 +8,9 @@ const SendTransactionButton = (props) => {
 
     const [isLoading, setIsLoading] = React.useState(false);
     const [pendingTransaction, setPendingTransaction] = React.useState(null);
+
+    const text = props.text != null ? props.text : "Send";
+
     // This will run only once
     useEffect(() => {
 
@@ -48,7 +51,7 @@ const SendTransactionButton = (props) => {
         if (!isLoading) {
             return (
                 <button onClick={onClickSend} className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                    Send
+                    {text}
                 </button>
             )
         } else {
