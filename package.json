@@ -8,9 +8,14 @@
     "start": "next start",
     "lint": "next lint"
   },
+  "overrides": {
+    "react": "18.2.0",
+    "react-dom": "18.2.0"
+  },
   "dependencies": {
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
+    "@mdx-js/runtime": "^1.6.22",
     "@monaco-editor/react": "^4.5.1",
     "@pinata/ipfs-gateway-tools": "^1.3.0",
     "@rainbow-me/rainbowkit": "^1.0.1",
@@ -19,8 +24,8 @@
     "@uniswap/widgets": "^2.51.2",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
-    "ethers": "^6.4.0",
     "next": "13.4.4",
+    "next-mdx-remote": "^4.4.1",
     "object-hash": "^3.0.0",
     "postcss": "8.4.24",
     "react": "18.2.0",
