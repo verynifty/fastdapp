@@ -12,7 +12,7 @@ import ContractRead from 'components/render/contractRead';
 import ContractWrite from 'components/render/contractWrite';
 
 import Uniswap from 'components/render/uniswap';
-import ReservoirSweep from 'components/render/ReservoirSweep';
+import ReservoirSweep from 'components/render/reservoirSweep';
 
 import { readContract, getAccount } from '@wagmi/core'
 
