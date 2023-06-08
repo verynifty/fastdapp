@@ -4,6 +4,9 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import logoWagmi from '@/images/logos/wagmi.svg'
 import logoRainbow from '@/images/logos/rainbow-logo-medium.png'
+import logoViem from '@/images/logos/viem.svg'
+import logoReservoir from '@/images/logos/reservoir.svg'
+import logoUniswap from '@/images/logos/uniswap.svg'
 
 export function Hero() {
   return (
@@ -24,11 +27,10 @@ export function Hero() {
         for everyone.
       </h1>
       <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-        Most bookkeeping software is accurate, but hard to use. We make the
-        opposite trade-off, and hope you don’t get audited.
+       Supercharge your development with our suite of tools and services.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="/register">Get 6 months free</Button>
+        <Button href="/playground">Go to the playground</Button>
         <Button
           href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
           variant="outline"
@@ -39,7 +41,7 @@ export function Hero() {
           >
             <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
           </svg>
-          <span className="ml-3">Watch video</span>
+          <span className="ml-3">Watch our presentation</span>
         </Button>
       </div>
       <div className="mt-36 lg:mt-44">
@@ -52,9 +54,12 @@ export function Hero() {
         >
           {[
             [
-              { name: 'Mirage', logo: logoRainbow },
               { name: 'Wagmi', logo: logoWagmi },
               { name: 'Rainbow', logo: logoRainbow },
+              { name: 'Viem', logo: logoViem },
+              { name: 'Reservoir', logo: logoReservoir },
+              { name: 'Uniswap', logo: logoUniswap },
+
             ],
           ].map((group, groupIndex) => (
             <li key={groupIndex}>
@@ -74,4 +79,5 @@ export function Hero() {
       </div>
     </Container>
   )
+  
 }
