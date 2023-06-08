@@ -12,6 +12,7 @@ import ContractRead from 'components/render/contractRead';
 import ContractWrite from 'components/render/contractWrite';
 
 import Uniswap from 'components/render/uniswap';
+import ReservoirSweep from 'components/render/ReservoirSweep';
 
 import { readContract, getAccount } from '@wagmi/core'
 
@@ -31,7 +32,8 @@ const components = {
     "SendTransaction": SendTransaction,
     "ContractRead": ContractRead,
     "ContractWrite": ContractWrite,
-    "Uniswap": Uniswap
+    "Uniswap": Uniswap,
+    "ReservoirSweep": ReservoirSweep
 }
 const scope = {
     "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },

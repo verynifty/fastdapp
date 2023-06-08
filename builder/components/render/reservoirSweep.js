@@ -11,14 +11,14 @@ const ReservoirSweep = (props) => {
 
     }, []);
 
-    const collectionId = "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
-    
+    const collectionId = props.collectionAddress
+
     return (
-        <div className="reservoir">
+        <div className="reservoir">ddsfds
             <SweepModal
                 trigger={
                     <button>
-                        Sweep
+                        {props.buttonText}
                     </button>
                 }
                 collectionId={collectionId}

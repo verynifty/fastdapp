@@ -62,9 +62,9 @@ function MyApp({ Component, pageProps }) {
                     id: 1,
                     baseApiUrl: "https://api.reservoir.tools",
                     default: true,
-                    apiKey: "YOUR_KEY"
+                    apiKey: process.env.NEXT_PUBLIC_RESERVOIR_API_KEY
                 }],
-                source: "YOUR_SOURCE"
+                source: "reservoir.market"
 
             }}
             theme={theme}
