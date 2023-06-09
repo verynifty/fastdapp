@@ -27,7 +27,7 @@ export function Hero() {
         for everyone.
       </h1>
       <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-       Supercharge your development with our suite of tools and services.
+       Focus on your contract, we'll take care of the rest.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
         <Button href="/playground">Go to the playground</Button>
