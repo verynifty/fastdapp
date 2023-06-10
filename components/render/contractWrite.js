@@ -61,7 +61,7 @@ const WriteContract = (props) => {
     return (
         <span>
             {makeForm()}
-            <SendTransactionButton text={props.text != null ? props.text : props.functionName} transactionDescription={props.functionName} transaction={usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: argsStateValues }).config} />
+            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} transaction={usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: argsStateValues }).config} />
         </span >
     );
 }
