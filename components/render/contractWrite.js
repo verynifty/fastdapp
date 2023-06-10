@@ -1,7 +1,13 @@
 import { default as React, useState, useRef, useEffect } from 'react';
 import { usePrepareContractWrite } from 'wagmi'
+import { Switch } from '@headlessui/react'
+
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
+
+function classNames(...classes) {
+    return classes.filter(Boolean).join(' ')
+}
 
 const WriteContract = (props) => {
     const [balance, setBalance] = React.useState(0);
@@ -22,37 +28,66 @@ const WriteContract = (props) => {
     }
 
     console.log("ABI", props.abi)
+    console.log("Args Values", argsStateValues)
 
-    console.log(props);
     // This will run only once
     useEffect(() => {
 
     }, []);
 
-    
+
 
     function makeForm() {
         return (
             <div>
                 {getFunction().inputs.map((input, index) => {
-                    return (
-                        <div>
-                            <label htmlFor={input.name} className="block text-sm font-medium leading-6 text-gray-900">
-                                {input.name}
-                            </label>
-                            <div className="mt-2">
-                                <input
-                                    type="text"
-                                    name={input.name}
-                                    id={input.name}
-                                    className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                    placeholder="you@example.com"
-                                    value={argsStateValues[index]} 
-                                    onChange={e => argsStateSetters[index](e.target.value)}
-                                />
-                            </div>
-                        </div>
-                    )
+                    if (input.hidden == null || !input.hidden) {
+                        if (input.type === "bool") {
+                            return (
+                                <Switch.Group as="div" className="flex items-center">
+                                    <Switch.Label as="span" className="ml-3 text-sm">
+                                        <span className="font-medium text-gray-900">{input.name}</span>{' '}
+                                    </Switch.Label>
+                                    <Switch
+                                        checked={argsStateValues[index]}
+                                        onChange={argsStateSetters[index]}
+                                        className={classNames(
+                                            argsStateValues[index] ? 'bg-indigo-600' : 'bg-gray-200',
+                                            'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2'
+                                        )}
+                                    >
+                                        <span
+                                            aria-hidden="true"
+                                            className={classNames(
+                                                argsStateValues[index] ? 'translate-x-5' : 'translate-x-0',
+                                                'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
+                                            )}
+                                        />
+                                    </Switch>
+
+                                </Switch.Group>
+                            )
+                        } else {
+                            return (
+                                <div>
+                                    <label htmlFor={input.name} className="block text-sm font-medium leading-6 text-gray-900">
+                                        {input.name}
+                                    </label>
+                                    <div className="mt-2">
+                                        <input
+                                            type="text"
+                                            name={input.name}
+                                            id={input.name}
+                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                            placeholder="you@example.com"
+                                            value={argsStateValues[index]}
+                                            onChange={e => argsStateSetters[index](e.target.value)}
+                                        />
+                                    </div>
+                                </div>
+                            )
+                        }
+                    }
                 })}
             </div>
         )
