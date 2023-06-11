@@ -6,12 +6,10 @@ import Render from 'components/render';
 import { Web3Storage } from 'web3.storage'
 import axios from 'axios';
 
-const IPFSGatewayTools = require("@pinata/ipfs-gateway-tools/dist/node");
 
 export default function TestPage({ source }) {
 
     const client = new Web3Storage({ token: process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN })
-    const ipfsGatewayTools = new IPFSGatewayTools();
     const router = useRouter()
 
     const [isLoaded, setIsLoaded] = React.useState(false);

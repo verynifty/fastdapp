@@ -4,6 +4,9 @@ import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
 import Editor from '@monaco-editor/react';
 
+import examples from 'examples/list';
+
+
 import Render from 'components/render';
 import Publish from 'components/publish';
 
@@ -74,8 +77,9 @@ defaultOutputTokenAddress={tokenAddress}  />
 
 <ReservoirSweep collectionAddress="0xc3f733ca98e0dad0386979eb96fb1722a1a05e69" buttonText="Buy a mooncat" />
 
-
     `);
+
+    console.log(examples)
     const [rendered, setRendered] = React.useState(content);
     const [isPublishing, setIsPublishing] = React.useState(false);
 
@@ -105,7 +109,7 @@ defaultOutputTokenAddress={tokenAddress}  />
         } else {
             return (
                 <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
-                onMount={handleEditorDidMount} defaultValue={content} />
+                    onMount={handleEditorDidMount} defaultValue={content} />
             );
         }
     }
@@ -147,7 +151,7 @@ defaultOutputTokenAddress={tokenAddress}  />
 
                 </div>
                 <div className="flex-1">
-                   {RightPanel()}
+                    {RightPanel()}
                 </div>
 
             </div>
