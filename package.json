@@ -20,6 +20,7 @@
     "@rainbow-me/rainbowkit": "^1.0.1",
     "@reservoir0x/reservoir-kit-ui": "^1.0.3",
     "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.9",
     "@uniswap/conedison": "^1.7.0",
     "@uniswap/widgets": "^2.51.2",
     "autoprefixer": "10.4.14",

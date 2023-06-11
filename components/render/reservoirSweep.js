@@ -14,7 +14,7 @@ const ReservoirSweep = (props) => {
     const collectionId = props.collectionAddress
 
     return (
-        <div className="reservoir">ddsfds
+        <div className="reservoir">
             <SweepModal
                 trigger={
                     <button>
