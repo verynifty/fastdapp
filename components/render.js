@@ -44,13 +44,31 @@ const scope = {
 const Render = (props) => {
 
     const [isLoaded, setIsLoaded] = React.useState(false);
+    const [content, setContent] = React.useState(false);
 
+    // Not used for now
+    function cleanContent(c) {
+        console.log("Clean content", c);
+        let lines = c.split("\n");
+        for (let i = 0; i < lines.length; i++) {
+            //lines[i] = lines[i].trim();
+        }
+        /*lines = lines.filter((line) => {
+            return !line == "";
+        })*/
+        c = lines.join("\n");
+        console.log("Lines", c);
+        return c;
+    }
+
+    
     // This will run only once
     useEffect(() => {
         async function load() {
             try {
                 const account = await getAccount();
                 scope.userAddress = account.address;
+
                 setIsLoaded(true);
             } catch (error) {
             }
