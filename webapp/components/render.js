@@ -81,7 +81,7 @@ const Render = (props) => {
         if (!isLoaded) {
             return (<div>loading</div>);
         } else {
-            return (<MDX  components={components} scope={scope}>ssss{props.content}</MDX>);
+            return (<MDX  components={components} scope={scope}>{props.content}</MDX>);
         }
     }
 
