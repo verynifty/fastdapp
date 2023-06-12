@@ -1,5 +1,6 @@
 import React, { useRef, Suspense, Fragment } from 'react';
 import { useRouter } from 'next/router'
+import axios from 'axios';
 
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
@@ -48,11 +49,11 @@ export default function TestPage({ source }) {
     async function load() {
         //setIsLoaded(true);
         console.log("Loading page", router.query)
-        if (router.query.starter != null) {
-            let url = router.query.starter;
-            
-        }
-
+        let url = "https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (router.query.starter == null ? 'simple' : router.query.starter) + ".md";
+        let f = await axios.get(url)
+        console.log(f.data)
+        setContent(f.data)
+        setRendered(content)
     }
 
     load();
