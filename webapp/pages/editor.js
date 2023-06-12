@@ -1,4 +1,6 @@
 import React, { useRef, Suspense, Fragment } from 'react';
+import { useRouter } from 'next/router'
+
 import { Popover, Transition } from '@headlessui/react'
 import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
 import {
@@ -26,6 +28,8 @@ let editorRef;
 
 export default function TestPage({ source }) {
 
+    const router = useRouter()
+
     const solutions = [
         { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
         { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
@@ -39,66 +43,19 @@ export default function TestPage({ source }) {
     ]
 
     editorRef = useRef(null);
-    const [content, setContent] = React.useState(`
+    const [content, setContent] = React.useState(``);
 
+    async function load() {
+        //setIsLoaded(true);
+        console.log("Loading page", router.query)
+        if (router.query.starter != null) {
+            let url = router.query.starter;
+            
+        }
 
-# Hello, world!
+    }
 
-# Variables
-
-
-# Basic components
-
-<div>{tokenAddress = "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81"}</div>
-<div>{VNFTAddress = "0x57f0B53926dd62f2E26bc40B30140AbEA474DA94"}</div>
-<div>{FireAddress = "0x3dbb10bde369a8272f7106d88c510829af49c813"}</div>
-
-Here is the current block number: <BlockNumber />
-
-Token address = <DisplayVariable variable={tokenAddress} />
-
-<div>{userAddress}</div>
-
-
-Here is your balance of token: <TokenBalance address="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" token={tokenAddress} />
-
-Here is your balance of Ether: <Balance address="0x4B5922ABf25858d012d12bb1184e5d3d0B6D6BE4" />
-# Here you can send some eth to me:
-# Connected acount
-
-# Here is a contract read
-
-<ContractRead address={tokenAddress} abi={ABIs.ERC20} functionName="symbol" />
-
-and another 
-
-<ContractRead args={[0]} address={VNFTAddress} abi={[{"inputs":[{"internalType":"uint256","name":"_itemId","type":"uint256"}],"name":"getItemInfo","outputs":[{"internalType":"string","name":"_name","type":"string"},{"internalType":"uint256","name":"_price","type":"uint256"},{"internalType":"uint256","name":"_points","type":"uint256"},{"internalType":"uint256","name":"_timeExtension","type":"uint256"}],"stateMutability":"view","type":"function"}]} functionName="getItemInfo" args="1" returnValue={0} />
-
-# Here is a contract write
-
-<ContractWrite address={FireAddress} abi={ABIs.ERC20} abi={[{
-    "inputs": [
-      
-    ],
-    "name": "mint",
-    "outputs": [
-      
-    ],
-    "stateMutability": "nonpayable",
-    "type": "function"
-  }]} functionName="mint" />
-
-# Here is Uniswap
-
-<Uniswap
-defaultInputAmount={1}
-defaultOutputTokenAddress={tokenAddress}  />
-
-# Here is reservoir sweep 
-
-<ReservoirSweep collectionAddress="0xc3f733ca98e0dad0386979eb96fb1722a1a05e69" buttonText="Buy a mooncat" />
-
-    `);
+    load();
 
     console.log(examples)
     const [rendered, setRendered] = React.useState(content);
