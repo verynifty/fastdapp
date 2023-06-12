@@ -101,7 +101,7 @@ export function Header() {
               <Logo className="h-10 w-auto" />
             </Link>
             <div className="hidden md:flex md:gap-x-6">
-              <NavLink href="/playground">Playground</NavLink>
+              <NavLink href="/editor">Editor</NavLink>
               <NavLink href="/documentation">Documentation</NavLink>
    
             </div>
