@@ -108,7 +108,7 @@ defaultOutputTokenAddress={tokenAddress}  />
             return (<Publish content={rendered} />);
         } else {
             return (
-                <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
+                <Editor height="90vh" defaultLanguage="mdx" onChange={handleEditorChange}
                     onMount={handleEditorDidMount} defaultValue={content} />
             );
         }
