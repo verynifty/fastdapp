@@ -29,9 +29,6 @@ export default function TestPage({ source }) {
         return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (smapleName == null ? 'simple' : smapleName) + ".md")
     }
 
-   
-
-
     useEffect(() => {
         async function load() {
             try {
@@ -42,7 +39,6 @@ export default function TestPage({ source }) {
                 console.log(error)
             }
         }
-    
         load();
     }, []);
 
