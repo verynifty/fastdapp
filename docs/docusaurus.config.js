@@ -76,7 +76,12 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'}
+          {to: '/blog', label: 'Blog', position: 'left'},
+          {
+            label: 'Build',
+            to: 'https://build.musedao.io',
+            position: 'left'
+          },
         ],
       },
       footer: {
@@ -98,6 +103,10 @@ const config = {
           {
             title: 'More',
             items: [
+              {
+                label: 'Build',
+                to: 'https://build.musedao.io',
+              },
               {
                 label: 'Blog',
                 to: '/blog',
