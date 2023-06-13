@@ -1,4 +1,7 @@
 import MDX from '@mdx-js/runtime';
+import remarkFrontmatter from 'remark-frontmatter'
+import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
+
 
 import { watchBlockNumber } from '@wagmi/core'
 import { default as React, useState, useRef, useEffect } from 'react';
@@ -81,7 +84,7 @@ const Render = (props) => {
         if (!isLoaded) {
             return (<div>loading</div>);
         } else {
-            return (<MDX  components={components} scope={scope}>{props.content}</MDX>);
+            return (<MDX  remarkPlugins={[remarkFrontmatter, remarkMdxFrontmatter]} components={components} scope={scope}>{props.content}</MDX>);
         }
     }
 
