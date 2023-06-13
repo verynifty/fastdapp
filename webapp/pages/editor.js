@@ -6,7 +6,6 @@ import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
 import Editor from '@monaco-editor/react';
 
-import examples from 'examples/list';
 
 import Render from 'components/render';
 import Publish from 'components/publish';
@@ -16,15 +15,13 @@ let editorRef;
 
 
 
-export default function TestPage({ source }) {
+export default function EditorPage({ source }) {
 
     const router = useRouter()
 
     editorRef = useRef(null);
     const [content, setContent] = React.useState(``);
     const [isLoaded, setIsLoaded] = React.useState(``);
-
-
 
     function getExampleURL(templateName = null) {
         return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (templateName == null ? 'simple' : templateName) + ".md")
