@@ -57,12 +57,10 @@ export default function TestPage({ source }) {
     }
 
     async function handleEditorChange(value, event) {
-        console.log('here is the current model value:', value);
         setContent(value)
     }
 
     function handleRender() {
-        console.log('rendering');
         setRendered(content)
     }
 
