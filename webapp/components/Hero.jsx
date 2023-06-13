@@ -30,9 +30,9 @@ export function Hero() {
        Focus on your contract, we'll take care of the rest.
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button href="/playground">Go to the playground</Button>
+        <Button href="/editor">Go to the playground</Button>
         <Button
-          href="https://www.youtube.com/watch?v=dQw4w9WgXcQ"
+          href="https://www.youtube.com/watch?v=6SQylwOXuLM"
           variant="outline"
         >
           <svg
