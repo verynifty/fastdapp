@@ -1,8 +1,7 @@
 import MDX from '@mdx-js/runtime';
 var yamlFront = require('yaml-front-matter');
 
-import { watchBlockNumber } from '@wagmi/core'
-import { default as React, useState, useRef, useEffect } from 'react';
+import { default as React, useState, useEffect } from 'react';
 
 import { useNetwork, useSwitchNetwork } from 'wagmi'
 

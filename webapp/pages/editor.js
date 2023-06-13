@@ -6,14 +6,11 @@ import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
 import Editor from '@monaco-editor/react';
 
-
+import RenderErrorWrapper from 'components/renderErrorWrapper';
 import Render from 'components/render';
 import Publish from 'components/publish';
 
-
 let editorRef;
-
-
 
 export default function EditorPage({ source }) {
 
@@ -112,6 +109,9 @@ export default function EditorPage({ source }) {
             </div>
             <div className=" flex">
                 <div className="flex-1">
+                    <RenderErrorWrapper>
+                        <Render content={rendered} />
+                    </RenderErrorWrapper>
                 </div>
                 <div className="flex-1">
                     {RightPanel()}
