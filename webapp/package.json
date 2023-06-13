@@ -40,6 +40,7 @@
     "use-debounce": "^9.0.4",
     "viem": "^0.3.37",
     "wagmi": "^1.0.9",
-    "web3.storage": "^4.5.4"
+    "web3.storage": "^4.5.4",
+    "yaml-front-matter": "^4.1.1"
   }
 }

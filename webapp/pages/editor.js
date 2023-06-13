@@ -8,7 +8,6 @@ import Editor from '@monaco-editor/react';
 
 import examples from 'examples/list';
 
-
 import Render from 'components/render';
 import Publish from 'components/publish';
 

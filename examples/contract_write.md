@@ -1,4 +1,8 @@
 
+---
+chain: 1
+---
+
 # Contract write examples
 
 <>{/* 

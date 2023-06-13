@@ -1,7 +1,5 @@
 import MDX from '@mdx-js/runtime';
-import remarkFrontmatter from 'remark-frontmatter'
-import remarkMdxFrontmatter from 'remark-mdx-frontmatter'
-
+var yamlFront = require('yaml-front-matter');
 
 import { watchBlockNumber } from '@wagmi/core'
 import { default as React, useState, useRef, useEffect } from 'react';
@@ -47,7 +45,7 @@ const scope = {
 const Render = (props) => {
 
     const [isLoaded, setIsLoaded] = React.useState(false);
-    const [content, setContent] = React.useState(false);
+    const [content, setContent] = React.useState("");
 
     // Not used for now
     function cleanContent(c) {
@@ -71,7 +69,8 @@ const Render = (props) => {
             try {
                 const account = await getAccount();
                 scope.userAddress = account.address;
-
+                console.log("RENDERINGS", props.content);
+                setContent(props.content);
                 setIsLoaded(true);
             } catch (error) {
             }
@@ -80,11 +79,18 @@ const Render = (props) => {
         load();
     }, []);
 
+    useEffect(() => {
+        console.log("CONTENT CHANGED")
+        let parsedFront = yamlFront.loadFront(props.content);
+        console.log("PARSED FRONT", parsedFront);
+        setContent(parsedFront.__content);
+    }, [props.content]);
+
     const getRender = () => {
         if (!isLoaded) {
             return (<div>loading</div>);
         } else {
-            return (<MDX  remarkPlugins={[remarkFrontmatter, remarkMdxFrontmatter]} components={components} scope={scope}>{props.content}</MDX>);
+            return (<MDX components={components} scope={scope}>{content}</MDX>);
         }
     }
 
