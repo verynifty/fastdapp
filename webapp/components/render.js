@@ -92,13 +92,20 @@ const Render = (props) => {
         let parsedFront = yamlFront.loadFront(props.content);
         console.log("PARSED FRONT", parsedFront);
         setContent(parsedFront.__content);
+        console.log("CONTENT SET");
         setRequiredChain(parsedFront.chain != null ? parseInt(parsedFront.chain) : 1);
+        console.log("REQUIRED  CHAIN");
+
         let theme = THEMES.filter((t) => { return t.name == parsedFront.theme });
+        console.log("THEME  CHAIN");
+
         if (theme.length > 0) {
             setTheme(theme[0]);
         } else {
             setTheme(THEMES[0]);
         }
+        console.log("END PROP");
+
     }
 
     // This will run only once

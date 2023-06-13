@@ -33,9 +33,11 @@ export default function EditorPage({ source }) {
 
                 console.log(router.query, getExampleURL(template))
                 let f = await axios.get(getExampleURL(template))
+                console.log("ADD CONTENT", f.data)
                 setContent(f.data)
                 setRendered(f.data)
                 setIsLoaded(true)
+                console.log("LOADED")
             } catch (error) {
                 console.log(error)
             }
