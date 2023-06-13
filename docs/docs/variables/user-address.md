@@ -16,7 +16,7 @@ The address of the wallet that is currently connected to the app.
 Or in a component:
 
 ```
-    <Balance 
-        address={userAddress}
-    />
+<Balance 
+    address={userAddress}
+/>
 ```
