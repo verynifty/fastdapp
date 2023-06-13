@@ -4,7 +4,7 @@ sidebar_position: 1
 
 # What is Muse Build
 
-Let's discover **Muse Build in less than 5 minutes**.
+Muse Build is a web application that enables you to create websites for your DAPP in a few minutes.
 
-## Create a new page
+
 
