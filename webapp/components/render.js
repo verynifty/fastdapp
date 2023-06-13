@@ -66,7 +66,7 @@ const Render = (props) => {
     const [content, setContent] = React.useState("");
     const [requiredChain, setRequiredChain] = React.useState(null);
     const [theme, setTheme] = React.useState(THEMES[0]);
-    
+
     const { chain } = useNetwork()
     const { chains, error, isLoading, pendingChainId, switchNetwork } =
         useSwitchNetwork()
@@ -111,6 +111,7 @@ const Render = (props) => {
                 setContentFromProp();
                 setIsLoaded(true);
             } catch (error) {
+                console.log("ERROR", error);
             }
 
         }
@@ -121,11 +122,12 @@ const Render = (props) => {
         setContentFromProp();
     }, [props.content]);
 
+    if (!isLoaded) {
+        return (<div>loading</div>);
+    }
+
     const getRender = () => {
-        if (!isLoaded) {
-            return (<div>loading</div>);
-        }
-        else if (chain == null && req || chain.id != requiredChain) {
+        if (chain == null && req || chain.id != requiredChain) {
             return (
                 <div class="text-center">
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">

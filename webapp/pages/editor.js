@@ -25,16 +25,23 @@ export default function TestPage({ source }) {
     const [isLoaded, setIsLoaded] = React.useState(``);
 
 
-    function getExampleURL(smapleName = null) {
-        return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (smapleName == null ? 'simple' : smapleName) + ".md")
+
+    function getExampleURL(templateName = null) {
+        return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (templateName == null ? 'simple' : templateName) + ".md")
     }
+
 
     useEffect(() => {
         async function load() {
             try {
-                let f = await axios.get(getExampleURL(router.query.template))
+                const params = new URLSearchParams(window.location.search) // id=123
+                let template = params.get('template') // 123 
+
+                console.log(router.query, getExampleURL(template))
+                let f = await axios.get(getExampleURL(template))
                 setContent(f.data)
-                setRendered(content)
+                setRendered(f.data)
+                setIsLoaded(true)
             } catch (error) {
                 console.log(error)
             }
@@ -43,7 +50,7 @@ export default function TestPage({ source }) {
     }, []);
 
 
-    const [rendered, setRendered] = React.useState(content);
+    const [rendered, setRendered] = React.useState("");
     const [isPublishing, setIsPublishing] = React.useState(false);
 
     let account = getAccount();
@@ -76,9 +83,7 @@ export default function TestPage({ source }) {
     }
 
 
-
-    <Editor height="90vh" defaultLanguage="javascript" onChange={handleEditorChange}
-        onMount={handleEditorDidMount} defaultValue="// some comment" />;
+    if (!isLoaded) return (<div>Loading...</div>);
 
 
     return (
@@ -111,7 +116,6 @@ export default function TestPage({ source }) {
             <div className=" flex">
                 <div className="flex-1">
                     <Render content={rendered} />
-
                 </div>
                 <div className="flex-1">
                     {RightPanel()}

@@ -20,7 +20,7 @@ export default function TestPage({ source }) {
     async function load() {
         //setIsLoaded(true);
         console.log("Loading page", router.query)
-        if (router.query.ipfs != null) {
+        if (router.query.ipfs != null && !isLoaded) {
             let urlSplit = router.query.ipfs.split('/')
             let cid = urlSplit[2]
             let filename = urlSplit[3]
