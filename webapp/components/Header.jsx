@@ -102,7 +102,7 @@ export function Header() {
             </Link>
             <div className="hidden md:flex md:gap-x-6">
               <NavLink href="/editor">Editor</NavLink>
-              <NavLink href="/documentation">Documentation</NavLink>
+              <NavLink href="https://builddocs.musedao.io/docs/category/components">Documentation</NavLink>
    
             </div>
           </div>

@@ -10,6 +10,17 @@ import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 import { Testimonials } from '@/components/Testimonials'
 
+/*
+        <PrimaryFeatures />
+        <CallToAction />
+        <Testimonials />
+        <Pricing />
+        <Faqs />
+
+        / main
+              <Footer />
+
+*/
 export default function Home() {
   return (
     <>
@@ -17,18 +28,13 @@ export default function Home() {
         <title>Muse Build</title>
         <meta
           name="description"
-          content="Most bookkeeping software is accurate, but hard to use. We make the opposite trade-off, and hope you don’t get audited."
+          content=" create websites for your DAPP in a few minutes."
         />
       </Head>
       <main>
         <Hero />
-        <PrimaryFeatures />
-        <CallToAction />
-        <Testimonials />
-        <Pricing />
-        <Faqs />
+
       </main>
-      <Footer />
     </>
   )
 }
