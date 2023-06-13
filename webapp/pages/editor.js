@@ -112,7 +112,6 @@ export default function EditorPage({ source }) {
             </div>
             <div className=" flex">
                 <div className="flex-1">
-                    <Render content={rendered} />
                 </div>
                 <div className="flex-1">
                     {RightPanel()}
