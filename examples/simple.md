@@ -1,6 +1,6 @@
 ---
 chain: 1
-authors: @grands_marquis
+authors: grands_marquis
 ---
 # This is the most basic example
 
