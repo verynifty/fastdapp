@@ -21,6 +21,7 @@ const SendTransactionButton = (props) => {
         try {
             console.log(props.transaction)
             let tx = null;
+            console.log(props.transaction)
             if (props.transaction.request.abi != null) {
                 // THis is a contract write
                 tx = await writeContract(

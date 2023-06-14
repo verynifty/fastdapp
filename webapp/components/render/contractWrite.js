@@ -1,5 +1,7 @@
 import { default as React, useState, useRef, useEffect } from 'react';
 import { usePrepareContractWrite } from 'wagmi'
+import { parseEther } from 'viem'
+
 import { Switch } from '@headlessui/react'
 
 
@@ -11,6 +13,8 @@ function classNames(...classes) {
 
 const WriteContract = (props) => {
     const [balance, setBalance] = React.useState(0);
+    const [value, setValue] = React.useState(props.valueAmount != null ? props.valueAmount : "0");
+
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
     const args = props.args || [];
@@ -32,10 +36,34 @@ const WriteContract = (props) => {
 
     // This will run only once
     useEffect(() => {
+        console.log("useEffect", props)
 
     }, []);
 
 
+
+    function makePayable() {
+        if (getFunction().payable) {
+            return (
+                <div>
+                    <label htmlFor="payableValue" className="block text-sm font-medium leading-6 text-gray-900">
+                        {props.valueFieldName != null ? props.valueFieldName : "Value"}
+                    </label>
+                    <div className="mt-2">
+                        <input
+                            type="number"
+                            name={props.valueFieldName != null ? props.valueFieldName : "Value"}
+                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                            value={value}
+                            id="payableValue"
+                            onChange={e => setValue(e.target.value)}
+                        />
+                    </div>
+                </div>
+
+            )
+        }
+    }
 
     function makeForm() {
         return (
@@ -96,7 +124,8 @@ const WriteContract = (props) => {
     return (
         <span>
             {makeForm()}
-            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} transaction={usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: argsStateValues }).config} />
+            {makePayable()}
+            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} transaction={usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: argsStateValues, value: parseEther(value + "") }).config} />
         </span >
     );
 }
