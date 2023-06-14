@@ -33,6 +33,7 @@ export default function Home() {
       </Head>
       <main>
         <Hero />
+        <PrimaryFeatures />
 
       </main>
     </>

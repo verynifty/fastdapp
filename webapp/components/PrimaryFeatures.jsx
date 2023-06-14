@@ -10,30 +10,35 @@ import screenshotPayroll from '@/images/screenshots/payroll.png'
 import screenshotReporting from '@/images/screenshots/reporting.png'
 import screenshotVatReturns from '@/images/screenshots/vat-returns.png'
 
+import editorImage from '@/images/screenshots/editor.png'
+import componentsImage from '@/images/screenshots/components.png'
+import opensourceImage from '@/images/screenshots/opensource.png'
+import ipfsImage from '@/images/screenshots/ipfs.png'
+
 const features = [
   {
-    title: 'Payroll',
+    title: 'Blazing fast edition',
     description:
-      "Keep track of everyone's salaries and whether or not they've been paid. Direct deposit not supported.",
-    image: screenshotPayroll,
+      "Write your code in the online editor and see the result instantly! No install, no configuration!",
+    image: editorImage,
   },
   {
-    title: 'Claim expenses',
+    title: '20+ Components',
     description:
-      "All of your receipts organized into one place, as long as you don't mind typing in the data by hand.",
-    image: screenshotExpenses,
+      "A growing collection of components to build your applications! Read and write the chain, exchange tokens and NFTs... You name it!",
+    image: componentsImage,
   },
   {
-    title: 'VAT handling',
+    title: 'Get your app published in minutes',
     description:
-      "We only sell our software to companies who don't deal with VAT at all, so technically we do all the VAT stuff they need.",
-    image: screenshotVatReturns,
+      "Upload your app to IPFS and share the link with your users in few clicks.",
+    image: ipfsImage,
   },
   {
-    title: 'Reporting',
+    title: 'Open Source',
     description:
-      'Easily export your data into an Excel spreadsheet where you can do whatever the hell you want with it.',
-    image: screenshotReporting,
+      'Built in the open so you are never locked in...',
+    image: opensourceImage,
   },
 ]
 
