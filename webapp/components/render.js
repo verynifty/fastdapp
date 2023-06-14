@@ -67,8 +67,7 @@ const Render = (props) => {
     const [theme, setTheme] = React.useState(THEMES[0]);
 
     const { chain } = useNetwork()
-    const { chains, error, isLoading, pendingChainId, switchNetwork } =
-        useSwitchNetwork()
+    const { chains, error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
 
 
     // Not used for now
@@ -86,6 +85,15 @@ const Render = (props) => {
         return c;
     }
 
+    function getChainName() {
+        if (chains == null) {
+            return "";
+        }
+        let ret = chains.filter((c) => { return c.id == requiredChain })
+        if (ret.length > 0) {
+            return ret[0].name;
+        }
+    }
 
     function setContentFromProp() {
         console.log("CONTENT CHANGED")
@@ -133,7 +141,7 @@ const Render = (props) => {
     }
 
     const getRender = () => {
-        if (chain == null && req || chain.id != requiredChain) {
+        if ((chain != null ) && chain.id != requiredChain) {
             return (
                 <div class="text-center">
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -143,7 +151,7 @@ const Render = (props) => {
                     <p class="mt-1 text-sm text-gray-500">Please connect your wallet to the correct network to continue.</p>
                     <div class="mt-6">
                         <button onClick={() => switchNetwork?.(requiredChain)} type="button" class="inline-flex items-center rounded-md bg-indigo-600 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">
-                            Connect to: {chains.filter((c) => { return c.id == requiredChain })[0].name}
+                            Connect to: {getChainName(requiredChain)}
                         </button>
                     </div>
                 </div>

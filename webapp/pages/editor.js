@@ -9,6 +9,7 @@ import Editor from '@monaco-editor/react';
 import RenderErrorWrapper from 'components/renderErrorWrapper';
 import Render from 'components/render';
 import Publish from 'components/publish';
+import PleaseConnect from 'components/pleaseConnect';
 
 let editorRef;
 
@@ -111,9 +112,11 @@ export default function EditorPage({ source }) {
             </div>
             <div className=" flex">
                 <div className="flex-1">
+                    <PleaseConnect>
                     <RenderErrorWrapper>
                         <Render content={rendered} />
                     </RenderErrorWrapper>
+                    </PleaseConnect>
                 </div>
                 <div className="flex-1">
                     {RightPanel()}
