@@ -25,7 +25,7 @@ export default function Home() {
   return (
     <>
       <Head>
-        <title>Muse Build</title>
+        <title>Muse Build alpha</title>
         <meta
           name="description"
           content=" create websites for your DAPP in a few minutes."
