@@ -34,7 +34,7 @@ class RenderErrorWrapper extends React.Component {
               type="button"
               onClick={() => this.setState({ hasError: false })}
             >
-              {error.toString()}
+              {this.error.toString()}
             </button>
           </div>
         )
