@@ -61,7 +61,7 @@ The balance of {TOKEN_RECIPIENT} is:
 
 ## 5. Handling functions with several return values
 
-There is 2 ways of dealing with a function that returns multiple values. 
+There are 2 ways of dealing with a function that returns multiple values. 
 
 ### Pass a transformation function
 
