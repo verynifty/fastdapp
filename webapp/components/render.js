@@ -62,6 +62,7 @@ const scope = {
 const Render = (props) => {
 
     const [isLoaded, setIsLoaded] = React.useState(false);
+
     const [content, setContent] = React.useState("");
     const [requiredChain, setRequiredChain] = React.useState(null);
     const [theme, setTheme] = React.useState(THEMES[0]);

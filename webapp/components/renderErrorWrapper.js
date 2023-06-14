@@ -16,6 +16,13 @@ class RenderErrorWrapper extends React.Component {
       // You can use your own error logging service here
       console.log({ error, errorInfo })
     }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.version !== this.props.version) {
+        this.state.hasError = false;
+        }
+      }
+
     render() {
       // Check if the error is thrown
       if (this.state.hasError) {

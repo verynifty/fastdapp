@@ -20,6 +20,7 @@ export default function EditorPage({ source }) {
     editorRef = useRef(null);
     const [content, setContent] = React.useState(``);
     const [isLoaded, setIsLoaded] = React.useState(``);
+    const [version, setVersion] = React.useState(0);
 
     function getExampleURL(templateName = null) {
         return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (templateName == null ? 'simple' : templateName) + ".md")
@@ -62,6 +63,7 @@ export default function EditorPage({ source }) {
 
     function handleRender() {
         setRendered(content)
+        setVersion(version + 1)
     }
 
     function handlePublish() {
@@ -113,7 +115,7 @@ export default function EditorPage({ source }) {
             <div className=" flex">
                 <div className="flex-1">
                     <PleaseConnect>
-                        <RenderErrorWrapper>
+                        <RenderErrorWrapper version={version}>
                             <Render content={rendered} />
                         </RenderErrorWrapper>
                     </PleaseConnect>
