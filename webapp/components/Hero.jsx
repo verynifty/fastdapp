@@ -8,6 +8,7 @@ import logoViem from '@/images/logos/viem.svg'
 import logoReservoir from '@/images/logos/reservoir.svg'
 import logoUniswap from '@/images/logos/uniswap.svg'
 import logoEthereum from '@/images/logos/ethereum.svg'
+import logoReact from '@/images/logos/react.svg'
 
 export function Hero() {
   return (
@@ -61,7 +62,7 @@ export function Hero() {
               { name: 'Ethereum', logo: logoEthereum },
               { name: 'Reservoir', logo: logoReservoir },
               { name: 'Uniswap', logo: logoUniswap },
-              { name: 'Wagmi', logo: logoWagmi }
+              { name: 'React', logo: logoReact }
 
             ],
           ].map((group, groupIndex) => (
