@@ -31,7 +31,7 @@ class RenderErrorWrapper extends React.Component {
         return (
           <div>
             <h2>Oops, there is an error!</h2>
-              {this.error != null ? this.error.toString() : ""}
+              {this.state.error != null ? this.state.error.toString() : ""}
           </div>
         )
       }
