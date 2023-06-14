@@ -3,7 +3,7 @@ chain: 1
 authors: grands_marquis
 ---
 
-# Contract write examples
+# Contract read examples
 
 <>{/* 
     We first load the variables we will be using in the page

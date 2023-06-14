@@ -7,6 +7,7 @@ import logoRainbow from '@/images/logos/rainbow-logo-medium.png'
 import logoViem from '@/images/logos/viem.svg'
 import logoReservoir from '@/images/logos/reservoir.svg'
 import logoUniswap from '@/images/logos/uniswap.svg'
+import logoEthereum from '@/images/logos/ethereum.svg'
 
 export function Hero() {
   return (
@@ -45,8 +46,8 @@ export function Hero() {
         </Button>
       </div>
       <div className="mt-36 lg:mt-44">
-        <p className="font-display text-base text-slate-900">
-          built on top of
+        <p className="font-display text-xs text-slate-900">
+          built by <a class="underline" href="https://musedao.io" target="_blank">Muse DAO</a> on top of
         </p>
         <ul
           role="list"
@@ -57,8 +58,10 @@ export function Hero() {
               { name: 'Wagmi', logo: logoWagmi },
               { name: 'Rainbow', logo: logoRainbow },
               { name: 'Viem', logo: logoViem },
+              { name: 'Ethereum', logo: logoEthereum },
               { name: 'Reservoir', logo: logoReservoir },
               { name: 'Uniswap', logo: logoUniswap },
+              { name: 'Wagmi', logo: logoWagmi }
 
             ],
           ].map((group, groupIndex) => (
