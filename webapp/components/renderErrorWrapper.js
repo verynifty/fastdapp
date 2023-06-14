@@ -5,12 +5,12 @@ class RenderErrorWrapper extends React.Component {
       super(props)
    
       // Define a state variable to track whether is an error or not
-      this.state = { hasError: false }
+      this.state = { hasError: false, error: null, errorInfo: null }
     }
     static getDerivedStateFromError(error) {
       // Update state so the next render will show the fallback UI
-   
-      return { hasError: true }
+        
+      return { hasError: true, error: error }
     }
     componentDidCatch(error, errorInfo) {
       // You can use your own error logging service here
@@ -19,7 +19,7 @@ class RenderErrorWrapper extends React.Component {
 
     componentDidUpdate(prevProps) {
         if (prevProps.version !== this.props.version) {
-        this.state.hasError = false;
+            this.state.hasError = false;
         }
       }
 
@@ -34,7 +34,7 @@ class RenderErrorWrapper extends React.Component {
               type="button"
               onClick={() => this.setState({ hasError: false })}
             >
-              Try again?
+              {error.toString()}
             </button>
           </div>
         )
