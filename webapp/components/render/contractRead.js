@@ -6,11 +6,6 @@ const ContractRead = (props) => {
     const [value, setValue] = React.useState();
     const [error, setError] = React.useState();
 
-
-    function setValue(value) {
-
-    }
-
     // This will run only once
     useEffect(() => {
         async function read() {
