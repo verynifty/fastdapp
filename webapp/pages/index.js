@@ -11,7 +11,6 @@ import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 import { Testimonials } from '@/components/Testimonials'
 
 /*
-        <PrimaryFeatures />
         <CallToAction />
         <Testimonials />
         <Pricing />
@@ -34,6 +33,7 @@ export default function Home() {
       <main>
         <Hero />
         <PrimaryFeatures />
+        <CallToAction />
 
       </main>
     </>
