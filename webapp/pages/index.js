@@ -36,6 +36,8 @@ export default function Home() {
         <CallToAction />
 
       </main>
+      <Footer />
+
     </>
   )
 }
