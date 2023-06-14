@@ -4,6 +4,8 @@ var yamlFront = require('yaml-front-matter');
 import { default as React, useState, useEffect } from 'react';
 
 import { useNetwork, useSwitchNetwork } from 'wagmi'
+import Head from 'next/head'
+
 
 
 import DisplayVariable from 'components/render/displayVariable';
@@ -97,13 +99,12 @@ const Render = (props) => {
     }
 
     function setContentFromProp() {
-        console.log("CONTENT CHANGED")
         let parsedFront = yamlFront.loadFront(props.content);
-        console.log("PARSED FRONT", parsedFront);
-        setContent(parsedFront.__content);
-        console.log("CONTENT SET");
+        let content = parsedFront.__content;
+        // remove tabs at begining of line
+        content = content.replace(/\t/g, "");
+        setContent(content);
         setRequiredChain(parsedFront.chain != null ? parseInt(parsedFront.chain) : 1);
-        console.log("REQUIRED  CHAIN");
 
         let theme = THEMES.filter((t) => { return t.name == parsedFront.theme });
         console.log("THEME  CHAIN");
@@ -142,7 +143,7 @@ const Render = (props) => {
     }
 
     const getRender = () => {
-        if ((chain != null ) && chain.id != requiredChain) {
+        if ((chain != null) && chain.id != requiredChain) {
             return (
                 <div class="text-center">
                     <svg class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
@@ -165,6 +166,9 @@ const Render = (props) => {
 
     return (
         <React.Fragment>
+            <Head>
+                <script src="https://cdn.tailwindcss.com"></script>
+            </Head>
             <div className={theme.classes + ' min-h-full'}>
                 {getRender()}
             </div>

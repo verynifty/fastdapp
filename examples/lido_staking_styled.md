@@ -43,15 +43,48 @@ authors: grands_marquis
 ]})()}</>
 <>{(() => { LIDO_ADDRESS = "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"})()}</>
 
-# Stake your ETH with LIDO
- <div class="h-full w-full flex items-center justify-center">
-            <div class="text-center">
-                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="mx-auto h-12 w-12 text-gray-400">
-                    <path strokeLinecap="round" strokeLinejoin="round" d="M21 12a2.25 2.25 0 00-2.25-2.25H15a3 3 0 11-6 0H5.25A2.25 2.25 0 003 12m18 0v6a2.25 2.25 0 01-2.25 2.25H5.25A2.25 2.25 0 013 18v-6m18 0V9M3 12V9m18 0a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 9m18 0V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v3" />
-                </svg>
-                <h3 class="mt-2 text-sm font-semibold text-gray-900">Connect your wallet</h3>
 
+<div class="lg:col-start-3 lg:row-end-1 mt-40 mr-10 ml-10">
+  <div class="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
+    <dl class="flex flex-wrap">
+      <div class="flex-auto pl-6 pt-6">
+        <dt class="text-sm font-semibold leading-6 text-gray-900">You staked</dt>
+        <dd class="mt-1 text-base font-semibold leading-6 text-gray-900">
+        <ContractRead
+    address={LIDO_ADDRESS}
+    abi={ABIs.ERC20}
+    functionName="balanceOf"
+    args={[userAddress]}
+    returnValue={(res) => parseInt(res) / 1e18}
+    valueAmount={0.1} /> ETH
+        </dd>
+      </div>
+      <div class="mt-6 flex w-full flex-none gap-x-4 border-t border-gray-900/5 px-6 pt-6">
+        <dd class="text-sm font-light text-gray-400">Available to stake:</dd>
+        <dd class="text-sm font-medium leading-6 text-gray-900"><Balance 
+    address={userAddress}/></dd>
+      </div>
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+               <dd class="text-sm font-light text-gray-400">Total staked on Lido:</dd>
+        <dd class="text-sm font-medium leading-6 text-gray-900"><ContractRead
+    address={LIDO_ADDRESS}
+    abi={LIDO_ABI}
+    functionName="totalSupply"
+    returnValue={(res) => (parseInt(res) / 1e18).toLocaleString() } /> ETH</dd>
+      </div>
+      
+    </dl>
+    <div class="mt-6 border-t border-gray-900/5 px-6 py-6">
+        <div class="text-sm font-semibold leading-6 text-gray-900 mb-2">Stake now</div>
+     <ContractWrite 
+    address={LIDO_ADDRESS}
+    abi={LIDO_ABI}
+    functionName="submit"
+    buttonText="Stake"
+    args={["0x6fBa46974b2b1bEfefA034e236A32e1f10C5A148"]}
+    valueFieldName="Amount of ETH to stake"
+    valueAmount="0.1"
+    />
     </div>
-    </div>
-
-
+  </div>
+</div>
