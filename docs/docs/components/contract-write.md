@@ -16,6 +16,8 @@ This component is used to invite users to interact with a smart contract.
 
 ## Example
 
+Here is a simple example:
+
 ```
 <ContractWrite 
     address={TOKEN_ADDRESS} 
@@ -23,6 +25,8 @@ This component is used to invite users to interact with a smart contract.
     functionName="transfer" 
     args={[TOKEN_RECIPIENT, 1]} />
 ```
+
+You can see [several examples in the editor](https://build.musedao.io/editor?template=contract_write).
 
 ## Advanced usage
 ### How to change the form label of a parameter?

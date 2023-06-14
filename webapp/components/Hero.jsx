@@ -10,8 +10,8 @@ import logoUniswap from '@/images/logos/uniswap.svg'
 
 export function Hero() {
   return (
-    <Container className="pb-16 pt-20 text-center lg:pt-32">
-      <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl">
+    <div className=" p-20 text-center bg-gradient-to-r from-blue-100 to-white-400 ">
+      <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl ">
         Building dapps{' '}
         <span className="relative whitespace-nowrap text-blue-600">
           <svg
@@ -77,7 +77,7 @@ export function Hero() {
           ))}
         </ul>
       </div>
-    </Container>
+    </div>
   )
   
 }

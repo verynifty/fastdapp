@@ -7,6 +7,10 @@ const ContractRead = (props) => {
     const [error, setError] = React.useState();
 
 
+    function setValue(value) {
+
+    }
+
     // This will run only once
     useEffect(() => {
         async function read() {
@@ -22,7 +26,10 @@ const ContractRead = (props) => {
                     functionName: props.functionName,
                     args: props.args,
                 })
-                if (Array.isArray(res)) {
+                if (typeof props.returnValue === 'function') {
+                    setValue(props.returnValue(res) + "");
+                }
+                else if (Array.isArray(res)) {
                     let index = props.returnValue == null ? 0 : parseInt(props.returnValue);
                     setValue(res[index]);
 

@@ -85,10 +85,10 @@ export default function EditorPage({ source }) {
 
     return (
         <div>
-            <div className="bg-slate-500 p-2	md:flex md:items-center md:justify-between">
+            <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2	md:flex md:items-center md:justify-between">
                 <div className="min-w-0 flex-1">
                     <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
-                        Playground
+                        ✍️ Editor
                     </h2>
                 </div>
                 <div className="mt-4 flex md:ml-4 md:mt-0">
@@ -113,9 +113,9 @@ export default function EditorPage({ source }) {
             <div className=" flex">
                 <div className="flex-1">
                     <PleaseConnect>
-                    <RenderErrorWrapper>
-                        <Render content={rendered} />
-                    </RenderErrorWrapper>
+                        <RenderErrorWrapper>
+                            <Render content={rendered} />
+                        </RenderErrorWrapper>
                     </PleaseConnect>
                 </div>
                 <div className="flex-1">
