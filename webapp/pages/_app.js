@@ -7,6 +7,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 import { default as React, useEffect } from 'react';
 
+
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig, useProvider } from 'wagmi';
@@ -19,6 +20,8 @@ import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 import { GoogleAnalytics } from "nextjs-google-analytics";
+import TagManager from 'react-gtm-module';
+
 
 import {
     ReservoirKitProvider,
