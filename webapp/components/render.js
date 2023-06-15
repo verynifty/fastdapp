@@ -28,7 +28,7 @@ import ERC1155ABI from 'ABIS/ERC1155.json';
 const THEMES = [
     {
         "name": "default",
-        "classes": "prose  max-w-none"
+        "classes": "prose  max-w-none "
     },
     {
         "name": "dark",

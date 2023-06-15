@@ -60,9 +60,46 @@ If you want one parameter to be hidden so the user can't change the default valu
    />
 ```
 
+### How to deal with token inputs?
+
+You can add a `token` property on the input. The form will directly convert the input/args to the appropriate number of decimals.
+
+```
+<ContractWrite 
+    address={TOKEN_ADDRESS}
+    abi={[
+        {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "To",
+                "type": "address"
+            },
+            {
+                "name": "Amount",
+                "type": "uint256",
+                "token": TOKEN_ADDRESS
+            }
+        ],
+        "name": "transfer",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+        }
+    ]}
+    functionName="transfer"
+    args={["0xC618b905f7b41c7D53C23474322D7D3297730419", 1]}
+/>
+```
+
 ## TODO
 
 Here is a list of things coming for the component:
 * Manage token approvals
-* Manage token decimals
 * Specific input for numbers/addresses
