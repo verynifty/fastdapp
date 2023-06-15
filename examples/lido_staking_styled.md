@@ -43,8 +43,10 @@ authors: grands_marquis
 ]})()}</>
 <>{(() => { LIDO_ADDRESS = "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"})()}</>
 
+<div class="m-20">
 
-<div class="lg:col-start-3 lg:row-end-1 mt-40 mr-10 ml-10">
+<div >
+<p class="font-semibold text-xl ">LIDO Staking</p>
   <div class="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
     <dl class="flex flex-wrap">
       <div class="flex-auto pl-6 pt-6">
@@ -64,7 +66,7 @@ authors: grands_marquis
         <dd class="text-sm font-medium leading-6 text-gray-900"><Balance 
     address={userAddress}/></dd>
       </div>
-      <div class="mt-4 flex w-full flex-none gap-x-4 px-6">
+      <div class="mt-4 flex w-full flex-none gap-x-4 px-6 pb-2">
                <dd class="text-sm font-light text-gray-400">Total staked on Lido:</dd>
         <dd class="text-sm font-medium leading-6 text-gray-900"><ContractRead
     address={LIDO_ADDRESS}
@@ -74,6 +76,13 @@ authors: grands_marquis
       </div>
       
     </dl>
+
+  </div>
+</div>
+
+
+<div class="mt-10">
+  <div class="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
     <div class="mt-6 border-t border-gray-900/5 px-6 py-6">
         <div class="text-sm font-semibold leading-6 text-gray-900 mb-2">Stake now</div>
      <ContractWrite 
@@ -87,4 +96,6 @@ authors: grands_marquis
     />
     </div>
   </div>
+</div>
+
 </div>
