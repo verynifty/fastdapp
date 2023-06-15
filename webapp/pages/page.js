@@ -1,5 +1,6 @@
 'use client';
 import React, { useRef, Suspense, useEffect } from 'react';
+import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import Render from 'components/render';
@@ -91,10 +92,17 @@ export default function TestPage({ source }) {
             return (<div>Loading...</div>)
         }
     }
+//             {ipfsMessage()}
 
     return (
         <div>
-            {ipfsMessage()}
+          <Head>
+                <title>Muse Build - {router.query.ipfs}</title>
+                <meta
+                    name="Muse Build - Editor"
+                    content=" create websites for your DAPP in a few minutes."
+                />
+            </Head>
             {render()}
         </div>
     )

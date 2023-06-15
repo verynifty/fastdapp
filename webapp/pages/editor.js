@@ -1,4 +1,6 @@
 import React, { useRef, Suspense, Fragment, useEffect } from 'react';
+import Head from 'next/head'
+
 import { useRouter } from 'next/router'
 import axios from 'axios';
 
@@ -87,6 +89,13 @@ export default function EditorPage({ source }) {
 
     return (
         <div>
+            <Head>
+                <title>Muse Build - Editor</title>
+                <meta
+                    name="Muse Build - Editor"
+                    content=" create websites for your DAPP in a few minutes."
+                />
+            </Head>
             <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2	md:flex md:items-center md:justify-between">
                 <div className="min-w-0 flex-1">
                     <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
