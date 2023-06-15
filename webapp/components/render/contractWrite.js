@@ -1,6 +1,7 @@
 import { default as React, useState, useRef, useEffect } from 'react';
 import { usePrepareContractWrite } from 'wagmi'
-import { parseEther } from 'viem'
+import { useToken } from 'wagmi'
+import { parseEther, parseUnits } from 'viem'
 
 import { Switch } from '@headlessui/react'
 
@@ -20,19 +21,39 @@ const WriteContract = (props) => {
     const args = props.args || [];
     const argsStateValues = [];
     const argsStateSetters = [];
+    const argsStateTokens = [];
 
     function getFunction() {
         return props.abi.find((element) => element.name === props.functionName && element.type === "function");
+    }
+
+    function getPreparedTransaction() {
+        let args = [];
+        for (const [index, arg] of argsStateValues.entries()) {
+            if (argsStateTokens[index] != null) {
+                // this is a token so we need the decimals
+                args.push(parseUnits(arg + "", argsStateTokens[index].decimals));
+            } else {
+                args.push(arg);
+            }
+        }
+        let tx = usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") });
+        return tx.config
     }
 
     for (const [index, input] of getFunction().inputs.entries()) {
         const [value, setter] = React.useState(args[index]);
         argsStateValues.push(value);
         argsStateSetters.push(setter);
+        if (input.type === "uint256" && input.token != null) {
+            const { data, isError, isLoading } = useToken({
+                address: input.token,
+            })
+            argsStateTokens.push(data);
+        } else {
+            argsStateTokens.push(null);
+        }
     }
-
-    console.log("ABI", props.abi)
-    console.log("Args Values", argsStateValues)
 
     // This will run only once
     useEffect(() => {
@@ -95,6 +116,23 @@ const WriteContract = (props) => {
 
                                 </Switch.Group>
                             )
+                        } else if (input.type === "uint256" && input.token != null) {
+                            return (
+                                <div>
+                                    <label for="token_amount" class="block text-sm font-medium leading-6 text-gray-900">{input.name}</label>
+                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                        <input type="text" 
+                                        value={argsStateValues[index]}
+                                        onChange={e => argsStateSetters[index](e.target.value)}
+                                        name="token_amount" 
+                                        id="token_amount" 
+                                        class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00" aria-describedby="price-currency"></input>
+                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
+                                            <span class="text-gray-500 sm:text-sm" id="price-currency">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            )
                         } else {
                             return (
                                 <div>
@@ -107,7 +145,7 @@ const WriteContract = (props) => {
                                             name={input.name}
                                             id={input.name}
                                             className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            placeholder="you@example.com"
+                                            placeholder=""
                                             value={argsStateValues[index]}
                                             onChange={e => argsStateSetters[index](e.target.value)}
                                         />
@@ -125,7 +163,7 @@ const WriteContract = (props) => {
         <span>
             {makeForm()}
             {makePayable()}
-            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} transaction={usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: argsStateValues, value: parseEther(value + "") }).config} />
+            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} transaction={getPreparedTransaction()} />
         </span >
     );
 }
