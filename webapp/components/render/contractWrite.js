@@ -37,7 +37,19 @@ const WriteContract = (props) => {
                 args.push(arg);
             }
         }
-        let tx = usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") });
+        let tx = null;
+        try {
+            console.log("prepare")
+            tx = usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") });
+            console.log("after prepare")
+            if (tx.error) {
+                console.log("There is an error")
+            }
+        } catch (e) {
+            console.log(JSON.stringify(e))
+        }
+        
+        console.log(tx)
         return tx.config
     }
 
