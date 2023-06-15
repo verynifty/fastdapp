@@ -21,6 +21,7 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import TagManager from 'react-gtm-module';
+import { Toaster } from 'react-hot-toast';
 
 
 import {
@@ -96,7 +97,7 @@ function MyApp({ Component, pageProps }) {
         >
             <WagmiConfig config={wagmiConfig}>
                 <RainbowKitProvider chains={chains} showRecentTransactions={true}>
-                    
+                    <Toaster position="top-right" />
                     <GoogleAnalytics trackPageViews />
                     <Header />
                     <Component {...pageProps} />

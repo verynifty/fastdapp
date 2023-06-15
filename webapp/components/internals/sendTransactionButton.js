@@ -1,6 +1,7 @@
 import { default as React, useState, useRef, useEffect } from 'react';
 import { sendTransaction, writeContract, waitForTransaction } from '@wagmi/core'
 import { useAddRecentTransaction } from '@rainbow-me/rainbowkit';
+import toast from 'react-hot-toast';
 
 const SendTransactionButton = (props) => {
 
@@ -17,15 +18,14 @@ const SendTransactionButton = (props) => {
     }, []);
 
     const onClickSend = async () => {
+
         setIsLoading(true);
         try {
-            console.log(props.transaction)
             let tx = null;
-            console.log(props.transaction)
             if (props.transaction.request.abi != null) {
                 // THis is a contract write
                 tx = await writeContract(
-                    props.transaction.request  
+                    props.transaction.request
                 );
             } else {
                 // This is a simple value send
@@ -38,6 +38,16 @@ const SendTransactionButton = (props) => {
                 hash: tx.hash,
                 description: props.transactionDescription,
             });
+            toast.promise(
+                waitForTransaction({
+                    hash: tx.hash,
+                }),
+                {
+                    loading: 'Waiting for confirmation ⛓',
+                    success: <b>Transaction mined</b>,
+                    error: <b>Could not save.</b>,
+                }
+            );
             const data = await waitForTransaction({
                 hash: tx.hash,
             })
