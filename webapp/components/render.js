@@ -7,7 +7,7 @@ import { useNetwork, useSwitchNetwork } from 'wagmi'
 import Head from 'next/head'
 
 
-
+import AddressDisplay from 'components/render/addressDisplay';
 import DisplayVariable from 'components/render/displayVariable';
 import BlockNumber from 'components/render/blockNumber';
 import SendTransaction from 'components/render/sendTransaction';
@@ -42,6 +42,7 @@ const THEMES = [
 
 let value = "// some comment";
 const components = {
+    "AddressDisplay": AddressDisplay,
     "DisplayVariable": DisplayVariable,
     "BlockNumber": BlockNumber,
     "Balance": Balance,
