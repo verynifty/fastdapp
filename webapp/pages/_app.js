@@ -16,6 +16,8 @@ import { InjectedConnector } from 'wagmi/connectors/injected'
 import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 
+import { GoogleAnalytics } from "nextjs-google-analytics";
+
 import {
     ReservoirKitProvider,
     darkTheme,
@@ -55,7 +57,7 @@ const { connectors } = getDefaultWallets({
     appName: 'test',
     projectId: process.env.WALLET_CONNECT_PROJECT_ID,
     chains
-  });
+});
 
 
 const wagmiConfig = createConfig({
@@ -84,6 +86,7 @@ function MyApp({ Component, pageProps }) {
         >
             <WagmiConfig config={wagmiConfig}>
                 <RainbowKitProvider chains={chains} showRecentTransactions={true}>
+                    <GoogleAnalytics trackPageViews />
                     <Header />
                     <Component {...pageProps} />
                 </RainbowKitProvider>
