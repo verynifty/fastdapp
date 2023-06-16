@@ -47,7 +47,7 @@ const SendTransactionButton = (props) => {
                 {
                     loading: 'Waiting for confirmation ⛓',
                     success: <b>Transaction mined</b>,
-                    error: <b>Could not save.</b>,
+                    error: <b>An error occured</b>,
                 }
             );
             const data = await waitForTransaction({

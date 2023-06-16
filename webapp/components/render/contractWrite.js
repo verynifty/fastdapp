@@ -33,8 +33,12 @@ const WriteContract = (props) => {
             let args = [];
             for (const [index, arg] of argsStateValues.entries()) {
                 if (argsStateTokens[index] != null) {
+                    let nb = parseFloat(arg);
+                    if (isNaN(nb)) {
+                        nb = 0;
+                    }
                     // this is a token so we need the decimals
-                    args.push(parseUnits(arg + "", argsStateTokens[index].decimals));
+                    args.push(parseUnits(nb + "", argsStateTokens[index].decimals));
                 } else {
                     args.push(arg);
                 }
