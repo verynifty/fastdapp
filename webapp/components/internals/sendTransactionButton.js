@@ -18,10 +18,15 @@ const SendTransactionButton = (props) => {
     }, []);
 
     const onClickSend = async () => {
-
-        setIsLoading(true);
+        let transactionRequest = props.preparedTransaction;
+        console.log("TRANSACTION REQUEST", transactionRequest)
+        if (transactionRequest != null && transactionRequest.isError) {
+            if (transactionRequest.error.shortMessage!= null) {
+                toast.error(transactionRequest.error.shortMessage);
+            }
+        }
         try {
-            let transactionRequest = props.preparedTransaction;
+            setIsLoading(true);
             console.log("OOOOO", transactionRequest)
             let tx = null;
             if (transactionRequest.config.request.abi != null) {
