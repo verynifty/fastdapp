@@ -28,17 +28,18 @@ const WriteContract = (props) => {
     }
 
     function getPreparedTransaction() {
-        let args = [];
-        for (const [index, arg] of argsStateValues.entries()) {
-            if (argsStateTokens[index] != null) {
-                // this is a token so we need the decimals
-                args.push(parseUnits(arg + "", argsStateTokens[index].decimals));
-            } else {
-                args.push(arg);
-            }
-        }
         let tx = null;
         try {
+            let args = [];
+            for (const [index, arg] of argsStateValues.entries()) {
+                if (argsStateTokens[index] != null) {
+                    // this is a token so we need the decimals
+                    args.push(parseUnits(arg + "", argsStateTokens[index].decimals));
+                } else {
+                    args.push(arg);
+                }
+            }
+
             console.log("prepare")
             tx = usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") });
             console.log("after prepare")
@@ -46,11 +47,11 @@ const WriteContract = (props) => {
                 console.log("There is an error")
             }
         } catch (e) {
+            console.log("EROOOOOOR")
+            console.log(e)
             console.log(JSON.stringify(e))
         }
-        
-        console.log(tx)
-        return tx.config
+        return tx;
     }
 
     for (const [index, input] of getFunction().inputs.entries()) {
@@ -133,12 +134,12 @@ const WriteContract = (props) => {
                                 <div>
                                     <label for="token_amount" class="block text-sm font-medium leading-6 text-gray-900">{input.name}</label>
                                     <div class="relative mt-2 rounded-md shadow-sm">
-                                        <input type="text" 
-                                        value={argsStateValues[index]}
-                                        onChange={e => argsStateSetters[index](e.target.value)}
-                                        name="token_amount" 
-                                        id="token_amount" 
-                                        class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00" aria-describedby="price-currency"></input>
+                                        <input type="text"
+                                            value={argsStateValues[index]}
+                                            onChange={e => argsStateSetters[index](e.target.value)}
+                                            name="token_amount"
+                                            id="token_amount"
+                                            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00" aria-describedby="price-currency"></input>
                                         <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
                                             <span class="text-gray-500 sm:text-sm" id="price-currency">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
                                         </div>
@@ -175,7 +176,7 @@ const WriteContract = (props) => {
         <span>
             {makeForm()}
             {makePayable()}
-            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} transaction={getPreparedTransaction()} />
+            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
         </span >
     );
 }

@@ -33,7 +33,7 @@ const SendTransaction = (props) => {
                     </div>
                 </div>
                 <div className="sm:col-span-12">
-                    <SendTransactionButton transactionDescription={'Send ' + amount + ' to ' + to} transaction={usePrepareSendTransaction({ to: to, value: amount }).config} />
+                    <SendTransactionButton transactionDescription={'Send ' + amount + ' to ' + to} preparedTransaction={usePrepareSendTransaction({ to: to, value: amount })} />
                 </div>
             </div >
         </React.Fragment>

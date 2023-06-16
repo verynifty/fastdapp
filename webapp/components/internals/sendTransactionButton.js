@@ -21,22 +21,24 @@ const SendTransactionButton = (props) => {
 
         setIsLoading(true);
         try {
+            let transactionRequest = props.preparedTransaction;
+            console.log("OOOOO", transactionRequest)
             let tx = null;
-            if (props.transaction.request.abi != null) {
+            if (transactionRequest.config.request.abi != null) {
                 // THis is a contract write
                 tx = await writeContract(
-                    props.transaction.request
+                    transactionRequest.config.request
                 );
             } else {
                 // This is a simple value send
                 tx = await sendTransaction(
-                    props.transaction
+                    transactionRequest.config
                 );
             }
             setPendingTransaction(tx.hash);
             addRecentTransaction({
                 hash: tx.hash,
-                description: props.transactionDescription,
+                description: props.transactionDescription != null ? props.transactionDescription : tx.hash,
             });
             toast.promise(
                 waitForTransaction({
