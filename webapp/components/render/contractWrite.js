@@ -1,10 +1,7 @@
-import { default as React, useState, useRef, useEffect } from 'react';
+import { default as React, Fragment, useState, useRef, useEffect } from 'react';
 import { usePrepareContractWrite } from 'wagmi'
 import { useToken } from 'wagmi'
 import { parseEther, parseUnits } from 'viem'
-
-import { Switch } from '@headlessui/react'
-
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
 
@@ -108,7 +105,29 @@ const WriteContract = (props) => {
             <div>
                 {getFunction().inputs.map((input, index) => {
                     if (input.hidden == null || !input.hidden) {
-                        if (input.type === "bool") {
+                        if (input.selectChoices != null && typeof input.selectChoices == "object") {
+                            return (
+                                <div>
+                                    <label htmlFor="select" className="block text-sm font-medium leading-6 text-gray-900">
+                                    {input.name}
+                                    </label>
+                                    <select
+                                        id="select"
+                                        name="select"
+                                        className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        value={argsStateValues[index]}
+                                        onChange={e => argsStateSetters[index](e.target.value)}
+                                    >
+                                        { Object.entries(input.selectChoices).map(([name, value]) => {
+                                            return (
+                                                <option value={value}>{name}</option>
+                                            )
+                                        })}
+                                    </select>
+                                </div>
+                            )
+                        }
+                        else if (input.type === "bool") {
                             return (
                                 <Switch.Group as="div" className="flex items-center">
                                     <Switch.Label as="span" className="ml-3 text-sm">

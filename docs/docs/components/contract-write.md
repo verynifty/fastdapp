@@ -98,6 +98,54 @@ You can add a `token` property on the input. The form will directly convert the 
 />
 ```
 
+### How to force the choice between predefined values?
+
+It is possible to force the input field to be an HTML select by providing a `selectChoices` property in the ABI input. This will render a single choice select in the form like:
+
+![selectChoices](/img/components/selectchoices.png)
+
+```
+<ContractWrite 
+    address={TOKEN_ADDRESS}
+    abi={[
+        {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "To",
+                "type": "address",
+                "selectChoices": {
+                    "Donate to dev": "0xC618b905f7b41c7D53C23474322D7D3297730419",
+                    "Burn": "0x0000000000000000000000000000000000000000"
+                }
+            },
+            {
+                "name": "Amount",
+                "type": "uint256",
+                "token": TOKEN_ADDRESS
+            }
+        ],
+        "name": "transfer",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+        }
+    ]}
+    functionName="transfer"
+    args={["0x0000000000000000000000000000000000000000", 2]}
+/>
+```
+
+
+
+
+
 ## TODO
 
 Here is a list of things coming for the component:
