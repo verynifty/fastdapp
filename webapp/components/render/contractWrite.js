@@ -106,6 +106,7 @@ const WriteContract = (props) => {
                 {getFunction().inputs.map((input, index) => {
                     if (input.hidden == null || !input.hidden) {
                         if (input.selectChoices != null && typeof input.selectChoices == "object") {
+                            // deal with selectChoices and render an HTML select
                             return (
                                 <div>
                                     <label htmlFor="select" className="block text-sm font-medium leading-6 text-gray-900">
