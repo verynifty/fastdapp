@@ -1,5 +1,6 @@
 ---
 chain: 1
+theme: dark
 authors: grands_marquis
 description: An example on how to interact with the NoShitSherlock contract 0x55af491e8b33246606FeB9010156D2597e15cAa1
 ---
