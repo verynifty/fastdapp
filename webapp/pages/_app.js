@@ -82,7 +82,7 @@ function MyApp({ Component, pageProps }) {
     }, []);
 
     return (
-        <div >
+        <div data-theme="light" >
         <ReservoirKitProvider
             options={{
                 chains: [{

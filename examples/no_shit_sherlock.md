@@ -18,9 +18,16 @@ description: An example on how to interact with the NoShitSherlock contract 0x55
 
 ## Get some tokens?
 
+<div tabindex="0" class="collapse collapse-plus border border-base-300 bg-base-200">
+  <div class="collapse-title text-xl font-medium">
+    Get some tokens
+  </div>
+  <div class="collapse-content"> 
 <Uniswap
     defaultInputAmount={1}
-    defaultOutputTokenAddress={NSS_ADDRESS}  />
+    defaultOutputTokenAddress={NSS_ADDRESS}  />  </div>
+</div>
+
 
 ## Your balance
 

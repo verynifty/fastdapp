@@ -25,20 +25,6 @@ import ERC20ABI from 'ABIS/ERC20.json';
 import ERC721ABI from 'ABIS/ERC721.json';
 import ERC1155ABI from 'ABIS/ERC1155.json';
 
-const THEMES = [
-    {
-        "name": "default",
-        "classes": "prose  max-w-none "
-    },
-    {
-        "name": "dark",
-        "classes": "prose  max-w-none dark:prose-invert bg-slate-950"
-    },
-    {
-        "name": "pepe",
-        "classes": "prose  max-w-none dark:prose-invert bg-green-700"
-    }
-]
 
 let value = "// some comment";
 const components = {
@@ -68,7 +54,7 @@ const Render = (props) => {
 
     const [content, setContent] = React.useState("");
     const [requiredChain, setRequiredChain] = React.useState(null);
-    const [theme, setTheme] = React.useState(THEMES[0]);
+    const [theme, setTheme] = React.useState("light");
 
     const { chain } = useNetwork()
     const { chains, error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
@@ -106,17 +92,7 @@ const Render = (props) => {
         content = content.replace(/\t/g, "");
         setContent(content);
         setRequiredChain(parsedFront.chain != null ? parseInt(parsedFront.chain) : 1);
-
-        let theme = THEMES.filter((t) => { return t.name == parsedFront.theme });
-        console.log("THEME  CHAIN");
-
-        if (theme.length > 0) {
-            setTheme(theme[0]);
-        } else {
-            setTheme(THEMES[0]);
-        }
-        console.log("END PROP");
-
+        setTheme(parsedFront.theme != null ? parsedFront.theme : "light");
     }
 
     // This will run only once
@@ -168,9 +144,10 @@ const Render = (props) => {
     return (
         <React.Fragment>
             <Head>
+                <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.1/dist/full.css" rel="stylesheet" type="text/css" />
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
-            <div className={theme.classes + ' min-h-full'}>
+            <div className={' prose  max-w-none min-h-full'} data-theme={theme}>
                 {getRender()}
             </div>
         </React.Fragment>
