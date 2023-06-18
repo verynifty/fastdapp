@@ -45,5 +45,8 @@
     "wagmi": "^1.0.9",
     "web3.storage": "^4.5.4",
     "yaml-front-matter": "^4.1.1"
+  },
+  "devDependencies": {
+    "daisyui": "^3.1.1"
   }
 }

@@ -82,6 +82,7 @@ function MyApp({ Component, pageProps }) {
     }, []);
 
     return (
+        <div >
         <ReservoirKitProvider
             options={{
                 chains: [{
@@ -104,6 +105,7 @@ function MyApp({ Component, pageProps }) {
                 </RainbowKitProvider>
             </WagmiConfig>
         </ReservoirKitProvider >
+        </div>
     );
 }
 
