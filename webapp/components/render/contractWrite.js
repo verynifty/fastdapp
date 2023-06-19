@@ -2,6 +2,7 @@ import { default as React, Fragment, useState, useRef, useEffect } from 'react';
 import { usePrepareContractWrite } from 'wagmi'
 import { useToken } from 'wagmi'
 import { parseEther, parseUnits } from 'viem'
+import { Switch } from '@headlessui/react'
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
 
@@ -110,7 +111,7 @@ const WriteContract = (props) => {
                             return (
                                 <div>
                                     <label htmlFor="select" className="block text-sm font-medium leading-6 text-gray-900">
-                                    {input.name}
+                                        {input.name}
                                     </label>
                                     <select
                                         id="select"
@@ -119,7 +120,7 @@ const WriteContract = (props) => {
                                         value={argsStateValues[index]}
                                         onChange={e => argsStateSetters[index](e.target.value)}
                                     >
-                                        { Object.entries(input.selectChoices).map(([name, value]) => {
+                                        {Object.entries(input.selectChoices).map(([name, value]) => {
                                             return (
                                                 <option value={value}>{name}</option>
                                             )
@@ -130,28 +131,14 @@ const WriteContract = (props) => {
                         }
                         else if (input.type === "bool") {
                             return (
-                                <Switch.Group as="div" className="flex items-center">
-                                    <Switch.Label as="span" className="ml-3 text-sm">
-                                        <span className="font-medium text-gray-900">{input.name}</span>{' '}
-                                    </Switch.Label>
-                                    <Switch
-                                        checked={argsStateValues[index]}
-                                        onChange={argsStateSetters[index]}
-                                        className={classNames(
-                                            argsStateValues[index] ? 'bg-indigo-600' : 'bg-gray-200',
-                                            'relative inline-flex h-6 w-11 flex-shrink-0 cursor-pointer rounded-full border-2 border-transparent transition-colors duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-indigo-600 focus:ring-offset-2'
-                                        )}
-                                    >
-                                        <span
-                                            aria-hidden="true"
-                                            className={classNames(
-                                                argsStateValues[index] ? 'translate-x-5' : 'translate-x-0',
-                                                'pointer-events-none inline-block h-5 w-5 transform rounded-full bg-white shadow ring-0 transition duration-200 ease-in-out'
-                                            )}
-                                        />
-                                    </Switch>
+                                <div class="form-control">
+                                    <label class="label cursor-pointer">
+                                        <span class="label-text">{input.name}</span>
+                                        <input type="checkbox"  class="checkbox" checked={argsStateValues[index]? "checked" : ""}
+                                            onChange={e => argsStateSetters[index](e.target.checked)} />
+                                    </label>
+                                </div>
 
-                                </Switch.Group>
                             )
                         } else if (input.type === "uint256" && input.token != null) {
                             return (
@@ -173,20 +160,15 @@ const WriteContract = (props) => {
                         } else {
                             return (
                                 <div>
-                                    <label htmlFor={input.name} className="block text-sm font-medium leading-6 text-gray-900">
-                                        {input.name}
-                                    </label>
-                                    <div className="mt-2">
-                                        <input
-                                            type="text"
-                                            name={input.name}
-                                            id={input.name}
-                                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                                            placeholder=""
-                                            value={argsStateValues[index]}
-                                            onChange={e => argsStateSetters[index](e.target.value)}
-                                        />
+                                    <div class="form-control w-full ">
+                                        <label class="label">
+                                            <span class="label-text">  {input.name}</span>
+                                        </label>
+                                        <input type="text" placeholder="Type here" class="input input-bordered w-full " value={argsStateValues[index]}
+                                            onChange={e => argsStateSetters[index](e.target.value)} />
+
                                     </div>
+
                                 </div>
                             )
                         }
@@ -200,7 +182,9 @@ const WriteContract = (props) => {
         <span>
             {makeForm()}
             {makePayable()}
-            <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
+            <div class="mt-2">
+                <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
+            </div>
         </span >
     );
 }

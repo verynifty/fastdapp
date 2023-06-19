@@ -68,7 +68,7 @@ const SendTransactionButton = (props) => {
     const button = () => {
         if (!isLoading) {
             return (
-                <button onClick={onClickSend} className="btn btn-primary">
+                <button onClick={onClickSend} className="btn">
                     {text}
                 </button>
             )
