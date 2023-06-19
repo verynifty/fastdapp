@@ -146,14 +146,14 @@ const WriteContract = (props) => {
                                     <label class="label">
                                         <span class="label-text">  {input.name}</span>
                                         <span class="label-text-alt">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
-                                    </label>             
-                                        <input type="text"
-                                            value={argsStateValues[index]}
-                                            onChange={e => argsStateSetters[index](e.target.value)}
-                                            name="token_amount"
-                                            id="token_amount"
-                                            class="input input-bordered w-full" placeholder="0.00"></input>
-    
+                                    </label>
+                                    <input type="text"
+                                        value={argsStateValues[index]}
+                                        onChange={e => argsStateSetters[index](e.target.value)}
+                                        name="token_amount"
+                                        id="token_amount"
+                                        class="input input-bordered w-full" placeholder="0.00"></input>
+
                                 </div>
                             )
                         } else {

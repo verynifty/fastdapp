@@ -4,6 +4,8 @@ import Head from 'next/head'
 import { useRouter } from 'next/router'
 import axios from 'axios';
 
+import toast from 'react-hot-toast';
+
 import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
 import Editor from '@monaco-editor/react';
@@ -64,6 +66,7 @@ export default function EditorPage({ source }) {
     }
 
     function handleRender() {
+        toast.success("Rendered!")
         setRendered(content)
         setVersion(version + 1)
     }
