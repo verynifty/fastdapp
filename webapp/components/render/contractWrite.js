@@ -109,14 +109,14 @@ const WriteContract = (props) => {
                         if (input.selectChoices != null && typeof input.selectChoices == "object") {
                             // deal with selectChoices and render an HTML select
                             return (
-                                <div>
-                                    <label htmlFor="select" className="block text-sm font-medium leading-6 text-gray-900">
-                                        {input.name}
+                                <div className="form-control w-full">
+                                    <label className="label">
+                                        <span class="label-text"> {input.name}</span>
                                     </label>
                                     <select
                                         id="select"
                                         name="select"
-                                        className="mt-2 block w-full rounded-md border-0 py-1.5 pl-3 pr-10 text-gray-900 ring-1 ring-inset ring-gray-300 focus:ring-2 focus:ring-indigo-600 sm:text-sm sm:leading-6"
+                                        className="select select-bordered"
                                         value={argsStateValues[index]}
                                         onChange={e => argsStateSetters[index](e.target.value)}
                                     >
@@ -134,7 +134,7 @@ const WriteContract = (props) => {
                                 <div class="form-control">
                                     <label class="label cursor-pointer">
                                         <span class="label-text">{input.name}</span>
-                                        <input type="checkbox"  class="checkbox" checked={argsStateValues[index]? "checked" : ""}
+                                        <input type="checkbox" class="checkbox" checked={argsStateValues[index] ? "checked" : ""}
                                             onChange={e => argsStateSetters[index](e.target.checked)} />
                                     </label>
                                 </div>
@@ -142,19 +142,18 @@ const WriteContract = (props) => {
                             )
                         } else if (input.type === "uint256" && input.token != null) {
                             return (
-                                <div>
-                                    <label for="token_amount" class="block text-sm font-medium leading-6 text-gray-900">{input.name}</label>
-                                    <div class="relative mt-2 rounded-md shadow-sm">
+                                <div class="form-control w-full ">
+                                    <label class="label">
+                                        <span class="label-text">  {input.name}</span>
+                                        <span class="label-text-alt">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
+                                    </label>             
                                         <input type="text"
                                             value={argsStateValues[index]}
                                             onChange={e => argsStateSetters[index](e.target.value)}
                                             name="token_amount"
                                             id="token_amount"
-                                            class="block w-full rounded-md border-0 py-1.5 pl-7 pr-12 text-gray-900 ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6" placeholder="0.00" aria-describedby="price-currency"></input>
-                                        <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-3">
-                                            <span class="text-gray-500 sm:text-sm" id="price-currency">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
-                                        </div>
-                                    </div>
+                                            class="input input-bordered w-full" placeholder="0.00"></input>
+    
                                 </div>
                             )
                         } else {

@@ -63,3 +63,43 @@ You can add the hidden flag in the ABI for the input you want to hide. Note that
   buttonText="Set Approval to me"
   args={[TOKEN_ADDRESS, true]}
    />
+
+## 4. Multiple choices for inputs
+
+You can create inputs with predefined choices. Here the user can decide who to send the token to.
+
+<ContractWrite 
+    address={TOKEN_ADDRESS}
+    abi={[
+        {
+        "constant": false,
+        "inputs": [
+            {
+                "name": "To",
+                "type": "address",
+                "selectChoices": {
+                    "Donate to dev": "0xC618b905f7b41c7D53C23474322D7D3297730419",
+                    "Burn": "0x0000000000000000000000000000000000000000"
+                }
+            },
+            {
+                "name": "Amount",
+                "type": "uint256",
+                "token": TOKEN_ADDRESS
+            }
+        ],
+        "name": "transfer",
+        "outputs": [
+            {
+                "name": "",
+                "type": "bool"
+            }
+        ],
+        "payable": false,
+        "stateMutability": "nonpayable",
+        "type": "function"
+        }
+    ]}
+    functionName="transfer"
+    args={["0x0000000000000000000000000000000000000000", 1]}
+/>
