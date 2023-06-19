@@ -14,7 +14,7 @@ theme: cupcake
 
 You can send a message or your own confession NFT to any wallet and they'll probably see it on OpenSea. You can mint and send for free (gas).
 
-The message
+The message inlcudes the address of the sender and the block it was minted.
 
 ## Mint
 <ContractWrite 
