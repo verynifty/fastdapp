@@ -5,7 +5,6 @@ sidebar_position: 10
 
 # No Shit Sherlock
 
-![Lido screenshot](/img/templates/lido_staking.png)
 
 A simple template that shows how to use `Uniswap`, `ContractRead` and `ContractWrite` to make a user interface for the No Shit Sherlock on chain game.
 
