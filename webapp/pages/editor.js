@@ -5,6 +5,7 @@ import { useRouter } from 'next/router'
 import axios from 'axios';
 
 import toast from 'react-hot-toast';
+import Hotkeys from 'react-hot-keys';
 
 import { watchAccount, getAccount, fetchToken, fetchBalance } from '@wagmi/core'
 
@@ -25,6 +26,8 @@ export default function EditorPage({ source }) {
     const [content, setContent] = React.useState(``);
     const [isLoaded, setIsLoaded] = React.useState(``);
     const [version, setVersion] = React.useState(0);
+    const [rendered, setRendered] = React.useState("");
+    const [isPublishing, setIsPublishing] = React.useState(false);
 
     function getExampleURL(templateName = null) {
         return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (templateName == null ? 'simple' : templateName) + ".md")
@@ -51,14 +54,42 @@ export default function EditorPage({ source }) {
         load();
     }, []);
 
-
-    const [rendered, setRendered] = React.useState("");
-    const [isPublishing, setIsPublishing] = React.useState(false);
-
     let account = getAccount();
 
     function handleEditorDidMount(editor, monaco) {
+        console.log(editor)
         editorRef.current = editor;
+        let ctx = this;
+        editor.addAction({
+            // An unique identifier of the contributed action.
+            id: "my-unique-id",
+
+            // A label of the action that will be presented to the user.
+            label: "Render",
+
+            // An optional array of keybindings for the action.
+            keybindings: [
+                monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
+            ],
+
+            // A precondition for this action.
+            precondition: null,
+
+            // A rule to evaluate on top of the precondition in order to dispatch the keybindings.
+            keybindingContext: null,
+
+            contextMenuGroupId: "navigation",
+
+            contextMenuOrder: 1.5,
+
+            // Method that will be executed when the action is triggered.
+            // @param editor The editor instance is passed in as a convenience
+            run: function (ed) {
+                console.log("RUN", ed.getValue())
+                console.log(ctx, ed)
+                handleRenderWithContent(ed.getValue())
+            },
+        });
     }
 
     async function handleEditorChange(value, event) {
@@ -68,6 +99,16 @@ export default function EditorPage({ source }) {
     function handleRender() {
         toast.success("Rendered!")
         setRendered(content)
+        setVersion(version + 1)
+    }
+
+
+    function handleRenderWithContent(value = null) {
+        if (value != null) {
+            setContent(value);
+        }
+        toast.success("Rendered!")
+        setRendered(value)
         setVersion(version + 1)
     }
 
@@ -86,6 +127,15 @@ export default function EditorPage({ source }) {
         }
     }
 
+    function onKeyUp(keyName, e, handle) {
+        //  console.log("test:onKeyUp", e, handle)
+    }
+
+
+    function onKeyDown(keyName, e, handle) {
+        handleRender()
+    }
+
 
     if (!isLoaded) return (<div>Loading...</div>);
 
@@ -99,44 +149,51 @@ export default function EditorPage({ source }) {
                     content=" create websites for your DAPP in a few minutes."
                 />
             </Head>
-            <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2	md:flex md:items-center md:justify-between">
-                <div className="min-w-0 flex-1">
-                    <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
-                        ✍️ Editor
-                    </h2>
-                </div>
-                <div className="mt-4 flex md:ml-4 md:mt-0">
-                    {!isPublishing ?
-                        <button
-                            onClick={handleRender}
-                            type="button"
-                            className="inline-flex items-center rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
-                        >
-                            Render
-                        </button>
-                        : null}
-                    <button
-                        onClick={handlePublish}
-                        type="button"
-                        className="ml-3 inline-flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
-                    >
-                        {!isPublishing ? 'Publish' : 'Edit'}
-                    </button>
-                </div>
-            </div>
-            <div className=" flex">
-                <div className="flex-1">
-                    <PleaseConnect>
-                        <RenderErrorWrapper version={version}>
-                            <Render content={rendered} />
-                        </RenderErrorWrapper>
-                    </PleaseConnect>
-                </div>
-                <div className="flex-1">
-                    {RightPanel()}
-                </div>
 
-            </div>
+            <Hotkeys
+                keyName="ctrl+enter,command+enter"
+                onKeyDown={onKeyDown.bind(this)}
+                onKeyUp={onKeyUp.bind(this)}
+            >
+                <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2	md:flex md:items-center md:justify-between">
+                    <div className="min-w-0 flex-1">
+                        <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
+                            ✍️ Editor
+                        </h2>
+                    </div>
+                    <div className="mt-4 flex md:ml-4 md:mt-0">
+                        {!isPublishing ?
+                            <button
+                                onClick={handleRender}
+                                type="button"
+                                className="inline-flex items-center rounded-md bg-white/10 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-white/20"
+                            >
+                                Render
+                            </button>
+                            : null}
+                        <button
+                            onClick={handlePublish}
+                            type="button"
+                            className="ml-3 inline-flex items-center rounded-md bg-indigo-500 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-indigo-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500"
+                        >
+                            {!isPublishing ? 'Publish' : 'Edit'}
+                        </button>
+                    </div>
+                </div>
+                <div className=" flex">
+                    <div className="flex-1">
+                        <PleaseConnect>
+                            <RenderErrorWrapper version={version}>
+                                <Render content={rendered} />
+                            </RenderErrorWrapper>
+                        </PleaseConnect>
+                    </div>
+                    <div className="flex-1">
+                        {RightPanel()}
+                    </div>
+
+                </div>
+            </Hotkeys>
         </div>
     )
 }
