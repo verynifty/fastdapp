@@ -64,18 +64,16 @@ const Publish = (props) => {
 
 
     return (
-        <span>
-            <div className="bg-white">
-                <div className="mx-auto max-w-7xl px-6 py-24 sm:py-32 lg:px-8">
-                    <h2 className="text-3xl text-center font-bold tracking-tight text-gray-900 sm:text-4xl">
-                        You are about to upload your page and make it public.
-                    </h2>
-                    <div className="mt-10 flex items-center gap-x-6">
-                        {button()}
-                    </div>
-                </div>
-            </div>
-        </span >
+        <div>
+        <input type="checkbox" id="my_modal_7" class="modal-toggle" />
+        <div class="modal">
+          <div class="modal-box">
+            <h3 class="text-lg font-bold">Hello!</h3>
+            <p class="py-4">This modal works with a hidden checkbox!</p>
+          </div>
+          <label class="modal-backdrop" for="my_modal_7">Close</label>
+        </div>
+        </div>
     );
 }
 
