@@ -45,7 +45,7 @@ const Publish = (props) => {
         if (isLoading) {
             return (
                 <button
-                    className="rounded-md bg-indigo-200 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm  focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="btn" disabled="disabled"
                 >
                     uploading...
                 </button>
@@ -54,7 +54,7 @@ const Publish = (props) => {
             return (
                 <button
                     onClick={upload}
-                    className="rounded-md bg-indigo-600 px-3.5 py-2.5 text-sm font-semibold text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="btn"
                 >
                     Upload
                 </button>
@@ -65,14 +65,14 @@ const Publish = (props) => {
 
     return (
         <div>
-        <input type="checkbox" id="my_modal_7" class="modal-toggle" />
-        <div class="modal">
-          <div class="modal-box">
-            <h3 class="text-lg font-bold">Hello!</h3>
-            <p class="py-4">This modal works with a hidden checkbox!</p>
-          </div>
-          <label class="modal-backdrop" for="my_modal_7">Close</label>
-        </div>
+            <input type="checkbox" id="my_modal_7" class="modal-toggle" />
+            <div class="modal">
+                <div class="modal-box">
+                    <h3 class="text-lg font-bold">Publish your app</h3>
+                    {button()}
+                </div>
+                <label class="modal-backdrop" for="my_modal_7">Close</label>
+            </div>
         </div>
     );
 }
