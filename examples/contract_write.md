@@ -107,6 +107,7 @@ You can create inputs with predefined choices. Here the user can decide who to s
 
 ## 5. Datepicker
 
+Here is an example of a number input as a datepicker:
 
 <ContractWrite 
     address={SABLIER_ADDRESS} 
