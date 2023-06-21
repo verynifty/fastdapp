@@ -42,10 +42,7 @@ const components = {
 const scope = {
     "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },
     "userAddress": "",
-    "useState": useState,
-    "value": 55,
-    "readContract": readContract,
-    "getAccount": getAccount
+    "location": ""
 };
 
 const Render = (props) => {
@@ -101,8 +98,7 @@ const Render = (props) => {
             try {
                 const account = await getAccount();
                 scope.userAddress = account.address;
-                console.log("LOCATION", props.location)
-                scope.location = props.location;
+                scope.location = props.location == null ? "editor" : props.location;
                 setContentFromProp();
                 setIsLoaded(true);
             } catch (error) {
