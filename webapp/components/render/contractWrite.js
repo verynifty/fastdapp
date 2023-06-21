@@ -2,7 +2,8 @@ import { default as React, Fragment, useState, useRef, useEffect } from 'react';
 import { usePrepareContractWrite } from 'wagmi'
 import { useToken } from 'wagmi'
 import { parseEther, parseUnits } from 'viem'
-import { Switch } from '@headlessui/react'
+import DateTimePicker from 'react-datetime-picker';
+import 'react-calendar/dist/Calendar.css';
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
 
@@ -139,6 +140,19 @@ const WriteContract = (props) => {
                                     </label>
                                 </div>
 
+                            )
+                        } else if (input.date === true) {
+                            return (
+                                <div>
+                                    <div className="form-control w-full">
+                                    <label class="label">
+                                        <span class="label-text">  {input.name}</span>
+                                    </label>
+                                    <DateTimePicker className="input input-bordered" onChange={function (d) {
+                                        argsStateSetters[index](d.getTime() / 1000)
+                                    }} value={new Date(parseInt(argsStateValues[index]) * 1000)} disableClock={true} />
+                                    </div>
+                                </div>
                             )
                         } else if (input.type === "uint256" && input.token != null) {
                             return (

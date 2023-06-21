@@ -23,6 +23,7 @@ import { GoogleAnalytics } from "nextjs-google-analytics";
 import TagManager from 'react-gtm-module';
 import { Toaster } from 'react-hot-toast';
 
+import '@/DateTimePicker.css';
 
 import {
     ReservoirKitProvider,

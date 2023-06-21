@@ -179,6 +179,49 @@ You can force a text input to be a `textarea` instead of a normal `input` by add
 />
 ```
 
+### How to make a date picker for an EVM timestamp
+
+You can force a number input to be a datepicker by adding the `date` attribute in the ABI:
+
+![selectChoices](/img/components/longtext.png)
+
+```
+<ContractWrite 
+    address={SABLIER_ADDRESS} 
+    abi={[
+        {
+    "constant": false,
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "startTime",
+        "type": "uint256",
+        "date": true
+      },
+      {
+        "internalType": "uint256",
+        "name": "stopTime",
+        "type": "uint256",
+        "date": true
+      }
+    ],
+    "name": "createStream",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "",
+        "type": "uint256"
+      }
+    ],
+    "payable": false,
+    "stateMutability": "nonpayable",
+    "type": "function"
+        }
+    ]} 
+    functionName="createStream" 
+    args={[1687333099, 1688333099]} />
+```
+
 
 
 
