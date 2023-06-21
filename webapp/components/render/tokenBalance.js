@@ -8,7 +8,7 @@ const TokenBalance = (props) => {
     const [symbol, setSymbol] = React.useState("");
 
     // This will run only once
-    useEffect(() => {
+   // useEffect(() => {
         async function getBalance() {
             try {
                 const balance = await fetchBalance({
@@ -24,7 +24,7 @@ const TokenBalance = (props) => {
 
         }
         getBalance();
-    }, []);
+   // }, [props]);
 
 
     return (

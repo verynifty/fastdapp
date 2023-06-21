@@ -42,7 +42,8 @@ const components = {
 const scope = {
     "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },
     "userAddress": "",
-    "location": ""
+    "location": "",
+    "useState": useState,
 };
 
 const Render = (props) => {
