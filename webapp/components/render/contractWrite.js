@@ -153,7 +153,18 @@ const WriteContract = (props) => {
                                         name="token_amount"
                                         id="token_amount"
                                         class="input input-bordered w-full" placeholder="0.00"></input>
-
+                                </div>
+                            )
+                        } else if (input.longText == true) {
+                            return (
+                                <div>
+                                    <div className="form-control w-full">
+                                        <label className="label">
+                                            <span className="label-text">{input.name}</span>
+                                        </label>
+                                        <textarea className="textarea textarea-bordered h-24 w-full" value={argsStateValues[index]}
+                                            onChange={e => argsStateSetters[index](e.target.value)}></textarea>
+                                    </div>
                                 </div>
                             )
                         } else {
@@ -161,13 +172,11 @@ const WriteContract = (props) => {
                                 <div>
                                     <div class="form-control w-full ">
                                         <label class="label">
-                                            <span class="label-text">  {input.name}</span>
+                                            <span class="label-text">{input.name}</span>
                                         </label>
                                         <input type="text" placeholder="Type here" class="input input-bordered w-full " value={argsStateValues[index]}
                                             onChange={e => argsStateSetters[index](e.target.value)} />
-
                                     </div>
-
                                 </div>
                             )
                         }

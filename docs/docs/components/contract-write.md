@@ -142,6 +142,43 @@ It is possible to force the input field to be an HTML select by providing a `sel
 />
 ```
 
+### How to make a text input larger 
+
+You can force a text input to be a `textarea` instead of a normal `input` by adding the `longText` attribute in the ABI:
+
+![selectChoices](/img/components/longtext.png)
+
+```
+<ContractWrite 
+    address={NFM}
+    abi={[
+       {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "Send to:",
+        "type": "address"
+      },
+      {
+        "internalType": "string",
+        "name": "The message:",
+        "type": "string",
+        "longText": true
+      }
+    ],
+    "name": "mint",
+    "outputs": [
+      
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+  }
+    ]}
+    functionName="mint"
+    args={[userAddress, "I haven't left home for the past week because I spent all my money on jpegs. I am waiting for my salary on Monday so I can buy groceries again."]}
+/>
+```
+
 
 
 

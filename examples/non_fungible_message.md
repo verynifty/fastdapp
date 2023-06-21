@@ -30,7 +30,8 @@ The message inlcudes the address of the sender and the block it was minted.
       {
         "internalType": "string",
         "name": "The message:",
-        "type": "string"
+        "type": "string",
+        "longText": true
       }
     ],
     "name": "mint",
