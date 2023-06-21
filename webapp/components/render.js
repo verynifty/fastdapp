@@ -101,6 +101,8 @@ const Render = (props) => {
             try {
                 const account = await getAccount();
                 scope.userAddress = account.address;
+                console.log("LOCATION", props.location)
+                scope.location = props.location;
                 setContentFromProp();
                 setIsLoaded(true);
             } catch (error) {

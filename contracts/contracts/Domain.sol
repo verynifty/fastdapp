@@ -5,8 +5,11 @@ import "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 import "@openzeppelin/contracts/token/ERC721/extensions/ERC721Enumerable.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 
-contract MyToken is ERC721, ERC721Enumerable, Ownable {
-    constructor() ERC721("MyToken", "MTK") {}
+contract BUILD is ERC721, ERC721Enumerable, Ownable {
+
+    mapping(uint256 => string) public locations;
+
+    constructor() ERC721("BUILD", "BLD") {}
 
     function safeMint(address to, uint256 tokenId) public onlyOwner {
         _safeMint(to, tokenId);
@@ -29,4 +32,15 @@ contract MyToken is ERC721, ERC721Enumerable, Ownable {
     {
         return super.supportsInterface(interfaceId);
     }
+
+    function getID(string memory _name) public pure returns (uint256) {
+        return uint256(keccak256(abi.encodePacked(_name)));
+    }
+
+    function mint(address _to, string memory _name, string memory _location) public  {
+        uint256 tokenId = getID(_name);
+        locations[tokenId] = _location;
+        _safeMint(_to, tokenId);
+    }
+    
 }
