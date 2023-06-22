@@ -9,17 +9,22 @@ const AddressDisplay = (props) => {
     }
 
     async function getInfo() {
-        const ensName = await fetchEnsName({
-            address: props.address,
-        })
-        setENS(ensName);
+        try {
+            const ensName = await fetchEnsName({
+                address: props.address,
+            })
+            setENS(ensName);
+        } catch (error) {
+            setENS("Error: Incorrect address?");
+        }
+       
     }
     getInfo();
     
     // This will run only once
     useEffect(() => {
       
-    }, []);
+    }, [props.address]);
 
     return (
         <span>
