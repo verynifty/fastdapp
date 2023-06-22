@@ -32,9 +32,9 @@ export function Hero() {
        Focus on your contract, create the frontend in minutes
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
-        <Button className="" href="/editor">Start building now!</Button>
+        <Button className="" href="/editor">Open the editor</Button>
         <Button
-          href="https://www.youtube.com/watch?v=6SQylwOXuLM"
+          href="https://builddocs.musedao.io/docs/tutorials/token_page"
           variant="outline"
         >
           <svg
@@ -43,7 +43,7 @@ export function Hero() {
           >
             <path d="m9.997 6.91-7.583 3.447A1 1 0 0 1 1 9.447V2.553a1 1 0 0 1 1.414-.91L9.997 5.09c.782.355.782 1.465 0 1.82Z" />
           </svg>
-          <span className="ml-3">Watch our presentation</span>
+          <span className="ml-3">See the tutorial</span>
         </Button>
       </div>
       <div className="mt-36 lg:mt-44">
