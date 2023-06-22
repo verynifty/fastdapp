@@ -8,17 +8,22 @@ const Balance = (props) => {
     const [symbol, setSymbol] = React.useState("");
 
     // This will run only once
-    //useEffect(() => {
-    async function getBalance() {
-        const balance = await fetchBalance({
-            address: props.address,
-        })
-        setBalance(balance.value);
-        setFormatted(balance.formatted);
-        setSymbol(balance.symbol);
-    }
-    getBalance();
-    // }, []);
+    useEffect(() => {
+        async function getBalance() {
+            try {
+                const balance = await fetchBalance({
+                    address: props.address,
+                })
+                setBalance(balance.value);
+                setFormatted(balance.formatted);
+                setSymbol(balance.symbol);
+            } catch (error) {
+                console.log("Balance Error", error)
+                setFormatted("Error: Incorrect address?");
+            }
+        }
+        getBalance();
+    }, [props.address]);
 
 
     return (

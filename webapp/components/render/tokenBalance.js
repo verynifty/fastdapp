@@ -8,7 +8,8 @@ const TokenBalance = (props) => {
     const [symbol, setSymbol] = React.useState("");
 
     // This will run only once
-   // useEffect(() => {
+    useEffect(() => {
+        console.log("useEffect TOKENBALANCE")
         async function getBalance() {
             try {
                 const balance = await fetchBalance({
@@ -19,12 +20,14 @@ const TokenBalance = (props) => {
                 setFormatted(balance.formatted);
                 setSymbol(balance.symbol);
             } catch (error) {
+                console.log("TokenBalance Error", error)
                 setFormatted("Error: token doesn't exsit or is in a different network?");
             }
+            console.log("END useEffect TOKENBALANCE")
 
         }
         getBalance();
-   // }, [props]);
+    }, [props.token, props.address]);
 
 
     return (
