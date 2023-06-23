@@ -70,26 +70,31 @@ const Publish = (props) => {
         else if (isLoading) {
             return (
                 <div>
-                     <center><h3 class="text-lg font-bold">Publish your app</h3></center>
+                    <center><h3 class="text-lg font-bold">Publish your app</h3>
+                        <p className='m-4'>You're about to publish your app and make it shareable with others.</p>
 
-                    <button
-                        className="btn" disabled="disabled"
-                    >
-                        Publishing...
-                    </button>
+                        <button
+                            className="btn w-full" disabled="disabled"
+                        >
+                            Publishing<span class="loading loading-spinner loading-md"></span>
+                        </button>
+                    </center>
                 </div>
             )
         } else {
             return (
                 <div>
-                    <center><h3 class="text-lg font-bold">Publish your app</h3></center>
+                    <center><h3 class="text-lg font-bold">Publish your app</h3>
+                        <p className='m-4'>You're about to publish your app and make it shareable with others.</p>
 
-                    <button
-                        onClick={upload}
-                        className="btn"
-                    >
-                        Publish
-                    </button>
+                        <button
+                            onClick={upload}
+                            className="btn w-full"
+                        >
+                            Publish
+                        </button>
+                    </center>
+
                 </div>
             )
         }
