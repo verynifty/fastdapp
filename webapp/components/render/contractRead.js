@@ -22,7 +22,8 @@ const ContractRead = (props) => {
                     args: props.args,
                 })
                 if (typeof props.returnValue === 'function') {
-                    setValue(props.returnValue(res) + "");
+                    let computed = props.returnValue(res);
+                    setValue(computed);
                 }
                 else if (Array.isArray(res)) {
                     let index = props.returnValue == null ? 0 : parseInt(props.returnValue);

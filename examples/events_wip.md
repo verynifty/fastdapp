@@ -31,6 +31,46 @@
     ],
     "name": "AuctionBid",
     "type": "event"
+  },
+  {
+    "inputs": [
+      
+    ],
+    "name": "auction",
+    "outputs": [
+      {
+        "internalType": "uint256",
+        "name": "nounId",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "startTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "uint256",
+        "name": "endTime",
+        "type": "uint256"
+      },
+      {
+        "internalType": "address payable",
+        "name": "bidder",
+        "type": "address"
+      },
+      {
+        "internalType": "bool",
+        "name": "settled",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
   }]
 })()}</div> 
 
@@ -44,7 +84,7 @@ render={
      <div>
      {
       logs.reverse().map((log) => (
-        <div><AddressDisplay address={log.args.sender} /> made a bid  of {parseInt(log.args['value']) / 1e18} ETH at block {log.blockNumber.toString()}</div>
+        <div key={log.transactionHash}><AddressDisplay address={log.args.sender} /> made a bid  of {parseInt(log.args['value']) / 1e18} ETH at block {log.blockNumber.toString()}</div>
   )
 )
      }

@@ -19,6 +19,7 @@ import Events from 'components/render/events';
 
 import Uniswap from 'components/render/uniswap';
 import ReservoirSweep from 'components/render/reservoirSweep';
+import ReservoirNFTDisplay from 'components/render/reservoirNFTDisplay';
 
 import { readContract, getAccount } from '@wagmi/core'
 
@@ -39,6 +40,7 @@ const components = {
     "ContractWrite": ContractWrite,
     "Uniswap": Uniswap,
     "ReservoirSweep": ReservoirSweep,
+    "ReservoirNFTDisplay": ReservoirNFTDisplay,
     "Events": Events,
 }
 const scope = {
