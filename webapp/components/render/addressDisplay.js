@@ -17,18 +17,19 @@ const AddressDisplay = (props) => {
         } catch (error) {
             setENS("Error: Incorrect address?");
         }
-       
+
     }
-    getInfo();
-    
     // This will run only once
     useEffect(() => {
-      
+        getInfo();
+
+
+
     }, [props.address]);
 
     return (
         <span>
-            {ENS != null ? ENS : formatAddress(props.address)}
+            <a href={"https://etherscan.io/address/" + props.address}>{ENS != null ? ENS : formatAddress(props.address)}</a>
         </span >
     );
 }

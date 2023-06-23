@@ -18,7 +18,7 @@ const Events = (props) => {
             toBlock: 'latest',
             event: getABI(),
             args: {
-                nounId: 333n,
+                nounId: 353n,
             }
         });
         setLogs(logs);
