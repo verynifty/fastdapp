@@ -1,21 +1,7 @@
 
-<>{(() => { 
-    async function onLoad() {
-        NOUNS_AUCTION = "0x830bd73e4184cef73443c15111a1df14e495c706";
-    }
-
-    onLoad()
-
-   })()}</> 
-
-
-<p>
-{NOUNS_AUCTION}
-</p>
-
-<Events 
-address="0x830bd73e4184cef73443c15111a1df14e495c706"
-abi={[{
+<div>{(() => {
+  NOUNS_AUCTION = "0x830bd73e4184cef73443c15111a1df14e495c706"
+  NOUNS_AUCTION_ABI = [{
     "anonymous": false,
     "inputs": [
       {
@@ -45,7 +31,13 @@ abi={[{
     ],
     "name": "AuctionBid",
     "type": "event"
-  }]}
+  }]
+})()}</div> 
+
+
+<Events 
+address="0x830bd73e4184cef73443c15111a1df14e495c706"
+abi={NOUNS_AUCTION_ABI}
 eventName="AuctionBid"
 render={
   ((logs) => (
