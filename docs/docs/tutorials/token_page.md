@@ -269,6 +269,6 @@ Once you are happy with your app, click on the publish button. We'll upload your
 
 ## Congratulations 🎉
 
-You now have the power to buid your own apps! Read more about the [available components](/docs/category/components) and see the [examples](http://localhost:3000/docs/category/templates).
+You now have the power to buid your own apps! Read more about the [available components](/docs/category/components) and see the [examples](/docs/category/templates).
 
 
