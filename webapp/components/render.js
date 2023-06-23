@@ -15,6 +15,7 @@ import Balance from 'components/render/balance';
 import TokenBalance from 'components/render/tokenBalance';
 import ContractRead from 'components/render/contractRead';
 import ContractWrite from 'components/render/contractWrite';
+import Events from 'components/render/events';
 
 import Uniswap from 'components/render/uniswap';
 import ReservoirSweep from 'components/render/reservoirSweep';
@@ -37,7 +38,8 @@ const components = {
     "ContractRead": ContractRead,
     "ContractWrite": ContractWrite,
     "Uniswap": Uniswap,
-    "ReservoirSweep": ReservoirSweep
+    "ReservoirSweep": ReservoirSweep,
+    "Events": Events,
 }
 const scope = {
     "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },
