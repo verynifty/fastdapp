@@ -1,3 +1,18 @@
+
+<>{(() => { 
+    async function onLoad() {
+        NOUNS_AUCTION = "0x830bd73e4184cef73443c15111a1df14e495c706";
+    }
+
+    onLoad()
+
+   })()}</> 
+
+
+<p>
+{NOUNS_AUCTION}
+</p>
+
 <Events 
 address="0x830bd73e4184cef73443c15111a1df14e495c706"
 abi={[{
@@ -37,7 +52,7 @@ render={
      <div>hello {logs.length}
      {
       logs.map((log) => (
-        <div>bbbb {log.args['nounId'].toString()}</div>
+        <div><AddressDisplay address={log.args.sender} /> made a bid  of {parseInt(log.args['value']) / 1e18} ETH</div>
   )
 )
      }
