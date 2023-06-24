@@ -110,7 +110,7 @@ theme: light
 abi={NOUNS_AUCTION_ABI}
 functionName="auction"
 returnValue={(res) => (
-  <div>
+  <center>
     <div class="stats shadow">
   
   <div class="stat place-items-center">
@@ -129,15 +129,16 @@ returnValue={(res) => (
   </div>
 
   <div class="stat place-items-center">
-    <div class="stat-title">Time left</div>
-    <div class="stat-value text-secondary">{parseInt(res[1]) == 0 ? 'None' :  <AddressDisplay address={res[4]} />}</div>
-  </div>
-  
+    <div class="stat-title">Ends</div>
+    <div class="stat-value text-secondary"><Moment fromNow unix>{parseInt(res[3])}</Moment></div>
+  </div>  
 </div>
-  </div>
+  <button class="btn btn-secondary mt-2">Go to auction</button>
+
+  </center>
 )} />
 
-## Past auctions
+## Last auctions
 <Events 
 address={NOUNS_AUCTION}
 abi={NOUNS_AUCTION_ABI}
@@ -146,10 +147,10 @@ render={
   ((logs) => (
      <div>
      {
-      logs.reverse().map((log) => (
-        <div key={log.transactionHash}>Hello</div>
-  )
-)
+     (logs.slice(-10)).reverse().map((log, index) => (
+        <div key={log.transactionHash}>#{log.args.nounId.toString()} bought {parseInt(log.args.amount)/1e18}ETH by <AddressDisplay address={log.args.winner} /></div>
+      )
+      )
      }
      </div>
   ))
