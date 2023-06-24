@@ -5,6 +5,7 @@ theme: light
 ---
 
 <div>{(() => {
+    NOUNS="0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03";
   NOUNS_AUCTION = "0x830bd73e4184cef73443c15111a1df14e495c706";
   NOUNS_AUCTION_ABI = [{
     "anonymous": false,
@@ -104,39 +105,46 @@ theme: light
   }];
 })()}</div> 
 
-## Current auction 
+<div>
+<div class="p-10" style={{"background-color": "rgb(212,215,225)"}}>
+
+## Current auction:
 
 <ContractRead address={NOUNS_AUCTION}
 abi={NOUNS_AUCTION_ABI}
 functionName="auction"
 returnValue={(res) => (
+    <div>
+    <img class="p-0 m-0" src={"https://noun.pics/" + res[0].toString() + ".svg"} />
   <center>
     <div class="stats shadow">
   
   <div class="stat place-items-center">
     <div class="stat-title">Noun</div>
-    <div class="stat-value text-secondary">#{res[0].toString()}</div>
+    <div class="stat-value ">#{res[0].toString()}</div>
   </div>
   
   <div class="stat place-items-center">
     <div class="stat-title">Current bid</div>
-    <div class="stat-value text-secondary">{parseInt(res[1]) == 0 ? 'None' : (parseInt(res[1])/1e18) + 'ETH'} </div>
+    <div class="stat-value ">{parseInt(res[1]) == 0 ? 'None' : (parseInt(res[1])/1e18) + 'ETH'} </div>
   </div>
   
   <div class="stat place-items-center">
     <div class="stat-title">Current bidder</div>
-    <div class="stat-value text-secondary">{parseInt(res[1]) == 0 ? 'None' :  <AddressDisplay address={res[4]} />}</div>
+    <div class="stat-value ">{parseInt(res[1]) == 0 ? 'None' :  <AddressDisplay address={res[4]} />}</div>
   </div>
 
   <div class="stat place-items-center">
     <div class="stat-title">Ends</div>
-    <div class="stat-value text-secondary"><Moment fromNow unix>{parseInt(res[3])}</Moment></div>
+    <div class="stat-value "><Moment fromNow unix>{parseInt(res[3])}</Moment></div>
   </div>  
 </div>
   <button class="btn btn-secondary mt-2">Go to auction</button>
 
   </center>
+  </div>
 )} />
+</div>
 
 ## Last auctions
 <Events 
@@ -176,3 +184,5 @@ render={
   ))
 }
 />
+
+</div>

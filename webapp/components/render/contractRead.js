@@ -33,7 +33,7 @@ const ContractRead = (props) => {
                     setValue(res + "");
                 }
             } catch (error) {
-                console.log(error)
+                console.log(JSON.stringify(error))
                 setError("Error: Contract doesn't exsit or is in a different network?");
             }
 
