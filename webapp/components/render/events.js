@@ -17,9 +17,7 @@ const Events = (props) => {
             fromBlock: BigInt(0),
             toBlock: 'latest',
             event: getABI(),
-            args: {
-                nounId: 353n,
-            }
+            args: props.args
         });
         setLogs(logs);
         console.log(logs)
@@ -27,7 +25,7 @@ const Events = (props) => {
 
     // This will run only once
     useEffect(() => {
-        console.log(getConfig())
+        // console.log(getConfig())
         getLogs();
     }, []);
 

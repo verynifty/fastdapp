@@ -1,6 +1,11 @@
+---
+chain: 1
+authors: grands_marquis
+theme: light
+---
 
 <div>{(() => {
-  NOUNS_AUCTION = "0x830bd73e4184cef73443c15111a1df14e495c706"
+  NOUNS_AUCTION = "0x830bd73e4184cef73443c15111a1df14e495c706";
   NOUNS_AUCTION_ABI = [{
     "anonymous": false,
     "inputs": [
@@ -67,30 +72,106 @@
         "internalType": "bool",
         "name": "settled",
         "type": "bool"
-      }
+      },
     ],
     "stateMutability": "view",
     "type": "function"
-  }]
+  },
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": true,
+        "internalType": "uint256",
+        "name": "nounId",
+        "type": "uint256"
+      },
+      {
+        "indexed": false,
+        "internalType": "address",
+        "name": "winner",
+        "type": "address"
+      },
+      {
+        "indexed": false,
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256"
+      }
+    ],
+    "name": "AuctionSettled",
+    "type": "event"
+  }];
 })()}</div> 
 
-## Bids
-<Events 
-address="0x830bd73e4184cef73443c15111a1df14e495c706"
+## Current auction 
+
+<ContractRead address={NOUNS_AUCTION}
 abi={NOUNS_AUCTION_ABI}
-eventName="AuctionBid"
+functionName="auction"
+returnValue={(res) => (
+  <div>
+    <div class="stats shadow">
+  
+  <div class="stat place-items-center">
+    <div class="stat-title">Noun</div>
+    <div class="stat-value text-secondary">#{res[0].toString()}</div>
+  </div>
+  
+  <div class="stat place-items-center">
+    <div class="stat-title">Current bid</div>
+    <div class="stat-value text-secondary">{parseInt(res[1]) == 0 ? 'None' : (parseInt(res[1])/1e18) + 'ETH'} </div>
+  </div>
+  
+  <div class="stat place-items-center">
+    <div class="stat-title">Current bidder</div>
+    <div class="stat-value text-secondary">{parseInt(res[1]) == 0 ? 'None' :  <AddressDisplay address={res[4]} />}</div>
+  </div>
+
+  <div class="stat place-items-center">
+    <div class="stat-title">Time left</div>
+    <div class="stat-value text-secondary">{parseInt(res[1]) == 0 ? 'None' :  <AddressDisplay address={res[4]} />}</div>
+  </div>
+  
+</div>
+  </div>
+)} />
+
+## Past auctions
+<Events 
+address={NOUNS_AUCTION}
+abi={NOUNS_AUCTION_ABI}
+eventName="AuctionSettled"
 render={
   ((logs) => (
      <div>
      {
       logs.reverse().map((log) => (
-        <div key={log.transactionHash}><AddressDisplay address={log.args.sender} /> made a bid  of {parseInt(log.args['value']) / 1e18} ETH at block {log.blockNumber.toString()}</div>
+        <div key={log.transactionHash}>Hello</div>
   )
 )
      }
      </div>
   ))
 }
->
+/>
 
-</Events>
+## Bids
+<Events 
+address={NOUNS_AUCTION}
+abi={NOUNS_AUCTION_ABI}
+eventName="AuctionBid"
+args={{ nounId: 353 }}
+render={
+  ((logs) => (
+     <div>
+     {
+      logs.reverse().map((log) => (
+        <div key={log.transactionHash}><AddressDisplay address={log.args.sender} /> made a bid  of <strong>{parseInt(log.args['value']) / 1e18} ETH</strong> at block {log.blockNumber.toString()}</div>
+  )
+)
+     }
+     </div>
+  ))
+}
+/>
