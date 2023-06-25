@@ -83,21 +83,14 @@ const WriteContract = (props) => {
         if (getFunction().payable) {
             return (
                 <div>
-                    <label htmlFor="payableValue" className="block text-sm font-medium leading-6 text-gray-900">
-                        {props.valueFieldName != null ? props.valueFieldName : "Value"}
-                    </label>
-                    <div className="mt-2">
-                        <input
-                            type="number"
-                            name={props.valueFieldName != null ? props.valueFieldName : "Value"}
-                            className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
-                            value={value}
-                            id="payableValue"
-                            onChange={e => setValue(e.target.value)}
-                        />
+                    <div class="form-control w-full ">
+                        <label class="label">
+                            <span class="label-text">{props.valueFieldName != null ? props.valueFieldName : "Value"}</span>
+                        </label>
+                        <input type="number" class="input input-bordered w-full " value={value}
+                            onChange={e => setValue(e.target.value)} />
                     </div>
                 </div>
-
             )
         }
     }
@@ -145,12 +138,12 @@ const WriteContract = (props) => {
                             return (
                                 <div>
                                     <div className="form-control w-full">
-                                    <label class="label">
-                                        <span class="label-text">  {input.name}</span>
-                                    </label>
-                                    <DateTimePicker className="input input-bordered" onChange={function (d) {
-                                        argsStateSetters[index](d.getTime() / 1000)
-                                    }} value={new Date(parseInt(argsStateValues[index]) * 1000)} disableClock={true} />
+                                        <label class="label">
+                                            <span class="label-text">  {input.name}</span>
+                                        </label>
+                                        <DateTimePicker className="input input-bordered" onChange={function (d) {
+                                            argsStateSetters[index](d.getTime() / 1000)
+                                        }} value={new Date(parseInt(argsStateValues[index]) * 1000)} disableClock={true} />
                                     </div>
                                 </div>
                             )

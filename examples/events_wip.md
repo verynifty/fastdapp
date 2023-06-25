@@ -1,11 +1,10 @@
 ---
 chain: 1
 authors: grands_marquis
-theme: light
+theme: retro
 ---
 
 <div>{(() => {
-    NOUNS="0x9c8ff314c9bc7f6e59a9d9225fb22946427edc03";
   NOUNS_AUCTION = "0x830bd73e4184cef73443c15111a1df14e495c706";
   NOUNS_AUCTION_ABI = [{
     "anonymous": false,
@@ -102,20 +101,38 @@ theme: light
     ],
     "name": "AuctionSettled",
     "type": "event"
+  },
+  {
+    "inputs": [
+      {
+        "internalType": "uint256",
+        "name": "nounId",
+        "type": "uint256",
+        hidden: true
+      }
+    ],
+    "name": "createBid",
+    "outputs": [
+      
+    ],
+    "payable": true,
+    "stateMutability": "payable",
+    "type": "function"
   }];
 })()}</div> 
 
 <div>
 <div class="p-10" style={{"background-color": "rgb(212,215,225)"}}>
 
-## Current auction:
+# One Noun, Every Day, Forever.
 
 <ContractRead address={NOUNS_AUCTION}
 abi={NOUNS_AUCTION_ABI}
 functionName="auction"
 returnValue={(res) => (
     <div>
-    <img class="p-0 m-0" src={"https://noun.pics/" + res[0].toString() + ".svg"} />
+<img class="p-0 m-0" src={"https://noun.pics/" + res[0].toString() + ".svg"} />
+
   <center>
     <div class="stats shadow">
   
@@ -130,7 +147,7 @@ returnValue={(res) => (
   </div>
   
   <div class="stat place-items-center">
-    <div class="stat-title">Current bidder</div>
+    <div class="stat-title">Current winner</div>
     <div class="stat-value ">{parseInt(res[1]) == 0 ? 'None' :  <AddressDisplay address={res[4]} />}</div>
   </div>
 
@@ -139,38 +156,30 @@ returnValue={(res) => (
     <div class="stat-value "><Moment fromNow unix>{parseInt(res[3])}</Moment></div>
   </div>  
 </div>
-  <button class="btn btn-secondary mt-2">Go to auction</button>
 
-  </center>
-  </div>
-)} />
-</div>
+<button className="btn btn-primary mt-4" onClick={()=>window.my_modal_2.showModal()}>Make a bid</button>
+<dialog id="my_modal_2" className="modal">
+  <form method="dialog" className="modal-box">
+    <h3 className="font-bold text-lg">Make your bid for #{res[0].toString()}</h3>
+<ContractWrite address={NOUNS_AUCTION} abi={NOUNS_AUCTION_ABI} 
+  functionName="createBid" args={[res[0].toString()]}
+   valueAmount={parseInt(res[1])/1e18 + 0.1}
+   valueFieldName="Bid amount (ETH)" buttonText="Bid" />
+  </form>
+  <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
 
-## Last auctions
-<Events 
-address={NOUNS_AUCTION}
-abi={NOUNS_AUCTION_ABI}
-eventName="AuctionSettled"
-render={
-  ((logs) => (
-     <div>
-     {
-     (logs.slice(-10)).reverse().map((log, index) => (
-        <div key={log.transactionHash}>#{log.args.nounId.toString()} bought {parseInt(log.args.amount)/1e18}ETH by <AddressDisplay address={log.args.winner} /></div>
-      )
-      )
-     }
-     </div>
-  ))
-}
-/>
-
-## Bids
+<button className="btn btn-primary mt-4 ml-2" onClick={()=>window.my_modal_3.showModal()}>See bids</button>
+<dialog id="my_modal_3" className="modal">
+  <form method="dialog" className="modal-box">
+    <h3 className="font-bold text-lg">Bids for #{res[0].toString()}</h3>
 <Events 
 address={NOUNS_AUCTION}
 abi={NOUNS_AUCTION_ABI}
 eventName="AuctionBid"
-args={{ nounId: 353 }}
+args={{ nounId: res[0].toString() }}
 render={
   ((logs) => (
      <div>
@@ -184,5 +193,40 @@ render={
   ))
 }
 />
+  </form>
+  <form method="dialog" className="modal-backdrop">
+    <button>close</button>
+  </form>
+</dialog>
+
+
+  </center>
+  </div>
+)} />
+</div>
+
+<div class="m-5">
+
+## Last auctions
+<Events 
+address={NOUNS_AUCTION}
+abi={NOUNS_AUCTION_ABI}
+eventName="AuctionSettled"
+render={
+  ((logs) => (
+     <div>
+     {
+     (logs.slice(-15)).reverse().map((log, index) => (
+        <div key={log.transactionHash}><a target="_blank" href={"https://nouns.wtf/noun/" + log.args.nounId.toString()}>#{log.args.nounId.toString()}</a> bought {parseInt(log.args.amount)/1e18}ETH by <AddressDisplay address={log.args.winner} /></div>
+      )
+      )
+     }
+     </div>
+  ))
+}
+/>
+</div>
+
+
 
 </div>
