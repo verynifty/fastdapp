@@ -134,23 +134,19 @@ returnValue={(res) => (
 <img class="p-0 m-0" src={"https://noun.pics/" + res[0].toString() + ".svg"} />
 
   <center>
-    <div class="stats shadow w-full">
-  
+  <div class="stats shadow w-full">
   <div class="stat place-items-center">
     <div class="stat-title">Noun</div>
     <div class="stat-value ">#{res[0].toString()}</div>
   </div>
-  
   <div class="stat place-items-center">
     <div class="stat-title">Current bid</div>
     <div class="stat-value ">{parseInt(res[1]) == 0 ? 'None' : (parseInt(res[1])/1e18) + 'ETH'} </div>
   </div>
-  
   <div class="stat place-items-center">
     <div class="stat-title">Current winner</div>
     <div class="stat-value ">{parseInt(res[1]) == 0 ? 'None' :  <AddressDisplay address={res[4]} />}</div>
   </div>
-
   <div class="stat place-items-center">
     <div class="stat-title">Ends</div>
     <div class="stat-value "><Moment fromNow unix>{parseInt(res[3])}</Moment></div>
@@ -214,7 +210,6 @@ returnValue={(res) => (
     <button>close</button>
   </form>
 </dialog>
-
   </center>
   </div>
 )} />
