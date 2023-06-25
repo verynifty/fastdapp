@@ -121,7 +121,7 @@ export default function EditorPage({ source }) {
             return (<Publish content={rendered} />);
         } else {
             return (
-                <Editor height="90vh" defaultLanguage="mdx" onChange={handleEditorChange}
+                <Editor height="90vh" defaultLanguage="markdown" onChange={handleEditorChange}
                     onMount={handleEditorDidMount} defaultValue={content} />
             );
         }
