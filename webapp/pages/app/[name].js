@@ -7,6 +7,8 @@ import Render from 'components/render';
 import { Web3Storage } from 'web3.storage'
 import axios from 'axios';
 
+import PleaseConnect from 'components/pleaseConnect';
+
 
 export default function TestPage({ source }) {
 
@@ -44,7 +46,7 @@ export default function TestPage({ source }) {
 
   function render() {
     if (isLoaded) {
-      return (<Render location={location} content={rendered} />)
+      return (<PleaseConnect><Render location={location} content={rendered} /></PleaseConnect>)
     } else {
       return (<div>Loading...</div>)
     }
