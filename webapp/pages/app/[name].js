@@ -16,22 +16,29 @@ export default function TestPage({ source }) {
   const [isLoaded, setIsLoaded] = React.useState(false);
   const [location, setLocation] = React.useState("");
   const [rendered, setRendered] = React.useState(false);
+  const {name} = router.query
+
 
   useEffect(() => {
     async function load() {
       if (!isLoaded) {
-        let file_url = "https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + router.query.name + ".md"
-        let f = await axios.get(file_url)
-        console.log(f);
-        setRendered((f.data))
-        setIsLoaded(true);
+        try {
+            let file_url = "https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + router.query.name + ".md"
+            let f = await axios.get(file_url)
+            console.log(file_url);
+            setRendered((f.data))
+            setIsLoaded(true);
+        } catch (error) {
+            
+        }
+       
       }
 
     }
 
     load();
 
-  }, []);
+  }, [name]);
 
 
 
