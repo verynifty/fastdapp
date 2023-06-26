@@ -99,7 +99,7 @@ function MyApp({ Component, pageProps }) {
                 <meta property="twitter:domain" content="fastdapp.xyz" />
                 <meta property="twitter:url" content="https://fastdapp.xyz" />
                 <meta name="twitter:title" content="Fast Dapp" />
-                <meta name="twitter:description" content="Create we3 frontends in minutes" />
+                <meta name="twitter:description" content="Create web3 frontends in minutes" />
                 <meta name="twitter:image" content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
                 <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
                 <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
