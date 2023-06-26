@@ -25,7 +25,7 @@ export function Header() {
           <li><a href="https://docs.fastdapp.xyz/blog">📢 Blog</a></li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost normal-case text-xl">Fast Dapp</a>
+        <a href="/" className="btn btn-ghost normal-case text-xl">⚡ Fast Dapp</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">

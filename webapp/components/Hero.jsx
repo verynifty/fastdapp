@@ -14,7 +14,7 @@ export function Hero() {
   return (
     <div className=" p-20 text-center bg-gradient-to-r from-blue-100 to-white-400 ">
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl ">
-        build your{' '}
+        Build your{' '}
         <span className="relative whitespace-nowrap text-blue-600">
           <svg
             aria-hidden="true"
