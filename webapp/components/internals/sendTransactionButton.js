@@ -12,6 +12,10 @@ const SendTransactionButton = (props) => {
 
     const text = props.text != null ? props.text : "Send";
 
+    const saEvent = (eventName, params = {}) => {
+        if (window && window.sa_event) return window.sa_event(eventName, params);
+    };
+
     // This will run only once
     useEffect(() => {
 
@@ -27,7 +31,6 @@ const SendTransactionButton = (props) => {
         }
         try {
             setIsLoading(true);
-            console.log("OOOOO", transactionRequest)
             let tx = null;
             if (transactionRequest.config.request.abi != null) {
                 // THis is a contract write
@@ -40,6 +43,9 @@ const SendTransactionButton = (props) => {
                     transactionRequest.config
                 );
             }
+            saEvent('transaction_sent', {
+                tx_hahs: tx.hash,
+            })
             setPendingTransaction(tx.hash);
             addRecentTransaction({
                 hash: tx.hash,
