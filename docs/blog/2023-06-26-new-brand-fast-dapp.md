@@ -5,7 +5,7 @@ authors: grandmarquis
 tags: []
 ---
 
-Here is ⚡ Dapp Fast!
+Here is [⚡ Fast Dapp](https://fastdapp.xyz)!
 
 After a lot of search on the name, we decided to go with ⚡ Dapp Fast. We pushed the new domain name and will start working on the branding soon! Read more to see the latest features that went live recently!
 
