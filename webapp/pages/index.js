@@ -29,6 +29,10 @@ export default function Home() {
           name="Muse Build alpha"
           content=" create websites for your DAPP in a few minutes."
         />
+        <meta
+          property="og:image"
+          content="https://build.musedao.io/api/static"
+        />
       </Head>
       <main>
         <Hero />
