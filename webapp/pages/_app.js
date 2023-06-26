@@ -87,7 +87,7 @@ function MyApp({ Component, pageProps }) {
         <div data-theme="light" >
             <Head>
                 <title>Fast Dapp</title>
-                <meta property="og:title" content="Fast Dapp />
+                <meta property="og:title" content="Fast Dapp" />
                     <meta property="og:description" content="Create web3 frontends in minutes" />
                 <meta
                     property="og:image"
