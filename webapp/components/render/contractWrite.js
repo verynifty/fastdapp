@@ -84,7 +84,7 @@ const WriteContract = (props) => {
             return (
                 <div>
                     <div className="form-control w-full ">
-                        <label class="label">
+                        <label className="label">
                             <span className="label-text">{props.valueFieldName != null ? props.valueFieldName : "Value"}</span>
                         </label>
                         <input type="number" className="input input-bordered w-full " value={value}
@@ -181,7 +181,7 @@ const WriteContract = (props) => {
                                         <label className="label">
                                             <span className="label-text">{input.name}</span>
                                         </label>
-                                        <input type="text" placeholder="Type here" class="input input-bordered w-full " value={argsStateValues[index]}
+                                        <input type="text" placeholder="Type here" className="input input-bordered w-full " value={argsStateValues[index]}
                                             onChange={e => argsStateSetters[index](e.target.value)} />
                                     </div>
                                 </div>
@@ -197,7 +197,7 @@ const WriteContract = (props) => {
         <span>
             {makeForm()}
             {makePayable()}
-            <div class="mt-2">
+            <div className="mt-2">
                 <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
             </div>
         </span >

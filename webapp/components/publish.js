@@ -103,12 +103,12 @@ const Publish = (props) => {
 
     return (
         <div>
-            <input type="checkbox" id="my_modal_7" class="modal-toggle" />
-            <div class="modal">
-                <div class="modal-box">
+            <input type="checkbox" id="my_modal_7" className="modal-toggle" />
+            <div className="modal">
+                <div className="modal-box">
                     {content()}
                 </div>
-                <label class="modal-backdrop" for="my_modal_7">Close</label>
+                <label className="modal-backdrop" for="my_modal_7">Close</label>
             </div>
         </div>
     );

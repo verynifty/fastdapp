@@ -85,7 +85,7 @@ const SendTransactionButton = (props) => {
             return (
 
                 <button disabled="disabled" className="btn">
-                    <span class="loading loading-spinner loading-md"></span>
+                    <span className="loading loading-spinner loading-md"></span>
                 </button>
             )
         }
