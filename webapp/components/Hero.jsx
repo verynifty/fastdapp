@@ -48,7 +48,7 @@ export function Hero() {
       </div>
       <div className="mt-36 lg:mt-44">
         <p className="font-display text-xs text-slate-900">
-          built by <a class="underline" href="https://musedao.io" target="_blank">Muse DAO</a> on top of
+          built by <a className="underline" href="https://musedao.io" target="_blank">Muse DAO</a> on top of
         </p>
         <ul
           role="list"
