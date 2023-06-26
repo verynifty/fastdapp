@@ -13,6 +13,6 @@ A template that shows how to use `ContractWrite` and `Events` to recreate the [N
 
 * [The app](https://fastdapp.xyz/app/nouns)
 * [In the editor](https://fastdapp.xyz/editor?template=nouns)
-* [Code](https://github.com/verynifty/etherpage/blob/main/examples/nouns.md)
+* [Code](https://github.com/verynifty/fastdapp/blob/main/examples/nouns.md)
 
 

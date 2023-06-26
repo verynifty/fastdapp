@@ -31,7 +31,7 @@ export function Footer() {
               </svg>
             </Link>
             <Link
-              href="https://github.com/verynifty/etherpage"
+              href="https://github.com/verynifty/fastdapp"
               className="group"
               aria-label="on GitHub"
             >

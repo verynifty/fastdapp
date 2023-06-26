@@ -25,8 +25,8 @@ While we are still in alpha, a lot of features are already there:
 
 Fast Dapp is entirely open source. You found a bug? Thought about a new feature? 
 
-Come to the [Github](https://github.com/verynifty/etherpage).
+Come to the [Github](https://github.com/verynifty/fastdapp).
 
 # Roadmap
 
-You can see what is coming next on [Github](https://github.com/verynifty/etherpage/issues).
+You can see what is coming next on [Github](https://github.com/verynifty/fastdapp/issues).
