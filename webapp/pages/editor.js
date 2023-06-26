@@ -176,15 +176,15 @@ export default function EditorPage({ source }) {
 
                     </div>
                 </div>
-                <div className=" flex">
-                    <div className="flex-1">
+                <div className=" h-screen">
+                    <div className="h-1/2 overflow-y-auto">
                         <PleaseConnect>
                             <RenderErrorWrapper version={version}>
                                 <Render content={rendered} />
                             </RenderErrorWrapper>
                         </PleaseConnect>
                     </div>
-                    <div className="flex-1">
+                    <div className="h-1/2 overflow-y-hidden">
                         {RightPanel()}
                     </div>
 
