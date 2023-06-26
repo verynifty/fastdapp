@@ -88,7 +88,7 @@ function MyApp({ Component, pageProps }) {
             <Head>
                 <title>Fast Dapp</title>
                 <meta property="og:title" content="Fast Dapp" />
-                    <meta property="og:description" content="Create web3 frontends in minutes" />
+                <meta property="og:description" content="Create web3 frontends in minutes" />
                 <meta
                     property="og:image"
                     content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes."
@@ -101,7 +101,8 @@ function MyApp({ Component, pageProps }) {
                 <meta name="twitter:title" content="Fast Dapp" />
                 <meta name="twitter:description" content="Create we3 frontends in minutes" />
                 <meta name="twitter:image" content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
-
+                <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
+                <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
             </Head>
             <ReservoirKitProvider
                 options={{
