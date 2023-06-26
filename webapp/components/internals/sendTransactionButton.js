@@ -13,6 +13,7 @@ const SendTransactionButton = (props) => {
     const text = props.text != null ? props.text : "Send";
 
     const saEvent = (eventName, params = {}) => {
+        console.log("SENDING EVENT", window && window.sa_event, eventName, params)
         if (window && window.sa_event) return window.sa_event(eventName, params);
     };
 
@@ -43,7 +44,6 @@ const SendTransactionButton = (props) => {
                     transactionRequest.config
                 );
             }
-            if (transactionRequest.data.request != null && transactionRequest.data.request.fun)
             saEvent('transaction_sent', {
                 tx_hahs: tx.hash,
                 functionName: transactionRequest.data.request.functionName,
