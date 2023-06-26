@@ -7,6 +7,7 @@ import '@rainbow-me/rainbowkit/styles.css';
 
 import { default as React, useEffect } from 'react';
 
+import Head from 'next/head'
 
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { AppProps } from 'next/app';
@@ -84,28 +85,49 @@ function MyApp({ Component, pageProps }) {
 
     return (
         <div data-theme="light" >
-        <ReservoirKitProvider
-            options={{
-                chains: [{
-                    id: 1,
-                    baseApiUrl: "https://api.reservoir.tools",
-                    default: true,
-                    apiKey: process.env.NEXT_PUBLIC_RESERVOIR_API_KEY
-                }],
-                source: "reservoir.market"
+            <Head>
+                <title>Fast Dapp</title>
+                <meta property="og:title" content="Fast Dapp />
+                    <meta property="og:description" content="Create web3 frontends in minutes" />
+                <meta
+                    property="og:image"
+                    content="https://build.musedao.io/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes."
+                />
+                <meta property="og:url" content="https://build.musedao.io" />
+                <meta property="og:type" content="website" />
 
-            }}
-            theme={theme}
-        >
-            <WagmiConfig config={wagmiConfig}>
-                <RainbowKitProvider chains={chains} showRecentTransactions={true}>
-                    <Toaster position="top-right" />
-                    <GoogleAnalytics trackPageViews />
-                    <Header />
-                    <Component {...pageProps} />
-                </RainbowKitProvider>
-            </WagmiConfig>
-        </ReservoirKitProvider >
+
+                <!-- Twitter Meta Tags -->
+                <meta name="twitter:card" content="summary_large_image" />
+                <meta property="twitter:domain" content="build.musedao.io" />
+                <meta property="twitter:url" content="https://build.musedao.io" />
+                <meta name="twitter:title" content="Muse Build alpha" />
+                <meta name="twitter:description" content="Create we3 frontends in minutes" />
+                <meta name="twitter:image" content="https://build.musedao.io/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
+
+            </Head>
+            <ReservoirKitProvider
+                options={{
+                    chains: [{
+                        id: 1,
+                        baseApiUrl: "https://api.reservoir.tools",
+                        default: true,
+                        apiKey: process.env.NEXT_PUBLIC_RESERVOIR_API_KEY
+                    }],
+                    source: "reservoir.market"
+
+                }}
+                theme={theme}
+            >
+                <WagmiConfig config={wagmiConfig}>
+                    <RainbowKitProvider chains={chains} showRecentTransactions={true}>
+                        <Toaster position="top-right" />
+                        <GoogleAnalytics trackPageViews />
+                        <Header />
+                        <Component {...pageProps} />
+                    </RainbowKitProvider>
+                </WagmiConfig>
+            </ReservoirKitProvider >
         </div>
     );
 }
