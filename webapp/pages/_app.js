@@ -23,6 +23,8 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 import { GoogleAnalytics } from "nextjs-google-analytics";
 import TagManager from 'react-gtm-module';
 import { Toaster } from 'react-hot-toast';
+import Script from "next/script";
+
 
 import '@/DateTimePicker.css';
 
@@ -101,8 +103,6 @@ function MyApp({ Component, pageProps }) {
                 <meta name="twitter:title" content="Fast Dapp" />
                 <meta name="twitter:description" content="Create web3 frontends in minutes" />
                 <meta name="twitter:image" content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
-                <script async defer src="https://scripts.simpleanalyticscdn.com/latest.js"></script>
-                <noscript><img src="https://queue.simpleanalyticscdn.com/noscript.gif" alt="" referrerpolicy="no-referrer-when-downgrade" /></noscript>
             </Head>
             <ReservoirKitProvider
                 options={{
@@ -126,6 +126,15 @@ function MyApp({ Component, pageProps }) {
                     </RainbowKitProvider>
                 </WagmiConfig>
             </ReservoirKitProvider >
+            <Script src="https://scripts.simpleanalyticscdn.com/latest.js" />
+            <noscript>
+                {/* eslint-disable @next/next/no-img-element */}
+                <img
+                    src="https://queue.simpleanalyticscdn.com/noscript.gif"
+                    alt=""
+                    referrerPolicy="no-referrer-when-downgrade"
+                />
+            </noscript>
         </div>
     );
 }
