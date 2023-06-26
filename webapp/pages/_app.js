@@ -95,9 +95,6 @@ function MyApp({ Component, pageProps }) {
                 />
                 <meta property="og:url" content="https://build.musedao.io" />
                 <meta property="og:type" content="website" />
-
-
-                <!-- Twitter Meta Tags -->
                 <meta name="twitter:card" content="summary_large_image" />
                 <meta property="twitter:domain" content="build.musedao.io" />
                 <meta property="twitter:url" content="https://build.musedao.io" />
