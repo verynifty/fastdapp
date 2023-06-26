@@ -121,7 +121,7 @@ export default function EditorPage({ source }) {
             return (<Publish content={rendered} />);
         } else {
             return (
-                <Editor height="90vh" defaultLanguage="markdown" onChange={handleEditorChange}
+                <Editor height="100%" defaultLanguage="markdown" onChange={handleEditorChange}
                     onMount={handleEditorDidMount} defaultValue={content} />
             );
         }
@@ -156,35 +156,34 @@ export default function EditorPage({ source }) {
                 onKeyUp={onKeyUp.bind(this)}
             >
                 <Publish content={rendered} />
-
                 <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2	md:flex md:items-center md:justify-between">
                     <div className="min-w-0 flex-1">
-                        <h2 className="text-2xl font-bold leading-7 text-white sm:truncate sm:text-3xl sm:tracking-tight">
-                            ✍️ Editor
+                        <h2 className="text-xl font-bold  text-white sm:truncate  sm:tracking-tight">
+                            Editor
                         </h2>
                     </div>
                     <div className="mt-4 flex md:ml-4 md:mt-0">
                         <button
                             onClick={handleRender}
-                            className="btn"
+                            className="btn btn-xs"
                         >
                             Render
                         </button>
 
-                        <label for="my_modal_7" className="btn ml-2">Publish</label>
+                        <label for="my_modal_7" className="btn ml-2 btn-xs">Publish</label>
 
 
                     </div>
                 </div>
-                <div className=" h-screen">
-                    <div className="h-1/2 overflow-y-auto">
+                <div className=" flex">
+                    <div className="flex-1">
                         <PleaseConnect>
                             <RenderErrorWrapper version={version}>
                                 <Render content={rendered} />
                             </RenderErrorWrapper>
                         </PleaseConnect>
                     </div>
-                    <div className="h-1/2 overflow-y-hidden">
+                    <div className="flex-1">
                         {RightPanel()}
                     </div>
 
