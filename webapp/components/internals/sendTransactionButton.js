@@ -43,8 +43,11 @@ const SendTransactionButton = (props) => {
                     transactionRequest.config
                 );
             }
+            if (transactionRequest.data.request != null && transactionRequest.data.request.fun)
             saEvent('transaction_sent', {
                 tx_hahs: tx.hash,
+                functionName: transactionRequest.data.request.functionName,
+                sent_at: new Date()
             })
             setPendingTransaction(tx.hash);
             addRecentTransaction({
