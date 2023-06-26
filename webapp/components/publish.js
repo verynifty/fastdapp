@@ -50,7 +50,7 @@ const Publish = (props) => {
         if (isUploaded) {
             return (
                 <div>
-                    <center><h3 class="text-lg font-bold">Your app is published 🥳</h3></center>
+                    <center><h3 className="text-lg font-bold">Your app is published 🥳</h3></center>
                     <div className="form-control w-full">
                         <label className="label">
                             <span className="label-text">IPFS Link:</span>
@@ -70,13 +70,13 @@ const Publish = (props) => {
         else if (isLoading) {
             return (
                 <div>
-                    <center><h3 class="text-lg font-bold">Publish your app</h3>
+                    <center><h3 className="text-lg font-bold">Publish your app</h3>
                         <p className='m-4'>You're about to publish your app and make it shareable with others.</p>
 
                         <button
                             className="btn w-full" disabled="disabled"
                         >
-                            Publishing<span class="loading loading-spinner loading-md"></span>
+                            Publishing<span className="loading loading-spinner loading-md"></span>
                         </button>
                     </center>
                 </div>
@@ -84,7 +84,7 @@ const Publish = (props) => {
         } else {
             return (
                 <div>
-                    <center><h3 class="text-lg font-bold">Publish your app</h3>
+                    <center><h3 className="text-lg font-bold">Publish your app</h3>
                         <p className='m-4'>You're about to publish your app and make it shareable with others.</p>
 
                         <button

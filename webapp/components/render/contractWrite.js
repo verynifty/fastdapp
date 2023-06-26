@@ -83,11 +83,11 @@ const WriteContract = (props) => {
         if (getFunction().payable) {
             return (
                 <div>
-                    <div class="form-control w-full ">
+                    <div className="form-control w-full ">
                         <label class="label">
-                            <span class="label-text">{props.valueFieldName != null ? props.valueFieldName : "Value"}</span>
+                            <span className="label-text">{props.valueFieldName != null ? props.valueFieldName : "Value"}</span>
                         </label>
-                        <input type="number" class="input input-bordered w-full " value={value}
+                        <input type="number" className="input input-bordered w-full " value={value}
                             onChange={e => setValue(e.target.value)} />
                     </div>
                 </div>
@@ -105,7 +105,7 @@ const WriteContract = (props) => {
                             return (
                                 <div className="form-control w-full">
                                     <label className="label">
-                                        <span class="label-text"> {input.name}</span>
+                                        <span className="label-text"> {input.name}</span>
                                     </label>
                                     <select
                                         id="select"
@@ -125,10 +125,10 @@ const WriteContract = (props) => {
                         }
                         else if (input.type === "bool") {
                             return (
-                                <div class="form-control">
-                                    <label class="label cursor-pointer">
-                                        <span class="label-text">{input.name}</span>
-                                        <input type="checkbox" class="checkbox" checked={argsStateValues[index] ? "checked" : ""}
+                                <div className="form-control">
+                                    <label className="label cursor-pointer">
+                                        <span className="label-text">{input.name}</span>
+                                        <input type="checkbox" className="checkbox" checked={argsStateValues[index] ? "checked" : ""}
                                             onChange={e => argsStateSetters[index](e.target.checked)} />
                                     </label>
                                 </div>
@@ -138,8 +138,8 @@ const WriteContract = (props) => {
                             return (
                                 <div>
                                     <div className="form-control w-full">
-                                        <label class="label">
-                                            <span class="label-text">  {input.name}</span>
+                                        <label className="label">
+                                            <span className="label-text">  {input.name}</span>
                                         </label>
                                         <DateTimePicker className="input input-bordered" onChange={function (d) {
                                             argsStateSetters[index](d.getTime() / 1000)
@@ -149,17 +149,17 @@ const WriteContract = (props) => {
                             )
                         } else if (input.type === "uint256" && input.token != null) {
                             return (
-                                <div class="form-control w-full ">
-                                    <label class="label">
-                                        <span class="label-text">  {input.name}</span>
-                                        <span class="label-text-alt">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
+                                <div className="form-control w-full ">
+                                    <label className="label">
+                                        <span className="label-text">  {input.name}</span>
+                                        <span className="label-text-alt">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
                                     </label>
                                     <input type="text"
                                         value={argsStateValues[index]}
                                         onChange={e => argsStateSetters[index](e.target.value)}
                                         name="token_amount"
                                         id="token_amount"
-                                        class="input input-bordered w-full" placeholder="0.00"></input>
+                                        className="input input-bordered w-full" placeholder="0.00"></input>
                                 </div>
                             )
                         } else if (input.longText == true) {
@@ -177,9 +177,9 @@ const WriteContract = (props) => {
                         } else {
                             return (
                                 <div>
-                                    <div class="form-control w-full ">
-                                        <label class="label">
-                                            <span class="label-text">{input.name}</span>
+                                    <div className="form-control w-full ">
+                                        <label className="label">
+                                            <span className="label-text">{input.name}</span>
                                         </label>
                                         <input type="text" placeholder="Type here" class="input input-bordered w-full " value={argsStateValues[index]}
                                             onChange={e => argsStateSetters[index](e.target.value)} />
