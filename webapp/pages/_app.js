@@ -91,16 +91,16 @@ function MyApp({ Component, pageProps }) {
                     <meta property="og:description" content="Create web3 frontends in minutes" />
                 <meta
                     property="og:image"
-                    content="https://build.musedao.io/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes."
+                    content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes."
                 />
-                <meta property="og:url" content="https://build.musedao.io" />
+                <meta property="og:url" content="https://fastdapp.xyz" />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta property="twitter:domain" content="build.musedao.io" />
-                <meta property="twitter:url" content="https://build.musedao.io" />
-                <meta name="twitter:title" content="Muse Build alpha" />
+                <meta property="twitter:domain" content="fastdapp.xyz" />
+                <meta property="twitter:url" content="https://fastdapp.xyz" />
+                <meta name="twitter:title" content="Fast Dapp" />
                 <meta name="twitter:description" content="Create we3 frontends in minutes" />
-                <meta name="twitter:image" content="https://build.musedao.io/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
+                <meta name="twitter:image" content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
 
             </Head>
             <ReservoirKitProvider

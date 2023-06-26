@@ -36,7 +36,7 @@ const Publish = (props) => {
                 let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
                 let f = await axios.get(file_url)
                 setIPFS(path)
-                setPageLink("https://build.musedao.io/page?ipfs=" + encodeURIComponent(path))
+                setPageLink("https://fastdapp.xyz/page?ipfs=" + encodeURIComponent(path))
                 setIsLoading(false);
                 setIsUploaded(true);
                 return;

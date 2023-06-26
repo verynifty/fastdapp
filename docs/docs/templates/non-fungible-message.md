@@ -8,6 +8,6 @@ sidebar_position: 8
 
 A simple template that shows how to use `ContractWrite` to make a user interface for minting Non Fungible Messages.
 
-* [Example](https://build.musedao.io/editor?template=non_fungible_message)
+* [Example](https://fastdapp.xyz/editor?template=non_fungible_message)
 
 

@@ -143,9 +143,9 @@ export default function EditorPage({ source }) {
     return (
         <div>
             <Head>
-                <title>Muse Build - Editor</title>
+                <title>Fast Dapp - Editor</title>
                 <meta
-                    name="Muse Build - Editor"
+                    name="Fast Dapp - Editor"
                     content=" create websites for your DAPP in a few minutes."
                 />
             </Head>

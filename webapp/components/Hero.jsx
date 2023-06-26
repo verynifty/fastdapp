@@ -34,7 +34,7 @@ export function Hero() {
       <div className="mt-10 flex justify-center gap-x-6">
         <Button className="" href="/editor">Open the editor</Button>
         <Button
-          href="https://builddocs.musedao.io/docs/tutorials/token_page"
+          href="https://docs.fastdapp.xyz/docs/tutorials/token_page"
           variant="outline"
         >
           <svg

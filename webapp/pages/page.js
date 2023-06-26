@@ -105,9 +105,9 @@ export default function TestPage({ source }) {
   return (
     <div>
       <Head>
-        <title>Muse Build - {router.query.ipfs}</title>
+        <title>Fast Dapp - {router.query.ipfs}</title>
         <meta
-          name="Muse Build - Editor"
+          name="Fast Dapp - Editor"
           content=" create websites for your DAPP in a few minutes."
         />
       </Head>

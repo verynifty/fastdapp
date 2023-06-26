@@ -7,7 +7,7 @@ tags: []
 
 A brief introduction of the alpha...
 
-Muse BUILD gives builders super powers to publish magical dapps. Your smart contract is deployed and you need a user interface? Write simple HTML or Markdown and leverage a collection of components. No need to setup a dev environment, RPC provider, server... Just edit your app on Muse BUILD and publish it.
+Fast Dapp gives builders super powers to publish magical dapps. Your smart contract is deployed and you need a user interface? Write simple HTML or Markdown and leverage a collection of components. No need to setup a dev environment, RPC provider, server... Just edit your app on Fast Dapp and publish it.
 
 <!--truncate-->
 
@@ -23,7 +23,7 @@ While we are still in alpha, a lot of features are already there:
 
 # Build together
 
-Muse BUILD is entirely open source. You found a bug? Thought about a new feature? 
+Fast Dapp is entirely open source. You found a bug? Thought about a new feature? 
 
 Come to the [Github](https://github.com/verynifty/etherpage).
 

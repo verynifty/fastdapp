@@ -26,7 +26,7 @@ Here is a simple example:
     args={[TOKEN_RECIPIENT, 1]} />
 ```
 
-You can see [several examples in the editor](https://build.musedao.io/editor?template=contract_write).
+You can see [several examples in the editor](https://fastdapp.xyz/editor?template=contract_write).
 
 ## Advanced usage
 ### How to change the form label of a parameter?

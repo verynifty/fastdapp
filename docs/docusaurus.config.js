@@ -6,7 +6,7 @@ const darkCodeTheme = require('prism-react-renderer/themes/dracula');
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'Muse Build',
+  title: 'Fast Dapp',
   tagline: 'Building dapps made simple',
   favicon: 'img/favicon.ico',
 
@@ -64,7 +64,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'Muse Build',
+        title: 'Fast Dapp',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
@@ -79,7 +79,7 @@ const config = {
           {to: '/blog', label: 'Blog', position: 'left'},
           {
             label: 'Build',
-            to: 'https://build.musedao.io',
+            to: 'https://fastdapp.xyz',
             position: 'left'
           },
         ],
@@ -105,7 +105,7 @@ const config = {
             items: [
               {
                 label: 'Build',
-                to: 'https://build.musedao.io',
+                to: 'https://fastdapp.xyz',
               },
               {
                 label: 'Blog',

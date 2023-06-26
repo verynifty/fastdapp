@@ -2,9 +2,9 @@
 sidebar_position: 1
 ---
 
-# What is Muse Build
+# What is Fast Dapp
 
-Muse Build is a web application that enables you to create websites for your DAPP in a few minutes.
+Fast Dapp is a web application that enables you to create websites for your DAPP in a few minutes.
 
 :::info This is beta!
 

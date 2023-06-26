@@ -12,7 +12,7 @@ The features of our app will be:
 
 ## Getting started
 
-Go to the [editor](https://build.musedao.io/editor) page and connect your wallet:
+Go to the [editor](https://fastdapp.xyz/editor) page and connect your wallet:
 
 ![ERC20 screenshot](/img/tutorials/1/1.png)
 

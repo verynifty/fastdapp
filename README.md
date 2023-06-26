@@ -1,13 +1,12 @@
-# Muse Build
+# Fast Dapp
 
-Muse Build is an application to develop and publish web3 dapps in minutes.
+Fast Dapp is an application to develop and publish web3 dapps in minutes.
 
-> We are currently searching for a name for the project. Join the [discussion here](https://forum.musedao.io/t/muse-build-presentation-name-contest/80/22). 
 
 ## Links
 
-* [Webapp](https://build.musedao.io)
-* [Docs](https://builddocs.musedao.io)
+* [Webapp](https://fastdapp.xyz)
+* [Docs](https://docs.fastdapp.xyz)
 
 ## 
 

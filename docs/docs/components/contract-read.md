@@ -23,7 +23,7 @@ This component is used to invite users to interact with a smart contract.
     functionName="symbol" />
 ```
 
-You can see [several examples in the editor](https://build.musedao.io/editor?template=contract_write).
+You can see [several examples in the editor](https://fastdapp.xyz/editor?template=contract_write).
 
 ## Transform the return value by passing a function
 

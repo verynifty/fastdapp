@@ -9,6 +9,6 @@ sidebar_position: 1
 
 A simple template that shows how to use `ContractWrite` and `TokenBalance` to make a simple token transfer page.
 
-* [Example](https://build.musedao.io/editor?template=token_transfer)
+* [Example](https://fastdapp.xyz/editor?template=token_transfer)
 
 
