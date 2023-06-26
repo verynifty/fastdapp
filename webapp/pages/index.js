@@ -23,17 +23,6 @@ import { Testimonials } from '@/components/Testimonials'
 export default function Home() {
   return (
     <>
-      <Head>
-        <title>Muse Build alpha</title>
-        <meta
-          name="Muse Build alpha"
-          content=" create websites for your DAPP in a few minutes."
-        />
-        <meta
-          property="og:image"
-          content="https://build.musedao.io/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes."
-        />
-      </Head>
       <main>
         <Hero />
         <PrimaryFeatures />
