@@ -31,7 +31,7 @@ export default function Home() {
         />
         <meta
           property="og:image"
-          content="https://build.musedao.io/api/static"
+          content="https://build.musedao.io/api/og"
         />
       </Head>
       <main>
