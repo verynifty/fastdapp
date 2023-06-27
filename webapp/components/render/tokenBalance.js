@@ -21,7 +21,7 @@ const TokenBalance = (props) => {
                 setSymbol(balance.symbol);
             } catch (error) {
                 console.log("TokenBalance Error", error)
-                setFormatted("Error: token doesn't exsit or is in a different network?");
+                setFormatted("Error: token doesn't exist or is in a different network?");
             }
             console.log("END useEffect TOKENBALANCE")
 

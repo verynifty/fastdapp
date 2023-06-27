@@ -23,7 +23,8 @@ import Uniswap from 'components/render/uniswap';
 import ReservoirSweep from 'components/render/reservoirSweep';
 import ReservoirNFTDisplay from 'components/render/reservoirNFTDisplay';
 
-import { readContract, getAccount } from '@wagmi/core'
+import { readContract, getAccount } from '@wagmi/core';
+import { useAccount } from 'wagmi';
 
 import ERC20ABI from 'ABIS/ERC20.json';
 import ERC721ABI from 'ABIS/ERC721.json';
@@ -63,6 +64,7 @@ const Render = (props) => {
 
     const { chain } = useNetwork()
     const { chains, error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
+    const { address, isConnecting, isDisconnected } = useAccount()
 
 
     // Not used for now
@@ -104,6 +106,7 @@ const Render = (props) => {
     useEffect(() => {
         async function load() {
             try {
+                setIsLoaded(false);
                 const account = await getAccount();
                 scope.userAddress = account.address;
                 scope.location = props.location == null ? "editor" : props.location;
@@ -120,12 +123,14 @@ const Render = (props) => {
             }
 
         }
+        console.log("RELOADDDDDD", address, isDisconnected)
         load();
-    }, []);
+    }, [isDisconnected]);
 
     useEffect(() => {
+        setIsLoaded(false);
         setContentFromProp();
-    }, [props.content]);
+    }, [props.content, isDisconnected]);
 
     if (!isLoaded) {
         return (<div>loading</div>);
