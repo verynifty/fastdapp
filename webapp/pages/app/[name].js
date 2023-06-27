@@ -46,7 +46,7 @@ export default function TestPage({ source }) {
 
   function render() {
     if (isLoaded) {
-      return (<PleaseConnect><Render location={location} content={rendered} /></PleaseConnect>)
+      return (<Render location={location} content={rendered} />)
     } else {
       return (<div>Loading...</div>)
     }

@@ -12,15 +12,21 @@ const Events = (props) => {
     }
 
     async function getLogs() {
-        let logs = await getConfig().publicClients.get(1).getLogs({
-            address: props.address,
-            fromBlock: BigInt(0),
-            toBlock: 'latest',
-            event: getABI(),
-            args: props.args
-        });
-        setLogs(logs);
-        console.log(logs)
+        try {
+            console.log(getConfig())
+            let client = getConfig().publicClient;
+            let logs = await client.getLogs({
+                address: props.address,
+                fromBlock: BigInt(0),
+                toBlock: 'latest',
+                event: getABI(),
+                args: props.args
+            });
+            setLogs(logs);
+            console.log("Events logs:", logs)
+        } catch (error) {
+            console.log("Events error", error);
+        }
     }
 
     // This will run only once

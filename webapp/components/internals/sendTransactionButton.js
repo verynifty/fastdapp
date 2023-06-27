@@ -1,6 +1,7 @@
 import { default as React, useState, useRef, useEffect } from 'react';
 import { sendTransaction, writeContract, waitForTransaction } from '@wagmi/core'
-import { useAddRecentTransaction } from '@rainbow-me/rainbowkit';
+import { useAddRecentTransaction, ConnectButton } from '@rainbow-me/rainbowkit';
+import { useAccount } from 'wagmi'
 import toast from 'react-hot-toast';
 
 const SendTransactionButton = (props) => {
@@ -8,6 +9,8 @@ const SendTransactionButton = (props) => {
     const addRecentTransaction = useAddRecentTransaction();
 
     const [isLoading, setIsLoading] = React.useState(false);
+    const { address, isConnecting, isDisconnected } = useAccount()
+
     const [pendingTransaction, setPendingTransaction] = React.useState(null);
 
     const text = props.text != null ? props.text : "Send";
@@ -75,7 +78,10 @@ const SendTransactionButton = (props) => {
     }
 
     const button = () => {
-        if (!isLoading) {
+        if (isDisconnected) {
+            return (<ConnectButton />)
+        } 
+        else if (!isLoading) {
             return (
                 <button onClick={onClickSend} className="btn">
                     {text}
@@ -83,7 +89,6 @@ const SendTransactionButton = (props) => {
             )
         } else {
             return (
-
                 <button disabled="disabled" className="btn">
                     <span className="loading loading-spinner loading-md"></span>
                 </button>
