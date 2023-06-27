@@ -7,6 +7,8 @@ description: An example on how to interact with the NoShitSherlock contract 0x55
 
 <>{(() => { NSS_ADDRESS = "0x55af491e8b33246606FeB9010156D2597e15cAa1"})()}</> 
 
+<div class="p-10">
+
 # No Shit Sherlock
 
 ## What is it?
@@ -120,3 +122,5 @@ description: An example on how to interact with the NoShitSherlock contract 0x55
     functionName="makeGuess"
     args={[0,0,0,0]}
     buttonText="Make my guess" />
+
+</div>

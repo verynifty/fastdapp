@@ -8,7 +8,7 @@ import { Web3Storage } from 'web3.storage'
 import axios from 'axios';
 
 
-export default function TestPage({ source }) {
+export default function Page({ source }) {
 
   const client = new Web3Storage({ token: process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN })
   const router = useRouter()
