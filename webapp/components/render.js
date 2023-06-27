@@ -23,6 +23,8 @@ import Uniswap from 'components/render/uniswap';
 import ReservoirSweep from 'components/render/reservoirSweep';
 import ReservoirNFTDisplay from 'components/render/reservoirNFTDisplay';
 
+import APICall from 'components/render/apiCall';
+
 import { readContract, getAccount } from '@wagmi/core';
 import { useAccount } from 'wagmi';
 
@@ -45,6 +47,7 @@ const components = {
     "ReservoirSweep": ReservoirSweep,
     "ReservoirNFTDisplay": ReservoirNFTDisplay,
     "Events": Events,
+    "APICall": APICall,
     "Moment": Moment,
 }
 const scope = {
