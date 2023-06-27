@@ -123,14 +123,10 @@ const Render = (props) => {
             }
 
         }
-        console.log("RELOADDDDDD", address, isDisconnected)
+        console.log("RELOADDDDDD", address)
         load();
-    }, [isDisconnected]);
+    }, [props.content, address]);
 
-    useEffect(() => {
-        setIsLoaded(false);
-        setContentFromProp();
-    }, [props.content, isDisconnected]);
 
     if (!isLoaded) {
         return (<div>loading</div>);
