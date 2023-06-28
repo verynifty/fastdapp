@@ -23,6 +23,8 @@ import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
 import { Toaster } from 'react-hot-toast';
 import Script from "next/script";
 
+import HeaderMetadata from '@/components/commons/headerMetadata';
+
 
 import '@/DateTimePicker.css';
 
@@ -85,22 +87,14 @@ function MyApp({ Component, pageProps }) {
     return (
         <div data-theme="light" >
             <Head>
-                <title>Fast Dapp</title>
-                <meta property="og:title" content="Fast Dapp" />
-                <meta property="og:description" content="Create web3 frontends in minutes" />
-                <meta
-                    property="og:image"
-                    content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes."
-                />
                 <meta property="og:url" content="https://fastdapp.xyz" />
                 <meta property="og:type" content="website" />
                 <meta name="twitter:card" content="summary_large_image" />
-                <meta property="twitter:domain" content="fastdapp.xyz" />
-                <meta property="twitter:url" content="https://fastdapp.xyz" />
                 <meta name="twitter:title" content="Fast Dapp" />
                 <meta name="twitter:description" content="Create web3 frontends in minutes" />
                 <meta name="twitter:image" content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
             </Head>
+            <HeaderMetadata />
             <ReservoirKitProvider
                 options={{
                     chains: [{
