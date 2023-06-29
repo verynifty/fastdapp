@@ -17,7 +17,7 @@ const ReservoirSweep = (props) => {
         <div className="reservoir">
             <SweepModal
                 trigger={
-                    <button>
+                    <button class="btn btn-primary">
                         {props.buttonText}
                     </button>
                 }

@@ -7,6 +7,7 @@ const APICall = (props) => {
     async function getResult() {
         try {
             const callResult = await axios.get(props.url, props.params)
+            console.log("APICall", callResult.data)
             setResult(callResult.data);
         } catch (error) {
             console.log("APICall", error)

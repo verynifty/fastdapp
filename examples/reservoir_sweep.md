@@ -1,34 +1,15 @@
 ---
-sidebar_label: 'APICall'
-sidebar_position: 4
+chain: 1
+authors: grands_marquis
+theme: dark
 ---
 
-# APICall
+<div class="p-4">
 
-Get some data from an external API.
+# Popular NFTs
 
-## Props
+A demo using **APICall** and **ReservoirSweep** to list Popular NFT collections and display a one click buy button.
 
-* `url`
-* `params` ([axios request config](https://axios-http.com/docs/req_config))
-* `renderFunction`
-
-## Simple example
-
-
-```
-<APICall url="https://min-api.cryptocompare.com/data/price?fsym=ETH&tsyms=BTC,USD,EUR"
-renderFunction={
-    (res) => (
-        <div>The price of ETH is: ${res.USD}</div>
-    )
-}
- />
-```
-
-## Example with Reservoir API
-
-```
 <APICall
   url="https://api.reservoir.tools/collections/v5"
   params={{
@@ -68,5 +49,5 @@ renderFunction={
     </div>
   )}
 />
-```
 
+</div>
