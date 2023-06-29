@@ -2,46 +2,52 @@
 chain: 1
 authors: grands_marquis
 ---
-<>{(() => { 
+
+<>
+  {(() => {
     LIDO_ABI = [
-    {
-    "constant": true,
-    "inputs": [
-      
-    ],
-    "name": "totalSupply",
-    "outputs": [
       {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-    {
-    "constant": false,
-    "inputs": [
+        constant: true,
+        inputs: [],
+        name: "totalSupply",
+        outputs: [
+          {
+            name: "",
+            type: "uint256",
+          },
+        ],
+        payable: false,
+        stateMutability: "view",
+        type: "function",
+      },
       {
-        "name": "_referral",
-        "type": "address",
-        "hidden": true
-      }
-    ],
-    "name": "submit",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": true,
-    "stateMutability": "payable",
-    "type": "function"
-  }
-]})()}</>
-<>{(() => { LIDO_ADDRESS = "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84"})()}</>
+        constant: false,
+        inputs: [
+          {
+            name: "_referral",
+            type: "address",
+            hidden: true,
+          },
+        ],
+        name: "submit",
+        outputs: [
+          {
+            name: "",
+            type: "uint256",
+          },
+        ],
+        payable: true,
+        stateMutability: "payable",
+        type: "function",
+      },
+    ];
+  })()}
+</>
+<>
+  {(() => {
+    LIDO_ADDRESS = "0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84";
+  })()}
+</>
 
 <div class="m-20">
 
@@ -80,20 +86,21 @@ authors: grands_marquis
   </div>
 </div>
 
-
 <div class="mt-10">
   <div class="rounded-lg bg-gray-50 shadow-sm ring-1 ring-gray-900/5">
     <div class="mt-6 border-t border-gray-900/5 px-6 py-6">
-        <div class="text-sm font-semibold leading-6 text-gray-900 mb-2">Stake now</div>
-     <ContractWrite 
-    address={LIDO_ADDRESS}
-    abi={LIDO_ABI}
-    functionName="submit"
-    buttonText="Stake"
-    args={["0x6fBa46974b2b1bEfefA034e236A32e1f10C5A148"]}
-    valueFieldName="Amount of ETH to stake"
-    valueAmount="0.1"
-    />
+      <div class="text-sm font-semibold leading-6 text-gray-900 mb-2">
+        Stake now
+      </div>
+      <ContractWrite
+        address={LIDO_ADDRESS}
+        abi={LIDO_ABI}
+        functionName="submit"
+        buttonText="Stake"
+        args={["0x6fBa46974b2b1bEfefA034e236A32e1f10C5A148"]}
+        valueFieldName="Amount of ETH to stake"
+        valueAmount="0.1"
+      />
     </div>
   </div>
 </div>
