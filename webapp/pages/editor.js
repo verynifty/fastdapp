@@ -1,3 +1,6 @@
+const prettier = require("prettier");
+const markdownParser = require("prettier/parser-markdown");
+const parserBable = require("prettier/parser-babel");
 
 import React, { useRef, Suspense, Fragment, useEffect } from 'react';
 import Head from 'next/head'
@@ -92,6 +95,43 @@ export default function EditorPage({ source }) {
                 handleRenderWithContent(ed.getValue())
             },
         });
+
+        editor.addAction({
+            // An unique identifier of the contributed action.
+            id: "format-code",
+
+            // A label of the action that will be presented to the user.
+            label: "Format code",
+
+            // An optional array of keybindings for the action.
+            /*
+            keybindings: [
+                monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
+            ],
+            */
+            // A precondition for this action.
+            precondition: null,
+
+            // A rule to evaluate on top of the precondition in order to dispatch the keybindings.
+            keybindingContext: null,
+
+            contextMenuGroupId: "navigation",
+
+            contextMenuOrder: 1.5,
+
+            // Method that will be executed when the action is triggered.
+            // @param editor The editor instance is passed in as a convenience
+            run: function (ed) {
+                console.log("FORMAT CODE")
+                let formatted = prettier.format(ed.getValue(), {
+                    parser: "mdx",
+                    plugins: [markdownParser, parserBable],
+                });
+                console.log("SET CONTENT", formatted)
+                setContent(formatted)
+                ed.setValue(formatted)
+            },
+        });
     }
 
     async function handleEditorChange(value, event) {
@@ -124,7 +164,7 @@ export default function EditorPage({ source }) {
         } else {
             return (
                 <Editor height="100%" defaultLanguage="markdown" onChange={handleEditorChange}
-                    onMount={handleEditorDidMount} defaultValue={content} />
+                    onMount={handleEditorDidMount} value={content} />
             );
         }
     }
