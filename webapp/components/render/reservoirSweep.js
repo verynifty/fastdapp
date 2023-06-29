@@ -1,9 +1,13 @@
 import { SweepModal } from '@reservoir0x/reservoir-kit-ui'
 
 import { default as React, useState, useRef, useEffect } from 'react';
+import { useAccount } from 'wagmi'
+import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 
 const ReservoirSweep = (props) => {
+
+    const { address, isConnecting, isDisconnected } = useAccount()
 
     // This will run only once
     useEffect(() => {
@@ -13,6 +17,13 @@ const ReservoirSweep = (props) => {
 
     const collectionId = props.collectionAddress
 
+    if (isDisconnected) {
+        return (
+            <div className="reservoir">
+                <ConnectButton label={props.buttonText} />
+            </div>
+        );
+    }
     return (
         <div className="reservoir">
             <SweepModal

@@ -2,11 +2,12 @@
 chain: 1
 authors: grands_marquis
 theme: dark
+title: Reservoir Sweep and API
 ---
 
 <div class="p-4">
 
-# Popular NFTs
+# Reservoir Sweep and API
 
 A demo using **APICall** and **ReservoirSweep** to list Popular NFT collections and display a one click buy button.
 
