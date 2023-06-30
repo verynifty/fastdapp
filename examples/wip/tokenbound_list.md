@@ -12,7 +12,72 @@ theme: dark
 
 <div class="p-10">
 
-# Latest account creations
+# ERC6551
+
+ERC-6551 turns every NFT into a smart wallet that can own tokens and interact with dApps across the Ethereum ecosystem. A Token Bound Account" is a smart contract account, controlled by an NFT. It can do everything a normal wallet can do and is compatible with every NFT you already own.
+
+## Create an account
+
+You can create an account for any NFT with this form:
+
+<ContractWrite
+  address={REGISTRY}
+  abi={[
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "implementation",
+          type: "address",
+          hidden: true,
+        },
+        {
+          internalType: "uint256",
+          name: "chainId",
+          type: "uint256",
+          hidden: true,
+        },
+        {
+          internalType: "address",
+          name: "NFT Collection address",
+          type: "address",
+        },
+        {
+          internalType: "uint256",
+          name: "NFT ID",
+          type: "uint256",
+        },
+        {
+          internalType: "uint256",
+          name: "salt",
+          type: "uint256",
+          hidden: true,
+        },
+        {
+          internalType: "bytes",
+          name: "initData",
+          type: "bytes",
+          hidden: true,
+        },
+      ],
+      name: "createAccount",
+      outputs: [
+        {
+          internalType: "address",
+          name: "",
+          type: "address",
+        },
+      ],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ]}
+  args={["0x2D25602551487C3f3354dD80D76D54383A243358", 1, "", "", 0, ""]}
+  functionName="createAccount"
+  buttonText="Create the account"
+/>
+
+## Latest account creations
 
 <Events
   address={REGISTRY}
@@ -66,7 +131,7 @@ theme: dark
     <div class="divide-y divide-gray-800">
       {logs
         .reverse()
-        .slice(0, 20)
+        .slice(0, 25)
         .map((log) => (
           <APICall
             key={log.transactionHash + log.logIndex}
