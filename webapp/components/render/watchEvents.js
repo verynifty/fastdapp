@@ -26,7 +26,7 @@ const WatchEvents = (props) => {
                 try {
                     props.onReceivedLogs(logs)
                 } catch (error) {
-                    console.error("ERROR in onReceivedLogs")
+                    console.error("ERROR in onReceivedLogs", error)
                 }
             });
             console.log("WATCHER add", watcher)
@@ -51,7 +51,6 @@ const WatchEvents = (props) => {
 
     return (
         <div>
-            hello
         </div >
     );
 }
