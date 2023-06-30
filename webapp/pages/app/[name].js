@@ -22,28 +22,26 @@ export default function TestPage({ source }) {
   const [rendered, setRendered] = React.useState(false);
   const [title, setTitle] = React.useState(null);
   const [description, setDescription] = React.useState(null);
-  const {name} = router.query
+  const { name } = router.query
 
 
   useEffect(() => {
     async function load() {
       if (!isLoaded) {
         try {
-            let file_url = "https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + router.query.name + ".md"
-            let f = await axios.get(file_url)
-            console.log(file_url);
-            let parsedFront = yamlFront.loadFront(f.data);
-            console.log(parsedFront)
-            setTitle(parsedFront.title);
-            setDescription(parsedFront.description);
-
-            setRendered((f.data))
-            
-            setIsLoaded(true);
+          let file_url = "https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + router.query.name + ".md"
+          let f = await axios.get(file_url)
+          console.log(file_url);
+          let parsedFront = yamlFront.loadFront(f.data);
+          console.log(parsedFront)
+          setTitle(parsedFront.title);
+          setDescription(parsedFront.description);
+          setRendered((f.data))
+          setIsLoaded(true);
         } catch (error) {
-            
+
         }
-       
+
       }
 
     }
@@ -63,8 +61,8 @@ export default function TestPage({ source }) {
   }
 
   return (
-    <div>
-     
+    <div class="min-h-screen">
+
       <HeaderMetadata title={title} description={description} />
       {render()}
     </div>

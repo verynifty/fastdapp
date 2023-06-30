@@ -163,7 +163,7 @@ const Render = (props) => {
                 <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.1/dist/full.css" rel="stylesheet" type="text/css" />
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
-            <div className="" data-theme={theme}>
+            <div className="" data-theme={theme} class="min-h-screen">
                 <div className={'mt-0 right-0 prose  max-w-none min-h-full'}>
                     {getRender()}
                 </div>
