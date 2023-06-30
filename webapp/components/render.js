@@ -7,7 +7,7 @@ import { useNetwork, useSwitchNetwork } from 'wagmi'
 import Head from 'next/head'
 
 import Moment from 'react-moment';
-
+import toast from 'react-hot-toast';
 
 import AddressDisplay from 'components/render/addressDisplay';
 import DisplayVariable from 'components/render/displayVariable';
@@ -54,6 +54,7 @@ const scope = {
     "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },
     "userAddress": "",
     "location": "",
+    "Toast": toast,
     "useState": useState,
 };
 
