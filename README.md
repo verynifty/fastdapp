@@ -12,7 +12,7 @@ Fast Dapp is an application to develop and publish web3 dapps in minutes.
 
 ## License
 
-    Copyright 2022 MuseDAO
+    Copyright 2023 MuseDAO
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
