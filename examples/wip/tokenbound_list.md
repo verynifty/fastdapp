@@ -9,6 +9,103 @@ theme: dark
     REGISTRY = "0x02101dfB77FDE026414827Fdc604ddAF224F0921";
   })()}
 </>
+<>
+  {(() => {
+    REGISTRY_ABI = [
+      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "implementation",
+            type: "address",
+            hidden: true,
+          },
+          {
+            internalType: "uint256",
+            name: "chainId",
+            type: "uint256",
+            hidden: true,
+          },
+          {
+            internalType: "address",
+            name: "NFT Collection address",
+            type: "address",
+          },
+          {
+            internalType: "uint256",
+            name: "NFT ID",
+            type: "uint256",
+          },
+          {
+            internalType: "uint256",
+            name: "salt",
+            type: "uint256",
+            hidden: true,
+          },
+          {
+            internalType: "bytes",
+            name: "initData",
+            type: "bytes",
+            hidden: true,
+          },
+        ],
+        name: "createAccount",
+        outputs: [
+          {
+            internalType: "address",
+            name: "",
+            type: "address",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },
+      {
+        anonymous: false,
+        inputs: [
+          {
+            indexed: false,
+            internalType: "address",
+            name: "account",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "address",
+            name: "implementation",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "chainId",
+            type: "uint256",
+          },
+          {
+            indexed: false,
+            internalType: "address",
+            name: "tokenContract",
+            type: "address",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "tokenId",
+            type: "uint256",
+          },
+          {
+            indexed: false,
+            internalType: "uint256",
+            name: "salt",
+            type: "uint256",
+          },
+        ],
+        name: "AccountCreated",
+        type: "event",
+      },
+    ];
+  })()}
+</>
 
 <div class="p-10">
 
@@ -22,56 +119,7 @@ You can create an account for any NFT with this form:
 
 <ContractWrite
   address={REGISTRY}
-  abi={[
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "implementation",
-          type: "address",
-          hidden: true,
-        },
-        {
-          internalType: "uint256",
-          name: "chainId",
-          type: "uint256",
-          hidden: true,
-        },
-        {
-          internalType: "address",
-          name: "NFT Collection address",
-          type: "address",
-        },
-        {
-          internalType: "uint256",
-          name: "NFT ID",
-          type: "uint256",
-        },
-        {
-          internalType: "uint256",
-          name: "salt",
-          type: "uint256",
-          hidden: true,
-        },
-        {
-          internalType: "bytes",
-          name: "initData",
-          type: "bytes",
-          hidden: true,
-        },
-      ],
-      name: "createAccount",
-      outputs: [
-        {
-          internalType: "address",
-          name: "",
-          type: "address",
-        },
-      ],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ]}
+  abi={REGISTRY_ABI}
   args={["0x2D25602551487C3f3354dD80D76D54383A243358", 1, "", "", 0, ""]}
   functionName="createAccount"
   buttonText="Create the account"
@@ -81,51 +129,7 @@ You can create an account for any NFT with this form:
 
 <Events
   address={REGISTRY}
-  abi={[
-    {
-      anonymous: false,
-      inputs: [
-        {
-          indexed: false,
-          internalType: "address",
-          name: "account",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "address",
-          name: "implementation",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "chainId",
-          type: "uint256",
-        },
-        {
-          indexed: false,
-          internalType: "address",
-          name: "tokenContract",
-          type: "address",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "tokenId",
-          type: "uint256",
-        },
-        {
-          indexed: false,
-          internalType: "uint256",
-          name: "salt",
-          type: "uint256",
-        },
-      ],
-      name: "AccountCreated",
-      type: "event",
-    },
-  ]}
+  abi={REGISTRY_ABI}
   eventName="AccountCreated"
   render={(logs) => (
     <div class="divide-y divide-gray-800">
