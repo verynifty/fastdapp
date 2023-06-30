@@ -48,5 +48,5 @@ The following themes from daisyUI are available:
 ### Visual preview
 ![View themes](/img/themes.png)
 
-### Interative preview
+### Interactive preview
 [Try on DaisyUI documentation website](https://daisyui.com/docs/themes/#)
