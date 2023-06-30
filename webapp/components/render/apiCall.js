@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const APICall = (props) => {
     const [result, setResult] = React.useState(null);
+    const [isLoaded, setIsLoaded] = React.useState(false);
 
     async function getResult() {
         try {
@@ -12,6 +13,7 @@ const APICall = (props) => {
         } catch (error) {
             console.log("APICall", error)
         }
+        setIsLoaded(true)
 
     }
     // This will run only once
@@ -20,7 +22,7 @@ const APICall = (props) => {
     }, [props.url]);
 
     function renderResult() {
-        if (result == null) {
+        if (!isLoaded) {
             return (<span>Loading...</span>)
         } else if (typeof props.renderFunction === 'function') {
             return (<span>{props.renderFunction(result)}</span>)

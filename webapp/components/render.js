@@ -45,6 +45,8 @@ function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
+
+
 const components = {
     "AddressDisplay": AddressDisplay,
     "DisplayVariable": DisplayVariable,
@@ -79,6 +81,7 @@ const Render = (props) => {
     const [content, setContent] = React.useState("");
     const [requiredChain, setRequiredChain] = React.useState(null);
     const [theme, setTheme] = React.useState("light");
+    const [defaultClass, setDefaultClass] = React.useState("prose");
 
     const { chain } = useNetwork()
     const { chains, error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
@@ -116,6 +119,9 @@ const Render = (props) => {
         // remove tabs at begining of line
         content = content.replace(/\t/g, "");
         setContent(content);
+        if (parsedFront.defaultClass != null) {
+            setDefaultClass(parsedFront.defaultClass);
+        }
         setRequiredChain(parsedFront.chain != null ? parseInt(parsedFront.chain) : 1);
         setTheme(parsedFront.theme != null ? parsedFront.theme : "light");
     }
@@ -179,7 +185,7 @@ const Render = (props) => {
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
             <div className="" data-theme={theme} class="min-h-screen">
-                <div className={'mt-0 right-0 prose  max-w-none min-h-full'}>
+                <div className={'mt-0 right-0 max-w-none min-h-full ' + defaultClass}>
                     {getRender()}
                 </div>
             </div>
