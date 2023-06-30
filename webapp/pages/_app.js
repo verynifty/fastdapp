@@ -10,21 +10,15 @@ import { default as React, useEffect } from 'react';
 import Head from 'next/head'
 
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
-import { AppProps } from 'next/app';
 import { configureChains, createConfig, WagmiConfig, useProvider } from 'wagmi';
 import { arbitrum, goerli, mainnet, optimism, polygon } from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 
-import { InjectedConnector } from 'wagmi/connectors/injected'
-import { MetaMaskConnector } from 'wagmi/connectors/metaMask'
-import { WalletConnectConnector } from 'wagmi/connectors/walletConnect'
-
 import { Toaster } from 'react-hot-toast';
 import Script from "next/script";
 
 import HeaderMetadata from '@/components/commons/headerMetadata';
-
 
 import '@/DateTimePicker.css';
 
@@ -55,13 +49,6 @@ const { chains, publicClient, webSocketPublicClient } = configureChains(
         alchemyProvider({ apiKey: "8geS2cIqjhJTgXjZ" + "UebWKe7Gnpwh1CgC" })
     ]
 );
-
-/*
-const connectors = [
-    new InjectedConnector({ chains }),
-    new MetaMaskConnector({ chains }),
-];
-*/
 
 const { connectors } = getDefaultWallets({
     appName: 'test',
