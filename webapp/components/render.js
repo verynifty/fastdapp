@@ -18,6 +18,7 @@ import TokenBalance from 'components/render/tokenBalance';
 import ContractRead from 'components/render/contractRead';
 import ContractWrite from 'components/render/contractWrite';
 import Events from 'components/render/events';
+import WatchEvents from 'components/render/watchEvents';
 
 import Uniswap from 'components/render/uniswap';
 import ReservoirSweep from 'components/render/reservoirSweep';
@@ -25,15 +26,13 @@ import ReservoirNFTDisplay from 'components/render/reservoirNFTDisplay';
 
 import APICall from 'components/render/apiCall';
 
-import { readContract, getAccount } from '@wagmi/core';
+import { getAccount } from '@wagmi/core';
 import { useAccount } from 'wagmi';
 
 import ERC20ABI from 'ABIS/ERC20.json';
 import ERC721ABI from 'ABIS/ERC721.json';
 import ERC1155ABI from 'ABIS/ERC1155.json';
 
-
-let value = "// some comment";
 const components = {
     "AddressDisplay": AddressDisplay,
     "DisplayVariable": DisplayVariable,
@@ -47,6 +46,7 @@ const components = {
     "ReservoirSweep": ReservoirSweep,
     "ReservoirNFTDisplay": ReservoirNFTDisplay,
     "Events": Events,
+    "WatchEvents": WatchEvents,
     "APICall": APICall,
     "Moment": Moment,
 }
