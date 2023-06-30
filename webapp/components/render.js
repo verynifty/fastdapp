@@ -33,6 +33,18 @@ import ERC20ABI from 'ABIS/ERC20.json';
 import ERC721ABI from 'ABIS/ERC721.json';
 import ERC1155ABI from 'ABIS/ERC1155.json';
 
+function formatAddress(address) {
+    return (
+        address.substring(0, 6) +
+        "..." +
+        address.substring(address.length - 4, address.length)
+    );
+}
+
+function sleep(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 const components = {
     "AddressDisplay": AddressDisplay,
     "DisplayVariable": DisplayVariable,
@@ -56,6 +68,8 @@ const scope = {
     "location": "",
     "Toast": toast,
     "useState": useState,
+    "formatAddress": formatAddress,
+    "sleep": sleep,
 };
 
 const Render = (props) => {

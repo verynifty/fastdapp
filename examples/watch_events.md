@@ -12,16 +12,6 @@ You'll see the USDC transfer events appearing on the page.
   abi={ABIs.ERC20}
   eventName="Transfer"
   onReceivedLogs={async function (logs) {
-    function formatAddress(address) {
-      return (
-        address.substring(0, 6) +
-        "..." +
-        address.substring(address.length - 4, address.length)
-      );
-    }
-    function sleep(ms) {
-      return new Promise((resolve) => setTimeout(resolve, ms));
-    }
     console.log("Received logs", logs);
     for (const log of logs) {
       await sleep(400);
