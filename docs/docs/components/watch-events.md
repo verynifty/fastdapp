@@ -36,3 +36,8 @@ This examples display USDC transfers as Toas notifications.
 
 ```
 
+## Full example
+
+* [USDC transfers live](https://fastdapp.xyz/editor?template=watch_events)
+
+

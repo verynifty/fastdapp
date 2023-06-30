@@ -31,3 +31,7 @@ This example display Nouns previous auctions.
     />
 ```
 
+## Full example
+
+* [Nouns auction page](https://fastdapp.xyz/editor?template=nouns)
+
