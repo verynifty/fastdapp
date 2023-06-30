@@ -4,7 +4,7 @@ import { watchContractEvent } from '@wagmi/core'
 
 const WatchEvents = (props) => {
 
-    const [watcher, setWatcher] = React.useState(null);
+    let watcher = null;
 
     function getABI() {
         return props.abi.find((element) => element.name === props.eventName && element.type === "event");
@@ -14,11 +14,11 @@ const WatchEvents = (props) => {
     async function setup() {
         try {
             if (watcher != null) {
-                console.log("WATCHER rmv", unwatch)
+                console.log("WATCHER rmv", watcher)
                 watcher();
             }
 
-            setWatcher(await watchContractEvent({
+            watcher = watchContractEvent({
                 address: props.address,
                 abi: props.abi,
                 eventName: props.eventName,
@@ -28,7 +28,7 @@ const WatchEvents = (props) => {
                 } catch (error) {
                     console.error("ERROR in onReceivedLogs")
                 }
-            }));
+            });
             console.log("WATCHER add", watcher)
 
             console.log("Listener set for event watch");
