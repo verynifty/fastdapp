@@ -6,6 +6,7 @@ import { getConfig } from '@wagmi/core';
 const Events = (props) => {
 
     const [logs, setLogs] = React.useState([]);
+    const [isLoaded, setIsLoaded] = React.useState(false);
 
     function getABI() {
         return props.abi.find((element) => element.name === props.eventName && element.type === "event");
@@ -23,6 +24,7 @@ const Events = (props) => {
                 args: props.args
             });
             setLogs(logs);
+            setIsLoaded(true);
             console.log("Events logs:", logs)
         } catch (error) {
             console.log("Events error", error);
@@ -35,6 +37,9 @@ const Events = (props) => {
         getLogs();
     }, []);
 
+    if (!isLoaded) {
+        return (<center><span class="loading loading-spinner loading-md"></span></center>)
+    }
     return (
         <div>
             {props.render(logs)}
