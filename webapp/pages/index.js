@@ -26,7 +26,9 @@ export default function Home() {
       <main>
         <Hero />
         <PrimaryFeatures />
+
         <CallToAction />
+
       </main>
       <Footer />
 
