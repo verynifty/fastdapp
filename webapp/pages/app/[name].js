@@ -28,20 +28,34 @@ export default function TestPage({ source }) {
   useEffect(() => {
     async function load() {
       if (!isLoaded) {
-        try {
-          let file_url = "https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + router.query.name + ".md"
-          let f = await axios.get(file_url)
-          console.log(file_url);
-          let parsedFront = yamlFront.loadFront(f.data);
-          console.log(parsedFront)
-          setTitle(parsedFront.title);
-          setDescription(parsedFront.description);
-          setRendered((f.data))
-          setIsLoaded(true);
-        } catch (error) {
-
+        let app_name = router.query.name;
+        if (app_name == null) {
+          app_name = "simple";
         }
+        if (app_name.startsWith("ipfs://")) {
+          let urlSplit = app_name.split('/')
+          let cid = urlSplit[2]
+          let filename = urlSplit[3]
+          let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
+          let f = await axios.get(file_url)
+          setIsIPFS(true)
+          setRendered((f.data).content)
+          setIsLoaded(true);
+        } else {
+          try {
+            let file_url = "https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + router.query.name + ".md"
+            let f = await axios.get(file_url)
+            console.log(file_url);
+            let parsedFront = yamlFront.loadFront(f.data);
+            console.log(parsedFront)
+            setTitle(parsedFront.title);
+            setDescription(parsedFront.description);
+            setRendered((f.data))
+            setIsLoaded(true);
+          } catch (error) {
 
+          }
+        }
       }
 
     }
