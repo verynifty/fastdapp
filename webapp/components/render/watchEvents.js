@@ -22,6 +22,7 @@ const WatchEvents = (props) => {
                 address: props.address,
                 abi: props.abi,
                 eventName: props.eventName,
+                args: props.args,
             }, function (logs) {
                 try {
                     props.onReceivedLogs(logs)

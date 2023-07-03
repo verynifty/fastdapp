@@ -18,8 +18,8 @@ const Events = (props) => {
             let client = getConfig().publicClient;
             let logs = await client.getLogs({
                 address: props.address,
-                fromBlock: BigInt(0),
-                toBlock: 'latest',
+                fromBlock: props.fromBlock != null ? BigInt(props.fromBlock) : BigInt(0),
+                toBlock: props.toBlock != null && props.toBlock != "latest" ? BigInt(props.toBlock) : "latest",
                 event: getABI(),
                 args: props.args
             });
@@ -33,7 +33,6 @@ const Events = (props) => {
 
     // This will run only once
     useEffect(() => {
-        // console.log(getConfig())
         getLogs();
     }, []);
 
