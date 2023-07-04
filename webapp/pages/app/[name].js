@@ -18,6 +18,8 @@ export default function TestPage({ source }) {
   const router = useRouter()
 
   const [isLoaded, setIsLoaded] = React.useState(false);
+  const [isIPFS, setIsIPFS] = React.useState(false);
+
   const [location, setLocation] = React.useState("");
   const [rendered, setRendered] = React.useState(false);
   const [title, setTitle] = React.useState(null);
