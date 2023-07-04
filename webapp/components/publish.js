@@ -64,6 +64,11 @@ const Publish = (props) => {
                         <input type="text" placeholder="Type here" className="input input-bordered w-full" value={pageLink} />
                     </div>
                     <a href={pageLink} className="btn mt-4 w-full">Go to your app</a>
+                    <div class="mt-2 mb-2 flex flex-col w-full">
+                        <div class="divider"></div>
+                    </div>
+                    <button onClick={() => setIsUploaded(false)} className="btn w-full">Publish again</button>
+
                 </div>
             )
         }

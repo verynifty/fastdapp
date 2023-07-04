@@ -9,7 +9,7 @@ contract BUILD is ERC721, ERC721Enumerable, Ownable {
 
     mapping(uint256 => string) public locations;
 
-    constructor() ERC721("BUILD", "BLD") {}
+    constructor() ERC721("FastDapp", "FAST⚡") {}
 
     function safeMint(address to, uint256 tokenId) public onlyOwner {
         _safeMint(to, tokenId);

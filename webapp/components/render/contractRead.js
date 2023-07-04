@@ -26,6 +26,10 @@ const ContractRead = (props) => {
                     let computed = props.returnValue(res);
                     setValue(computed);
                 }
+                if (typeof props.render === 'function') {
+                    let computed = props.render(res);
+                    setValue(computed);
+                }
                 else if (Array.isArray(res)) {
                     let index = props.returnValue == null ? 0 : parseInt(props.returnValue);
                     setValue(res[index]);
