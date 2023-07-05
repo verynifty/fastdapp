@@ -50,6 +50,8 @@ const SendTransactionButton = (props) => {
             saEvent('transaction_sent', {
                 tx_hahs: tx.hash,
                 functionName: transactionRequest.data.request.functionName,
+                from: transactionRequest.data.request.account.address,
+                to: transactionRequest.data.request.address,
                 sent_at: new Date()
             })
             setPendingTransaction(tx.hash);
