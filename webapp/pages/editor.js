@@ -104,11 +104,11 @@ export default function EditorPage({ source }) {
             label: "Format code",
 
             // An optional array of keybindings for the action.
-            /*
+
             keybindings: [
                 monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
             ],
-            */
+
             // A precondition for this action.
             precondition: null,
 
@@ -214,8 +214,11 @@ export default function EditorPage({ source }) {
 
                         <label for="my_modal_7" className="btn ml-2 btn-xs">Publish</label>
 
+                        <a href="https://t.me/+1YcicNi_gdNiOTdk" target="_blank" className="btn ml-2 btn-xs">Live chat help</a>
 
                     </div>
+
+
                 </div>
                 <div className=" flex">
                     <div className="flex-1">
