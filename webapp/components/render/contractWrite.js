@@ -152,14 +152,17 @@ const WriteContract = (props) => {
                                 <div className="form-control w-full ">
                                     <label className="label">
                                         <span className="label-text">  {input.name}</span>
-                                        <span className="label-text-alt">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</span>
+                                        <span className="label-text-alt"></span>
                                     </label>
-                                    <input type="text"
-                                        value={argsStateValues[index]}
-                                        onChange={e => argsStateSetters[index](e.target.value)}
-                                        name="token_amount"
-                                        id="token_amount"
-                                        className="input input-bordered w-full" placeholder="0.00"></input>
+                                    <div className='join'>
+                                        <input type="text"
+                                            value={argsStateValues[index]}
+                                            onChange={e => argsStateSetters[index](e.target.value)}
+                                            name="token_amount"
+                                            id="token_amount"
+                                            className="input input-bordered w-full join-item" placeholder="0.00"></input>
+                                        <button className="btn btn-disabled join-item rounded-r-full">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</button>
+                                    </div>
                                 </div>
                             )
                         } else if (input.longText == true) {
