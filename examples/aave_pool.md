@@ -14,69 +14,6 @@ authors: grands_marquis
             internalType: "address",
             name: "asset",
             type: "address",
-            hidden: true,
-          },
-          {
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-            token: TOKEN,
-          },
-          {
-            internalType: "address",
-            name: "onBehalfOf",
-            type: "address",
-            hidden: true,
-          },
-          {
-            internalType: "uint16",
-            name: "referralCode",
-            type: "uint16",
-            hidden: true,
-          },
-        ],
-        name: "deposit",
-        outputs: [],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "asset",
-            type: "address",
-            hidden: true,
-          },
-          {
-            internalType: "uint256",
-            name: "amount",
-            type: "uint256",
-          },
-          {
-            internalType: "address",
-            name: "to",
-            type: "address",
-            hidden: true,
-          },
-        ],
-        name: "withdraw",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "asset",
-            type: "address",
           },
         ],
         name: "getReserveData",
@@ -190,12 +127,44 @@ authors: grands_marquis
 <div>
 {poolInfos.aTokenAddress}
 
-
 ## Deposit
 
 <ContractWrite
   address={AAVE_POOL}
-  abi={AAVE_POOL_ABI}
+  abi={[
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "asset",
+          type: "address",
+          hidden: true,
+        },
+        {
+          internalType: "uint256",
+          name: "amount",
+          type: "uint256",
+          token: TOKEN,
+        },
+        {
+          internalType: "address",
+          name: "onBehalfOf",
+          type: "address",
+          hidden: true,
+        },
+        {
+          internalType: "uint16",
+          name: "referralCode",
+          type: "uint16",
+          hidden: true,
+        },
+      ],
+      name: "deposit",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ]}
   functionName="deposit"
   args={[TOKEN, 0, userAddress, 0xf457]}
 />
@@ -204,7 +173,38 @@ authors: grands_marquis
 
 <ContractWrite
   address={AAVE_POOL}
-  abi={AAVE_POOL_ABI}
+  abi={[      {
+        inputs: [
+          {
+            internalType: "address",
+            name: "asset",
+            type: "address",
+            hidden: true,
+          },
+          {
+            internalType: "uint256",
+            name: "amount",
+            type: "uint256",
+            token: poolInfos.aTokenAddress
+          },
+          {
+            internalType: "address",
+            name: "to",
+            type: "address",
+            hidden: true,
+          },
+        ],
+        name: "withdraw",
+        outputs: [
+          {
+            internalType: "uint256",
+            name: "",
+            type: "uint256",
+          },
+        ],
+        stateMutability: "nonpayable",
+        type: "function",
+      },]}
   functionName="withdraw"
   args={[TOKEN, 0, userAddress]}
 />
@@ -212,7 +212,6 @@ authors: grands_marquis
         )
     }
 />
-
 
 <p>
   {TOKEN} {userAddress}
