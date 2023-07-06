@@ -123,10 +123,29 @@ authors: grands_marquis
     render={
         (poolInfos) => (
 <div>
-Lender APY {parseInt(parseInt(poolInfos.currentLiquidityRate) / 10e21) / 1000}%
-Available to lend: <TokenBalance token={TOKEN} address={userAddress} />
-Current holdings: <TokenBalance token={poolInfos.aTokenAddress} address={userAddress} />
 
+# AAVE
+
+<div className="stats shadow">
+  <div className="stat place-items-center">
+    <div className="stat-title">APY</div>
+    <div className="stat-value">
+      {parseInt(parseInt(poolInfos.currentLiquidityRate) / 10e21) / 1000}%
+    </div>
+  </div>
+  <div className="stat place-items-center">
+    <div className="stat-title">Your balance</div>
+    <div className="stat-value text-secondary">
+      <TokenBalance token={TOKEN} address={userAddress} />
+    </div>
+  </div>
+  <div className="stat place-items-center">
+    <div className="stat-title">Lent</div>
+    <div className="stat-value">
+      <TokenBalance token={poolInfos.aTokenAddress} address={userAddress} />
+    </div>
+  </div>
+</div>
 
 <ContractWrite
   address={AAVE_POOL}
@@ -211,5 +230,4 @@ Current holdings: <TokenBalance token={poolInfos.aTokenAddress} address={userAdd
 />
 
 <p>
-  {TOKEN} {userAddress}
 </p>

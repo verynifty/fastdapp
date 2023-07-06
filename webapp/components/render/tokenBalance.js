@@ -17,7 +17,11 @@ const TokenBalance = (props) => {
                     token: props.token,
                 })
                 setBalance(balance.value);
-                setFormatted(balance.formatted);
+                if (parseFloat(balance.formatted) > 1) {
+                    setFormatted(parseInt(parseFloat(balance.formatted) * 1000)/ 1000);
+                } else {
+                    setFormatted(balance.formatted);
+                }
                 setSymbol(balance.symbol);
             } catch (error) {
                 console.log("TokenBalance Error", error)
