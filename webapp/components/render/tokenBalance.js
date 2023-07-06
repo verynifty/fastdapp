@@ -7,6 +7,14 @@ const TokenBalance = (props) => {
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
     const [isLoaded, setIsLoaded] = React.useState(false);
+    const [raw, setRaw] = React.useState(null);
+
+    function handleClick() {
+        console.log("Clicked")
+        if (props.componentClicked != null) {
+            props.componentClicked(raw);
+        }
+    }
 
     // This will run only once
     useEffect(() => {
@@ -17,6 +25,7 @@ const TokenBalance = (props) => {
                     address: props.address,
                     token: props.token,
                 })
+                setRaw(balance);
                 setBalance(balance.value);
                 if (parseFloat(balance.formatted) > 1) {
                     setFormatted(parseInt(parseFloat(balance.formatted) * 1000)/ 1000);
@@ -37,7 +46,7 @@ const TokenBalance = (props) => {
         return (<center><span class="loading loading-spinner loading-md"></span></center>)
     }
     return (
-        <span>
+        <span onClick={handleClick}>
             {formatted} {symbol}
         </span >
     );

@@ -1,9 +1,10 @@
 import { default as React, Fragment, useState, useRef, useEffect } from 'react';
-import { usePrepareContractWrite } from 'wagmi'
+import { usePrepareContractWrite, useAccount } from 'wagmi'
 import { useToken } from 'wagmi'
 import { parseEther, parseUnits } from 'viem'
 import DateTimePicker from 'react-datetime-picker';
 import 'react-calendar/dist/Calendar.css';
+import TokenBalance from 'components/render/tokenBalance';
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
 
@@ -17,6 +18,9 @@ const WriteContract = (props) => {
 
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
+
+    const { address, isConnecting, isDisconnected } = useAccount()
+
     const args = props.args || [];
     const argsStateValues = [];
     const argsStateSetters = [];
@@ -139,7 +143,7 @@ const WriteContract = (props) => {
                                 <div>
                                     <div className="form-control w-full">
                                         <label className="label">
-                                            <span className="label-text">  {input.name}</span>
+                                            <span className="label-text">{input.name}</span>
                                         </label>
                                         <DateTimePicker className="input input-bordered" onChange={function (d) {
                                             argsStateSetters[index](d.getTime() / 1000)
@@ -151,8 +155,8 @@ const WriteContract = (props) => {
                             return (
                                 <div className="form-control w-full ">
                                     <label className="label">
-                                        <span className="label-text">  {input.name}</span>
-                                        <span className="label-text-alt"></span>
+                                        <span className="label-text">{input.name}</span>
+                                        <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted) } address={address} token={argsStateTokens[index].address}/></span></span>
                                     </label>
                                     <div className='join'>
                                         <input type="text"
