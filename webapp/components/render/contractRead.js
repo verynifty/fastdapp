@@ -5,6 +5,7 @@ import { readContract } from '@wagmi/core'
 const ContractRead = (props) => {
     const [value, setValue] = React.useState();
     const [error, setError] = React.useState();
+    const [isLoaded, setIsLoaded] = React.useState(false);
 
     // This will run only once
     useEffect(() => {
@@ -36,6 +37,7 @@ const ContractRead = (props) => {
                 } else {
                     setValue(res + "");
                 }
+                setIsLoaded(true);
             } catch (error) {
                 console.log(JSON.stringify(error))
                 setError("Error: Contract doesn't exsit or is in a different network?");
@@ -45,6 +47,9 @@ const ContractRead = (props) => {
         read();
     }, []);
 
+    if (!isLoaded) {
+        return (<center><span class="loading loading-spinner loading-md"></span></center>)
+    }
     return (
         <span>
             {value} {error}

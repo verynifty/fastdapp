@@ -115,8 +115,6 @@ authors: grands_marquis
   })()}
 </>
 
-# AAVE
-
 <ContractRead
     address={AAVE_POOL}
     abi={AAVE_POOL_ABI}
@@ -126,8 +124,6 @@ authors: grands_marquis
         (poolInfos) => (
 <div>
 {poolInfos.aTokenAddress}
-
-## Deposit
 
 <ContractWrite
   address={AAVE_POOL}
@@ -168,8 +164,6 @@ authors: grands_marquis
   functionName="deposit"
   args={[TOKEN, 0, userAddress, 0xf457]}
 />
-
-## Withdraw
 
 <ContractWrite
   address={AAVE_POOL}
