@@ -3,7 +3,7 @@ chain: 1
 authors: grands_marquis
 ---
 
-<>
+<div class="p-5">
   {(() => {
     TOKEN = "0x6b175474e89094c44da98b954eedeac495271d0f";
     AAVE_POOL = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2";
@@ -113,15 +113,15 @@ authors: grands_marquis
       },
     ];
   })()}
-</>
 
 <ContractRead
-    address={AAVE_POOL}
-    abi={AAVE_POOL_ABI}
-    functionName="getReserveData"
-    args={[TOKEN]}
-    render={
-        (poolInfos) => (
+address={AAVE_POOL}
+abi={AAVE_POOL_ABI}
+functionName="getReserveData"
+args={[TOKEN]}
+render={
+(poolInfos) => (
+
 <div>
 
 # AAVE
@@ -189,45 +189,47 @@ authors: grands_marquis
 
 <ContractWrite
   address={AAVE_POOL}
-  abi={[      {
-        inputs: [
-          {
-            internalType: "address",
-            name: "asset",
-            type: "address",
-            hidden: true,
-          },
-          {
-            internalType: "uint256",
-            name: "Amount",
-            type: "uint256",
-            token: poolInfos.aTokenAddress
-          },
-          {
-            internalType: "address",
-            name: "to",
-            type: "address",
-            hidden: true,
-          },
-        ],
-        name: "withdraw",
-        outputs: [
-          {
-            internalType: "uint256",
-            name: "",
-            type: "uint256",
-          },
-        ],
-        stateMutability: "nonpayable",
-        type: "function",
-      },]}
+  abi={[
+    {
+      inputs: [
+        {
+          internalType: "address",
+          name: "asset",
+          type: "address",
+          hidden: true,
+        },
+        {
+          internalType: "uint256",
+          name: "Amount",
+          type: "uint256",
+          token: poolInfos.aTokenAddress,
+        },
+        {
+          internalType: "address",
+          name: "to",
+          type: "address",
+          hidden: true,
+        },
+      ],
+      name: "withdraw",
+      outputs: [
+        {
+          internalType: "uint256",
+          name: "",
+          type: "uint256",
+        },
+      ],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ]}
   functionName="withdraw"
   args={[TOKEN, 0, userAddress]}
 />
+
 </div>
         )
     }
 />
 
-<p>
-</p>
+</div>
