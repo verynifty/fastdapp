@@ -24,12 +24,22 @@ const ContractRead = (props) => {
                 })
                 console.log(res)
                 if (typeof props.returnValue === 'function') {
-                    let computed = props.returnValue(res);
-                    setValue(computed);
+                    try {
+                        let computed = props.returnValue(res);
+                        setValue(computed);
+                    } catch (error) {
+                        console.log(JSON.stringify(error))
+                        setError("Error: Return value function failed");
+                    }
                 }
-                if (typeof props.render === 'function') {
-                    let computed = props.render(res);
-                    setValue(computed);
+                else if (typeof props.render === 'function') {
+                    try {
+                        let computed = props.render(res);
+                        setValue(computed);
+                    } catch (error) {
+                        console.log(JSON.stringify(error))
+                        setError("Error: Return value function failed");
+                    }
                 }
                 else if (Array.isArray(res)) {
                     let index = props.returnValue == null ? 0 : parseInt(props.returnValue);
