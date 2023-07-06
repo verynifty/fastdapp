@@ -156,7 +156,7 @@ const WriteContract = (props) => {
                                 <div className="form-control w-full ">
                                     <label className="label">
                                         <span className="label-text">{input.name}</span>
-                                        <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted) } address={address} token={argsStateTokens[index].address}/></span></span>
+                                        { address != null && <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted)} address={address} token={argsStateTokens[index].address} /></span>  </span> }
                                     </label>
                                     <div className='join'>
                                         <input type="text"
