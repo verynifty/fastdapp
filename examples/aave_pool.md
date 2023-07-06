@@ -5,7 +5,7 @@ authors: grands_marquis
 
 <>
   {(() => {
-    TOKEN = "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48";
+    TOKEN = "0x6b175474e89094c44da98b954eedeac495271d0f";
     AAVE_POOL = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2";
     AAVE_POOL_ABI = [
       {
@@ -123,7 +123,10 @@ authors: grands_marquis
     render={
         (poolInfos) => (
 <div>
-{poolInfos.aTokenAddress}
+Lender APY {parseInt(parseInt(poolInfos.currentLiquidityRate) / 10e21) / 1000}%
+Available to lend: <TokenBalance token={TOKEN} address={userAddress} />
+Current holdings: <TokenBalance token={poolInfos.aTokenAddress} address={userAddress} />
+
 
 <ContractWrite
   address={AAVE_POOL}
@@ -138,7 +141,7 @@ authors: grands_marquis
         },
         {
           internalType: "uint256",
-          name: "amount",
+          name: "Amount",
           type: "uint256",
           token: TOKEN,
         },
@@ -177,7 +180,7 @@ authors: grands_marquis
           },
           {
             internalType: "uint256",
-            name: "amount",
+            name: "Amount",
             type: "uint256",
             token: poolInfos.aTokenAddress
           },
