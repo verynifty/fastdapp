@@ -1,10 +1,12 @@
 import { default as React, Fragment, useState, useRef, useEffect } from 'react';
 import { usePrepareContractWrite, useAccount } from 'wagmi'
+import { fetchToken, getContract } from '@wagmi/core'
 import { useToken } from 'wagmi'
 import { parseEther, parseUnits } from 'viem'
 import DateTimePicker from 'react-datetime-picker';
 import 'react-calendar/dist/Calendar.css';
 import TokenBalance from 'components/render/tokenBalance';
+import ERC20ABI from 'ABIS/ERC20.json';
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
 
@@ -18,6 +20,7 @@ const WriteContract = (props) => {
 
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
+    const [isWantingApproval, setIsWantingApproval] = React.useState(null);
 
     const { address, isConnecting, isDisconnected } = useAccount()
 
@@ -25,9 +28,40 @@ const WriteContract = (props) => {
     const argsStateValues = [];
     const argsStateSetters = [];
     const argsStateTokens = [];
+    const argsStateApprovals = [];
 
     function getFunction() {
         return props.abi.find((element) => element.name === props.functionName && element.type === "function");
+    }
+
+    // check if the ERC20 token is approved to be spent
+    function checkApproval(token, spender, amount) {
+        return new Promise((resolve, reject) => {
+            const contract = getContract({
+                address: token,
+                abi: ERC20ABI
+            })
+            console.log(contract, token, spender, amount)
+            contract.read.allowance([address, spender]).then((allowance) => {
+                console.log("allowance", allowance, amount)
+                resolve(allowance >= amount);
+            });
+        });
+    }
+
+    async function onBeforeSendTransaction() {
+        console.log("beforeClick", argsStateApprovals);
+        for (const [index, arg] of argsStateApprovals.entries()) {
+            if (arg != null) {
+                console.log("Checking approval", arg, argsStateValues[index])
+                const approved = await checkApproval(argsStateTokens[index].address, props.address, parseUnits(argsStateValues[index] + "", argsStateTokens[index].decimals));
+                if (!approved) {
+                    
+                    return false;
+                }
+            }
+        }
+        return false
     }
 
     function getPreparedTransaction() {
@@ -73,6 +107,12 @@ const WriteContract = (props) => {
         } else {
             argsStateTokens.push(null);
         }
+        if (input.type === "uint256" && input.ERC20Allow != null) {
+            argsStateApprovals.push(input.ERC20Allow);
+        } else {
+            argsStateApprovals.push(null);
+        }
+
     }
 
     // This will run only once
@@ -156,7 +196,7 @@ const WriteContract = (props) => {
                                 <div className="form-control w-full ">
                                     <label className="label">
                                         <span className="label-text">{input.name}</span>
-                                        { address != null && <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted)} address={address} token={argsStateTokens[index].address} /></span>  </span> }
+                                        {address != null && <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted)} address={address} token={argsStateTokens[index].address} /></span>  </span>}
                                     </label>
                                     <div className='join'>
                                         <input type="text"
@@ -205,7 +245,7 @@ const WriteContract = (props) => {
             {makeForm()}
             {makePayable()}
             <div className="mt-2">
-                <SendTransactionButton text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
+                <SendTransactionButton onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
             </div>
         </span >
     );
