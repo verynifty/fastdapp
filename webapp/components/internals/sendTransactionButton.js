@@ -81,8 +81,8 @@ const SendTransactionButton = (props) => {
                 hash: tx.hash,
             })
             setIsLoading(false);
-            if (props.onAfterSendTransaction != null) {
-                await props.onAfterSendTransaction(data);
+            if (props.onTransactionMined != null) {
+                await props.onTransactionMined(data);
             }
         } catch (error) {
             console.log(error)

@@ -53,7 +53,14 @@ const WriteContract = (props) => {
     }
 
     async function onBeforeSendTransaction() {
-        console.log("beforeClick", argsStateApprovals);
+        //   console.log("beforeClick", argsStateApprovals);
+        if (props.onBeforeSendTransaction != null) {
+            try {
+                await props.onBeforeSendTransaction()
+            } catch (error) {
+                console.error("Error in onBeforeSendTransaction", error)
+            }
+        }
         for (const [index, arg] of argsStateApprovals.entries()) {
             if (arg != null) {
                 console.log("Checking approval", arg, argsStateValues[index])
@@ -72,6 +79,19 @@ const WriteContract = (props) => {
         }
         return true
     }
+
+    async function onTransactionMined() {
+        //   console.log("beforeClick", argsStateApprovals);
+        if (props.onTransactionMined != null) {
+            try {
+                await props.onTransactionMined()
+            } catch (error) {
+                console.error("Error in onTransactionMined", error)
+            }
+        }
+    }
+
+
 
     function getPreparedTransaction() {
         let tx = null;
@@ -134,7 +154,7 @@ const WriteContract = (props) => {
     function makeApprovals() {
         if (isWantingApproval != null) {
             return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} address={isWantingApproval.address} />);
-        } 
+        }
     }
 
     function makePayable() {
@@ -260,7 +280,7 @@ const WriteContract = (props) => {
             {makePayable()}
             {makeApprovals()}
             <div className="mt-2">
-                <SendTransactionButton onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
+                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
             </div>
         </span >
     );
