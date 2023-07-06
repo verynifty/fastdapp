@@ -6,6 +6,7 @@ const TokenBalance = (props) => {
     const [balance, setBalance] = React.useState(0);
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
+    const [isLoaded, setIsLoaded] = React.useState(false);
 
     // This will run only once
     useEffect(() => {
@@ -27,13 +28,14 @@ const TokenBalance = (props) => {
                 console.log("TokenBalance Error", error)
                 setFormatted("Error: token doesn't exist or is in a different network?");
             }
-            console.log("END useEffect TOKENBALANCE")
-
+            setIsLoaded(true);
         }
         getBalance();
     }, [props.token, props.address]);
 
-
+    if (!isLoaded) {
+        return (<center><span class="loading loading-spinner loading-md"></span></center>)
+    }
     return (
         <span>
             {formatted} {symbol}
