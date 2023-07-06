@@ -27,10 +27,12 @@ const SendTransactionButton = (props) => {
 
     const onClickSend = async () => {
         setIsLoading(true);
-        let onBefore = await props.onBeforeSendTransaction();
-        if (!onBefore) {
-            setIsLoading(false);
-            return;
+        if (props.onBeforeSendTransaction != null) {
+            let onBefore = await props.onBeforeSendTransaction();
+            if (!onBefore) {
+                setIsLoading(false);
+                return;
+            }
         }
         let transactionRequest = props.preparedTransaction;
         console.log("TRANSACTION REQUEST", transactionRequest)
@@ -79,6 +81,9 @@ const SendTransactionButton = (props) => {
                 hash: tx.hash,
             })
             setIsLoading(false);
+            if (props.onAfterSendTransaction != null) {
+                await props.onAfterSendTransaction(data);
+            }
         } catch (error) {
             console.log(error)
             setIsLoading(false);

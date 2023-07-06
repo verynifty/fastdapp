@@ -9,6 +9,7 @@ import TokenBalance from 'components/render/tokenBalance';
 import ERC20ABI from 'ABIS/ERC20.json';
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
+import ERC20ApprovalModal from 'components/internals/ERC20ApprovalModal';
 
 function classNames(...classes) {
     return classes.filter(Boolean).join(' ')
@@ -54,14 +55,18 @@ const WriteContract = (props) => {
         for (const [index, arg] of argsStateApprovals.entries()) {
             if (arg != null) {
                 console.log("Checking approval", arg, argsStateValues[index])
-                const approved = await checkApproval(argsStateTokens[index].address, props.address, parseUnits(argsStateValues[index] + "", argsStateTokens[index].decimals));
+                const approved = await checkApproval(argsStateTokens[index].address, address, parseUnits(argsStateValues[index] + "", argsStateTokens[index].decimals));
                 if (!approved) {
-                    
+                    setIsWantingApproval({
+                        token: argsStateTokens[index],
+                        amount: argsStateValues[index],
+                        spender: address,
+                    })
                     return false;
                 }
             }
         }
-        return false
+        return true
     }
 
     function getPreparedTransaction() {
@@ -122,6 +127,11 @@ const WriteContract = (props) => {
     }, []);
 
 
+    function makeApprovals() {
+        if (isWantingApproval != null) {
+            return (<ERC20ApprovalModal />);
+        } 
+    }
 
     function makePayable() {
         if (getFunction().payable) {
@@ -244,6 +254,7 @@ const WriteContract = (props) => {
         <span>
             {makeForm()}
             {makePayable()}
+            {makeApprovals()}
             <div className="mt-2">
                 <SendTransactionButton onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
             </div>
