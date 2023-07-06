@@ -172,7 +172,7 @@ render={
           name: "Amount",
           type: "uint256",
           token: TOKEN,
-          ERC20Allow: AAVE_POOL
+          ERC20Allow: TOKEN
         },
         {
           internalType: "address",
@@ -194,7 +194,7 @@ render={
     },
   ]}
   functionName="deposit"
-  args={[TOKEN, 0, userAddress, 0xf457]}
+  args={[TOKEN, 0, userAddress, 0]}
 />
 
 ### Withdraw

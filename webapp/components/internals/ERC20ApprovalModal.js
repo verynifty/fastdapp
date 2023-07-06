@@ -52,7 +52,7 @@ const ERC20ApprovalModal = (props) => {
                         "type": "function",
                         "buttonText": "Approve"
                       }
-                ]} functionName="approve" args={[props.spender, props.amount]}  />
+                ]} functionName="approve" args={[props.spender, props.amount]} onTransactionMined={closeModal}  />
             </form>
             <form method="dialog" className="modal-backdrop">
                 <button onClick={closeModal}>close</button>

@@ -64,15 +64,15 @@ const WriteContract = (props) => {
         for (const [index, arg] of argsStateApprovals.entries()) {
             if (arg != null) {
                 console.log("Checking approval", arg, argsStateValues[index])
-                const approved = await checkApproval(argsStateTokens[index].address, address, parseUnits(argsStateValues[index] + "", argsStateTokens[index].decimals));
+                const approved = await checkApproval(argsStateTokens[index].address,  argsStateApprovals[index], parseUnits(argsStateValues[index] + "", argsStateTokens[index].decimals));
                 if (!approved) {
                     setIsWantingApproval({
                         token: argsStateTokens[index],
                         amount: argsStateValues[index],
-                        spender: address,
+                        spender: argsStateApprovals[index],
                     })
                     setApprovalId(approvalId + 1);
-                    console.log("Not approved", argsStateTokens[index], argsStateValues[index])
+                    console.log("Not approved", isWantingApproval)
                     return false;
                 }
             }
@@ -104,15 +104,13 @@ const WriteContract = (props) => {
                         nb = 0;
                     }
                     // this is a token so we need the decimals
-                    args.push(parseUnits(nb + "", argsStateTokens[index].decimals));
+                    args.push(parseUnits(nb + "", argsStateTokens[index].decimals) );
                 } else {
                     args.push(arg);
                 }
             }
 
-            console.log("prepare")
             tx = usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") });
-            console.log("after prepare")
             if (tx.error) {
                 console.log("There is an error")
             }
@@ -153,7 +151,7 @@ const WriteContract = (props) => {
 
     function makeApprovals() {
         if (isWantingApproval != null) {
-            return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} address={isWantingApproval.address} />);
+            return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} amount={isWantingApproval.amount} />);
         }
     }
 
@@ -210,7 +208,6 @@ const WriteContract = (props) => {
                                             onChange={e => argsStateSetters[index](e.target.checked)} />
                                     </label>
                                 </div>
-
                             )
                         } else if (input.date === true) {
                             return (
