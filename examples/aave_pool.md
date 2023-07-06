@@ -124,7 +124,14 @@ render={
 
 <div>
 
-# AAVE
+# AAVE 
+
+<ContractRead
+    address={TOKEN}
+    abi={ABIs.ERC20}
+    functionName="symbol"
+    render={(res) => (<h2>{res} Pool on AAVE v3</h2>)} />
+
 
 <div className="stats shadow">
   <div className="stat place-items-center">
@@ -135,7 +142,7 @@ render={
   </div>
   <div className="stat place-items-center">
     <div className="stat-title">Your balance</div>
-    <div className="stat-value text-secondary">
+    <div className="stat-value">
       <TokenBalance token={TOKEN} address={userAddress} />
     </div>
   </div>
