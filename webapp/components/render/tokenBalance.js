@@ -43,7 +43,7 @@ const TokenBalance = (props) => {
     }, [props.token, props.address]);
 
     if (!isLoaded) {
-        return (<center><span class="loading loading-spinner loading-md"></span></center>)
+        return (<span class="loading loading-spinner loading-md"></span>)
     }
     return (
         <span onClick={handleClick}>

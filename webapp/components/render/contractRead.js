@@ -58,7 +58,7 @@ const ContractRead = (props) => {
     }, []);
 
     if (!isLoaded) {
-        return (<center><span class="loading loading-spinner loading-md"></span></center>)
+        return (<span class="loading loading-spinner loading-md"></span>)
     }
     return (
         <span>
