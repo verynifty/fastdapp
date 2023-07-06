@@ -31,6 +31,8 @@ const WriteContract = (props) => {
     const argsStateTokens = [];
     const argsStateApprovals = [];
 
+    const [approvalId, setApprovalId] = useState(0);
+
     function getFunction() {
         return props.abi.find((element) => element.name === props.functionName && element.type === "function");
     }
@@ -62,6 +64,8 @@ const WriteContract = (props) => {
                         amount: argsStateValues[index],
                         spender: address,
                     })
+                    setApprovalId(approvalId + 1);
+                    console.log("Not approved", argsStateTokens[index], argsStateValues[index])
                     return false;
                 }
             }
@@ -129,7 +133,7 @@ const WriteContract = (props) => {
 
     function makeApprovals() {
         if (isWantingApproval != null) {
-            return (<ERC20ApprovalModal />);
+            return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} address={isWantingApproval.address} />);
         } 
     }
 

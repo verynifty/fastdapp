@@ -11,7 +11,7 @@ const Publish = (props) => {
     const [IPFS, setIPFS] = React.useState("");
     const [pageLink, setPageLink] = React.useState("");
     const [isUploaded, setIsUploaded] = React.useState(false);
-
+    
     // This will run only once
     useEffect(() => {
 

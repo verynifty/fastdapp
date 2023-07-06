@@ -154,7 +154,7 @@ render={
   </div>
 </div>
 
-## Deposit
+### Deposit
 
 <ContractWrite
   address={AAVE_POOL}
@@ -197,7 +197,7 @@ render={
   args={[TOKEN, 0, userAddress, 0xf457]}
 />
 
-## Withdraw
+### Withdraw
 
 <ContractWrite
   address={AAVE_POOL}
