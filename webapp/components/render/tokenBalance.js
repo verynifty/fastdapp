@@ -20,6 +20,10 @@ const TokenBalance = (props) => {
     useEffect(() => {
         console.log("useEffect TOKENBALANCE")
         async function getBalance() {
+            if (props.address == null) {
+                setFormatted("Not connected");
+                return;
+            }
             try {
                 const balance = await fetchBalance({
                     address: props.address,
@@ -34,7 +38,7 @@ const TokenBalance = (props) => {
                 }
                 setSymbol(balance.symbol);
             } catch (error) {
-                console.log("TokenBalance Error", error)
+                console.error("TokenBalance Error", error)
                 setFormatted("Error: token doesn't exist or is in a different network?");
             }
             setIsLoaded(true);

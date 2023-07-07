@@ -49,9 +49,8 @@ const ContractRead = (props) => {
                 }
                 setIsLoaded(true);
             } catch (error) {
-                setValue("0")
                 console.error("Error: Contract doesn't exsit or is in a different network?", error)
-                //setError("Error: Contract doesn't exsit or is in a different network?");
+                setError("Error: Contract doesn't exsit or is in a different network?");
             }
 
         }
