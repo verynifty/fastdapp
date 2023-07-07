@@ -115,7 +115,7 @@ theme: aqua
     ];
   })()}
 
-<a href="/app/aave"><h1>AAVE Arbitrum</h1></a>
+<a href="/app/aave_arbitrum"><h1>AAVE Arbitrum</h1></a>
 
 <ContractRead
   address={TOKEN}
