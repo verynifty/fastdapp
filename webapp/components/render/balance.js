@@ -10,6 +10,11 @@ const Balance = (props) => {
     // This will run only once
     useEffect(() => {
         async function getBalance() {
+            if (props.address == null) {
+                setFormatted("Not connected");
+                setIsLoaded(true);
+                return;
+            }
             try {
                 const balance = await fetchBalance({
                     address: props.address,
