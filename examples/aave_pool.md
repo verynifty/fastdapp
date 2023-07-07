@@ -173,7 +173,7 @@ render={
           name: "Amount",
           type: "uint256",
           token: TOKEN,
-          ERC20Allow: poolInfos.aTokenAddress,
+          ERC20Allow: AAVE_POOL,
         },
         {
           internalType: "address",
