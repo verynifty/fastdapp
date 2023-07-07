@@ -1,6 +1,7 @@
 ---
 chain: 1
 authors: grands_marquis
+theme: aqua
 ---
 
 <div class="p-5">
@@ -114,6 +115,15 @@ authors: grands_marquis
     ];
   })()}
 
+<a href="/app/aave_v3"><h1>AAVE</h1></a>
+
+<ContractRead
+  address={TOKEN}
+  abi={ABIs.ERC20}
+  functionName="symbol"
+  render={(res) => <h2>{res} Pool on AAVE v3</h2>}
+/>
+
 <ContractRead
 address={AAVE_POOL}
 abi={AAVE_POOL_ABI}
@@ -123,15 +133,6 @@ render={
 (poolInfos) => (
 
 <div>
-
-# AAVE 
-
-<ContractRead
-    address={TOKEN}
-    abi={ABIs.ERC20}
-    functionName="symbol"
-    render={(res) => (<h2>{res} Pool on AAVE v3</h2>)} />
-
 
 <div className="stats shadow">
   <div className="stat place-items-center">
@@ -172,7 +173,7 @@ render={
           name: "Amount",
           type: "uint256",
           token: TOKEN,
-          ERC20Allow: TOKEN
+          ERC20Allow: TOKEN,
         },
         {
           internalType: "address",
@@ -239,9 +240,18 @@ render={
   args={[TOKEN, 0, userAddress]}
 />
 
+<div class="mt-15 alert">
+  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+  <span>This app was built in less than 250 Lines of code</span>
+  <div>
+    <a href="https://docs.fastdapp.xyz/docs/templates/aave" class="btn btn-sm">Show the code</a>
+    <a href="https://fastdapp.xyz/" class="btn btn-sm btn-primary">Build yours</a>
+  </div>
+</div>
 </div>
         )
     }
 />
+
 
 </div>
