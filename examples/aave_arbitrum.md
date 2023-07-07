@@ -1,12 +1,42 @@
 ---
-chain: 1
+chain: 42161
 authors: grands_marquis
 theme: aqua
 ---
 
 <div class="p-5">
   {(() => {
-    TOKEN = token != null ? token : "0x6b175474e89094c44da98b954eedeac495271d0f";
+    TOKEN = "0x6b175474e89094c44da98b954eedeac495271d0f";
+    AAVE_POOL_DATA_PROVIDER = "0x794a61358D6845594F94dc1DB02A252b5b4814aD";
+    AAAVE_POOL_DATA_PROVIDER_ABI = [
+  {
+    "inputs": [
+      
+    ],
+    "name": "getAllReservesTokens",
+    "outputs": [
+      {
+        "components": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct IPoolDataProvider.TokenData[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
+    ];
     AAVE_POOL = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2";
     AAVE_POOL_ABI = [
       {
@@ -115,134 +145,38 @@ theme: aqua
     ];
   })()}
 
-<a href="/app/aave"><h1>AAVE</h1></a>
+<h1>AAVE</h1>
+
+Aave is a decentralized non-custodial liquidity protocol where users can participate as depositors or borrowers. Depositors provide liquidity to the market to earn a passive income, while borrowers are able to borrow in an overcollateralized (perpetually) or undercollateralized (one-block liquidity) fashion.
+
+## Markets
 
 <ContractRead
-  address={TOKEN}
-  abi={ABIs.ERC20}
-  functionName="symbol"
-  render={(res) => <h2>{res} Pool on AAVE v3</h2>}
-/>
-
-<ContractRead
+address={AAVE_POOL_DATA_PROVIDER}
+abi={AAAVE_POOL_DATA_PROVIDER_ABI}
+functionName="getAllReservesTokens"
+args={[]}
+render={
+(reserveTokens) => (
+<div>
+<ul>
+{reserveTokens.map(token =>
+    <li key={token.tokenAddress}>
+      <a href={`/app/aave_pool?token=${token.tokenAddress}`}>{token.symbol} - APY <ContractRead
 address={AAVE_POOL}
 abi={AAVE_POOL_ABI}
 functionName="getReserveData"
-args={[TOKEN]}
+args={[token.tokenAddress]}
 render={
 (poolInfos) => (
-
-<div>
-
-<div className="stats shadow">
-  <div className="stat place-items-center">
-    <div className="stat-title">APY</div>
-    <div className="stat-value">
-      {parseInt(parseInt(poolInfos.currentLiquidityRate) / 10e21) / 1000}%
-    </div>
-  </div>
-  <div className="stat place-items-center">
-    <div className="stat-title">Your balance</div>
-    <div className="stat-value">
-      <TokenBalance token={TOKEN} address={userAddress} />
-    </div>
-  </div>
-  <div className="stat place-items-center">
-    <div className="stat-title">Lent</div>
-    <div className="stat-value">
-      <TokenBalance token={poolInfos.aTokenAddress} address={userAddress} />
-    </div>
-  </div>
-</div>
-
-### Deposit
-
-<ContractWrite
-  address={AAVE_POOL}
-  abi={[
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "asset",
-          type: "address",
-          hidden: true,
-        },
-        {
-          internalType: "uint256",
-          name: "Amount",
-          type: "uint256",
-          token: TOKEN,
-          ERC20Allow: TOKEN,
-        },
-        {
-          internalType: "address",
-          name: "onBehalfOf",
-          type: "address",
-          hidden: true,
-        },
-        {
-          internalType: "uint16",
-          name: "referralCode",
-          type: "uint16",
-          hidden: true,
-        },
-      ],
-      name: "deposit",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ]}
-  functionName="deposit"
-  args={[TOKEN, 0, userAddress, 0]}
-/>
-
-### Withdraw
-
-<ContractWrite
-  address={AAVE_POOL}
-  abi={[
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "asset",
-          type: "address",
-          hidden: true,
-        },
-        {
-          internalType: "uint256",
-          name: "Amount",
-          type: "uint256",
-          token: poolInfos.aTokenAddress,
-        },
-        {
-          internalType: "address",
-          name: "to",
-          type: "address",
-          hidden: true,
-        },
-      ],
-      name: "withdraw",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ]}
-  functionName="withdraw"
-  args={[TOKEN, 0, userAddress]}
-/>
+<span>{parseInt(parseInt(poolInfos.currentLiquidityRate) / 10e21) / 1000}%</span>)} /></a>
+</li>
+)}
+</ul>
 
 <div class="mt-10 alert">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-  <span>This app was built in less than 250 Lines of code</span>
+  <span>This app was built in less than 200 Lines of code</span>
   <div>
     <a href="https://docs.fastdapp.xyz/docs/templates/aave" class="btn btn-sm">Show the code</a>
     <a href="https://fastdapp.xyz/" class="btn btn-sm btn-primary">Build yours</a>
@@ -252,6 +186,5 @@ render={
         )
     }
 />
-
 
 </div>
