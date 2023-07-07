@@ -6,7 +6,7 @@ theme: aqua
 
 <div class="p-5">
   {(() => {
-    TOKEN = token != null ? token : "0x6b175474e89094c44da98b954eedeac495271d0f";
+    TOKEN = (typeof token !== 'undefined') ? token : "0x6b175474e89094c44da98b954eedeac495271d0f";
     AAVE_POOL = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2";
     AAVE_POOL_ABI = [
       {
