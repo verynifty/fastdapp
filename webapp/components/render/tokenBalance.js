@@ -22,6 +22,7 @@ const TokenBalance = (props) => {
         async function getBalance() {
             if (props.address == null) {
                 setFormatted("Not connected");
+                setIsLoaded(true);
                 return;
             }
             try {
