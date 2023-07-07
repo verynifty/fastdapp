@@ -5,7 +5,9 @@ sidebar_position: 2
 
 # AAVE V3
 
-![ERC20 screenshot](/img/templates/token_transfer.png)
+![AAVE screenshot](/img/templates/aave_1.png)
+
+![AAVE screenshot](/img/templates/aave_2.png)
 
 A two pages template with `ContractRead`, `ContractWrite` and `ERC20TokenApproval`.
 
