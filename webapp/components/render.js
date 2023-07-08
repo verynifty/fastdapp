@@ -122,7 +122,14 @@ const Render = (props) => {
         if (parsedFront.defaultClass != null) {
             setDefaultClass(parsedFront.defaultClass);
         }
-        setRequiredChain(parsedFront.chain != null ? parseInt(parsedFront.chain) : 1);
+        if (parsedFront.chain != null) {
+            setRequiredChain([1]);
+        } else if (typeof parsedFront.chain == "number") {
+            setRequiredChain([parsedFront.chain]);
+        } else {
+            setRequiredChain(parsedFront.chain);
+        }
+        console.log("Required chain:", requiredChain)
         setTheme(parsedFront.theme != null ? parsedFront.theme : "light");
     }
 
@@ -157,14 +164,15 @@ const Render = (props) => {
     }
 
     const getRender = () => {
-        if ((chain != null) && chain.id != requiredChain) {
+        console.log("Required chain:", requiredChain)
+        if ((chain != null && requiredChain != null) && !requiredChain.includes(chain.id)) {
             return (
                 <div className="hero min-h-screen bg-base-200">
                     <div className="hero-content text-center">
                         <div className="max-w-md">
                             <h1 className="text-5xl font-bold">Wrong network</h1>
-                            <p className="py-6">This app is designed to work on a different chain. Please use your wallet to switch to {getChainName(requiredChain)}.</p>
-                            <button className="btn btn-primary" onClick={() => switchNetwork?.(requiredChain)}> Connect to: {getChainName(requiredChain)}</button>
+                            <p className="py-6">This app is designed to work on a different chain. Please use your wallet to switch to {getChainName(requiredChain[0])}.</p>
+                            <button className="btn btn-primary" onClick={() => switchNetwork?.(requiredChain[0])}> Connect to: {getChainName(requiredChain[0])}</button>
                         </div>
                     </div>
                 </div>
