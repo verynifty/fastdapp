@@ -7,7 +7,13 @@ theme: aqua
 <div class="p-5">
   {(() => {
     TOKEN = (typeof token !== 'undefined') ? token : "0x6b175474e89094c44da98b954eedeac495271d0f";
-    AAVE_POOL = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2";
+    AAVE_POOL_ADDRESSES = {
+        1: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        10: "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        42161: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+        137: "0x794a61358D6845594F94dc1DB02A252b5b4814aD"
+    }
+    AAVE_POOL = AAVE_POOL_ADDRESSES[connectedChain.id];
     AAVE_POOL_ABI = [
       {
         inputs: [
@@ -118,10 +124,10 @@ theme: aqua
 <a href="/app/aave"><h1>AAVE</h1></a>
 
 <ContractRead
-  address={TOKEN}
-  abi={ABIs.ERC20}
-  functionName="symbol"
-  render={(res) => <h2>{res} Pool on AAVE v3</h2>}
+address={TOKEN}
+abi={ABIs.ERC20}
+functionName="symbol"
+render={(res) => <h2>{res} Pool on AAVE v3</h2>}
 />
 
 <ContractRead
@@ -158,86 +164,86 @@ render={
 ### Deposit
 
 <ContractWrite
-  address={AAVE_POOL}
-  abi={[
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "asset",
-          type: "address",
-          hidden: true,
-        },
-        {
-          internalType: "uint256",
-          name: "Amount",
-          type: "uint256",
-          token: TOKEN,
-          ERC20Allow: AAVE_POOL,
-        },
-        {
-          internalType: "address",
-          name: "onBehalfOf",
-          type: "address",
-          hidden: true,
-        },
-        {
-          internalType: "uint16",
-          name: "referralCode",
-          type: "uint16",
-          hidden: true,
-        },
-      ],
-      name: "deposit",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ]}
-  functionName="deposit"
-  args={[TOKEN, 0, userAddress, 0]}
+address={AAVE_POOL}
+abi={[
+{
+inputs: [
+{
+internalType: "address",
+name: "asset",
+type: "address",
+hidden: true,
+},
+{
+internalType: "uint256",
+name: "Amount",
+type: "uint256",
+token: TOKEN,
+ERC20Allow: AAVE_POOL,
+},
+{
+internalType: "address",
+name: "onBehalfOf",
+type: "address",
+hidden: true,
+},
+{
+internalType: "uint16",
+name: "referralCode",
+type: "uint16",
+hidden: true,
+},
+],
+name: "deposit",
+outputs: [],
+stateMutability: "nonpayable",
+type: "function",
+},
+]}
+functionName="deposit"
+args={[TOKEN, 0, userAddress, 0]}
 />
 
 ### Withdraw
 
 <ContractWrite
-  address={AAVE_POOL}
-  abi={[
-    {
-      inputs: [
-        {
-          internalType: "address",
-          name: "asset",
-          type: "address",
-          hidden: true,
-        },
-        {
-          internalType: "uint256",
-          name: "Amount",
-          type: "uint256",
-          token: poolInfos.aTokenAddress,
-        },
-        {
-          internalType: "address",
-          name: "to",
-          type: "address",
-          hidden: true,
-        },
-      ],
-      name: "withdraw",
-      outputs: [
-        {
-          internalType: "uint256",
-          name: "",
-          type: "uint256",
-        },
-      ],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ]}
-  functionName="withdraw"
-  args={[TOKEN, 0, userAddress]}
+address={AAVE_POOL}
+abi={[
+{
+inputs: [
+{
+internalType: "address",
+name: "asset",
+type: "address",
+hidden: true,
+},
+{
+internalType: "uint256",
+name: "Amount",
+type: "uint256",
+token: poolInfos.aTokenAddress,
+},
+{
+internalType: "address",
+name: "to",
+type: "address",
+hidden: true,
+},
+],
+name: "withdraw",
+outputs: [
+{
+internalType: "uint256",
+name: "",
+type: "uint256",
+},
+],
+stateMutability: "nonpayable",
+type: "function",
+},
+]}
+functionName="withdraw"
+args={[TOKEN, 0, userAddress]}
 />
 
 <div class="mt-10 alert">
@@ -252,6 +258,5 @@ render={
         )
     }
 />
-
 
 </div>
