@@ -7,11 +7,27 @@ sidebar_position: 2
 
 Get information about the chain the user is connected to
 
-## Example
+## Usage
 
 ```
 <span> Connected on {connectedChain.name}! </span>
 ```
+
+If you want to built cross chain apps. You can automatically swith the contract addresses in your app like this where the `AAVE_POOL_DATA_PROVIDER_ADDRESSES` keys are the chain ids.
+
+```
+ {(() => {
+    AAVE_POOL_DATA_PROVIDER_ADDRESSES = {
+        1: "0x7B4EB56E7CD4b454BA8ff71E4518426369a138a3",
+        10: "0xbd83DdBE37fc91923d59C8c1E0bDe0CccCa332d5",
+        42161: "0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654",
+        137: "0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654"
+    }
+    AAVE_POOL_DATA_PROVIDER = AAVE_POOL_DATA_PROVIDER_ADDRESSES[connectedChain.id];
+})()}
+```
+
+## Available data
 
 The `connectedChain` contains all the following properties:
 
@@ -79,3 +95,4 @@ The `connectedChain` contains all the following properties:
    "unsupported":false
 }
 ```
+

@@ -1,12 +1,18 @@
 ---
-chain: 1
+chain: [1,10,42161,137]
 authors: grands_marquis
 theme: aqua
 ---
 
 <div class="p-5">
   {(() => {
-    AAVE_POOL_DATA_PROVIDER = "0x7B4EB56E7CD4b454BA8ff71E4518426369a138a3";
+    AAVE_POOL_DATA_PROVIDER_ADDRESSES = {
+        1: "0x7B4EB56E7CD4b454BA8ff71E4518426369a138a3",
+        10: "0xbd83DdBE37fc91923d59C8c1E0bDe0CccCa332d5",
+        42161: "0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654",
+        137: "0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654"
+    }
+    AAVE_POOL_DATA_PROVIDER = AAVE_POOL_DATA_PROVIDER_ADDRESSES[connectedChain.id];
     AAAVE_POOL_DATA_PROVIDER_ABI = [
   {
     "inputs": [
@@ -36,7 +42,13 @@ theme: aqua
     "type": "function"
   }
     ];
-    AAVE_POOL = "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2";
+    AAVE_POOL_ADDRESSES = {
+        1: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        10: "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        42161: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+        137: "0x794a61358D6845594F94dc1DB02A252b5b4814aD"
+    }
+    AAVE_POOL = AAVE_POOL_ADDRESSES[connectedChain.id];
     AAVE_POOL_ABI = [
       {
         inputs: [

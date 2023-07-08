@@ -122,7 +122,8 @@ const Render = (props) => {
         if (parsedFront.defaultClass != null) {
             setDefaultClass(parsedFront.defaultClass);
         }
-        if (parsedFront.chain != null) {
+        console.log(parsedFront)
+        if (parsedFront.chain == null) {
             setRequiredChain([1]);
         } else if (typeof parsedFront.chain == "number") {
             setRequiredChain([parsedFront.chain]);
@@ -175,7 +176,6 @@ const Render = (props) => {
                         </div>
                     </div>
                 </div>
-
             );
         } else {
             return (<MDX components={components} scope={scope}>{content}</MDX>);
