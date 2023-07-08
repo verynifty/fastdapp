@@ -1,4 +1,3 @@
-
 ---
 sidebar_label: 'connectedChain'
 sidebar_position: 2
