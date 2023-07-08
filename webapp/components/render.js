@@ -150,11 +150,10 @@ const Render = (props) => {
                 setContentFromProp();
                 setIsLoaded(true);
             } catch (error) {
-                console.log("ERROR", error);
+                console.error("There is an error loading the app", error);
             }
 
         }
-        console.log("RELOADDDDDD", address)
         load();
     }, [props.content, address]);
 
@@ -164,7 +163,6 @@ const Render = (props) => {
     }
 
     const getRender = () => {
-        console.log("Required chain:", requiredChain)
         if ((chain != null && requiredChain != null) && !requiredChain.includes(chain.id)) {
             return (
                 <div className="hero min-h-screen bg-base-200">
