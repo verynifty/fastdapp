@@ -141,6 +141,7 @@ const Render = (props) => {
                 const account = await getAccount();
                 scope.userAddress = account.address;
                 scope.location = props.location == null ? "editor" : props.location;
+                scope.connectedChain = chain;
                 const params = new URLSearchParams(window.location.search);
                 for (var value of params.keys()) {
                     if (value != "template" && value != "ipfs") {
