@@ -19,33 +19,33 @@ const dapps = [
   },
   {
     title: 'Aave',
-    description: 'Bid on your next Nouns',
+    description: 'An Aave V3 minimalist frontend',
     image: aaveImage,
     url: "/app/aave"
   },
   {
     title: 'ERC6551',
-    description: 'Bid on your next Nouns',
+    description: 'Create token bound accounts',
     image: erc6551Image,
     url: "/app/erc6551"
   },
   {
     title: 'NFT top collections',
-    description: 'Bid on your next Nouns',
+    description: 'See and sweep top NFT collections',
     image: nftImage,
     url: "/app/reservoir_sweep"
   },
   {
     title: 'ERC20 Transfer',
-    description: 'Bid on your next Nouns',
+    description: 'Transfer ERC20 tokens',
     image: erc20Image,
-    url: "/app/reservoir_sweep"
+    url: "/app/token_transfer"
   },
   {
     title: 'Lido Staking',
-    description: 'Bid on your next Nouns',
+    description: 'Stake your ETH on Lido',
     image: lidoImage,
-    url: "/app/reservoir_sweep"
+    url: "/app/lido_staking"
   },
 ]
 
@@ -91,7 +91,7 @@ export function Dapps() {
               </div>
               <Image
                 alt=""
-                className="object-cover w-full aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
+                className="object-fit w-full aspect-square group-hover:scale-110 transition duration-300 ease-in-out"
                 src={dapp.image}
               />
             </a>
