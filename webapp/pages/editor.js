@@ -2,7 +2,7 @@ const prettier = require("prettier");
 const markdownParser = require("prettier/parser-markdown");
 const parserBable = require("prettier/parser-babel");
 
-import React, { useRef, Suspense, Fragment, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import Head from 'next/head'
 
 import { useRouter } from 'next/router'
@@ -21,14 +21,15 @@ import Publish from 'components/publish';
 import PleaseConnect from 'components/pleaseConnect';
 
 
-let editorRef;
 
 export default function EditorPage({ source }) {
 
     const router = useRouter()
 
-    editorRef = useRef(null);
+
     const [content, setContent] = React.useState(``);
+    const [editor, setEditor] = React.useState(``);
+
     const [isLoaded, setIsLoaded] = React.useState(``);
     const [version, setVersion] = React.useState(0);
     const [rendered, setRendered] = React.useState("");
@@ -62,8 +63,8 @@ export default function EditorPage({ source }) {
     let account = getAccount();
 
     function handleEditorDidMount(editor, monaco) {
-        console.log(editor)
-        editorRef.current = editor;
+        console.log("onmount", editor, monaco)
+        setEditor(editor);
         let ctx = this;
         editor.addAction({
             // An unique identifier of the contributed action.
@@ -135,12 +136,16 @@ export default function EditorPage({ source }) {
     }
 
     async function handleEditorChange(value, event) {
-        setContent(value)
+    }
+
+    function getContent() {
+        console.log(editor.getValue())
+        return (editor.getValue());
     }
 
     function handleRender() {
         toast.success("Rendered!")
-        setRendered(content)
+        setRendered(getContent())
         setVersion(version + 1)
     }
 
@@ -163,7 +168,7 @@ export default function EditorPage({ source }) {
             return (<Publish content={rendered} />);
         } else {
             return (
-                <Editor height="100%" defaultLanguage="markdown" onChange={handleEditorChange}
+                <Editor  height="100%" defaultLanguage="markdown" onChange={handleEditorChange}
                     onMount={handleEditorDidMount} value={content} />
             );
         }

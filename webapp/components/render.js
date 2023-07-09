@@ -23,6 +23,7 @@ import WatchEvents from 'components/render/watchEvents';
 import Uniswap from 'components/render/uniswap';
 import ReservoirSweep from 'components/render/reservoirSweep';
 import ReservoirNFTDisplay from 'components/render/reservoirNFTDisplay';
+import AirStack from 'components/render/airstack';
 
 import APICall from 'components/render/apiCall';
 
@@ -59,6 +60,7 @@ const components = {
     "Uniswap": Uniswap,
     "ReservoirSweep": ReservoirSweep,
     "ReservoirNFTDisplay": ReservoirNFTDisplay,
+    "AirStack": AirStack,
     "Events": Events,
     "WatchEvents": WatchEvents,
     "APICall": APICall,
@@ -75,6 +77,7 @@ const scope = {
 };
 
 const Render = (props) => {
+    console.log("Render useEffect");
 
     const [isLoaded, setIsLoaded] = React.useState(false);
 
@@ -156,6 +159,7 @@ const Render = (props) => {
             }
 
         }
+        console.log("Render useEffect");
         load();
     }, [props.content, address]);
 
