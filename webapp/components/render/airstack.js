@@ -1,11 +1,12 @@
 import { init, useQuery } from "@airstack/airstack-react";
 
-init();
+init(process.env.NEXT_PUBLIC_AIR_STACK_API_KEY);
 
 const AirStack = (props) => {
-    const { data, loading, error } = useQuery(props.query, props.variables, { cache: false });
+    console.log("Airstack props", props)
+    const { data, loading, error } = useQuery(props.query, props.variables);
 
-    if (loading) {
+    if (loading || !data) {
         return (<span class="loading loading-spinner loading-md"></span>)
     }
 
@@ -13,6 +14,8 @@ const AirStack = (props) => {
         console.error(error);
         return (<p>Error: {error.message}</p>);
     }
+
+    console.log("Airstack data", data, loading, error)
 
     if (typeof props.render === 'function') {
         try {
@@ -23,6 +26,7 @@ const AirStack = (props) => {
         }
 
     }
+
     if (props.render != null) {
         console.log("Airstack call", data)
         return (<div>{props.render(data)}</div>);

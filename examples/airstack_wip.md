@@ -42,7 +42,7 @@ variables={
 }
 render={(data) =>
 (   
-<div>{data.nfts.map(nft =>
+<div>{data.nfts.data.map(nft =>
     JSON.stringify(nft)
 )}</div>
 )}
