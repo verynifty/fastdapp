@@ -1,8 +1,22 @@
 ---
-chain: 1
-authors: grands_marquis
+sidebar_label: 'AirstStack queries'
+sidebar_position: 6
 ---
+# Airstack queries
 
+Display data retrieved by an airstack query. You can see the [Airstack docs]() for more information.
+
+## Props
+
+* `query`
+* `variables`
+* `render` a function to render the result
+
+## Example
+
+Retrive NFTs of an address and display them:
+
+```
 <AirStack
   query={`
 query tokens($address: Identity!) {
@@ -66,3 +80,5 @@ query tokens($address: Identity!) {
     </div>
   )}
 />
+
+```
