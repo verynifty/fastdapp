@@ -24,8 +24,9 @@ import Uniswap from 'components/render/uniswap';
 import ReservoirSweep from 'components/render/reservoirSweep';
 import ReservoirNFTDisplay from 'components/render/reservoirNFTDisplay';
 import AirStack from 'components/render/airstack';
-
 import APICall from 'components/render/apiCall';
+
+import PleaseConnect from 'components/pleaseConnect';
 
 import { getAccount } from '@wagmi/core';
 import { useAccount } from 'wagmi';
@@ -65,6 +66,7 @@ const components = {
     "WatchEvents": WatchEvents,
     "APICall": APICall,
     "Moment": Moment,
+    "PleaseConnect": PleaseConnect,
 }
 const scope = {
     "ABIs": { "ERC20": ERC20ABI, "ERC1155": ERC1155ABI, "ERC721": ERC721ABI },

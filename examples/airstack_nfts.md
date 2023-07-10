@@ -4,7 +4,9 @@ authors: grands_marquis
 ---
 <div class="p-5">
 
-# My NFTS retrived by Airstack
+# My NFTS retrieved by Airstack
+
+<PleaseConnect>
 
 <AirStack
   query={`
@@ -70,4 +72,5 @@ query tokens($address: Identity!) {
   )}
 />
 
+</PleaseConnect>
 </div>
