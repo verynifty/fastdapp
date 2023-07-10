@@ -1,7 +1,8 @@
 ---
-sidebar_label: 'AirstStack queries'
+sidebar_label: 'AirstStack'
 sidebar_position: 6
 ---
+
 # Airstack queries
 
 Display data retrieved by an airstack query. You can see the [Airstack docs]() for more information.
