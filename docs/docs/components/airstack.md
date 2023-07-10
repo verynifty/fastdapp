@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'AirstStack'
+sidebar_label: 'AirStack'
 sidebar_position: 6
 ---
 
