@@ -5,7 +5,7 @@ sidebar_position: 6
 
 # Airstack queries
 
-Display data retrieved by an airstack query. You can see the [Airstack docs]() for more information.
+Display data retrieved by an airstack query. You can see the [Airstack docs](https://docs.airstack.xyz) for more information.
 
 ## Props
 
@@ -15,7 +15,7 @@ Display data retrieved by an airstack query. You can see the [Airstack docs]() f
 
 ## Example
 
-Retrive NFTs of an address and display them:
+Retrieve NFTs of an address and display them:
 
 ```
 <AirStack
