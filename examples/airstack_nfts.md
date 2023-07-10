@@ -2,6 +2,9 @@
 chain: 1
 authors: grands_marquis
 ---
+<div class="p-5">
+
+# My NFTS retrived by Airstack
 
 <AirStack
   query={`
@@ -66,3 +69,5 @@ query tokens($address: Identity!) {
     </div>
   )}
 />
+
+</div>
