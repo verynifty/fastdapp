@@ -12,7 +12,7 @@ import logoReact from '@/images/logos/react.svg'
 
 export function Hero() {
   return (
-    <div className=" p-20 text-center bg-gradient-to-r from-blue-100 to-white-400 ">
+    <div className=" p-10 text-center bg-gradient-to-r from-blue-100 to-white-400 ">
       <h1 className="mx-auto max-w-4xl font-display text-5xl font-medium tracking-tight text-slate-900 sm:text-7xl ">
         Build your{' '}
         <span className="relative whitespace-nowrap text-blue-600">
@@ -29,7 +29,7 @@ export function Hero() {
         in minutes.
       </h1>
       <p className="mx-auto mt-6 max-w-2xl text-lg tracking-tight text-slate-700">
-       Focus on your contract, create the frontend in minutes
+        Focus on your contract, create the frontend in minutes
       </p>
       <div className="mt-10 flex justify-center gap-x-6">
         <Button className="" href="/editor">Open the editor</Button>
@@ -83,5 +83,5 @@ export function Hero() {
       </div>
     </div>
   )
-  
+
 }

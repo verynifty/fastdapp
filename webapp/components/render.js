@@ -147,7 +147,12 @@ const Render = (props) => {
                 const account = await getAccount();
                 scope.userAddress = account.address;
                 scope.location = props.location == null ? "editor" : props.location;
-                scope.connectedChain = chain;
+                scope.connectedChain = chain != null ? chain : {
+                    id: 1,
+                    name: "Ethereum",
+                    shortName: "ETH",
+                    chain: "ETH"
+                };
                 const params = new URLSearchParams(window.location.search);
                 for (var value of params.keys()) {
                     if (value != "template" && value != "ipfs") {
@@ -195,7 +200,7 @@ const Render = (props) => {
                 <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.1/dist/full.css" rel="stylesheet" type="text/css" />
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
-            <div className="" data-theme={theme} class="h-full">
+            <div className="" data-theme={theme} class="min-h-full">
                 <div className={'mt-0 right-0 max-w-none min-h-full ' + defaultClass}>
                     {getRender()}
                 </div>
