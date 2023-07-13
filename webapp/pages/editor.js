@@ -225,8 +225,8 @@ export default function EditorPage({ source }) {
 
 
                 </div>
-                <div className=" flex">
-                    <div className="flex-1">
+                <div className=" h-screen flex">
+                    <div className="flex-1 overflow-auto">
                         <PleaseConnect>
                             <RenderErrorWrapper version={version}>
                                 <Render content={rendered} />
