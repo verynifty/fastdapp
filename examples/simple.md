@@ -3,6 +3,8 @@ chain: 1
 authors: grands_marquis
 ---
 
+<div class="p-5 bg-base-200">
+
 # Hello and welcome to Fastdapp
 
 What you see on the right is our application code. On the left is the preview you can update by clicking the render button.
@@ -14,13 +16,15 @@ You can use Markdown to format your app. But you can also use some HTML, CSS and
 <>
   {(() => {
     // You can declare reactive variables
-    [counter, setCounter] = useState(1);
+    [counter, setCounter] = useState(69);
   })()}
 </>
-<div class="mockup-window border border-base-300 bg-base-200 m-5">
+<div class="mockup-window border border-base-400 bg-base-300 m-5">
   <div class="px-4 py-16 bg-base-100">
     <div class="join">
-      <button class="btn join-item btn-neutral">My counter = {counter}</button>
+      <button class="btn join-item cursor-default">
+        My counter = {counter}
+      </button>
       <button
         class="btn join-item bg-red-500"
         onClick={() => setCounter(counter - 1)}
@@ -39,7 +43,7 @@ You can use Markdown to format your app. But you can also use some HTML, CSS and
 
 ## You can easily read the chain
 
-<div class="mockup-window border border-base-300 m-5 bg-base-200">
+<div class="mockup-window border  m-5 border-base-400 bg-base-300">
   <div class="px-4 py-16 bg-base-100">
     Your address is <AddressDisplay address={userAddress} /> and your balance is{" "}
     <Balance address={userAddress} />.
@@ -60,7 +64,7 @@ You can use Markdown to format your app. But you can also use some HTML, CSS and
 
 For example mint an NFT:
 
-<div class="mockup-window border border-base-300 m-5 bg-base-200">
+<div class="mockup-window border   m-5 border-base-400 bg-base-300">
   <div class="px-4 py-16 bg-base-100">
     <ContractWrite
       address={"0x3dbb10bde369a8272f7106d88c510829af49c813"}
@@ -81,7 +85,7 @@ For example mint an NFT:
 
 And handle some parameters for example to transfer some DAI:
 
-<div class="mockup-window border border-base-300 bg-base-200 m-5">
+<div class="mockup-window border  m-5 border-base-400 bg-base-300">
   <div class="px-4 py-16 bg-base-100">
     <ContractWrite
       address="0x6b175474e89094c44da98b954eedeac495271d0f"
@@ -126,3 +130,5 @@ More examples:
 - [Contract write](https://fastdapp.xyz/editor?template=contract_write)
 - [Contract Read](https://fastdapp.xyz/editor?template=contract_read)
 - [some pre-built Templates](https://docs.fastdapp.xyz/docs/category/templates)
+
+</div>

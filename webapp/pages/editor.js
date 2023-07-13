@@ -209,7 +209,7 @@ export default function EditorPage({ source }) {
                 onKeyUp={onKeyUp.bind(this)}
             >
                 <Publish content={rendered} />
-                <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2 md:flex md:items-center md:justify-between" style={{"height": "2rem !important"}}>
+                <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2 md:flex md:items-center md:justify-between" style={{"height": "2rem"}}>
                     <div className="min-w-0 flex-1">
                         <h2 className="text-xl font-bold  text-white sm:truncate  sm:tracking-tight">
                             Editor

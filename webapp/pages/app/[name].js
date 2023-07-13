@@ -77,7 +77,7 @@ export default function TestPage({ source }) {
   }
 
   return (
-    <div class="min-h-screen">
+    <div className="app_container">
 
       <HeaderMetadata title={title} description={description} />
       {render()}
