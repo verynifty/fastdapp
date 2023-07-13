@@ -17,96 +17,112 @@ You can use Markdown to format your app. But you can also use some HTML, CSS and
     [counter, setCounter] = useState(1);
   })()}
 </>
-
-<div class="join">
-  <button class="btn join-item btn-neutral">My counter = {counter}</button>
-  <button
-    class="btn join-item bg-red-500"
-    onClick={() => setCounter(counter - 1)}
-  >
-    Decrease
-  </button>
-  <button
-    class="btn join-item bg-green-500"
-    onClick={() => setCounter(counter + 1)}
-  >
-    Increase
-  </button>
+<div class="mockup-window border border-base-300 bg-base-200 m-5">
+  <div class="px-4 py-16 bg-base-100">
+    <div class="join">
+      <button class="btn join-item btn-neutral">My counter = {counter}</button>
+      <button
+        class="btn join-item bg-red-500"
+        onClick={() => setCounter(counter - 1)}
+      >
+        Decrease
+      </button>
+      <button
+        class="btn join-item bg-green-500"
+        onClick={() => setCounter(counter + 1)}
+      >
+        Increase
+      </button>
+    </div>
+  </div>
 </div>
 
 ## You can easily read the chain
 
-Your address is <AddressDisplay address={userAddress} /> and your balance is <Balance address={userAddress} />.
-
-You can also get more interesting data like the current supply of DAI
-
-<ContractRead
-  address="0x6b175474e89094c44da98b954eedeac495271d0f"
-  abi={ABIs.ERC20}
-  functionName="totalSupply"
-  render={(supply) => parseInt(supply) / 10e18 + " DAI"}
-/>
+<div class="mockup-window border border-base-300 m-5 bg-base-200">
+  <div class="px-4 py-16 bg-base-100">
+    Your address is <AddressDisplay address={userAddress} /> and your balance is{" "}
+    <Balance address={userAddress} />.
+    <ContractRead
+      address="0x6b175474e89094c44da98b954eedeac495271d0f"
+      abi={ABIs.ERC20}
+      functionName="totalSupply"
+      render={(supply) =>
+        "You can also get more interesting data like the current supply of DAI: " +
+        parseInt(supply) / 10e18 +
+        " DAI"
+      }
+    />
+  </div>
+</div>
 
 ## And interact with the chain
 
 For example mint an NFT:
 
-<ContractWrite
-  address={"0x3dbb10bde369a8272f7106d88c510829af49c813"}
-  abi={[
-    {
-      inputs: [],
-      name: "mint",
-      outputs: [],
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ]}
-  functionName="mint"
-  buttonText="Mint an NFT"
-/>
+<div class="mockup-window border border-base-300 m-5 bg-base-200">
+  <div class="px-4 py-16 bg-base-100">
+    <ContractWrite
+      address={"0x3dbb10bde369a8272f7106d88c510829af49c813"}
+      abi={[
+        {
+          inputs: [],
+          name: "mint",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ]}
+      functionName="mint"
+      buttonText="Mint an NFT"
+    />
+  </div>
+</div>
 
 And handle some parameters for example to transfer some DAI:
 
-<ContractWrite
-  address="0x6b175474e89094c44da98b954eedeac495271d0f"
-  abi={[
-    {
-      constant: false,
-      inputs: [
+<div class="mockup-window border border-base-300 bg-base-200 m-5">
+  <div class="px-4 py-16 bg-base-100">
+    <ContractWrite
+      address="0x6b175474e89094c44da98b954eedeac495271d0f"
+      abi={[
         {
-          name: "To",
-          type: "address",
+          constant: false,
+          inputs: [
+            {
+              name: "To",
+              type: "address",
+            },
+            {
+              name: "Amount",
+              type: "uint256",
+              token: "0x6b175474e89094c44da98b954eedeac495271d0f",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              name: "",
+              type: "bool",
+            },
+          ],
+          payable: false,
+          stateMutability: "nonpayable",
+          type: "function",
         },
-        {
-          name: "Amount",
-          type: "uint256",
-          token: "0x6b175474e89094c44da98b954eedeac495271d0f",
-        },
-      ],
-      name: "transfer",
-      outputs: [
-        {
-          name: "",
-          type: "bool",
-        },
-      ],
-      payable: false,
-      stateMutability: "nonpayable",
-      type: "function",
-    },
-  ]}
-  functionName="transfer"
-  args={["0xC618b905f7b41c7D53C23474322D7D3297730419", 1]}
-/>
-
+      ]}
+      functionName="transfer"
+      args={["0xC618b905f7b41c7D53C23474322D7D3297730419", 1]}
+    />
+  </div>
+</div>
 
 ## Dive deeper
 
 You can read the [docs](https://docs.fastdapp.xyz/docs/intro), check the [examples](https://docs.fastdapp.xyz/docs/category/templates).
 
-
 More examples:
+
 - [Contract write](https://fastdapp.xyz/editor?template=contract_write)
 - [Contract Read](https://fastdapp.xyz/editor?template=contract_read)
 - [some pre-built Templates](https://docs.fastdapp.xyz/docs/category/templates)
