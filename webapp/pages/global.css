@@ -14,3 +14,12 @@ h3 {
 @tailwind components;
 @tailwind utilities;
 
+.editor_container {
+  max-height: calc(100%) !important;
+  height: calc(100%) !important;
+}
+
+.editor_parent {
+  max-height: calc(100% - 6rem) !important;
+  height: calc(100% - 6rem) !important;
+}

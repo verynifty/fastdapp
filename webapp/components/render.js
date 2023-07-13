@@ -173,7 +173,7 @@ const Render = (props) => {
     const getRender = () => {
         if ((chain != null && requiredChain != null) && !requiredChain.includes(chain.id)) {
             return (
-                <div className="hero min-h-screen bg-base-200">
+                <div className="hero h-full bg-base-200">
                     <div className="hero-content text-center">
                         <div className="max-w-md">
                             <h1 className="text-5xl font-bold">Wrong network</h1>
@@ -195,7 +195,7 @@ const Render = (props) => {
                 <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.1/dist/full.css" rel="stylesheet" type="text/css" />
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
-            <div className="" data-theme={theme} class="min-h-screen">
+            <div className="" data-theme={theme} class="h-full">
                 <div className={'mt-0 right-0 max-w-none min-h-full ' + defaultClass}>
                     {getRender()}
                 </div>

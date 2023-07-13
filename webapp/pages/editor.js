@@ -172,7 +172,7 @@ export default function EditorPage({ source }) {
             return (<Publish content={rendered} />);
         } else {
             return (
-                <div className='editor_container h-full'>
+                <div className=' h-full'>
                         <Editor className="h-full" options={{ "automaticLayout": true }} defaultLanguage="markdown" onChange={handleEditorChange}
                             onMount={handleEditorDidMount} value={content} />
                 </div>
@@ -194,7 +194,7 @@ export default function EditorPage({ source }) {
 
 
     return (
-        <div className='h-full'>
+        <div className='editor_parent'>
             <Head>
                 <title>Fast Dapp - Editor</title>
                 <meta
@@ -209,7 +209,7 @@ export default function EditorPage({ source }) {
                 onKeyUp={onKeyUp.bind(this)}
             >
                 <Publish content={rendered} />
-                <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2	md:flex md:items-center md:justify-between">
+                <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2 md:flex md:items-center md:justify-between" style={{"height": "2rem !important"}}>
                     <div className="min-w-0 flex-1">
                         <h2 className="text-xl font-bold  text-white sm:truncate  sm:tracking-tight">
                             Editor
@@ -226,7 +226,7 @@ export default function EditorPage({ source }) {
                         <a href="https://t.me/+1YcicNi_gdNiOTdk" target="_blank" className="btn ml-2 btn-xs">Live chat help</a>
                     </div>
                 </div>
-                <div className=" flex h-full">
+                <div className=" flex editor_container">
                     <div className="flex-1  h-full overflow-auto" ref={renderViewRef}>
                         <PleaseConnect>
                             <RenderErrorWrapper version={version}>
