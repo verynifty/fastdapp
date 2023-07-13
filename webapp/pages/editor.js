@@ -2,7 +2,7 @@ const prettier = require("prettier");
 const markdownParser = require("prettier/parser-markdown");
 const parserBable = require("prettier/parser-babel");
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Head from 'next/head'
 
 import { useRouter } from 'next/router'
@@ -27,13 +27,16 @@ export default function EditorPage({ source }) {
     const router = useRouter()
 
 
-    const [content, setContent] = React.useState(``);
-    const [editor, setEditor] = React.useState(``);
+    const [content, setContent] = useState(``);
+    const [editor, setEditor] = useState(``);
 
-    const [isLoaded, setIsLoaded] = React.useState(``);
-    const [version, setVersion] = React.useState(0);
-    const [rendered, setRendered] = React.useState("");
-    const [isPublishing, setIsPublishing] = React.useState(false);
+    const [isLoaded, setIsLoaded] = useState(``);
+    const [version, setVersion] = useState(0);
+    const [rendered, setRendered] = useState("");
+    const [isPublishing, setIsPublishing] = useState(false);
+
+    const renderViewRef = useRef(null)
+
 
     function getExampleURL(templateName = null) {
         return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (templateName == null ? 'simple' : templateName) + ".md")
@@ -66,6 +69,7 @@ export default function EditorPage({ source }) {
         console.log("onmount", editor, monaco)
         setEditor(editor);
         let ctx = this;
+
         editor.addAction({
             // An unique identifier of the contributed action.
             id: "my-unique-id",
@@ -168,8 +172,10 @@ export default function EditorPage({ source }) {
             return (<Publish content={rendered} />);
         } else {
             return (
-                <Editor  height="100%" defaultLanguage="markdown" onChange={handleEditorChange}
-                    onMount={handleEditorDidMount} value={content} />
+                <div className='editor_container h-full'>
+                        <Editor className="h-full" options={{ "automaticLayout": true }} defaultLanguage="markdown" onChange={handleEditorChange}
+                            onMount={handleEditorDidMount} value={content} />
+                </div>
             );
         }
     }
@@ -188,7 +194,7 @@ export default function EditorPage({ source }) {
 
 
     return (
-        <div>
+        <div className='h-full'>
             <Head>
                 <title>Fast Dapp - Editor</title>
                 <meta
@@ -216,24 +222,19 @@ export default function EditorPage({ source }) {
                         >
                             Render
                         </button>
-
                         <label for="my_modal_7" className="btn ml-2 btn-xs">Publish</label>
-
                         <a href="https://t.me/+1YcicNi_gdNiOTdk" target="_blank" className="btn ml-2 btn-xs">Live chat help</a>
-
                     </div>
-
-
                 </div>
-                <div className=" h-screen flex">
-                    <div className="flex-1 overflow-auto">
+                <div className=" flex h-full">
+                    <div className="flex-1  h-full overflow-auto" ref={renderViewRef}>
                         <PleaseConnect>
                             <RenderErrorWrapper version={version}>
                                 <Render content={rendered} />
                             </RenderErrorWrapper>
                         </PleaseConnect>
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 h-full overflow-auto bg-base-200">
                         {RightPanel()}
                     </div>
 

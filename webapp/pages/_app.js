@@ -5,7 +5,7 @@ const inter = Inter({ subsets: ['latin'] })
 
 import '@rainbow-me/rainbowkit/styles.css';
 
-import { default as React, useEffect } from 'react';
+import { default as React, useEffect, useState } from 'react';
 
 import Head from 'next/head'
 
@@ -36,39 +36,43 @@ const theme = darkTheme({
 
 import { Header } from '@/components/Header'
 
-const { chains, publicClient, webSocketPublicClient } = configureChains(
-    [
+
+function MyApp({ Component, pageProps }) {
+
+    const [availableChains, setAvailableChains] = useState([
         mainnet,
         polygon,
         optimism,
         arbitrum,
         goerli
-    ],
-    [
-        publicProvider(),
-        alchemyProvider({ apiKey: "8geS2cIqjhJTgXjZ" + "UebWKe7Gnpwh1CgC" })
-    ]
-);
+    ]);
 
-const { connectors } = getDefaultWallets({
-    appName: 'test',
-    projectId: process.env.WALLET_CONNECT_PROJECT_ID,
-    chains
-});
+    const { chains, publicClient, webSocketPublicClient } = configureChains(
+        availableChains,
+        [
+            publicProvider(),
+            alchemyProvider({ apiKey: "8geS2cIqjhJTgXjZ" + "UebWKe7Gnpwh1CgC" })
+        ]
+    );
 
-
-const wagmiConfig = createConfig({
-    autoConnect: true,
-    connectors,
-    publicClient,
-    webSocketPublicClient
-});
+    const { connectors } = getDefaultWallets({
+        appName: 'test',
+        projectId: process.env.WALLET_CONNECT_PROJECT_ID,
+        chains
+    });
 
 
-
-function MyApp({ Component, pageProps }) {
+    let [wagmiConfig, setWagmiConfig] = React.useState(createConfig({
+        autoConnect: true,
+        connectors,
+        publicClient,
+        webSocketPublicClient
+    }));
 
     useEffect(() => {
+
+
+
     }, []);
 
     return (
@@ -97,9 +101,11 @@ function MyApp({ Component, pageProps }) {
             >
                 <WagmiConfig config={wagmiConfig}>
                     <RainbowKitProvider chains={chains} showRecentTransactions={true}>
-                        <Toaster position="top-right" />
-                        <Header />
-                        <Component {...pageProps} />
+                        <div class="h-screen">
+                            <Toaster position="top-right" />
+                            <Header />
+                            <Component {...pageProps} />
+                        </div>
                     </RainbowKitProvider>
                 </WagmiConfig>
             </ReservoirKitProvider >
