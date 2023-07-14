@@ -1,4 +1,3 @@
-
 # Getting started
 
 ## Introduction
@@ -9,7 +8,7 @@ In this tutorial, you'll learn how to build your very first app with Fast Dapp.
 
 [Fast Dapp](https://fastdapp.xyz/) is an open source and free platform for developers of any level to build frontend for their dapps super fast. Build your apps on the webapp, no installation or configuration required. Building your apps is as simple as, using simple and battle tested components, styling it with HTML/CSS, Tailwind and sharing it with your users! Moreover, a [large collection of templates](https://docs.fastdapp.xyz/docs/category/templates) are available to inspire you and help you creating your dream app.
 
-###  Getting started
+### Getting started
 
 Open the [Fast Dapp web editor](https://fastdapp.xyz/editor). Once you connect your wallet with Metamask or your favorite provider you'll see two panels. The right one is the preview: what your app will look like once published? and the right one is the editor where you write your app. You can update at anytime the preview by clicking the Render button at the top right of the editor.
 
@@ -22,11 +21,12 @@ In this tutorial we'll build together a [revoke.cash](https://revoke.cash/) alte
 In order to all the aprovals made by an address user we'll use the [Events](https://docs.fastdapp.xyz/docs/components/events) component. The component fetches the events that were emitted on chain and has a callback function to display them.
 
 In our case we'll pass the following parameters:
-* `address` to null as we want to get all approval events emitted from any contract
-* `abi`, we'll use the standard ERC20 ABI.
-* `eventName` to Approval
-* `args` is used for filtering the results. The first parameter is the account that approved the spending of the tokens.
-* `render` our function that will display the data.
+
+- `address` to null as we want to get all approval events emitted from any contract
+- `abi`, we'll use the standard ERC20 ABI.
+- `eventName` to Approval
+- `args` is used for filtering the results. The first parameter is the account that approved the spending of the tokens.
+- `render` our function that will display the data.
 
 ```
 <Events
@@ -44,7 +44,7 @@ In our case we'll pass the following parameters:
 />
 ```
 
-If you press render at the top right of the editor, you should see a loading indicator then a list of all the Approval events corresponing to your address. 
+If you press render at the top right of the editor, you should see a loading indicator then a list of all the Approval events corresponing to your address.
 
 ### Formatting the data
 
@@ -120,66 +120,22 @@ Now that we have clean data, let's display it in an HTML table:
 ```
 
 In order to make the result more beautiful we'll use a few components to display the data:
-* TokenName: Display the name of the token from it's address
-* AddressDisplay: Display an address shortened or it's ENS
-* TokenAmount: Display a token amount with precision handling
 
-
-```
-<div class="overflow-x-auto">
-<div class="overflow-x-auto">
-  <table class="table">
-    <thead>
-      <tr>
-        <th>Token</th>
-        <th>Spender</th>
-        <th>Amount</th>
-      </tr>
-    </thead>
-    <tbody>
-      <Events
-        address={null}
-        abi={ABIs.ERC20}
-        eventName="Approval"
-        args={[userAddress]}
-        render={function (logs) {
-          approvals = [];
-          logs.forEach(function (log) {
-            if (
-              log.args.value != null &&
-              !approvals.find(
-                (aproval) =>
-                  aproval.args.spender == log.args.spender &&
-                  aproval.address == log.address
-              )
-            ) {
-              approvals.push(log);
-            }
-          });
-          return approvals
-            .filter((approval) => parseInt(approval.args) != 0)
-            .map((approved) => (
-              <tr>
-                <td><TokenName token={approved.address} /></td>
-                <td>
-                  <AddressDisplay address={approved.args.spender} />
-                </td>
-                <td>
-                  <TokenAmount
-                    token={approved.address}
-                    amount={approved.args.value}
-                  />
-                </td>
-              </tr>
-            ));
-        }}
-      />
-    </tbody>
-  </table>
-</div>
+- TokenName: Display the name of the token from it's address
+- AddressDisplay: Display an address shortened or it's ENS
+- TokenAmount: Display a token amount with precision handling
 
 ```
-
-
-
-
+ <tr>
+    <td><TokenName token={approved.address} /></td>
+    <td>
+        <AddressDisplay address={approved.args.spender} />
+    </td>
+    <td>
+        <TokenAmount
+            token={approved.address}
+            amount={approved.args.value}
+        />
+    </td>
+</tr>
+```
