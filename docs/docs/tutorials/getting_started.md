@@ -13,6 +13,116 @@ In this tutorial, you'll learn how to build your very first app with Fast Dapp.
 
 Open the [Fast Dapp web editor](https://fastdapp.xyz/editor). Once you connect your wallet with Metamask or your favorite provider you'll see two panels. The right one is the preview: what your app will look like once published? and the right one is the editor where you write your app. You can update at anytime the preview by clicking the Render button at the top right of the editor.
 
-## Let's build
+## Let's build something together
 
-In this tutorial 
+In this tutorial we'll build together a [revoke.cash](https://revoke.cash/) alternative. We'll list all the approvals an address made and enable the user to remove them in one click.
+
+### Getting the data
+
+In order to all the aprovals made by an address user we'll use the [Events](https://docs.fastdapp.xyz/docs/components/events) component. The component fetches the events that were emitted on chain and has a callback function to display them.
+
+In our case we'll pass the following parameters:
+* `address` to null as we want to get all approval events emitted from any contract
+* `abi`, we'll use the standard ERC20 ABI.
+* `eventName` to Approval
+* `args` is used for filtering the results. The first parameter is the account that approved the spending of the tokens.
+* `render` our function that will display the data.
+
+```
+<Events
+      address={null}
+      abi={ABIs.ERC20}
+      eventName="Approval"
+      args={[userAddress]}
+      render={
+        (logs) => (
+          logs.map((log) => (
+            <div>{log.address} - {log.args.spender}</div>
+          ))
+        )
+      }
+/>
+```
+
+If you press render at the top right of the editor, you should see a loading indicator then a list of all the Approval events corresponing to your address. 
+
+### Formatting the data
+
+As we retrieve all approvals events, we now need to only select the latest event of each ERC20 tokens (`log.address`) and spender (`log.args.spender`). For this, we'll write a more complex render function:
+
+```
+<Events
+    address={null}
+    abi={ABIs.ERC20}
+    eventName="Approval"
+    args={[userAddress]}
+    render={
+        function(logs) {
+            approvals = [];
+            logs.forEach(function (log) {
+                 if (log.args.value != null && !approvals.find((aproval) => (aproval.args.spender == log.args.spender && aproval.address == log.address))) {
+                    approvals.push(log);
+                }
+            });
+            return (approvals.map((approved) => (
+                <div>{approved.address} - {approved.args.spender}</div>
+            )))
+        }
+      }
+/>
+```
+
+### Displaying the data
+
+Now that we have clean data, let's display it in an HTML table:
+
+```
+<div class="overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Job</th>
+        <th>Favorite Color</th>
+      </tr>
+    </thead>
+    <tbody>
+      <Events
+        address={null}
+        abi={ABIs.ERC20}
+        eventName="Approval"
+        args={[userAddress]}
+        render={function (logs) {
+          approvals = [];
+          logs.forEach(function (log) {
+            if (
+              log.args.value != null && !approvals.find(
+                (aproval) =>
+                  aproval.args.spender == log.args.spender &&
+                  aproval.address == log.address
+              )
+            ) {
+              approvals.push(log);
+            }
+          });
+          return approvals.map((approved) => (
+            <tr>
+              <td>{approved.address}</td>
+              <td>{approved.args.spender}</td>
+              <td>{approved.args.value}</td>
+            </tr>
+          ));
+        }}
+      />
+    </tbody>
+  </table>
+</div>
+
+```
+
+
+
+
+
+
+

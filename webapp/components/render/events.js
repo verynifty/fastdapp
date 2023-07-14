@@ -40,9 +40,7 @@ const Events = (props) => {
         return (<center><span class="loading loading-spinner loading-md"></span></center>)
     }
     return (
-        <div>
-            {props.render(logs)}
-        </div >
+            props.render(logs)
     );
 }
 
