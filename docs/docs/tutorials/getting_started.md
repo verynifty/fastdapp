@@ -25,7 +25,7 @@ In our case we'll pass the following parameters:
 - `address` to null as we want to get all approval events emitted from any contract
 - `abi`, we'll use the standard ERC20 ABI.
 - `eventName` to Approval
-- `args` is used for filtering the results. The first parameter is the account that approved the spending of the tokens.
+- `args` is used for filtering the results. The first parameter is the account that approved the spending of the tokens. If your address doesn't have previous approvals you can change it to any address.
 - `render` our function that will display the data.
 
 ```
@@ -140,7 +140,7 @@ In order to make the result more beautiful we'll use a few components to display
 </tr>
 ```
 
-### Revoke this approval
+### Revoke an approval
 
 Now we'll use the `ContractWrite` component to add a revoke button to the approvals. The component accepts a few parameters:
 * `address` the contract we'll interact with.
@@ -159,7 +159,7 @@ In our case, revoking the contract will looks like this:
 />
 ```
 
-But as you can see the component will show the inputs, let's improve by grabbing the approval ABI and hidding the inputs by adding `"hidden": true` to the inputs.
+But as you can see the component will show the inputs, let's improve by grabbing the approval ABI and hidding the inputs by adding `"hidden": true` to the inputs. There are a lot of ways to customize the `ContractWrite` [components like handling token input, approvals, time value..](https://docs.fastdapp.xyz/docs/components/contract-write)
 
 
 ```
@@ -199,7 +199,7 @@ But as you can see the component will show the inputs, let's improve by grabbing
 />
 ```
 
-Our complete code looks like this:
+Our complete code looks like this, if you click on the Revoke button you'll see the transaction for removing the approval being asked for confirmation by you.
 
 ```
 <div class="overflow-x-auto">
@@ -292,3 +292,8 @@ Our complete code looks like this:
   </table>
 </div>
 ```
+
+### Polishing
+
+Let's now add some title, description and style our page. 
+
