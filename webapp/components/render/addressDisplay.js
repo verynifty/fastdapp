@@ -15,7 +15,7 @@ const AddressDisplay = (props) => {
             })
             setENS(ensName);
         } catch (error) {
-            setENS("Error: Incorrect address?");
+            //setENS("Error: Incorrect address?");
         }
 
     }

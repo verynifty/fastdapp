@@ -81,9 +81,9 @@ Now that we have clean data, let's display it in an HTML table:
   <table class="table">
     <thead>
       <tr>
-        <th>Name</th>
-        <th>Job</th>
-        <th>Favorite Color</th>
+        <th>Token</th>
+        <th>Spender</th>
+        <th>Amount</th>
       </tr>
     </thead>
     <tbody>
@@ -105,13 +105,73 @@ Now that we have clean data, let's display it in an HTML table:
               approvals.push(log);
             }
           });
-          return approvals.map((approved) => (
-            <tr>
-              <td>{approved.address}</td>
-              <td>{approved.args.spender}</td>
-              <td>{approved.args.value}</td>
-            </tr>
+          return approvals.filter((approval) => (parseInt(approval.args) != 0)).map((approved) => (
+                <tr>
+                    <td>{approved.address}</td>
+                    <td>{approved.args.spender}</td>
+                    <td>{parseInt(approved.args.value)}</td>
+                </tr>
           ));
+        }}
+      />
+    </tbody>
+  </table>
+</div>
+```
+
+In order to make the result more beautiful we'll use a few components to display the data:
+* TokenName: Display the name of the token from it's address
+* AddressDisplay: Display an address shortened or it's ENS
+* TokenAmount: Display a token amount with precision handling
+
+
+```
+<div class="overflow-x-auto">
+<div class="overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Spender</th>
+        <th>Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <Events
+        address={null}
+        abi={ABIs.ERC20}
+        eventName="Approval"
+        args={[userAddress]}
+        render={function (logs) {
+          approvals = [];
+          logs.forEach(function (log) {
+            if (
+              log.args.value != null &&
+              !approvals.find(
+                (aproval) =>
+                  aproval.args.spender == log.args.spender &&
+                  aproval.address == log.address
+              )
+            ) {
+              approvals.push(log);
+            }
+          });
+          return approvals
+            .filter((approval) => parseInt(approval.args) != 0)
+            .map((approved) => (
+              <tr>
+                <td><TokenName token={approved.address} /></td>
+                <td>
+                  <AddressDisplay address={approved.args.spender} />
+                </td>
+                <td>
+                  <TokenAmount
+                    token={approved.address}
+                    amount={approved.args.value}
+                  />
+                </td>
+              </tr>
+            ));
         }}
       />
     </tbody>
@@ -119,9 +179,6 @@ Now that we have clean data, let's display it in an HTML table:
 </div>
 
 ```
-
-
-
 
 
 

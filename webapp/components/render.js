@@ -15,6 +15,9 @@ import BlockNumber from 'components/render/blockNumber';
 import SendTransaction from 'components/render/sendTransaction';
 import Balance from 'components/render/balance';
 import TokenBalance from 'components/render/tokenBalance';
+import TokenAmount from 'components/render/tokenAmount';
+import TokenName from 'components/render/tokenName';
+
 import ContractRead from 'components/render/contractRead';
 import ContractWrite from 'components/render/contractWrite';
 import Events from 'components/render/events';
@@ -55,6 +58,8 @@ const components = {
     "BlockNumber": BlockNumber,
     "Balance": Balance,
     "TokenBalance": TokenBalance,
+    "TokenAmount": TokenAmount,
+    "TokenName": TokenName,
     "SendTransaction": SendTransaction,
     "ContractRead": ContractRead,
     "ContractWrite": ContractWrite,
