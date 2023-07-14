@@ -22,9 +22,6 @@ const AddressDisplay = (props) => {
     // This will run only once
     useEffect(() => {
         getInfo();
-
-
-
     }, [props.address]);
 
     return (
