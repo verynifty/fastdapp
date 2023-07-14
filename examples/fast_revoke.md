@@ -8,7 +8,7 @@
       back control by revoking your approvals.
     </p>
   </center>
-  <PleaseConnect>
+  <PleaseConnect >
     <div class="overflow-x-auto">
       <table class="table">
         <thead>
@@ -27,7 +27,7 @@
             args={[userAddress]}
             render={function (logs) {
               approvals = [];
-              logs.forEach(function (log) {
+              logs.reverse().forEach(function (log) {
                 if (
                   log.args.value != null &&
                   !approvals.find(
@@ -39,7 +39,7 @@
                   approvals.push(log);
                 }
               });
-              return approvals
+              return approvals.sort((a, b) => b.address - a.address)
                 .filter((approval) => parseInt(approval.args) != 0)
                 .map((approved) => (
                   <tr>
