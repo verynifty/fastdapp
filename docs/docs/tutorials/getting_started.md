@@ -121,9 +121,9 @@ Now that we have clean data, let's display it in an HTML table:
 
 In order to make the result more beautiful we'll use a few components to display the data:
 
-- TokenName: Display the name of the token from it's address
-- AddressDisplay: Display an address shortened or it's ENS
-- TokenAmount: Display a token amount with precision handling
+- [TokenName](https://docs.fastdapp.xyz/docs/components/token-name): Display the name of the token from its address
+- [AddressDisplay](https://docs.fastdapp.xyz/docs/components/address-display): Display an address shortened or its ENS
+- [TokenAmount](https://docs.fastdapp.xyz/docs/components/token-amount): Display a token amount with precision handling
 
 ```
  <tr>
@@ -138,4 +138,157 @@ In order to make the result more beautiful we'll use a few components to display
         />
     </td>
 </tr>
+```
+
+### Revoke this approval
+
+Now we'll use the `ContractWrite` component to add a revoke button to the approvals. The component accepts a few parameters:
+* `address` the contract we'll interact with.
+* `abi` the ABI of the contract, the ABI can be customized to tweak the UI (default parameters, hide inputs, change the button text..).
+* `args` the default arguments
+
+In our case, revoking the contract will looks like this:
+
+```
+<ContractWrite
+    address={approved.address}
+    abi={ABIs.ERC20}
+    functionName="approve"
+    buttonText="Revoke"
+    args={[approved.args.spender, 0]}
+/>
+```
+
+But as you can see the component will show the inputs, let's improve by grabbing the approval ABI and hidding the inputs by adding `"hidden": true` to the inputs.
+
+
+```
+<ContractWrite
+    address={approved.address}
+    abi={[
+        {
+    "inputs": [
+      {
+        "internalType": "address",
+        "name": "spender",
+        "type": "address",
+        "hidden": true
+      },
+      {
+        "internalType": "uint256",
+        "name": "amount",
+        "type": "uint256",
+        "hidden": true
+      }
+    ],
+    "name": "approve",
+    "outputs": [
+      {
+        "internalType": "bool",
+        "name": "",
+        "type": "bool"
+      }
+    ],
+    "stateMutability": "nonpayable",
+    "type": "function"
+     }
+    ]}
+    functionName="approve"
+    buttonText="Revoke"
+    args={[approved.args.spender, 0]}
+/>
+```
+
+Our complete code looks like this:
+
+```
+<div class="overflow-x-auto">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Token</th>
+        <th>Spender</th>
+        <th>Amount</th>
+        <th>Revoke</th>
+      </tr>
+    </thead>
+    <tbody>
+      <Events
+        address={null}
+        abi={ABIs.ERC20}
+        eventName="Approval"
+        args={[userAddress]}
+        render={function (logs) {
+          approvals = [];
+          logs.forEach(function (log) {
+            if (
+              log.args.value != null &&
+              !approvals.find(
+                (aproval) =>
+                  aproval.args.spender == log.args.spender &&
+                  aproval.address == log.address
+              )
+            ) {
+              approvals.push(log);
+            }
+          });
+          return approvals
+            .filter((approval) => parseInt(approval.args) != 0)
+            .map((approved) => (
+              <tr>
+                <td>
+                  <TokenName token={approved.address} />
+                </td>
+                <td>
+                  <AddressDisplay address={approved.args.spender} />
+                </td>
+                <td>
+                  <TokenAmount
+                    token={approved.address}
+                    amount={approved.args.value}
+                  />
+                </td>
+                <td>
+                  <ContractWrite
+                    address={approved.address}
+                    abi={[
+                      {
+                        inputs: [
+                          {
+                            internalType: "address",
+                            name: "spender",
+                            type: "address",
+                            hidden: true,
+                          },
+                          {
+                            internalType: "uint256",
+                            name: "amount",
+                            type: "uint256",
+                            hidden: true,
+                          },
+                        ],
+                        name: "approve",
+                        outputs: [
+                          {
+                            internalType: "bool",
+                            name: "",
+                            type: "bool",
+                          },
+                        ],
+                        stateMutability: "nonpayable",
+                        type: "function",
+                      },
+                    ]}
+                    functionName="approve"
+                    buttonText="Revoke"
+                    args={[approved.args.spender, 0]}
+                  />
+                </td>
+              </tr>
+            ));
+        }}
+      />
+    </tbody>
+  </table>
+</div>
 ```
