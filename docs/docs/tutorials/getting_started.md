@@ -442,7 +442,7 @@ description: Manage your ERC20 approvals with Fast Revoke
 We managed to build a full application to manage users ERC20 approvals in 110 lines of code. Here are sme ideas you can try to implement to practice more building with Fast Dapp:
 * List all approvals history
 * Handle ERC721 NFTs approvals
-* DIsplay the token balance of the user in the table
-* Use query parameters to read the user's address
+* Display the [token balance](https://docs.fastdapp.xyz/docs/components/token-balance) of the user in the table
+* Use [query parameters](https://docs.fastdapp.xyz/docs/variables/query-parameters) to read the user's address
 
 Let us know if you need [any help building on Telegram](https://t.me/+1YcicNi_gdNiOTdk). 
