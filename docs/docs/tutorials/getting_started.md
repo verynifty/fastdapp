@@ -437,6 +437,12 @@ description: Manage your ERC20 approvals with Fast Revoke
 </div>
 ```
 
+### Publishing
+
+Once you are happy with the result, you can press the publish button at the top right of the editor. We'll upload your code on IPFS and give you a link to share with others
+
+![Getting started screenshot](/img/tutorials/getting_started_6.png)
+
 ## Conclusion
 
 We managed to build a full application to manage users ERC20 approvals in 110 lines of code. Here are sme ideas you can try to implement to practice more building with Fast Dapp:
