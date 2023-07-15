@@ -1,6 +1,14 @@
+---
+chain: [1,10,42161,137,5]
+authors: grands_marquis
+theme: dark
+title: Fast Revoke
+description: Manage your ERC20 approvals with Fast Revoke
+---
+
 <div class="p-10">
   <center>
-    <h1>Fast Revoke</h1>
+    <h1>⚡ Fast Revoke ⚡</h1>
     <p>
       When using dapps like Uniswap or OpenSea you have to grant them permission
       to spend your tokens and NFTs. This is called a token approval. If you
@@ -40,7 +48,7 @@
                 }
               });
               return approvals.sort((a, b) => b.address - a.address)
-                .filter((approval) => parseInt(approval.args) != 0)
+                .filter((approval) => parseInt(approval.args.value) != 0)
                 .map((approved) => (
                   <tr>
                     <td>

@@ -2,7 +2,7 @@
 
 ## Introduction
 
-In this tutorial, you'll learn how to build your very first app with Fast Dapp.
+In this tutorial, you'll learn how to build an [app to manage ERC20 approvals for an address](https://fastdapp.xyz/app/fast_revoke) in 110 lines of code. This will be your very first app with Fast Dapp.
 
 ### What is Fast Dapp
 
@@ -59,12 +59,12 @@ As we retrieve all approvals events, we now need to only select the latest event
     render={
         function(logs) {
             approvals = [];
-            logs.forEach(function (log) {
+            logs.reverse().forEach(function (log) {
                  if (log.args.value != null && !approvals.find((aproval) => (aproval.args.spender == log.args.spender && aproval.address == log.address))) {
                     approvals.push(log);
                 }
             });
-            return (approvals.map((approved) => (
+            return (approvals.filter((approval) => parseInt(approval.args.value) != 0).map((approved) => (
                 <div>{approved.address} - {approved.args.spender}</div>
             )))
         }
@@ -94,7 +94,7 @@ Now that we have clean data, let's display it in an HTML table:
         args={[userAddress]}
         render={function (logs) {
           approvals = [];
-          logs.forEach(function (log) {
+          logs.reverse().forEach(function (log) {
             if (
               log.args.value != null && !approvals.find(
                 (aproval) =>
@@ -105,7 +105,7 @@ Now that we have clean data, let's display it in an HTML table:
               approvals.push(log);
             }
           });
-          return approvals.filter((approval) => (parseInt(approval.args) != 0)).map((approved) => (
+          return approvals.filter((approval) => (parseInt(approval.args.value) != 0)).map((approved) => (
                 <tr>
                     <td>{approved.address}</td>
                     <td>{approved.args.spender}</td>
@@ -220,7 +220,7 @@ Our complete code looks like this, if you click on the Revoke button you'll see 
         args={[userAddress]}
         render={function (logs) {
           approvals = [];
-          logs.forEach(function (log) {
+          logs.reverse().forEach(function (log) {
             if (
               log.args.value != null &&
               !approvals.find(
@@ -233,7 +233,7 @@ Our complete code looks like this, if you click on the Revoke button you'll see 
             }
           });
           return approvals
-            .filter((approval) => parseInt(approval.args) != 0)
+            .filter((approval) => parseInt(approval.args.value) != 0)
             .map((approved) => (
               <tr>
                 <td>
@@ -295,5 +295,130 @@ Our complete code looks like this, if you click on the Revoke button you'll see 
 
 ### Polishing
 
-Let's now add some title, description and style our page. 
+Let's now add some title, description and style our page.
+
+ We'll also wrap the table into a `PleaseConnect` component as we need to enforce that the user is connected to access the `userAddress` variable.
+
+ We'll also add metadata to our app at the beginning of it in `yaml` format. The metadata are:
+ * `theme` select a base theme to make our app looks beautiful. See [available themes](https://docs.fastdapp.xyz/docs/style/themes).
+ * `title` a title used for SEO
+ * `description` a description used for SEO
+ * `author` who wrote the code
+ * `chain` an array of chain ID this app is available on.
+
+
+Here is our final code, you can directly [see it in the editor](https://fastdap.xyz/?template=fast_revoke) or as [a published app](https://fastdapp.xyz/app/fast_revoke):
+
+```
+---
+chain: [1,10,42161,137,5]
+authors: grands_marquis
+theme: dark
+title: Fast Revoke
+description: Manage your ERC20 approvals with Fast Revoke
+---
+
+<div class="p-10">
+  <center>
+    <h1>⚡ Fast Revoke ⚡</h1>
+    <p>
+      When using dapps like Uniswap or OpenSea you have to grant them permission
+      to spend your tokens and NFTs. This is called a token approval. If you
+      don't revoke these approvals, the dapp can spend your tokens forever. Take
+      back control by revoking your approvals.
+    </p>
+  </center>
+  <PleaseConnect >
+    <div class="overflow-x-auto">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Token</th>
+            <th>Spender</th>
+            <th>Amount</th>
+            <th>Revoke</th>
+          </tr>
+        </thead>
+        <tbody>
+          <Events
+            address={null}
+            abi={ABIs.ERC20}
+            eventName="Approval"
+            args={[userAddress]}
+            render={function (logs) {
+              approvals = [];
+              logs.reverse().forEach(function (log) {
+                if (
+                  log.args.value != null &&
+                  !approvals.find(
+                    (aproval) =>
+                      aproval.args.spender == log.args.spender &&
+                      aproval.address == log.address
+                  )
+                ) {
+                  approvals.push(log);
+                }
+              });
+              return approvals.sort((a, b) => b.address - a.address)
+                .filter((approval) => parseInt(approval.args.value) != 0)
+                .map((approved) => (
+                  <tr>
+                    <td>
+                      <TokenName token={approved.address} />
+                    </td>
+                    <td>
+                      <AddressDisplay address={approved.args.spender} />
+                    </td>
+                    <td>
+                      <TokenAmount
+                        token={approved.address}
+                        amount={approved.args.value}
+                      />
+                    </td>
+                    <td>
+                      <ContractWrite
+                        address={approved.address}
+                        abi={[
+                          {
+                            inputs: [
+                              {
+                                internalType: "address",
+                                name: "spender",
+                                type: "address",
+                                hidden: true,
+                              },
+                              {
+                                internalType: "uint256",
+                                name: "amount",
+                                type: "uint256",
+                                hidden: true,
+                              },
+                            ],
+                            name: "approve",
+                            outputs: [
+                              {
+                                internalType: "bool",
+                                name: "",
+                                type: "bool",
+                              },
+                            ],
+                            stateMutability: "nonpayable",
+                            type: "function",
+                          },
+                        ]}
+                        functionName="approve"
+                        buttonText="Revoke"
+                        args={[approved.args.spender, 0]}
+                      />
+                    </td>
+                  </tr>
+                ));
+            }}
+          />
+        </tbody>
+      </table>
+    </div>
+  </PleaseConnect>
+</div>
+```
 
