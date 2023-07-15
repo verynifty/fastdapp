@@ -4,6 +4,8 @@
 
 In this tutorial, you'll learn how to build an [app to manage ERC20 approvals for an address](https://fastdapp.xyz/app/fast_revoke) in 110 lines of code. This will be your very first app with Fast Dapp.
 
+![Getting started screenshot](/img/tutorials/getting_started_1.png)
+
 ### What is Fast Dapp
 
 [Fast Dapp](https://fastdapp.xyz/) is an open source and free platform for developers of any level to build frontend for their dapps super fast. Build your apps on the webapp, no installation or configuration required. Building your apps is as simple as, using simple and battle tested components, styling it with HTML/CSS, Tailwind and sharing it with your users! Moreover, a [large collection of templates](https://docs.fastdapp.xyz/docs/category/templates) are available to inspire you and help you creating your dream app.
@@ -11,6 +13,8 @@ In this tutorial, you'll learn how to build an [app to manage ERC20 approvals fo
 ### Getting started
 
 Open the [Fast Dapp web editor](https://fastdapp.xyz/editor). Once you connect your wallet with Metamask or your favorite provider you'll see two panels. The right one is the preview: what your app will look like once published? and the right one is the editor where you write your app. You can update at anytime the preview by clicking the Render button at the top right of the editor.
+
+![Getting started screenshot](/img/tutorials/getting_started_2.png)
 
 ## Let's build something together
 
@@ -46,6 +50,8 @@ In our case we'll pass the following parameters:
 
 If you press render at the top right of the editor, you should see a loading indicator then a list of all the Approval events corresponing to your address.
 
+![Getting started screenshot](/img/tutorials/getting_started_3.png)
+
 ### Formatting the data
 
 As we retrieve all approvals events, we now need to only select the latest event of each ERC20 tokens (`log.address`) and spender (`log.args.spender`). For this, we'll write a more complex render function:
@@ -64,7 +70,9 @@ As we retrieve all approvals events, we now need to only select the latest event
                     approvals.push(log);
                 }
             });
-            return (approvals.filter((approval) => parseInt(approval.args.value) != 0).map((approved) => (
+            return (approvals.filter((approval) => parseInt(approval.args.value) != 0)
+            .sort((a, b) => b.address - a.address)
+            .map((approved) => (
                 <div>{approved.address} - {approved.args.spender}</div>
             )))
         }
@@ -105,7 +113,9 @@ Now that we have clean data, let's display it in an HTML table:
               approvals.push(log);
             }
           });
-          return approvals.filter((approval) => (parseInt(approval.args.value) != 0)).map((approved) => (
+          return approvals.sort((a, b) => b.address - a.address)
+          .filter((approval) => (parseInt(approval.args.value) != 0))
+          .map((approved) => (
                 <tr>
                     <td>{approved.address}</td>
                     <td>{approved.args.spender}</td>
@@ -118,6 +128,9 @@ Now that we have clean data, let's display it in an HTML table:
   </table>
 </div>
 ```
+
+![Getting started screenshot](/img/tutorials/getting_started_4.png)
+
 
 In order to make the result more beautiful we'll use a few components to display the data:
 
@@ -234,6 +247,7 @@ Our complete code looks like this, if you click on the Revoke button you'll see 
           });
           return approvals
             .filter((approval) => parseInt(approval.args.value) != 0)
+            .sort((a, b) => b.address - a.address)
             .map((approved) => (
               <tr>
                 <td>
@@ -292,6 +306,7 @@ Our complete code looks like this, if you click on the Revoke button you'll see 
   </table>
 </div>
 ```
+![Getting started screenshot](/img/tutorials/getting_started_5.png)
 
 ### Polishing
 
@@ -422,3 +437,12 @@ description: Manage your ERC20 approvals with Fast Revoke
 </div>
 ```
 
+## Conclusion
+
+We managed to build a full application to manage users ERC20 approvals in 110 lines of code. Here are sme ideas you can try to implement to practice more building with Fast Dapp:
+* List all approvals history
+* Handle ERC721 NFTs approvals
+* DIsplay the token balance of the user in the table
+* Use query parameters to read the user's address
+
+Let us know if you need [any help building on Telegram](https://t.me/+1YcicNi_gdNiOTdk). 
