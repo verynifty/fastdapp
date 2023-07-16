@@ -4,11 +4,11 @@ sidebar_position: 1
 
 # What is Fast Dapp
 
-Fast Dapp is a web application that enables you to create websites for your DAPP in a few minutes.
+Fast Dapp is a web application that enables you to create websites for your DAPP in a few minutes. No installation, live preview of the result and tons of components to make writing your web3 app super fast!
 
 # Get started building
 
-You can [start your journey with the first tutorial](https://docs.fastdapp.xyz/docs/tutorials/token_page).
+Get started with [the tutorial to build an ERC20 approval manager](https://docs.fastdapp.xyz/docs/tutorials/getting_started).
 
 :::info This is beta!
 

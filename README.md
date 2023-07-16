@@ -1,6 +1,8 @@
 # Fast Dapp
 
-Fast Dapp is an application to develop and publish web3 dapps in minutes.
+Fast Dapp is a webapp to develop and publish web3 dapps in minutes. No installation, live preview of the result and tons of components to make writing your web3 app super fast!
+
+Get started with [the tutorial to build an ERC20 approval manager](https://docs.fastdapp.xyz/docs/tutorials/getting_started).
 
 
 ## Links
