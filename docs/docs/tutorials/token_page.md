@@ -1,5 +1,5 @@
 
-# Build your first app
+# Make an ERC20 transfer app
 
 In this tutorial we will cover the basics to build your very first app. Here is what it will look like when finished:
 

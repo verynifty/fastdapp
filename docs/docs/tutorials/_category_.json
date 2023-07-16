@@ -1,9 +1,9 @@
 {
     "label": "Tutorials",
-    "position": 5,
+    "position": 1,
     "link": {
       "type": "generated-index",
-      "description": "Get started building your first dapp."
+      "description": "Get started building your first dapps with the tutorials."
     }
   }
   
