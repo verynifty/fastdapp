@@ -9,7 +9,7 @@ export default function PanelResizeHandler({
 }) {
     return (
         <PanelResizeHandle
-            className={["ResizeHandleOuter", className].join(" ")}
+            className={["ResizeHandleOuter", "bg-base-200 border-base-400 border-x-2 text-base-400	", className].join(" ")}
             id={id}
         >
             <div className="ResizeHandleOuter">
