@@ -20,7 +20,8 @@ import Render from 'components/render';
 import Publish from 'components/publish';
 import PleaseConnect from 'components/pleaseConnect';
 
-
+import { Panel, PanelGroup, PanelResizeHandle } from "react-resizable-panels";
+import PanelResizeHandler from 'components/internals/panelResizeHandler';
 
 export default function EditorPage({ source }) {
 
@@ -226,19 +227,20 @@ export default function EditorPage({ source }) {
                         <a href="https://t.me/+1YcicNi_gdNiOTdk" target="_blank" className="btn ml-2 btn-xs">Live chat help</a>
                     </div>
                 </div>
-                <div className=" flex editor_container">
-                    <div className="flex-1  h-full overflow-auto" ref={renderViewRef}>
+                <PanelGroup direction="horizontal" className=" editor_container">
+                    <Panel defaultSize={50} className=" h-full overflow-auto" ref={renderViewRef}>
                         <PleaseConnect>
                             <RenderErrorWrapper version={version}>
                                 <Render content={rendered} />
                             </RenderErrorWrapper>
                         </PleaseConnect>
-                    </div>
-                    <div className="flex-1 h-full overflow-auto bg-base-200">
+                    </Panel>
+                    <PanelResizeHandler className='' />
+                    <Panel className=" h-full overflow-auto bg-base-200">
                         {RightPanel()}
-                    </div>
+                    </Panel>
 
-                </div>
+                </PanelGroup>
             </Hotkeys>
         </div>
     )
