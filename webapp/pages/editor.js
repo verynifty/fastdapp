@@ -174,8 +174,8 @@ export default function EditorPage({ source }) {
         } else {
             return (
                 <div className=' h-full'>
-                        <Editor className="h-full" options={{ "automaticLayout": true }} defaultLanguage="markdown" onChange={handleEditorChange}
-                            onMount={handleEditorDidMount} value={content} />
+                    <Editor className="h-full" options={{ "automaticLayout": true }} defaultLanguage="markdown" onChange={handleEditorChange}
+                        onMount={handleEditorDidMount} value={content} />
                 </div>
             );
         }
@@ -210,7 +210,7 @@ export default function EditorPage({ source }) {
                 onKeyUp={onKeyUp.bind(this)}
             >
                 <Publish content={rendered} />
-                <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2 md:flex md:items-center md:justify-between" style={{"height": "2rem"}}>
+                <div className="bg-gradient-to-r from-sky-400 to-blue-500 p-2 md:flex md:items-center md:justify-between" style={{ "height": "2rem" }}>
                     <div className="min-w-0 flex-1">
                         <h2 className="text-xl font-bold  text-white sm:truncate  sm:tracking-tight">
                             Editor
@@ -228,12 +228,14 @@ export default function EditorPage({ source }) {
                     </div>
                 </div>
                 <PanelGroup direction="horizontal" className=" editor_container">
-                    <Panel defaultSize={50} className=" h-full overflow-auto" ref={renderViewRef}>
-                        <PleaseConnect>
-                            <RenderErrorWrapper version={version}>
-                                <Render content={rendered} />
-                            </RenderErrorWrapper>
-                        </PleaseConnect>
+                    <Panel defaultSize={50} ref={renderViewRef}>
+                        <div className=" h-full overflow-auto">
+                            <PleaseConnect>
+                                <RenderErrorWrapper version={version}>
+                                    <Render content={rendered} />
+                                </RenderErrorWrapper>
+                            </PleaseConnect>
+                        </div>
                     </Panel>
                     <PanelResizeHandler className='' />
                     <Panel className=" h-full overflow-auto bg-base-200">
