@@ -1,6 +1,5 @@
 'use client';
 import React, { useRef, Suspense, useEffect } from 'react';
-import Head from 'next/head'
 import { useRouter } from 'next/router'
 
 import Render from 'components/render';

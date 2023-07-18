@@ -3,7 +3,7 @@ const markdownParser = require("prettier/parser-markdown");
 const parserBable = require("prettier/parser-babel");
 
 import React, { useEffect, useRef, useState } from 'react';
-import Head from 'next/head'
+import HeaderMetadata from '@/components/commons/headerMetadata';
 
 import { useRouter } from 'next/router'
 import axios from 'axios';
@@ -196,13 +196,8 @@ export default function EditorPage({ source }) {
 
     return (
         <div className='editor_parent'>
-            <Head>
-                <title>Fast Dapp - Editor</title>
-                <meta
-                    name="Fast Dapp - Editor"
-                    content=" create websites for your DAPP in a few minutes."
-                />
-            </Head>
+            <HeaderMetadata title="Editor | Fast Dapp" description="Create frontends for your web3 apps in minutes!" />
+
 
             <Hotkeys
                 keyName="ctrl+enter,command+enter"
