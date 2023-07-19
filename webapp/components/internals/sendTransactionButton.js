@@ -2,9 +2,13 @@ import { default as React, useState, useRef, useEffect } from 'react';
 import { sendTransaction, writeContract, waitForTransaction } from '@wagmi/core'
 import { useAddRecentTransaction, ConnectButton } from '@rainbow-me/rainbowkit';
 import { useAccount } from 'wagmi'
+import { useNetwork } from 'wagmi'
+
 import toast from 'react-hot-toast';
 
 const SendTransactionButton = (props) => {
+
+    const { chain } = useNetwork()
 
     const addRecentTransaction = useAddRecentTransaction();
 
@@ -60,6 +64,7 @@ const SendTransactionButton = (props) => {
                 functionName: transactionRequest.data.request.functionName,
                 from: transactionRequest.data.request.account.address,
                 to: transactionRequest.data.request.address,
+                chain: chain.id,
                 sent_at: new Date()
             })
             setPendingTransaction(tx.hash);
