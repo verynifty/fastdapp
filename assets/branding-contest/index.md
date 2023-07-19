@@ -70,4 +70,4 @@ Alternatives
 
 # Where to vote
 
-on Snapshot with your Muse
+on [Snapshot with your Muse](https://snapshot.org/#/musedao.eth/proposal/0x1cf46b7cfdc9460bf195ffb08807266b9db6fa3bdd416d12964d45ddea17cb57)
