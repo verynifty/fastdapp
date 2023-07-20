@@ -3,7 +3,6 @@ import { init, useQuery } from "@airstack/airstack-react";
 init(process.env.NEXT_PUBLIC_AIR_STACK_API_KEY);
 
 const AirStack = (props) => {
-    console.log("Airstack props", props)
     const { data, loading, error } = useQuery(props.query, props.variables);
 
     if (loading || !data) {
@@ -16,7 +15,6 @@ const AirStack = (props) => {
     }
 
     console.log("Airstack data", data, loading, error)
-
     if (typeof props.render === 'function') {
         try {
             let computed = props.render(data);

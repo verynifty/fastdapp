@@ -16,7 +16,6 @@ class blockNumber extends React.Component {
                 listen: true,
             },
             (newBlockNumber) => {
-                console.log(newBlockNumber, this.state)
                 this.setState({ blockNumber: ("" + newBlockNumber) })
             }
         )

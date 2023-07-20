@@ -84,8 +84,6 @@ const scope = {
 };
 
 const Render = (props) => {
-    console.log("Render useEffect");
-
     const [isLoaded, setIsLoaded] = React.useState(false);
 
     const [content, setContent] = React.useState("");
@@ -100,7 +98,6 @@ const Render = (props) => {
 
     // Not used for now
     function cleanContent(c) {
-        console.log("Clean content", c);
         let lines = c.split("\n");
         for (let i = 0; i < lines.length; i++) {
             //lines[i] = lines[i].trim();
@@ -109,7 +106,6 @@ const Render = (props) => {
             return !line == "";
         })*/
         c = lines.join("\n");
-        console.log("Lines", c);
         return c;
     }
 
@@ -140,7 +136,7 @@ const Render = (props) => {
         } else {
             setRequiredChain(parsedFront.chain);
         }
-        console.log("Required chain:", requiredChain)
+        // console.log("Required chain:", requiredChain)
         setTheme(parsedFront.theme != null ? parsedFront.theme : "light");
     }
 
@@ -171,7 +167,6 @@ const Render = (props) => {
             }
 
         }
-        console.log("Render useEffect");
         load();
     }, [props.content, address]);
 

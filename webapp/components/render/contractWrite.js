@@ -44,7 +44,6 @@ const WriteContract = (props) => {
                 address: token,
                 abi: ERC20ABI
             })
-            console.log(contract, token, spender, amount)
             contract.read.allowance([address, spender]).then((allowance) => {
                 console.log("allowance", allowance, amount)
                 resolve(allowance >= amount);
@@ -72,7 +71,6 @@ const WriteContract = (props) => {
                         spender: argsStateApprovals[index],
                     })
                     setApprovalId(approvalId + 1);
-                    console.log("Not approved", isWantingApproval)
                     return false;
                 }
             }
@@ -115,9 +113,8 @@ const WriteContract = (props) => {
                 console.log("There is an error")
             }
         } catch (e) {
-            console.log("EROOOOOOR")
-            console.log(e)
-            console.log(JSON.stringify(e))
+            console.error("Error")
+            console.error(e)
         }
         return tx;
     }
@@ -144,7 +141,6 @@ const WriteContract = (props) => {
 
     // This will run only once
     useEffect(() => {
-        console.log("useEffect", props)
 
     }, []);
 
