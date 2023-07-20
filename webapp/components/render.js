@@ -50,8 +50,6 @@ function sleep(ms) {
     return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-
-
 const components = {
     "AddressDisplay": AddressDisplay,
     "DisplayVariable": DisplayVariable,
@@ -140,7 +138,6 @@ const Render = (props) => {
         setTheme(parsedFront.theme != null ? parsedFront.theme : "light");
     }
 
-    // This will run only once
     useEffect(() => {
         async function load() {
             try {
@@ -170,7 +167,6 @@ const Render = (props) => {
         load();
     }, [props.content, address]);
 
-
     if (!isLoaded) {
         return (<div>loading</div>);
     }
@@ -192,7 +188,6 @@ const Render = (props) => {
             return (<MDX components={components} scope={scope}>{content}</MDX>);
         }
     }
-
 
     return (
         <React.Fragment>

@@ -10,7 +10,7 @@ const SendTransaction = (props) => {
     const [amount, setAmount] = React.useState(0);
     const [isLoading, setIsLoading] = React.useState(false);
     const [pendingTransaction, setPendingTransaction] = React.useState(null);
-    // This will run only once
+
     useEffect(() => {
 
     }, []);

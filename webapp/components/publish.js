@@ -11,10 +11,8 @@ const Publish = (props) => {
     const [IPFS, setIPFS] = React.useState("");
     const [pageLink, setPageLink] = React.useState("");
     const [isUploaded, setIsUploaded] = React.useState(false);
-    
-    // This will run only once
-    useEffect(() => {
 
+    useEffect(() => {
 
     }, []);
 
@@ -28,7 +26,6 @@ const Publish = (props) => {
         ]
         const cid = await client.put(files)
         let path = "ipfs://" + cid + "/" + filename;
-        console.log(path)
         while (true) {
             console.log("checking if file is uploaded")
             try {
@@ -104,8 +101,6 @@ const Publish = (props) => {
             )
         }
     }
-
-
     return (
         <div>
             <input type="checkbox" id="my_modal_7" className="modal-toggle" />
@@ -118,6 +113,5 @@ const Publish = (props) => {
         </div>
     );
 }
-
 
 export default Publish;
