@@ -16,6 +16,7 @@ export const getServerSideProps = async ({ req, res, resolvedUrl }) => {
     res.write(JSON.stringify({
         "name": "Fast Dapp",
         "description": "Developing Dapps frontend in minutes",
+        "iconPath": "vercel.svg"
     }));
     res.end();
     return {
