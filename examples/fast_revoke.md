@@ -16,7 +16,28 @@ description: Manage your ERC20 approvals with Fast Revoke
       back control by revoking your approvals.
     </p>
   </center>
-  <PleaseConnect >
+  <div class="mt-10 alert">
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      class="stroke-info shrink-0 w-6 h-6"
+    >
+      <path
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        stroke-width="2"
+        d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      ></path>
+    </svg>
+    <span>This app was built in less than 110 Lines of code</span>
+    <div>
+      <a href="https://docs.fastdapp.xyz/docs/tutorials/getting_started" class="btn btn-sm btn-primary">
+        Learn how to build dapps
+      </a>
+    </div>
+  </div>
+  <PleaseConnect>
     <div class="overflow-x-auto">
       <table class="table">
         <thead>
@@ -47,7 +68,8 @@ description: Manage your ERC20 approvals with Fast Revoke
                   approvals.push(log);
                 }
               });
-              return approvals.sort((a, b) => b.address - a.address)
+              return approvals
+                .sort((a, b) => b.address - a.address)
                 .filter((approval) => parseInt(approval.args.value) != 0)
                 .map((approved) => (
                   <tr>
