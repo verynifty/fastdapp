@@ -5,7 +5,9 @@ authors: grands_marquis
 
 <div class="p-5 bg-base-200">
 
-# Hello and welcome to Fastdapp
+# ⚡ Hello and welcome to Fast Dapp ⚡
+
+Fast Dapp is an open source and free platform for developers of any level to build frontend for their dapps super fast. Build your apps on the webapp, no installation or configuration required. Building your apps is as simple as, using simple and battle tested components, styling it with HTML/CSS, Tailwind and sharing it with your users!
 
 What you see on the right is our application code. On the left is the preview you can update by clicking the render button.
 
