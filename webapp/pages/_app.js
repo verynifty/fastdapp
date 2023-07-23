@@ -44,7 +44,9 @@ function MyApp({ Component, pageProps }) {
         polygon,
         optimism,
         arbitrum,
-        goerli
+        goerli,
+        sepolia,
+        avalanche
     ]);
 
     const { chains, publicClient, webSocketPublicClient } = configureChains(
