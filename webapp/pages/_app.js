@@ -11,7 +11,15 @@ import Head from 'next/head'
 
 import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig, useProvider } from 'wagmi';
-import { arbitrum, goerli, mainnet, optimism, polygon } from 'wagmi/chains';
+import {
+    arbitrum, 
+    goerli, 
+    mainnet,
+     optimism, 
+    polygon, 
+    sepolia,
+    avalanche
+} from 'wagmi/chains';
 import { publicProvider } from 'wagmi/providers/public';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 
