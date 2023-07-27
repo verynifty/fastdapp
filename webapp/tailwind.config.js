@@ -23,6 +23,19 @@ module.exports = {
   ],
   daisyui: {
     themes: [
+      {
+        fastdapp: {
+          "primary": "#FBCA14",
+          "secondary": "#D84D0A",
+          "accent": "#FBCA14",
+          "neutral": "#201825",
+          "base-100": "#fdfbfd",
+          "info": "#2656d9",
+          "success": "#209d7b",
+          "warning": "#e8b22c",
+          "error": "#f2110d",
+        },
+      },
       "light",
       "dark",
       "cupcake",

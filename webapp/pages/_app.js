@@ -15,7 +15,7 @@ import {
     arbitrum, 
     goerli, 
     mainnet,
-     optimism, 
+    optimism, 
     polygon, 
     sepolia,
     avalanche
@@ -86,7 +86,7 @@ function MyApp({ Component, pageProps }) {
     }, []);
 
     return (
-        <div data-theme="light" >
+        <div data-theme="fastdapp" >
             <Head>
                 <meta property="og:url" content="https://fastdapp.xyz" />
                 <meta property="og:type" content="website" />
