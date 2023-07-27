@@ -8,6 +8,7 @@ import erc6551Image from '@/images/dapps/erc6551.png'
 import nftImage from '@/images/dapps/nft.png'
 import erc20Image from '@/images/dapps/erc20.png'
 import lidoImage from '@/images/dapps/lido_staking.png'
+import nfmImage from '@/images/dapps/nfm.png'
 
 
 const dapps = [
