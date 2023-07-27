@@ -64,22 +64,15 @@ export function PrimaryFeatures() {
     <section
       id="features"
       aria-label="Features for running your books"
-      className="relative overflow-hidden bg-blue-600 pb-28 pt-20 sm:py-32"
+      className="relative overflow-hidden pb-28 pt-20 sm:py-32 bg-gradient-to-r from-primary to-secondary text-white "
     >
-      <Image
-        className="absolute left-1/2 top-1/2 max-w-none translate-x-[-44%] translate-y-[-42%]"
-        src={backgroundImage}
-        alt=""
-        width={2245}
-        height={1636}
-        unoptimized
-      />
+      
       <Container className="relative">
         <div className="max-w-2xl md:mx-auto md:text-center xl:max-w-none">
-          <h2 className="font-display text-3xl tracking-tight text-white sm:text-4xl md:text-5xl">
+          <h2 className="font-display text-3xl tracking-tight sm:text-4xl md:text-5xl">
             Everything you need to turn your smart contract into an app
           </h2>
-          <p className="mt-6 text-lg tracking-tight text-blue-100">
+          <p className="mt-6 text-lg tracking-tight ">
            Choose from 20+ components to build the perfect experience.
           </p>
         </div>
@@ -107,8 +100,8 @@ export function PrimaryFeatures() {
                           className={clsx(
                             'font-display text-lg [&:not(:focus-visible)]:focus:outline-none',
                             selectedIndex === featureIndex
-                              ? 'text-blue-600 lg:text-white'
-                              : 'text-blue-100 hover:text-white lg:text-white'
+                              ? ''
+                              : ''
                           )}
                         >
                           <span className="absolute inset-0 rounded-full lg:rounded-l-xl lg:rounded-r-none" />
@@ -119,8 +112,8 @@ export function PrimaryFeatures() {
                         className={clsx(
                           'mt-2 hidden text-sm lg:block',
                           selectedIndex === featureIndex
-                            ? 'text-white'
-                            : 'text-blue-100 group-hover:text-white'
+                            ? ''
+                            : ''
                         )}
                       >
                         {feature.description}
@@ -134,7 +127,7 @@ export function PrimaryFeatures() {
                   <Tab.Panel key={feature.title} unmount={false}>
                     <div className="relative sm:px-6 lg:hidden">
                       <div className="absolute -inset-x-4 bottom-[-4.25rem] top-[-6.5rem] bg-white/10 ring-1 ring-inset ring-white/10 sm:inset-x-0 sm:rounded-t-xl" />
-                      <p className="relative mx-auto max-w-2xl text-base text-white sm:text-center">
+                      <p className="relative mx-auto max-w-2xl  sm:text-center">
                         {feature.description}
                       </p>
                     </div>
