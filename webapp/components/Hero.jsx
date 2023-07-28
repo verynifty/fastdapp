@@ -50,7 +50,7 @@ export function Hero() {
           <div className="mx-auto max-w-7xl px-6 pb-10 pt-10">
             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
               <div className="w-full max-w-xl lg:shrink-0 xl:max-w-2xl">
-                <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-6xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+                <h1 className="text-4xl font-bold tracking-tight text-primary sm:text-6xl bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent hero-text-animate">
                   Build your dapps frontend in minutes
                 </h1>
                 <p className="relative mt-6 text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none text-secondary">
@@ -78,7 +78,7 @@ export function Hero() {
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                   </div>
                   <div className="relative">
-                  <Image
+                    <Image
                       src={imgTwo} alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
@@ -87,14 +87,14 @@ export function Hero() {
                 </div>
                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                   <div className="relative">
-                  <Image
+                    <Image
                       src={imgThree} alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                   </div>
                   <div className="relative">
-                  <Image
+                    <Image
                       src={imgOne} alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
