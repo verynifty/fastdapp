@@ -1,8 +1,8 @@
 import Image from 'next/image'
 
 
-import imgOne from '@/images/hero/1.png'
-import imgTwo from '@/images/hero/2.png'
+import imgOne from '@/images/hero/logo.png'
+import imgTwo from '@/images/hero/write.png'
 import imgThree from '@/images/hero/3.png'
 
 export function Hero() {
