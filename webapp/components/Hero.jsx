@@ -3,7 +3,8 @@ import Image from 'next/image'
 
 import imgOne from '@/images/hero/logo.png'
 import imgTwo from '@/images/hero/write.png'
-import imgThree from '@/images/hero/3.png'
+import imgThree from '@/images/hero/list.png'
+import imgFour from '@/images/hero/read.png'
 
 export function Hero() {
   return (
@@ -35,7 +36,7 @@ export function Hero() {
           <rect width="100%" height="100%" strokeWidth={0} fill="url(#1f932ae7-37de-4c0a-a8b0-a6e3b4d44b84)" />
         </svg>
         <div
-          className="absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48"
+          className="animate-pulse absolute left-1/2 right-0 top-0 -z-10 -ml-24 transform-gpu overflow-hidden blur-3xl lg:ml-24 xl:ml-48"
           aria-hidden="true"
         >
           <div
@@ -79,7 +80,7 @@ export function Hero() {
                   </div>
                   <div className="relative">
                     <Image
-                      src={imgTwo} alt=""
+                      src={imgFour} alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
@@ -88,14 +89,14 @@ export function Hero() {
                 <div className="w-44 flex-none space-y-8 pt-32 sm:pt-0">
                   <div className="relative">
                     <Image
-                      src={imgThree} alt=""
+                      src={imgTwo} alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />
                   </div>
                   <div className="relative">
                     <Image
-                      src={imgOne} alt=""
+                      src={imgThree} alt=""
                       className="aspect-[2/3] w-full rounded-xl bg-gray-900/5 object-cover shadow-lg"
                     />
                     <div className="pointer-events-none absolute inset-0 rounded-xl ring-1 ring-inset ring-gray-900/10" />

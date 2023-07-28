@@ -214,12 +214,11 @@ export default function EditorPage({ source }) {
                     <div className="mt-4 flex md:ml-4 md:mt-0">
                         <button
                             onClick={handleRender}
-                            className="btn btn-xs"
+                            className="btn btn-xs btn-outline btn-accent"
                         >
                             Render
                         </button>
-                        <label for="my_modal_7" className="btn ml-2 btn-xs">Publish</label>
-                        <a href="https://t.me/+1YcicNi_gdNiOTdk" target="_blank" className="btn ml-2 btn-xs">Live chat help</a>
+                        <label for="my_modal_7" className="btn ml-2 btn-xs btn-outline btn-accent">Publish</label>
                     </div>
                 </div>
                 <PanelGroup direction="horizontal" className=" editor_container">
