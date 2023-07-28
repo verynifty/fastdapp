@@ -27,7 +27,7 @@ export function Header() {
           <li><a href="https://docs.fastdapp.xyz/blog">📢 Blog</a></li>
           </ul>
         </div>
-        <Image className='h-12 w-auto' href="/" src={logo} />
+        <a href="/"><Image className='m-l-5 h-12 w-auto'  src={logo} /></a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
