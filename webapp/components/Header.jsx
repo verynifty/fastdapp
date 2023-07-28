@@ -10,10 +10,12 @@ import { NavLink } from '@/components/NavLink'
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
+import Image from 'next/image'
+import logo from '@/images/fastdapp_logo.png'
 
 export function Header() {
   return (
-    <div className="navbar bg-base-100" style={{"height":"4rem !important"}}>
+    <div className="navbar bg-base-100 h-16" >
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -25,7 +27,7 @@ export function Header() {
           <li><a href="https://docs.fastdapp.xyz/blog">📢 Blog</a></li>
           </ul>
         </div>
-        <a href="/" className="btn btn-ghost normal-case text-xl">⚡ Fast Dapp</a>
+        <Image className='h-12 w-auto' href="/" src={logo} />
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
