@@ -18,8 +18,44 @@ import {
     optimism, 
     polygon, 
     sepolia,
-    avalanche
+    avalanche,
 } from 'wagmi/chains';
+
+const base = {
+    id: 8453,
+    network: 'base',
+    name: 'Base',
+    nativeCurrency: { name: 'Base', symbol: 'ETH', decimals: 18 },
+    rpcUrls: {
+      default: {
+        http: ['https://developer-access-mainnet.base.org'],
+      },
+      public: {
+        http: ['https://developer-access-mainnet.base.org'],
+      },
+    },
+    blockExplorers: {
+      blockscout: {
+        name: 'Basescout',
+        url: 'https://base.blockscout.com',
+      },
+      default: {
+        name: 'Basescan',
+        url: 'https://basescan.org',
+      },
+      etherscan: {
+        name: 'Basescan',
+        url: 'https://basescan.org',
+      },
+    },
+    contracts: {
+      multicall3: {
+        address: '0xca11bde05977b3631167028862be2a173976ca11',
+        blockCreated: 5022,
+      },
+    },
+  }
+
 import { publicProvider } from 'wagmi/providers/public';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 
@@ -49,6 +85,7 @@ function MyApp({ Component, pageProps }) {
 
     const [availableChains, setAvailableChains] = useState([
         mainnet,
+        base,
         polygon,
         optimism,
         arbitrum,
@@ -67,7 +104,7 @@ function MyApp({ Component, pageProps }) {
 
     const { connectors } = getDefaultWallets({
         appName: 'test',
-        projectId: process.env.WALLET_CONNECT_PROJECT_ID,
+        projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
         chains
     });
 
