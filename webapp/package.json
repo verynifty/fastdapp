@@ -25,6 +25,7 @@
     "@uniswap/conedison": "^1.7.0",
     "@uniswap/widgets": "^2.51.2",
     "@vercel/og": "^0.5.8",
+    "@wagmi/chains": "^1.6.0",
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "moment": "^2.29.4",
