@@ -33,7 +33,7 @@ const SendTransactionButton = (props) => {
         setIsLoading(true);
         if (props.onBeforeSendTransaction != null) {
             let onBefore = await props.onBeforeSendTransaction();
-            if (!onBefore) {
+            if (!onBefore) {    
                 setIsLoading(false);
                 return;
             }
@@ -48,7 +48,8 @@ const SendTransactionButton = (props) => {
         }
         try {
             let tx = null;
-            if (transactionRequest.config.request.abi != null) {
+            console.log(transactionRequest)
+            if (transactionRequest.config.request != null && transactionRequest.config.request.abi != null) {
                 // THis is a contract write
                 tx = await writeContract(
                     transactionRequest.config.request
