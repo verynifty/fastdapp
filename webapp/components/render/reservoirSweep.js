@@ -26,9 +26,28 @@ const ReservoirSweep = (props) => {
     }
     return (
         <button class="btn btn-primary">
-            {props.buttonText} (Currently not working)
+            {props.buttonText} (Maintenance)
         </button>
     );
+    return (
+        <CollectModal
+            mode="preferMint"
+            trigger={
+                <button class="btn btn-primary">
+                    {props.buttonText}
+                </button>
+            }
+            collectionId={props.collectionAddress}
+            onCollectComplete={(data) => {
+                console.log('Collect Complete', data)
+            }}
+            onCollectError={(error, data) => {
+                console.log('Collect Error', error, data)
+            }}
+            onClose={(data, currentStep) => {
+                console.log('CollectModal Closed')
+            }}
+        />);
 }
 
 export default ReservoirSweep;

@@ -18,7 +18,7 @@ import {
     optimism, 
     polygon, 
     sepolia,
-    avalanche,
+    avalanche
 } from 'wagmi/chains';
 
 const base = {
@@ -26,6 +26,7 @@ const base = {
     network: 'base',
     name: 'Base',
     nativeCurrency: { name: 'Base', symbol: 'ETH', decimals: 18 },
+    iconUrl: 'https://altcoinsbox.com/wp-content/uploads/2023/02/base-logo-in-blue.svg',
     rpcUrls: {
       default: {
         http: ['https://developer-access-mainnet.base.org'],
