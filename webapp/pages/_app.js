@@ -18,7 +18,7 @@ import {
     optimism, 
     polygon, 
     sepolia,
-    avalanche
+    avalanche,
 } from 'wagmi/chains';
 
 const base = {
@@ -85,6 +85,7 @@ function MyApp({ Component, pageProps }) {
 
     const [availableChains, setAvailableChains] = useState([
         mainnet,
+        base,
         polygon,
         optimism,
         arbitrum,
