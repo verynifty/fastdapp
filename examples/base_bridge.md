@@ -8,7 +8,7 @@ theme: dark
 
 # Bridge ETH to Base
 
-You can bridge ETH from Ethereum to Base by sending ETH uaing this webapp. You'll send ETH to the bridge smart contract, wait a few minutes and will see your ETH appear on Base Scan.
+You can bridge ETH from Ethereum to Base by sending ETH using this webapp. You'll send ETH to the bridge smart contract, wait a few minutes and will see your ETH appear on Base Scan.
 
 <div className="alert alert-warning">
   <svg
