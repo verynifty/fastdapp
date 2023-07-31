@@ -1,6 +1,6 @@
-import { SweepModal } from '@reservoir0x/reservoir-kit-ui'
+import { CollectModal } from '@reservoir0x/reservoir-kit-ui'
 
-import { default as React, useState, useRef, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useAccount } from 'wagmi'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
@@ -25,25 +25,9 @@ const ReservoirSweep = (props) => {
         );
     }
     return (
-        <div className="reservoir">
-            <SweepModal
-                trigger={
-                    <button class="btn btn-primary">
-                        {props.buttonText}
-                    </button>
-                }
-                collectionId={collectionId}
-                onSweepComplete={(data) => {
-                    console.log('Sweep Complete', data)
-                }}
-                onSweepError={(error, data) => {
-                    console.log('Sweep Error', error, data)
-                }}
-                onClose={() => {
-                    console.log('SweepModal Closed')
-                }}
-            />
-        </div>
+        <button class="btn btn-primary">
+            {props.buttonText} (Currently not working)
+        </button>
     );
 }
 
