@@ -12,7 +12,7 @@ export function Hero() {
 
       <div className="relative isolate">
         <svg
-          className="animate-pulse absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-orange-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
+          className="opacity-20	 absolute inset-x-0 top-0 -z-10 h-[64rem] w-full stroke-orange-200 [mask-image:radial-gradient(32rem_32rem_at_center,white,transparent)]"
           aria-hidden="true"
         >
           <defs>
@@ -65,7 +65,7 @@ export function Hero() {
                     Get started
                   </a>
                   <a href="https://docs.fastdapp.xyz/docs/tutorials/getting_started" className="text-sm font-semibold leading-6 ">
-                    Getting started tutorial <span aria-hidden="true">→</span>
+                    Read the tutorial <span aria-hidden="true">→</span>
                   </a>
                 </div>
               </div>

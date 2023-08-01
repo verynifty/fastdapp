@@ -9,7 +9,7 @@ import { default as React, useEffect, useState } from 'react';
 
 import Head from 'next/head'
 
-import { getDefaultWallets, RainbowKitProvider } from '@rainbow-me/rainbowkit';
+import { getDefaultWallets, RainbowKitProvider, darkTheme} from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig, useProvider } from 'wagmi';
 import {
     arbitrum, 
@@ -69,10 +69,10 @@ import '@/DateTimePicker.css';
 
 import {
     ReservoirKitProvider,
-    darkTheme,
+    lightTheme,
 } from '@reservoir0x/reservoir-kit-ui'
 
-const theme = darkTheme({
+const theme = lightTheme({
     headlineFont: "Sans Serif",
     font: "Serif",
     primaryColor: "#323aa8",
@@ -149,7 +149,7 @@ function MyApp({ Component, pageProps }) {
                 theme={theme}
             >
                 <WagmiConfig config={wagmiConfig}>
-                    <RainbowKitProvider chains={chains} showRecentTransactions={true}>
+                    <RainbowKitProvider chains={chains} theme={darkTheme()} showRecentTransactions={true}>
                         <div class="h-screen">
                             <Toaster position="top-right" />
                             <Header />
