@@ -111,10 +111,6 @@ export default function EditorPage({ source }) {
 
             // An optional array of keybindings for the action.
 
-            keybindings: [
-                monaco.KeyMod.CtrlCmd | monaco.KeyCode.Enter,
-            ],
-
             // A precondition for this action.
             precondition: null,
 
@@ -174,7 +170,7 @@ export default function EditorPage({ source }) {
         } else {
             return (
                 <div className=' h-full'>
-                    <Editor className="h-full" options={{ "automaticLayout": true }} defaultLanguage="markdown" onChange={handleEditorChange}
+                    <Editor className="h-full" theme='vs-dark' options={{ "automaticLayout": true }} defaultLanguage="markdown" onChange={handleEditorChange}
                         onMount={handleEditorDidMount} value={content} />
                 </div>
             );

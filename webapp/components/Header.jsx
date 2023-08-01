@@ -11,7 +11,7 @@ import { NavLink } from '@/components/NavLink'
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import Image from 'next/image'
-import logo from '@/images/fastdapp_logo.png'
+import logo from '@/images/logo.svg'
 
 export function Header() {
   return (
