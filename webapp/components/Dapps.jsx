@@ -55,14 +55,14 @@ export function Dapps() {
   return (
     <section
       id="dapps"
-      className="bg-slate-50 py-20 sm:py-32"
+      className=" py-20 sm:py-32"
     >
       <Container>
         <div className="mx-auto max-w-2xl md:text-center">
-          <h2 className="font-display text-3xl tracking-tight text-slate-900 sm:text-4xl">
+          <h2 className="font-display text-3xl tracking-tight sm:text-4xl">
             Amazing DApps
           </h2>
-          <p className="mt-4 text-lg tracking-tight text-slate-700">
+          <p className="mt-4 text-lg tracking-tight">
             Try some of the featured DApps, you like one? Get the code and remix it!
           </p>
         </div>

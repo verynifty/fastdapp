@@ -25,15 +25,16 @@ module.exports = {
     themes: [
       {
         fastdapp: {
-          "primary": "#FBCA14",
-          "secondary": "#D84D0A",
-          "accent": "#FBCA14",
-          "neutral": "#FAFAFA",
-          "base-100": "#fdfbfd",
-          "info": "#2656d9",
-          "success": "#209d7b",
-          "warning": "#e8b22c",
-          "error": "#f2110d",
+          "primary": "#E3790D",
+          "secondary": "#F9C712",
+          "accent": "#1fb2a6",
+          "neutral": "#1C1C1C",
+          "base-100": "#090A0F",
+          "info": "#3abff8",
+          "success": "#36d399",
+          "warning": "#fbbd23",
+          "error": "#f87272",
+          "base-content": "#FCFCFC"
         },
       },
       "light",
