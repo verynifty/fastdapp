@@ -123,7 +123,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
           ))}
         </div>
       ) : (
-        <div>You don't own any.</div>
+        <center><div>You don't own any {collectionName} yet.</div></center>
       )}
     </div>
   )}
