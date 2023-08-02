@@ -5,6 +5,7 @@ authors: grands_marquis
 
 <>
   {(() => {
+    // We define variables we will use across our apps
     contractAddress = "__CONTRACT_ADDRESS__";
     collectionBanner = "__COLLECTION_BANNER__";
     collectionImage = "__COLLECTION_IMAGE__";
