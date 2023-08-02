@@ -78,5 +78,8 @@ __COLLECTION_DESCRIPTION__
 </p>
 
 <div>
+ { "__TWITTER__" != "" ?
 <a class="twitter-timeline" href="https://twitter.com/__TWITTER__?ref_src=twsrc%5Etfw">Tweets by __TWITTER__</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+: <div></div>
+ }
 </div>
