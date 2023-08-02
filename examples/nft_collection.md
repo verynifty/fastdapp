@@ -91,47 +91,49 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
 
 # Your collection
 
+<!-- We need the user to be connected to retrieve his assets -->
+
 <PleaseConnect>
-
-<APICall
-  url={
-    "https://api.opensea.io/api/v1/assets/?owner=" +
-    userAddress +
-    "&asset_contract_address=__CONTRACT_ADDRESS__"
-  }
-  params={{
-    headers: {
-      "x-api-key": "e4e7b08f1807492e91301de85728ce2e",
-    },
-  }}
-  renderFunction={(res) => (
-    <div class="mb-2">
-      {res.assets.length > 0 ? (
-        <div class="mx-auto mb-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-          {res.assets.map((nft) => (
-            <div
-              key={nft.id}
-              class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
-            >
-              <img
-                className="m-0 p-0 aspect-[3/2] w-full rounded-2xl object-cover"
-                src={nft.image_url}
-                alt=""
-              />
-              <div>{nft.name}</div>
-            </div>
-          ))}
-        </div>
-      ) : (
-        <center><div>You don't own any {collectionName} yet.</div></center>
-      )}
-    </div>
-  )}
-/>
-
+  <APICall
+    url={
+      "https://api.opensea.io/api/v1/assets/?owner=" +
+      userAddress +
+      "&asset_contract_address=__CONTRACT_ADDRESS__"
+    }
+    params={{
+      headers: {
+        "x-api-key": "e4e7b08f1807492e91301de85728ce2e",
+      },
+    }}
+    renderFunction={(res) => (
+      <div class="mb-2">
+        {res.assets.length > 0 ? (
+          <div class="mx-auto mb-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+            {res.assets.map((nft) => (
+              <div
+                key={nft.id}
+                class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+              >
+                <img
+                  className="m-0 p-0 aspect-[3/2] w-full rounded-2xl object-cover"
+                  src={nft.image_url}
+                  alt=""
+                />
+                <div>{nft.name}</div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <center>
+            <div>You don't own any {collectionName} yet.</div>
+          </center>
+        )}
+      </div>
+    )}
+  />
 </PleaseConnect>
 
-# Get a **COLLECTION_NAME**
+# Get a {collectionName}
 
 <center>
   <ReservoirSweep
