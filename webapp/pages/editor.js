@@ -52,15 +52,16 @@ export default function EditorPage({ source }) {
                 if (params.get("wizard") == 'nft_collection') {
                     const contract_address = params.get("contract_address");
                     let f = await axios.get(getExampleURL("nft_collection"))
-                    let collectionData = await axios.get(`https://api.reservoir.tools/collections/v5?id=` + collection, {
+                    let collectionData = await axios.get(`https://api.reservoir.tools/collections/v5?id=` + contract_address, {
                         headers: {
                             "x-api-key": process.env.NEXT_PUBLIC_RESERVOIR_API_KEY,
                         },
                     });
                     collectionData = collectionData.data.collections[0]
-
-                    setContent(f.data)
-                    setRendered(f.data)
+                    let text = f.data
+                    text = text.replaceAll("__COLLECTION_ADDRESS__", contract_address)
+                    setContent(text)
+                    setRendered(text)
 
                 } else {
                     console.log(router.query, getExampleURL(template))
