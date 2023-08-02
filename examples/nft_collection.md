@@ -88,7 +88,7 @@ __COLLECTION_DESCRIPTION__
 <PleaseConnect>
 
 <APICall
-    url={"https://api.opensea.io/api/v1/assets/?owner=" + userAddress}
+    url={"https://api.opensea.io/api/v1/assets/?owner=" + userAddress + "&collection=__CONTRACT_ADDRESS__"}
     params={{
       headers: {
         "x-api-key": "e4e7b08f1807492e91301de85728ce2e",
