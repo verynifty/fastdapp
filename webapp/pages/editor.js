@@ -232,11 +232,11 @@ export default function EditorPage({ source }) {
                     <div className="mt-4 flex md:ml-4 md:mt-0">
                         <button
                             onClick={handleRender}
-                            className="btn btn-xs btn-outline btn-accent"
+                            className="btn btn-xs btn-outline"
                         >
                             Render
                         </button>
-                        <label for="my_modal_7" className="btn ml-2 btn-xs btn-outline btn-accent">Publish</label>
+                        <label for="my_modal_7" className="btn ml-2 btn-xs btn-outline">Publish</label>
                     </div>
                 </div>
                 <PanelGroup direction="horizontal" className=" editor_container">
