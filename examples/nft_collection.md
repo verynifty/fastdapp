@@ -36,18 +36,19 @@ authors: grands_marquis
           </h1>
         </div>
         <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
-          <button
-            type="button"
-            className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+          <a
+            href="__DISCORD_LINK__"
+            className="inline-flex "
           >
-            <span>Message</span>
-          </button>
-          <button
-            type="button"
-            className="inline-flex justify-center rounded-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 hover:bg-gray-50"
+            <img class="w-8 h-8" src="https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-kva2hfax.png" />
+          </a>
+           <a
+            href="https://twitter.com/__TWITTER__"
+            className="inline-flex "
           >
-            <span>Call</span>
-          </button>
+            <img class="w-8 h-8" src="https://static-00.iconduck.com/assets.00/twitter-icon-512x512-7o66iwws.png" />
+          </a>
+         
         </div>
       </div>
     </div>

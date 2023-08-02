@@ -62,12 +62,20 @@ export default function EditorPage({ source }) {
                     let collectionImage = collectionData.image
                     let collectionName = collectionData.name
                     let collectionDescription = collectionData.description;
+                    let collectionDiscord = collectionData.discordUrl;
+                    let collectionUrl = collectionData.externalUrl;
+                    let collectionTwitter = collectionData.twitterUsername;
+
                     console.log(collectionData)
                     let text = f.data
                     text = text.replaceAll("__CONTRACT_ADDRESS__", contract_address)
                     text = text.replaceAll("__COLLECTION_BANNER__", collectionBanner)
                     text = text.replaceAll("__COLLECTION_IMAGE__", collectionImage)
                     text = text.replaceAll("__COLLECTION_DESCRIPTION__", collectionDescription)
+                    text = text.replaceAll("__COLLECTION_NAME__", collectionName)
+                    text = text.replaceAll("__DISCORD_LINK__", collectionDiscord)
+                    text = text.replaceAll("__URL__", collectionUrl)
+                    text = text.replaceAll("__TWITTER__", collectionTwitter)
 
                     setContent(text)
                     setRendered(text)
