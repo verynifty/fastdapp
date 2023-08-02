@@ -8,6 +8,7 @@ authors: grands_marquis
     contractAddress = "__CONTRACT_ADDRESS__";
     collectionBanner = "__COLLECTION_BANNER__";
     collectionImage = "__COLLECTION_IMAGE__";
+    collectionName = "__COLLECTION_Name__";
   })()}
 </>
 
