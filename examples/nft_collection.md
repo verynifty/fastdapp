@@ -31,7 +31,7 @@ authors: grands_marquis
       </div>
       <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
         <div className="mt-6 min-w-0 flex-1 sm:hidden md:block">
-          <h1 className="truncate text-2xl font-bold">
+          <h1 className="truncate text-2xl font-bold    ">
             {collectionName}
           </h1>
         </div>
@@ -77,8 +77,11 @@ authors: grands_marquis
 __COLLECTION_DESCRIPTION__
 </p>
 
-<div>
+# Get a __COLLECTION_NAME__
+
+<center>
 <ReservoirSweep 
     collectionAddress="__CONTRACT_ADDRESS__" 
-    buttonText="Buy a __COLLECTION_NAME__" />
-</div>
+    buttonText="Buy on Reservoir" />
+<a class ="btn" href="https://pro.opensea.io/collection/__COLLECTION_SLUG__" />
+</center>
