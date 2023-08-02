@@ -25,11 +25,6 @@ const ReservoirSweep = (props) => {
         );
     }
     return (
-        <button class="btn btn-primary">
-            {props.buttonText} (Maintenance)
-        </button>
-    );
-    return (
         <CollectModal
             mode="preferMint"
             trigger={
