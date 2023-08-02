@@ -41,7 +41,7 @@ authors: grands_marquis
             href="__DISCORD_LINK__"
             className="inline-flex "
           >
-            <img class="w-8 h-8" src="https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-kva2hfax.png" />
+            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-kva2hfax.png" />
           </a>
           : <div></div>
           }
@@ -50,7 +50,16 @@ authors: grands_marquis
             href="https://twitter.com/__TWITTER__"
             className="inline-flex "
           >
-            <img class="w-8 h-8" src="https://static-00.iconduck.com/assets.00/twitter-icon-512x512-7o66iwws.png" />
+            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/twitter-icon-512x512-7o66iwws.png" />
+          </a>
+          : <div></div>
+          }
+           { "__URL__" != "" ?
+           <a
+            href="__URL__"
+            className="inline-flex "
+          >
+            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/alternate-external-link-icon-512x512-42crhxr0.png" />
           </a>
           : <div></div>
           }
