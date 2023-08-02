@@ -38,38 +38,39 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
       </div>
       <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
         <div className="mt-6 min-w-0 flex-1 sm:hidden md:block">
-          <h1 className="truncate text-2xl font-bold    ">
-            {collectionName}
-          </h1>
+          <h1 className="truncate text-2xl font-bold    ">{collectionName}</h1>
         </div>
         <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
-        { "__DISCORD_LINK__" != "" ?
-          <a
-            href="__DISCORD_LINK__"
-            className="inline-flex "
-          >
-            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-kva2hfax.png" />
-          </a>
-          : <div></div>
-          }
-          { "__TWITTER__" != "" ?
-           <a
-            href="https://twitter.com/__TWITTER__"
-            className="inline-flex "
-          >
-            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/twitter-icon-512x512-7o66iwws.png" />
-          </a>
-          : <div></div>
-          }
-           { "__URL__" != "" ?
-           <a
-            href="__URL__"
-            className="inline-flex "
-          >
-            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/link-circle-icon-512x512-ybphzgij.png" />
-          </a>
-          : <div></div>
-          }
+          {"__DISCORD_LINK__" != "" ? (
+            <a href="__DISCORD_LINK__" className="inline-flex ">
+              <img
+                class="w-6 h-6"
+                src="https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-kva2hfax.png"
+              />
+            </a>
+          ) : (
+            <div></div>
+          )}
+          {"__TWITTER__" != "" ? (
+            <a href="https://twitter.com/__TWITTER__" className="inline-flex ">
+              <img
+                class="w-6 h-6"
+                src="https://static-00.iconduck.com/assets.00/twitter-icon-512x512-7o66iwws.png"
+              />
+            </a>
+          ) : (
+            <div></div>
+          )}
+          {"__URL__" != "" ? (
+            <a href="__URL__" className="inline-flex ">
+              <img
+                class="w-6 h-6"
+                src="https://static-00.iconduck.com/assets.00/link-circle-icon-512x512-ybphzgij.png"
+              />
+            </a>
+          ) : (
+            <div></div>
+          )}
         </div>
       </div>
     </div>
@@ -80,14 +81,11 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
     </div>
   </div>
 </div>
-<p class="p-5">
-__COLLECTION_DESCRIPTION__
-</p>
+<p class="p-5">__COLLECTION_DESCRIPTION__</p>
 
 <!-- Stats -->
 
 # Stats
-
 
 <!-- User's NFTs -->
 
@@ -96,36 +94,57 @@ __COLLECTION_DESCRIPTION__
 <PleaseConnect>
 
 <APICall
-    url={"https://api.opensea.io/api/v1/assets/?owner=" + userAddress + "&asset_contract_address=__CONTRACT_ADDRESS__"}
-    params={{
-      headers: {
-        "x-api-key": "e4e7b08f1807492e91301de85728ce2e",
-      },
-    }}
-    renderFunction={(res) => (
-      <div class="mx-auto mt-20 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
-        {res.assets.map((nft) => (
-          <div
-            key={nft.id}
-            class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow">
-            <img className="m-0 p-0 aspect-[3/2] w-full rounded-2xl object-cover" src={nft.image_url} alt="" />
-            <div>
-            {nft.name}
+  url={
+    "https://api.opensea.io/api/v1/assets/?owner=" +
+    userAddress +
+    "&asset_contract_address=__CONTRACT_ADDRESS__"
+  }
+  params={{
+    headers: {
+      "x-api-key": "e4e7b08f1807492e91301de85728ce2e",
+    },
+  }}
+  renderFunction={(res) => (
+    <div class="mb-2">
+      {res.assets.length > 0 ? (
+        <div class="mx-auto mb-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+          {res.assets.map((nft) => (
+            <div
+              key={nft.id}
+              class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+            >
+              <img
+                className="m-0 p-0 aspect-[3/2] w-full rounded-2xl object-cover"
+                src={nft.image_url}
+                alt=""
+              />
+              <div>{nft.name}</div>
             </div>
-          </div>
-        ))}
-      </div>
-    )}
+          ))}
+        </div>
+      ) : (
+        <div>You don't own any.</div>
+      )}
+    </div>
+  )}
 />
 
 </PleaseConnect>
 
-
-# Get a __COLLECTION_NAME__
+# Get a **COLLECTION_NAME**
 
 <center>
-<ReservoirSweep 
-    collectionAddress="__CONTRACT_ADDRESS__" 
-    buttonText="Buy on Reservoir" />
-<div class="mt-2"><a target="_blank" class ="btn btn-outline btn-primary" href="https://pro.opensea.io/collection/__COLLECTION_SLUG__" >Buy on Opensea Pro</a></div>
+  <ReservoirSweep
+    collectionAddress="__CONTRACT_ADDRESS__"
+    buttonText="Buy on Reservoir"
+  />
+  <div class="mt-2">
+    <a
+      target="_blank"
+      class="btn btn-outline btn-primary"
+      href="https://pro.opensea.io/collection/__COLLECTION_SLUG__"
+    >
+      Buy on Opensea Pro
+    </a>
+  </div>
 </center>
