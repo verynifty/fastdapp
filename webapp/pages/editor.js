@@ -49,12 +49,26 @@ export default function EditorPage({ source }) {
             try {
                 const params = new URLSearchParams(window.location.search) // id=123
                 let template = params.get('template') // 123 
+                if (params.get("wizard") == 'nft_collection') {
+                    const contract_address = params.get("contract_address");
+                    let f = await axios.get(getExampleURL("nft_collection"))
+                    let collectionData = await axios.get(`https://api.reservoir.tools/collections/v5?id=` + collection, {
+                        headers: {
+                            "x-api-key": process.env.NEXT_PUBLIC_RESERVOIR_API_KEY,
+                        },
+                    });
+                    collectionData = collectionData.data.collections[0]
 
-                console.log(router.query, getExampleURL(template))
-                let f = await axios.get(getExampleURL(template))
-                console.log("ADD CONTENT", f.data)
-                setContent(f.data)
-                setRendered(f.data)
+                    setContent(f.data)
+                    setRendered(f.data)
+
+                } else {
+                    console.log(router.query, getExampleURL(template))
+                    let f = await axios.get(getExampleURL(template))
+                    setContent(f.data)
+                    setRendered(f.data)
+                }
+
                 setIsLoaded(true)
                 console.log("LOADED")
             } catch (error) {
