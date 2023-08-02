@@ -1,6 +1,8 @@
 ---
 chain: 1
 authors: grands_marquis
+title: __COLLECTION_NAME__
+descrription: Learn about the __COLLECTION_NAME__ NFT collection.
 ---
 
 <>
