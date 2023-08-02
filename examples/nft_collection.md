@@ -83,5 +83,5 @@ __COLLECTION_DESCRIPTION__
 <ReservoirSweep 
     collectionAddress="__CONTRACT_ADDRESS__" 
     buttonText="Buy on Reservoir" />
-<a class ="btn" href="https://pro.opensea.io/collection/__COLLECTION_SLUG__" />
+<div><a target="_blank" class ="btn btn-primary" href="https://pro.opensea.io/collection/__COLLECTION_SLUG__" >Buy on Opensea Pro</a></div>
 </center>

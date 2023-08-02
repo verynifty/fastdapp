@@ -59,6 +59,7 @@ export default function EditorPage({ source }) {
                     });
                     collectionData = collectionData.data.collections[0]
                     let collectionBanner = collectionData.banner
+                    let collectionSlug = collectionData.slug;
                     let collectionImage = collectionData.image
                     let collectionName = collectionData.name
                     let collectionDescription = collectionData.description;
@@ -68,6 +69,7 @@ export default function EditorPage({ source }) {
 
                     console.log(collectionData)
                     let text = f.data
+                    text = text.replaceAll("__COLLECTION_SLUG__", collectionSlug)
                     text = text.replaceAll("__CONTRACT_ADDRESS__", contract_address)
                     text = text.replaceAll("__COLLECTION_BANNER__", collectionBanner)
                     text = text.replaceAll("__COLLECTION_IMAGE__", collectionImage)
