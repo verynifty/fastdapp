@@ -61,12 +61,14 @@ export default function EditorPage({ source }) {
                     let collectionBanner = collectionData.banner
                     let collectionImage = collectionData.image
                     let collectionName = collectionData.name
-
+                    let collectionDescription = collectionData.description;
                     console.log(collectionData)
                     let text = f.data
                     text = text.replaceAll("__CONTRACT_ADDRESS__", contract_address)
                     text = text.replaceAll("__COLLECTION_BANNER__", collectionBanner)
                     text = text.replaceAll("__COLLECTION_IMAGE__", collectionImage)
+                    text = text.replaceAll("__COLLECTION_DESCRIPTION__", collectionDescription)
+
                     setContent(text)
                     setRendered(text)
 

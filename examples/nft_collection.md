@@ -9,14 +9,13 @@ authors: grands_marquis
     contractAddress = "__CONTRACT_ADDRESS__";
     collectionBanner = "__COLLECTION_BANNER__";
     collectionImage = "__COLLECTION_IMAGE__";
-    collectionName = "__COLLECTION_Name__";
+    collectionName = "__COLLECTION_NAME__";
   })()}
 </>
-
 <div>
   <div>
     <img
-      className="h-32 w-full object-cover lg:h-48"
+      className="h-32 m-0 w-full object-cover lg:h-48"
       src={collectionBanner}
       alt=""
     />
@@ -25,7 +24,7 @@ authors: grands_marquis
     <div className="-mt-12 sm:-mt-16 sm:flex sm:items-end sm:space-x-5">
       <div className="flex">
         <img
-          className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
+          className="h-24 w-24 m-0 p-0 rounded-full  sm:h-32 sm:w-32"
           src={collectionImage}
           alt=""
         />
@@ -59,3 +58,6 @@ authors: grands_marquis
     </div>
   </div>
 </div>
+<p>
+__COLLECTION_DESCRIPTION__
+</p>
