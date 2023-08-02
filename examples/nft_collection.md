@@ -36,18 +36,24 @@ authors: grands_marquis
           </h1>
         </div>
         <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
+        { "__DISCORD_LINK__" != "" ?
           <a
             href="__DISCORD_LINK__"
             className="inline-flex "
           >
             <img class="w-8 h-8" src="https://static-00.iconduck.com/assets.00/discord-icon-2048x2048-kva2hfax.png" />
           </a>
+          : <div></div>
+          }
+          { "__TWITTER__" != "" ?
            <a
             href="https://twitter.com/__TWITTER__"
             className="inline-flex "
           >
             <img class="w-8 h-8" src="https://static-00.iconduck.com/assets.00/twitter-icon-512x512-7o66iwws.png" />
           </a>
+          : <div></div>
+          }
          
         </div>
       </div>
