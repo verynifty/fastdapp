@@ -7,6 +7,7 @@ descrription: Learn about the __COLLECTION_NAME__ NFT collection.
 
 <>
   {(() => {
+    // If the data are missing, make sure you filled all the informations of your collection on OpenSea
     // We define variables we will use across our apps
     contractAddress = "__CONTRACT_ADDRESS__";
     collectionBanner = "__COLLECTION_BANNER__";
@@ -85,5 +86,5 @@ __COLLECTION_DESCRIPTION__
 <ReservoirSweep 
     collectionAddress="__CONTRACT_ADDRESS__" 
     buttonText="Buy on Reservoir" />
-<div><a target="_blank" class ="btn btn-primary" href="https://pro.opensea.io/collection/__COLLECTION_SLUG__" >Buy on Opensea Pro</a></div>
+<div class="mt-2"><a target="_blank" class ="btn btn-outline btn-primary" href="https://pro.opensea.io/collection/__COLLECTION_SLUG__" >Buy on Opensea Pro</a></div>
 </center>
