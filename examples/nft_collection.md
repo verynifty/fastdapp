@@ -5,9 +5,10 @@ title: "__COLLECTION_NAME__"
 description: Learn about the __COLLECTION_NAME__ NFT collection.
 ---
 
+<!-- If the data are missing, make sure you filled all the informations of your collection on OpenSea -->
+
 <>
   {(() => {
-    // If the data are missing, make sure you filled all the informations of your collection on OpenSea
     // We define variables we will use across our apps
     contractAddress = "__CONTRACT_ADDRESS__";
     collectionBanner = "__COLLECTION_BANNER__";
@@ -15,6 +16,9 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
     collectionName = "__COLLECTION_NAME__";
   })()}
 </>
+
+<!-- Header -->
+
 <div>
   <div>
     <img
@@ -80,15 +84,19 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
 __COLLECTION_DESCRIPTION__
 </p>
 
+<!-- Stats -->
+
 # Stats
 
+
+<!-- User's NFTs -->
 
 # Your collection
 
 <PleaseConnect>
 
 <APICall
-    url={"https://api.opensea.io/api/v1/assets/?owner=" + userAddress + "&collection=__CONTRACT_ADDRESS__"}
+    url={"https://api.opensea.io/api/v1/assets/?owner=" + userAddress + "&asset_contract_address=__CONTRACT_ADDRESS__"}
     params={{
       headers: {
         "x-api-key": "e4e7b08f1807492e91301de85728ce2e",
