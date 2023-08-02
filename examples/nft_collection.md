@@ -58,6 +58,6 @@ authors: grands_marquis
     </div>
   </div>
 </div>
-<p>
+<p class="p-5">
 __COLLECTION_DESCRIPTION__
 </p>
