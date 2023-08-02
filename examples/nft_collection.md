@@ -59,11 +59,10 @@ authors: grands_marquis
             href="__URL__"
             className="inline-flex "
           >
-            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/alternate-external-link-icon-512x512-42crhxr0.png" />
+            <img class="w-6 h-6" src="https://static-00.iconduck.com/assets.00/link-circle-icon-512x512-ybphzgij.png" />
           </a>
           : <div></div>
           }
-         
         </div>
       </div>
     </div>
@@ -77,3 +76,7 @@ authors: grands_marquis
 <p class="p-5">
 __COLLECTION_DESCRIPTION__
 </p>
+
+<div>
+<a class="twitter-timeline" href="https://twitter.com/__TWITTER__?ref_src=twsrc%5Etfw">Tweets by __TWITTER__</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+</div>
