@@ -24,14 +24,14 @@ authors: grands_marquis
       <div className="flex">
         <img
           className="h-24 w-24 rounded-full ring-4 ring-white sm:h-32 sm:w-32"
-          src="__COLLECTION_IMAGE__"
+          src={collectionImage}
           alt=""
         />
       </div>
       <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
         <div className="mt-6 min-w-0 flex-1 sm:hidden md:block">
           <h1 className="truncate text-2xl font-bold text-gray-900">
-            __COLLECTION_NAME__
+            {collectionName}
           </h1>
         </div>
         <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
@@ -52,7 +52,7 @@ authors: grands_marquis
     </div>
     <div className="mt-6 hidden min-w-0 flex-1 sm:block md:hidden">
       <h1 className="truncate text-2xl font-bold text-gray-900">
-        __COLLECTION_NAME__
+        {collectionName}
       </h1>
     </div>
   </div>
