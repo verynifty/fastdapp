@@ -85,9 +85,9 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
 <div class="p-5">
 <p >__COLLECTION_DESCRIPTION__</p>
 
-<!-- Stats -->
+<!-- Informations -->
 
-# Stats
+# Informations
 
 <APICall
   url="https://api.reservoir.tools/collections/v5?id=__CONTRACT_ADDRESS__"
@@ -103,6 +103,12 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
           <div className="stat-title">Owners</div>
           <div className="stat-value text-primary">
             {res.collections[0].ownerCount}
+          </div>
+        </div>
+        <div className="stat">
+          <div className="stat-title">Supply</div>
+          <div className="stat-value text-primary">
+            {res.collections[0].tokenCount}
           </div>
         </div>
         {res.collections[0].floorAsk != null ? (
