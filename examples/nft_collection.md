@@ -82,7 +82,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
     </div>
   </div>
 </div>
-<div class="p-5">
+<div class="p-5 lg:p-15">
 
 <!-- Description -->
 
