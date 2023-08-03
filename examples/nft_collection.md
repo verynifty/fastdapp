@@ -106,7 +106,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
       },
     }}
     renderFunction={(res) => (
-      <div class="mb-2">
+      <div class="mb-4">
         {res.assets.length > 0 ? (
           <div class="mx-auto mb-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
             {res.assets.map((nft) => (
@@ -133,9 +133,9 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
   />
 </PleaseConnect>
 
-# Get a {collectionName}
+# Get a one
 
-<center>
+<center class="mb-5">
   <ReservoirSweep
     collectionAddress="__CONTRACT_ADDRESS__"
     buttonText="Buy on Reservoir"
