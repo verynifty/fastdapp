@@ -166,7 +166,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
   />
 </PleaseConnect>
 
-# Get a one
+# Get one
 
 <center>
   <ReservoirSweep
