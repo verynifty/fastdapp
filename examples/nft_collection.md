@@ -151,7 +151,7 @@ description: Learn about the NFT collection.
     renderFunction={(res) => (
       <div class="mb-4">
         {res.assets.length > 0 ? (
-          <div class="mx-auto mb-2 grid max-w-2xl grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-4">
+          <div class="mb-2 grid grid-cols-4">
             {res.assets.map((nft) => (
               <div
                 key={nft.id}
