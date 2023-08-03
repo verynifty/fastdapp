@@ -147,7 +147,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
                 class="col-span-1 flex flex-col divide-y divide-base rounded-lg text-center shadow"
               >
                 <img
-                  className="m-0 p-0 aspect-[3/2] w-full rounded-2xl object-cover"
+                  className="m-0 p-0 aspect-[3/2] w-full object-cover"
                   src={nft.image_url}
                   alt=""
                 />

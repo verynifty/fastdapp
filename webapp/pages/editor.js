@@ -58,10 +58,10 @@ export default function EditorPage({ source }) {
                         },
                     });
                     collectionData = collectionData.data.collections[0]
-                    let collectionBanner = collectionData.banner
                     let collectionSlug = collectionData.slug;
-                    let collectionImage = collectionData.image
-                    let collectionName = collectionData.name
+                    let collectionImage = collectionData.image;
+                    let collectionBanner = collectionData.banner ? collectionData.banner : collectionImage;
+                    let collectionName = collectionData.name;
                     let collectionDescription = collectionData.description;
                     let collectionDiscord = collectionData.discordUrl;
                     let collectionUrl = collectionData.externalUrl;
