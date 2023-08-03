@@ -3,7 +3,7 @@ chain: 1
 authors: grands_marquis
 theme: light
 title: "__COLLECTION_NAME__"
-description: Learn about the __COLLECTION_NAME__ NFT collection.
+description: Learn about the NFT collection.
 ---
 
 <!-- If the data are missing, make sure you filled all the informations of your collection on OpenSea -->
