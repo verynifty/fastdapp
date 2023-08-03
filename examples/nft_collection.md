@@ -38,7 +38,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
       </div>
       <div className="mt-6 sm:flex sm:min-w-0 sm:flex-1 sm:items-center sm:justify-end sm:space-x-6 sm:pb-1">
         <div className="mt-6 min-w-0 flex-1 sm:hidden md:block">
-          <h1 className="truncate text-2xl font-bold    ">{collectionName}</h1>
+          <h1 className="truncate text-2xl font-bold text-primary">{collectionName}</h1>
         </div>
         <div className="mt-6 flex flex-col justify-stretch space-y-3 sm:flex-row sm:space-x-4 sm:space-y-0">
           {"__DISCORD_LINK__" != "" ? (
@@ -144,7 +144,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
             {res.assets.map((nft) => (
               <div
                 key={nft.id}
-                class="col-span-1 flex flex-col divide-y divide-gray-200 rounded-lg bg-white text-center shadow"
+                class="col-span-1 flex flex-col divide-y divide-base rounded-lg text-center shadow"
               >
                 <img
                   className="m-0 p-0 aspect-[3/2] w-full rounded-2xl object-cover"
