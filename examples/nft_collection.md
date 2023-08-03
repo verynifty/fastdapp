@@ -87,6 +87,17 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
 
 # Stats
 
+
+<APICall
+  url="https://api.reservoir.tools/collections/v5?id=__CONTRACT_ADDRESS__"
+   params={{
+    headers: {
+      "x-api-key": "demo-api-key",
+    },
+  }}
+  
+  />
+
 <!-- User's NFTs -->
 
 # Your collection
