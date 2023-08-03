@@ -167,7 +167,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
           </div>
         ) : (
           <center>
-            <div>You don't own any {collectionName} yet.</div>
+            <div class="my-5">You don't own any {collectionName} yet.</div>
           </center>
         )}
       </div>
