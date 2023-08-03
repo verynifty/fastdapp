@@ -92,6 +92,7 @@ description: Learn about the NFT collection.
 
 # Informations
 
+<!-- You should get an API key at https://reservoir.tools/ -->
 <APICall
   url="https://api.reservoir.tools/collections/v5?id=__CONTRACT_ADDRESS__"
   params={{
