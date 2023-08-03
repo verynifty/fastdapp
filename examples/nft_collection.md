@@ -1,6 +1,7 @@
 ---
 chain: 1
 authors: grands_marquis
+theme: retro
 title: "__COLLECTION_NAME__"
 description: Learn about the __COLLECTION_NAME__ NFT collection.
 ---
