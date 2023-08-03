@@ -114,7 +114,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
             {res.collections[0].tokenCount}
           </div>
         </div>
-        {res.collections[0].floorAsk != null ? (
+        {res.collections[0].floorAsk != null && res.collections[0].floorAsk.price != null  ? (
           <div className="stat">
             <div className="stat-title">Price</div>
             <div className="stat-value text-primary">
