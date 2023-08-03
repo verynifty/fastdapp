@@ -81,22 +81,43 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
     </div>
   </div>
 </div>
-<p class="p-5">__COLLECTION_DESCRIPTION__</p>
+<div class="p-5">
+<p >__COLLECTION_DESCRIPTION__</p>
 
 <!-- Stats -->
 
 # Stats
 
-
 <APICall
-  url="https://api.reservoir.tools/collections/v5?id=__CONTRACT_ADDRESS__"
-   params={{
+  url="https://api.reservoir.tools/collections/v5?id=0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D"
+  params={{
     headers: {
       "x-api-key": "demo-api-key",
     },
   }}
-  
-  />
+  renderFunction={(res) => (
+    <center class="mb-5">
+      <div className="stats shadow">
+        <div className="stat">
+          <div className="stat-title">Owners</div>
+          <div className="stat-value text-primary">
+            {res.collections[0].ownerCount}
+          </div>
+        </div>
+        {res.collections[0].floorAsk != null ? (
+          <div className="stat">
+            <div className="stat-title">Price</div>
+            <div className="stat-value text-primary">
+              {res.collections[0].floorAsk.price.amount.native} ETH
+            </div>
+          </div>
+        ) : (
+          <div></div>
+        )}
+      </div>
+    </center>
+  )}
+/>
 
 <!-- User's NFTs -->
 
@@ -146,7 +167,7 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
 
 # Get a one
 
-<center class="mb-5">
+<center>
   <ReservoirSweep
     collectionAddress="__CONTRACT_ADDRESS__"
     buttonText="Buy on Reservoir"
@@ -161,3 +182,4 @@ description: Learn about the __COLLECTION_NAME__ NFT collection.
     </a>
   </div>
 </center>
+</div>
