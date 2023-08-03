@@ -82,7 +82,7 @@ description: Learn about the NFT collection.
     </div>
   </div>
 </div>
-<div class="container mx-auto px-4">
+<div class="container mx-auto px-4 py-4">
 
 <!-- Description -->
 
