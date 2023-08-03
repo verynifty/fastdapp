@@ -62,10 +62,10 @@ export default function EditorPage({ source }) {
                     let collectionImage = collectionData.image;
                     let collectionBanner = collectionData.banner ? collectionData.banner : collectionImage;
                     let collectionName = collectionData.name;
-                    let collectionDescription = collectionData.description;
-                    let collectionDiscord = collectionData.discordUrl;
-                    let collectionUrl = collectionData.externalUrl;
-                    let collectionTwitter = collectionData.twitterUsername;
+                    let collectionDescription = collectionData.description ? collectionData.description : "";
+                    let collectionDiscord = collectionData.discordUrl ? collectionData.discordUrl : "";
+                    let collectionUrl = collectionData.externalUrl ? collectionData.externalUrl : "";
+                    let collectionTwitter = collectionData.twitterUsername ? collectionData.twitterUsername : "";
 
                     console.log(collectionData)
                     let text = f.data
