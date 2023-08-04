@@ -53,7 +53,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     mapping(uint256 => string) public locations;
     mapping(string => uint256) public nameToId;
     mapping(uint256 => string) public idToName;
-    
+
     uint256 public price;
 
     event Log(address indexed sender, string message);
@@ -109,6 +109,10 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         Here starts our code
     */
 
+    /*
+        GETTERS
+    */
+
     function getInfoFromName(
         string memory _name
     )
@@ -158,6 +162,10 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         return true;
     }
 
+    /*
+        SETTERS
+    */
+
     function mint(string memory _name, string memory _location) public payable {
         uint256 tokenId = totalSupply();
         require(msg.value >= price, "You didn't pay enough");
@@ -177,7 +185,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     function setLocation(
         uint256 _tokenId,
         string memory _newLocation
-    ) public onlyOwner {
+    ) public {
         require(ownerOf(_tokenId) == msg.sender, "Not owner");
         locations[_tokenId] = _newLocation;
     }
