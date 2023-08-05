@@ -57,6 +57,34 @@ const base = {
     },
   }
 
+ 
+const altcoinchain = {
+    id: 2330,
+    network: 'altcoinchain',
+    name: 'Altcoin Chain',
+    nativeCurrency: { name: 'altcoinchain', symbol: 'ALT', decimals: 18 },
+    iconUrl: 'https://avatars.githubusercontent.com/u/115709361?s=200&v=4',
+    rpcUrls: {
+      default: {
+        http: ['https://rpc0.altcoinchain.org/rpc'],
+      },
+      public: {
+        http: ['https://rpc0.altcoinchain.org/rpc'],
+      },
+    },
+    blockExplorers: {
+      default: {
+        name: 'Expedition',
+        url: 'http://expedition.altcoinchain.org/',
+      },
+    },
+    contracts: {
+      
+    },
+  }
+ 
+
+  
 import { publicProvider } from 'wagmi/providers/public';
 import { alchemyProvider } from 'wagmi/providers/alchemy';
 
@@ -93,7 +121,8 @@ function MyApp({ Component, pageProps }) {
         base,
         goerli,
         sepolia,
-        avalanche
+        avalanche,
+        altcoinchain
     ]);
 
     const { chains, publicClient, webSocketPublicClient } = configureChains(
