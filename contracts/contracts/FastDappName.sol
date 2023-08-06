@@ -55,7 +55,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     uint256 public price;
 
-    event Log(address indexed sender, string message);
+    event newLocation(uint256 indexed id, string location);
 
     constructor() ERC721("Fast Dapp Name", "FAST") {
         price = 1 ether;
@@ -113,7 +113,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     */
 
     function getIdFromName(string memory _name) public pure returns (uint256) {
-         return uint256(keccak256(abi.encode(_name)));
+        return uint256(keccak256(abi.encode(_name)));
     }
 
     function getInfoFromName(
@@ -128,7 +128,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
             uint256 tokenId
         )
     {
-        uint256 _tokenId = getIdFromName[_name];
+        uint256 _tokenId = getIdFromName(_name);
         return (getInfoFromId(_tokenId));
     }
 
@@ -173,7 +173,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         uint256 tokenId = getIdFromName(_name);
         require(msg.value >= price, "You didn't pay enough");
         // Check if name is available
-        require(idToName == "", "Name already taken");
+        require(!_exists(tokenId), "Name already taken");
         // Check if name is valid
         require(
             isNameValid(_name),
@@ -181,15 +181,14 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         );
         idToName[tokenId] = _name;
         locations[tokenId] = _location;
+        emit newLocation(tokenId, _location);
         _mint(msg.sender, tokenId);
     }
 
-    function setLocation(
-        uint256 _tokenId,
-        string memory _newLocation
-    ) public {
+    function setLocation(uint256 _tokenId, string memory _newLocation) public {
         require(ownerOf(_tokenId) == msg.sender, "Not owner");
         locations[_tokenId] = _newLocation;
+        emit newLocation(_tokenId, _newLocation);
     }
 
     function setPrice(uint256 _price) public onlyOwner {
