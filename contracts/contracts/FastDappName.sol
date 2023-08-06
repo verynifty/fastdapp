@@ -51,7 +51,6 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 
 contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     mapping(uint256 => string) public locations;
-    mapping(string => uint256) public nameToId;
     mapping(uint256 => string) public idToName;
 
     uint256 public price;
@@ -113,6 +112,10 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
         GETTERS
     */
 
+    function getIdFromName(string memory _name) public pure returns (uint256) {
+         return uint256(keccak256(abi.encode(_name)));
+    }
+
     function getInfoFromName(
         string memory _name
     )
@@ -125,7 +128,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
             uint256 tokenId
         )
     {
-        uint256 _tokenId = nameToId[_name];
+        uint256 _tokenId = getIdFromName[_name];
         return (getInfoFromId(_tokenId));
     }
 
@@ -167,16 +170,15 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     */
 
     function mint(string memory _name, string memory _location) public payable {
-        uint256 tokenId = totalSupply();
+        uint256 tokenId = getIdFromName(_name);
         require(msg.value >= price, "You didn't pay enough");
         // Check if name is available
-        require(tokenId == 0 || nameToId[_name] == 0, "Name already taken");
+        require(idToName == "", "Name already taken");
         // Check if name is valid
         require(
             isNameValid(_name),
             "Name must contain only characters from 0-9, a-z, - and _"
         );
-        nameToId[_name] = tokenId;
         idToName[tokenId] = _name;
         locations[tokenId] = _location;
         _mint(msg.sender, tokenId);
