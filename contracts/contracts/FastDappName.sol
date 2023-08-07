@@ -57,9 +57,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
 
     event newLocation(uint256 indexed id, string location);
 
-    constructor() ERC721("Fast Dapp Name", "FAST") {
-        price = 1 ether;
-    }
+    constructor() ERC721("Fast Dapp Name", "FAST") {}
 
     // Function to receive Ether. msg.data must be empty
     receive() external payable {}
@@ -153,13 +151,13 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     // Check if name of domain is valid
     function isNameValid(string memory str) public pure returns (bool) {
         bytes memory b = bytes(str);
-        if (b.length > 0) return false;
+        if (b.length < 1) return false;
         for (uint i; i < b.length; i++) {
             bytes1 char = b[i];
             if (
-                !(char >= 0x30 && char <= 0x39) && //9-0
-                !(char >= 0x61 && char <= 0x7A) && //a-z
-                !(char == 0x2D || char == 0x5F) //- and _
+                !((char >= 0x30 && char <= 0x39) || //9-0
+                    (char >= 0x61 && char <= 0x7A) || //a-z
+                    (char == 0x2D || char == 0x5F)) //- and _
             ) return false;
         }
         return true;
@@ -196,7 +194,7 @@ contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {
     }
 
     function withdrawEth() public payable {
-        address payable _to = payable(owner()); //multisig
+        address payable _to = payable(owner());
         (bool sent, ) = _to.call{value: address(this).balance}("");
         require(sent, "Failed to send Ether");
     }

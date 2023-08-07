@@ -37,7 +37,7 @@ module.exports = {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA}`,
       // accounts: [process.env.KEY],
       accounts: [process.env.KEY],
-      gasPrice: 23000000000,
+      //gasPrice: 23000000000,
     },
     ropsten: {
       url: `https://ropsten.infura.io/v3/${process.env.INFURA}`,
@@ -66,9 +66,7 @@ module.exports = {
    }
   },
   etherscan: {
-   apiKey:{
-     arbitrumOne: "",
-   },
+   apiKey: process.env.ETHERSCAN_API
   },
   solidity: {
     compilers: [

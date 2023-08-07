@@ -152,7 +152,7 @@ const WriteContract = (props) => {
     }
 
     function makePayable() {
-        if (getFunction().payable) {
+        if ((getFunction().payable || getFunction().stateMutability == "payable") && !getFunction().hideValue) {
             return (
                 <div>
                     <div className="form-control w-full ">
