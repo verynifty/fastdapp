@@ -52,7 +52,7 @@ export default async function handler(request) {
                          style={{
                             position: 'absolute',
                             bottom: '200px',
-                            height: '1800px',
+                            height: '1790px',
                             width: '1800px',
                         }} />
 
@@ -61,13 +61,13 @@ export default async function handler(request) {
                     <div
                         style={{
                             position: 'absolute',
-                            bottom: '-20px',
+                            bottom: '180px',
                             fontSize: 90,
                             fontStyle: 'normal',
                             color: 'black',
                             marginTop: 0,
                             whiteSpace: 'pre-wrap',
-                            transform: 'translate(30px, 0) rotate(-7deg)'
+                            transform: 'translate(40px, 0) rotate(-7deg)'
                         }}
                     >
                         Fast Dapp
