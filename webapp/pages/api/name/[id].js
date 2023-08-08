@@ -56,7 +56,7 @@ export default async function handler(req, res) {
     try {
         const result = await contract.read.getInfoFromId([id]);
         let JSONRESULT = {
-            "description": "Friendly OpenSea Creature that enjoys long swims in the ocean.",
+            "description": "A domain name for your Fast Dapp app at: " + result[2],
             "external_url": "https://fastdapp.xyz/a/" + result[2],
             "image": "https://fastdapp.xyz/api/name-img?title=" + result[2],
             "name": result[2],
