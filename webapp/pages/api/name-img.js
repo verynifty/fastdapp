@@ -1,12 +1,17 @@
 import { ImageResponse } from '@vercel/og';
 import { NextRequest } from 'next/server';
+import { createAvatar } from '@dicebear/core';
+import { micah } from '@dicebear/collection';
+
+
 
 export const config = {
     runtime: 'edge',
 };
 
-export default function handler(request) {
+export default async function handler(request) {
     try {
+        console.log("HELLO")
         const { searchParams } = new URL(request.url);
 
         // ?title=<title>
@@ -19,72 +24,82 @@ export default function handler(request) {
             ? searchParams.get('subtitle')?.slice(0, 100)
             : '';
 
+        const avatar = createAvatar(micah, {
+            seed: title
+            // ... other options
+        });
+
+        const svg = await avatar.toDataUri();
+        const imgJson = avatar.toJson()
+        console.log(svg, imgJson)
+
         return new ImageResponse(
             (
                 <div
                     style={{
-                        backgroundColor: '#FFEA00',
-                        backgroundSize: '150px 150px',
+                        background: 'linear-gradient(0deg, rgba(227,121,13,1) 0%, rgba(249,199,18,1) 100%)',
                         height: '100%',
                         width: '100%',
                         display: 'flex',
                         textAlign: 'center',
                         alignItems: 'center',
-                        justifyContent: 'center',
                         flexDirection: 'column',
                         flexWrap: 'nowrap',
+                        position: 'relative'
                     }}
                 >
+                        <img src={svg}
+                         style={{
+                            position: 'absolute',
+                            bottom: '200px',
+                            height: '1800px',
+                            width: '1800px',
+                        }} />
+
+                        
+                   
                     <div
                         style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            justifyItems: 'center',
+                            position: 'absolute',
+                            bottom: '-20px',
+                            fontSize: 90,
+                            fontStyle: 'normal',
+                            color: 'black',
+                            marginTop: 0,
+                            whiteSpace: 'pre-wrap',
+                            transform: 'translate(30px, 0) rotate(-7deg)'
                         }}
                     >
-                        <svg fill="#000000"
-                            width="250px" height="250px" viewBox="0 0 560.317 560.316"
-                        >
-                            <g>
-                                <g>
-                                    <path d="M207.523,560.316c0,0,194.42-421.925,194.444-421.986l10.79-23.997c-41.824,12.02-135.271,34.902-135.57,35.833
-			C286.96,122.816,329.017,0,330.829,0c-39.976,0-79.952,0-119.927,0l-12.167,57.938l-51.176,209.995l135.191-36.806
-			L207.523,560.316z"/>
-                                </g>
-                            </g>
-                        </svg>
+                        Fast Dapp
                     </div>
-                    <div
+                    <div 
+                         style={{
+                            position: 'absolute',
+                            bottom: '0px',
+                            height: '200px',
+                            width: '2000px',
+                            backgroundColor: "#00000",
+                           
+                        }} >
+                            </div>
+                            <div
                         style={{
-                            fontSize: 70,
+                            position: 'absolute',
+                            bottom: '35px',
+                            fontSize: 120,
                             fontStyle: 'normal',
-                            letterSpacing: '-0.025em',
-                            color: 'black',
-                            marginTop: 10,
-                            padding: '0 12px',
-                            lineHeight: 1.4,
+                            color: 'white',
+                            marginTop: 0,
                             whiteSpace: 'pre-wrap',
                         }}
                     >
                         {title}
                     </div>
-                    <div
-                        style={{
-                            fontSize: 30,
-                            fontStyle: 'normal',
-                            color: 'black',
-                            marginTop: 0,
-                            whiteSpace: 'pre-wrap',
-                        }}
-                    >
-                        {subtitle}
-                    </div>
                 </div>
             ),
             {
-                width: 1200,
-                height: 630,
+                width: 2000,
+                height: 2000,
             },
         );
     } catch (e) {

@@ -14,6 +14,8 @@
   },
   "dependencies": {
     "@airstack/airstack-react": "^0.4.2",
+    "@dicebear/collection": "^6.0.4",
+    "@dicebear/core": "^6.0.4",
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@mdx-js/runtime": "^1.6.22",
@@ -29,7 +31,7 @@
     "autoprefixer": "10.4.14",
     "axios": "^1.4.0",
     "moment": "^2.29.4",
-    "next": "13.4.4",
+    "next": "13.4.7",
     "next-mdx-remote": "^4.4.1",
     "object-hash": "^3.0.0",
     "postcss": "8.4.24",
