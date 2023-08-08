@@ -22,6 +22,7 @@ const WriteContract = (props) => {
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
     const [isWantingApproval, setIsWantingApproval] = React.useState(null);
+    const [rawTransaction, setRawTransaction] = React.useState(null);
 
     const { address, isConnecting, isDisconnected } = useAccount()
 
@@ -78,11 +79,11 @@ const WriteContract = (props) => {
         return true
     }
 
-    async function onTransactionMined() {
+    async function onTransactionMined(minedTx) {
         //   console.log("beforeClick", argsStateApprovals);
         if (props.onTransactionMined != null) {
             try {
-                await props.onTransactionMined()
+                await props.onTransactionMined(minedTx,rawTransaction)
             } catch (error) {
                 console.error("Error in onTransactionMined", error)
             }
@@ -107,10 +108,10 @@ const WriteContract = (props) => {
                     args.push(arg);
                 }
             }
-
-            tx = usePrepareContractWrite({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") });
+            setRawTransaction({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") })
+            tx = usePrepareContractWrite(rawTransaction);
             if (tx.error) {
-                console.log("There is an error")
+                console.error("There is an error", tx)
             }
         } catch (e) {
             console.error("Error")

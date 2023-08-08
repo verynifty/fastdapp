@@ -15,6 +15,13 @@ With the NFT you can control:
 
 Minting fees goes to the Muse DAO and are governed by Muse holders.
 
+<>
+  {(() => {
+    // You can declare reactive variables
+    [location, setLocation] = useState(typeof location !== 'undefined' ? location: "");
+  })()}
+</>
+
 <ContractWrite
   address="0xC7B4E5690D9D59f47eCBa0A89375d7F0953AdA23"
   abi={[
@@ -22,12 +29,12 @@ Minting fees goes to the Muse DAO and are governed by Muse holders.
       inputs: [
         {
           internalType: "string",
-          name: "_name",
+          name: "Domain name for your app (only alphanumeric and - _):",
           type: "string",
         },
         {
           internalType: "string",
-          name: "_location",
+          name: "Address of hosted page (https or ipfs):",
           type: "string",
         },
       ],
@@ -38,5 +45,10 @@ Minting fees goes to the Muse DAO and are governed by Muse holders.
       hideValue: true
     }
   ]}
+  args={["", location]}
   functionName="mint"
+  onTransactionMined={function(tx) {
+    console.log("mined", tx);
+    window.location.href = 'http://www.google.com';
+  }}
 />
