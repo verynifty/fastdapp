@@ -1,5 +1,7 @@
 import { createPublicClient, http, getContract } from 'viem'
 import { mainnet, goerli } from 'viem/chains'
+import { createAvatar } from '@dicebear/core';
+import { micah } from '@dicebear/collection';
 
 
 export default async function handler(req, res) {
@@ -55,6 +57,11 @@ export default async function handler(req, res) {
 
     try {
         const result = await contract.read.getInfoFromId([id]);
+        const avatar = createAvatar(micah, {
+            seed: result[2]
+            // ... other options
+        });
+        const  imgJson = avatar.toJson()
         let JSONRESULT = {
             "description": "A domain name for your Fast Dapp app at: " + result[2],
             "external_url": "https://fastdapp.xyz/a/" + result[2],
@@ -64,6 +71,38 @@ export default async function handler(req, res) {
                 {
                     "trait_type": "Owner",
                     "value": result[0]
+                },
+                {
+                    "trait_type": "Mouth",
+                    "value": imgJson.extra.mouth
+                },
+                {
+                    "trait_type": "Nose",
+                    "value": imgJson.extra.nose
+                },
+                {
+                    "trait_type": "Hair",
+                    "value": imgJson.extra.hair
+                },
+                {
+                    "trait_type": "Eyebrows",
+                    "value": imgJson.extra.eyebrows
+                },
+                {
+                    "trait_type": "Shirt",
+                    "value": imgJson.extra.shirt
+                },
+                {
+                    "trait_type": "Glasses",
+                    "value": imgJson.extra.glasses ? imgJson.extra.glasses : 'None'
+                },
+                {
+                    "trait_type": "Ear ring",
+                    "value": imgJson.extra.earrings ? imgJson.extra.earrings : 'None'
+                },
+                {
+                    "trait_type": "Facial Hair",
+                    "value": imgJson.extra.facialHair ? imgJson.extra.facialHair : 'None'
                 },
                 {
                     "display_type": "number",
