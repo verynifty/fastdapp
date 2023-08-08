@@ -22,7 +22,7 @@ const WriteContract = (props) => {
     const [formatted, setFormatted] = React.useState("");
     const [symbol, setSymbol] = React.useState("");
     const [isWantingApproval, setIsWantingApproval] = React.useState(null);
-    const [rawTransaction, setRawTransaction] = React.useState(null);
+    let rawTransaction;
 
     const { address, isConnecting, isDisconnected } = useAccount()
 
@@ -108,7 +108,7 @@ const WriteContract = (props) => {
                     args.push(arg);
                 }
             }
-            setRawTransaction({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") })
+            rawTransaction = ({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") })
             tx = usePrepareContractWrite(rawTransaction);
             if (tx.error) {
                 console.error("There is an error", tx)

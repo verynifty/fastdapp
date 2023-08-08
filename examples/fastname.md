@@ -18,7 +18,9 @@ Minting fees goes to the Muse DAO and are governed by Muse holders.
 <>
   {(() => {
     // You can declare reactive variables
-    [location, setLocation] = useState(typeof location !== 'undefined' ? location: "");
+    [location, setLocation] = useState(
+      typeof location !== "undefined" ? location : ""
+    );
   })()}
 </>
 
@@ -42,13 +44,14 @@ Minting fees goes to the Muse DAO and are governed by Muse holders.
       outputs: [],
       stateMutability: "payable",
       type: "function",
-      hideValue: true
-    }
+      hideValue: true,
+    },
   ]}
   args={["", location]}
   functionName="mint"
-  onTransactionMined={function(tx) {
-    console.log("mined", tx);
-    window.location.href = 'http://www.google.com';
+  onTransactionMined={function (tx, rawTx) {
+    console.log("mined", tx, rawTx);
+    console.log(rawTx.args[0]);
+    // window.location.href = 'http://www.google.com';
   }}
 />
