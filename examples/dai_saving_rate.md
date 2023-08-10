@@ -86,8 +86,8 @@ authors: grands_marquis
     ];
   })()}
 </>
-
-<center class="p-5">
+<div class="p-10 bg-neutral">
+<center class="p-5 card bg-base-100">
 <ContractRead
   address={DAIPotAddress}
   abi={DAIPotABI}
@@ -141,7 +141,7 @@ Exchange your sDAI into DAI.
               address={SavingsDaiAddress}
               abi={SavingsDaiABI}
               functionName="redeem"
-              args={[maxRedeemable + "", userAddress, userAddress]}
+              args={[0, userAddress, userAddress]}
             /></div>
           </div>
         )}
@@ -158,3 +158,4 @@ Exchange your sDAI into DAI.
   </div>
 </div>
 </center>
+</div>
