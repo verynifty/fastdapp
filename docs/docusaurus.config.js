@@ -74,7 +74,7 @@ const config = {
         title: 'Fast Dapp',
         logo: {
           alt: 'My Site Logo',
-          src: 'img/logo.svg',
+          src: 'img/logo.png',
         },
         items: [
           {
@@ -83,7 +83,7 @@ const config = {
             position: 'left',
             label: 'Docs',
           },
-          {to: '/blog', label: 'Blog', position: 'left'},
+          { to: '/blog', label: 'Blog', position: 'left' },
           {
             label: 'Build',
             to: 'https://fastdapp.xyz',
@@ -131,6 +131,9 @@ const config = {
         theme: lightCodeTheme,
         darkTheme: darkCodeTheme,
       },
+      colorMode: {
+        defaultMode: "dark"
+      }
     }),
 };
 
