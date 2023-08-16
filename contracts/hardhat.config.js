@@ -10,7 +10,7 @@ require("dotenv").config();
 //
 // Select the network you want to deploy to here:
 //
-const defaultNetwork = "goerli";
+const defaultNetwork = "sepolia";
 
 module.exports = {
   defaultNetwork,
@@ -53,6 +53,11 @@ module.exports = {
     },
     goerli: {
       url: `https://goerli.infura.io/v3/${process.env.INFURA}`,
+      // accounts: [process.env.KEY],
+      accounts: [process.env.KEY],
+    },
+    sepolia: {
+      url: `https://sepolia.infura.io/v3/${process.env.INFURA}`,
       // accounts: [process.env.KEY],
       accounts: [process.env.KEY],
     },
