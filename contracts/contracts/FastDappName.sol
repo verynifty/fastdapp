@@ -46,7 +46,8 @@ import "@openzeppelin/contracts/token/ERC721/extensions/ERC721URIStorage.sol";
 | (      | (   ) |      ) |   | |   | |   ) || (   ) || (      | (      
 | )      | )   ( |/\____) |   | |   | (__/  )| )   ( || )      | )      
 |/       |/     \|\_______)   )_(   (______/ |/     \||/       |/       
-                                               By the MuseDAO                         
+                                               By the MuseDAO   
+                                                fastdapp.xyz                      
 */
 
 contract FastDappName is ERC721, ERC721Enumerable, ERC721URIStorage, Ownable {

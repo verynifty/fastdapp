@@ -41,7 +41,8 @@ pragma solidity ^0.8.9;
 | (      | (   ) |      ) |   | |   | |   ) || (   ) || (      | (      
 | )      | )   ( |/\____) |   | |   | (__/  )| )   ( || )      | )      
 |/       |/     \|\_______)   )_(   (______/ |/     \||/       |/       
-                                               By the MuseDAO                         
+                                               By the MuseDAO     
+                                                fastdap.xyz                    
 */
 
 import "@openzeppelin/contracts/token/ERC20/ERC20.sol";

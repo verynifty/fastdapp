@@ -41,7 +41,8 @@ pragma solidity ^0.8.9;
 | (      | (   ) |      ) |   | |   | |   ) || (   ) || (      | (      
 | )      | )   ( |/\____) |   | |   | (__/  )| )   ( || )      | )      
 |/       |/     \|\_______)   )_(   (______/ |/     \||/       |/       
-                                               By the MuseDAO                         
+                                               By the MuseDAO
+                                                fastdapp.xyz                    
 */
 
 import "./FastDappTestToken.sol";
