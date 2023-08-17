@@ -6,10 +6,7 @@ authors: grands_marquis
 <APICall
             key={log.transactionHash + log.logIndex}
             url={
-              "https://api.opensea.io/v2/chain/ethereum/contract/" +
-              log.args.tokenContract +
-              "/nfts/" +
-              log.args.tokenId
+              "https://api.opensea.io/v1/assets?owner=" + userAddress
             }
             params={{
               headers: {
