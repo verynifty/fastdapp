@@ -71,6 +71,10 @@ contract FastDappTestTokenStaking {
         emit Deposit(msg.sender, amount_);
     }
 
+    function staked(address address_) public view returns (uint) {
+        return balanceOf[address_] + rewards(address_);
+    }
+
     function rewards(address address_) public view returns (uint) {
         return
             ((block.timestamp - lastUpdated[address_]) * balanceOf[address_]) /

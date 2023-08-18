@@ -35,6 +35,9 @@ const WriteContract = (props) => {
     const [approvalId, setApprovalId] = useState(0);
 
     function getFunction() {
+        if (props.functionName == null) {
+            return props.abi[0];
+        }
         return props.abi.find((element) => element.name === props.functionName && element.type === "function");
     }
 

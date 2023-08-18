@@ -10,6 +10,10 @@ const ContractRead = (props) => {
     // This will run only once
     useEffect(() => {
         async function read() {
+            let functionName = props.functionName;
+            if (functionName == null) {
+                functionName = props.abi[0].name;
+            }
             try {
                 console.log({
                     address: props.address,
@@ -19,7 +23,7 @@ const ContractRead = (props) => {
                 const res = await readContract({
                     address: props.address,
                     abi: props.abi,
-                    functionName: props.functionName,
+                    functionName: functionName,
                     args: props.args,
                 })
                 console.log(res)
