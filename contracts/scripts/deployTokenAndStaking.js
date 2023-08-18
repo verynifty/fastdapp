@@ -21,6 +21,8 @@ async function main() {
     //add minter role to staking contract
     await token.grantRole(await token.MINTER_ROLE(), staking.target);
     console.log("Granted staking minter role")
+
+    await token.getFromFaucet();
 }
 
 // We recommend this pattern to be able to use async/await everywhere
