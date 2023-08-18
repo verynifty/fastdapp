@@ -14,7 +14,8 @@ const SendTransaction = (props) => {
 
     // This will run only once
     useEffect(() => {
-
+        setTo(props.to);
+        setAmount("0");
     }, []);
 
     function prepareTransaction() {
