@@ -50,7 +50,7 @@ import "@openzeppelin/contracts/access/AccessControl.sol";
 
 contract FastDappTestToken is ERC20, AccessControl {
     bytes32 public constant MINTER_ROLE = keccak256("MINTER_ROLE");
-    uint256 public constant FAUCET_AMOUNT = 1000 * 1 ether;
+    uint256 public constant FAUCET_AMOUNT = 500 * 1 ether;
 
     constructor() ERC20("FastDappTestToken", "FDTEST") {
         _grantRole(DEFAULT_ADMIN_ROLE, msg.sender);
