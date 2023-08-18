@@ -111,7 +111,7 @@ const WriteContract = (props) => {
                     args.push(arg);
                 }
             }
-            rawTransaction = ({ address: props.address, abi: props.abi, functionName: props.functionName, args: args, value: parseEther(value + "") })
+            rawTransaction = ({ address: props.address, abi: props.abi, functionName: getFunction().name, args: args, value: parseEther(value + "") })
             tx = usePrepareContractWrite(rawTransaction);
             if (tx.error) {
                 console.error("There is an error", tx)
@@ -277,7 +277,7 @@ const WriteContract = (props) => {
             {makePayable()}
             {makeApprovals()}
             <div className="mt-2">
-                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : props.functionName} transactionDescription={props.functionName} preparedTransaction={getPreparedTransaction()} />
+                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : getFunction().name} transactionDescription={getFunction().name} preparedTransaction={getPreparedTransaction()} />
             </div>
         </span >
     );
