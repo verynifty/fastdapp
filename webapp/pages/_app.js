@@ -19,7 +19,8 @@ import {
   polygon,
   sepolia,
   avalanche,
-  zora
+  zora,
+  bsc
 } from 'wagmi/chains';
 
 const base = {
@@ -122,7 +123,8 @@ function MyApp({ Component, pageProps }) {
     goerli,
     sepolia,
     avalanche,
-    altcoinchain
+    altcoinchain,
+    bsc
   ]);
 
   const { chains, publicClient, webSocketPublicClient } = configureChains(
