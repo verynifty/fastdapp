@@ -22,10 +22,7 @@ async function main() {
     await token.grantRole(await token.MINTER_ROLE(), staking.target);
     console.log("Granted staking minter role")
 
-    while (true) {
-        console.log("Fauceting")
-        await token.getFromFaucet();
-    }
+    await token.getFromFaucet();
 }
 
 // We recommend this pattern to be able to use async/await everywhere
