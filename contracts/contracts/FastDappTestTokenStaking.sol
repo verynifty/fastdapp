@@ -49,59 +49,59 @@ import "./FastDappTestToken.sol";
 
 contract FastDappTestTokenStaking {
     FastDappTestToken public immutable token;
-    uint public immutable rewardsPerHour = 1000; // 0.01%
+    uint256 public immutable rewardsPerHour = 1000; // 0.01%
 
-    event Deposit(address sender, uint amount);
-    event Withdraw(address sender, uint amount);
-    event Claim(address sender, uint amount);
-    event Compound(address sender, uint amount);
+    event Deposit(address sender, uint256 amount);
+    event Withdraw(address sender, uint256 amount);
+    event Claim(address sender, uint256 amount);
+    event Compound(address sender, uint256 amount);
 
-    mapping(address => uint) public balanceOf;
-    mapping(address => uint) public lastUpdated;
-    mapping(address => uint) public claimed;
+    mapping(address => uint256) public balanceOf;
+    mapping(address => uint256) public lastUpdated;
+    mapping(address => uint256) public claimed;
 
     constructor(FastDappTestToken token_) {
         token = token_;
     }
 
-    function deposit(uint amount_) external {
+    function deposit(uint256 amount_) external {
         token.transferFrom(msg.sender, address(this), amount_);
         balanceOf[msg.sender] += amount_;
         lastUpdated[msg.sender] = block.timestamp;
         emit Deposit(msg.sender, amount_);
     }
 
-    function staked(address address_) public view returns (uint) {
+    function balanceAndRewards(address address_) public view returns (uint256) {
         return balanceOf[address_] + rewards(address_);
     }
 
-    function rewards(address address_) public view returns (uint) {
+    function rewards(address address_) public view returns (uint256) {
         return
             ((block.timestamp - lastUpdated[address_]) * balanceOf[address_]) /
             (rewardsPerHour * 1 hours);
     }
 
     function claim() external {
-        uint amount = rewards(msg.sender);
+        uint256 amount = rewards(msg.sender);
         token.mint(msg.sender, amount);
         _update(amount);
         emit Claim(msg.sender, amount);
     }
 
-    function _update(uint amount_) internal {
+    function _update(uint256 amount_) internal {
         claimed[msg.sender] += amount_;
         lastUpdated[msg.sender] = block.timestamp;
     }
 
     function compound() public {
-        uint amount = rewards(msg.sender);
+        uint256 amount = rewards(msg.sender);
         token.mint(address(this), amount);
         balanceOf[msg.sender] += amount;
         _update(amount);
         emit Compound(msg.sender, amount);
     }
 
-    function withdraw(uint amount_) public {
+    function withdraw(uint256 amount_) public {
         require(balanceOf[msg.sender] >= amount_, "Insufficient funds");
         compound();
         balanceOf[msg.sender] -= amount_;

@@ -16,7 +16,7 @@ async function main() {
     const staking = await hre.ethers.deployContract("FastDappTestTokenStaking", [token.target]);
 
     await staking.waitForDeployment();
-    console.log("Deployed staking at:", token.target)
+    console.log("Deployed staking at:", staking.target)
 
     //add minter role to staking contract
     await token.grantRole(await token.MINTER_ROLE(), staking.target);

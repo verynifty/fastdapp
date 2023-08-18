@@ -7,8 +7,8 @@ theme: dark
 <>
   {(() => {
     // You can declare reactive variables
-    TOKEN_ADDRESS = "0xdde4f286985743bd84e594ebe339bf38226a906a";
-    STAKING_ADDRESS = "0x32aaba6e37dc4c800c4f439dbd1a71415c765054";
+    TOKEN_ADDRESS = "0xE312909FE28c314725228B93A0b5B79e15CC7885";
+    STAKING_ADDRESS = "0xF6297b35A0B7Ca3D4F1abEB5f15B5c332b0eeebA";
   })()}
 </>
 
@@ -88,4 +88,30 @@ You currently own <TokenBalance token={TOKEN_ADDRESS} address={userAddress}
       "stateMutability": "view",
       "type": "function"
     },
-]}  args={[userAddress]} />
+]}  args={[userAddress]}
+  render={(res) => <TokenAmount token={TOKEN_ADDRESS} amount={res} />}
+ />
+
+ <ContractRead address={STAKING_ADDRESS} abi={[
+   {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "address_",
+          "type": "address"
+        }
+      ],
+      "name": "balanceAndRewards",
+      "outputs": [
+        {
+          "internalType": "uint256",
+          "name": "",
+          "type": "uint256"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function"
+    },
+]}  args={[userAddress]}
+  render={(res) => <TokenAmount token={TOKEN_ADDRESS} amount={res} />}
+ />
