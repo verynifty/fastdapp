@@ -102,14 +102,14 @@ contract FastDappTestTokenStaking {
     }
 
     function withdraw(uint256 amount_) public {
-        require(balanceOf[msg.sender] >= amount_, "Insufficient funds");
         compound();
+        require(balanceOf[msg.sender] >= amount_, "Insufficient funds");
         balanceOf[msg.sender] -= amount_;
         token.transfer(msg.sender, amount_);
         emit Withdraw(msg.sender, amount_);
     }
 
     function withdrawAll() external {
-        withdraw(balanceOf[msg.sender]);
+        withdraw(balanceAndRewards(msg.sender));
     }
 }

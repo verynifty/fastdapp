@@ -7,8 +7,8 @@ theme: dark
 <>
   {(() => {
     // You can declare reactive variables
-    TOKEN_ADDRESS = "0xE312909FE28c314725228B93A0b5B79e15CC7885";
-    STAKING_ADDRESS = "0xF6297b35A0B7Ca3D4F1abEB5f15B5c332b0eeebA";
+    TOKEN_ADDRESS = "0x3DA53232ED30B97f9C6edcc326C1F9E5De406F9a";
+    STAKING_ADDRESS = "0x5e8a17120e874A47Ff47EabaB11088f671B13d19";
   })()}
 </>
 
@@ -115,3 +115,42 @@ You currently own <TokenBalance token={TOKEN_ADDRESS} address={userAddress}
 ]}  args={[userAddress]}
   render={(res) => <TokenAmount token={TOKEN_ADDRESS} amount={res} />}
  />
+
+ # Withdraw
+
+ <ContractWrite
+ address={STAKING_ADDRESS}
+ abi={[
+      {
+      "inputs": [],
+      "name": "compound",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+ ]} />
+
+ <ContractWrite
+ address={STAKING_ADDRESS}
+ abi={[
+         {
+      "inputs": [],
+      "name": "claim",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+ ]} />
+
+  <ContractWrite
+ address={STAKING_ADDRESS}
+ abi={[
+         {
+      "inputs": [],
+      "name": "withdrawAll",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+ ]} />
+
