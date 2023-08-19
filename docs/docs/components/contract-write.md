@@ -98,6 +98,33 @@ You can add a `token` property on the input. The form will directly convert the 
 />
 ```
 
+### How to handle token approvals
+
+While you can build your own ERC20 approval UI using the `ContractWrite` component itself. The preferred way to handle token approvals is to add the `ERC20Allow` property with the address that will spend the allowance to the input that represent the number of tokens to be transferred.
+
+```
+<ContractWrite
+  address={STAKING_ADDRESS}
+  abi={[
+    {
+      inputs: [
+        {
+          internalType: "uint256",
+          name: "amount_",
+          type: "uint256",
+          token: TOKEN_ADDRESS,
+          ERC20Allow: STAKING_ADDRESS,
+        },
+      ],
+      name: "deposit",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ]}
+/>
+```
+
 ### How to force the choice between predefined values?
 
 It is possible to force the input field to be an HTML select by providing a `selectChoices` property in the ABI input. This will render a single choice select in the form like:
