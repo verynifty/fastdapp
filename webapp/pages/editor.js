@@ -81,7 +81,34 @@ export default function EditorPage({ source }) {
 
                     setContent(text)
                     setRendered(text)
+                } else if (params.get("wizard") == 'abi') {
+                    let abi = JSON.parse(window.sessionStorage.getItem('wizard_' + params.get("contract_address").toLocaleLowerCase()));
+                    let address = params.get("contract_address");
+                    let text = `---
+chain: 11155111
+authors: grands_marquis
+---
+<>
+  {(() => {
+    // You can declare reactive variables
+    CONTRACT_ADDRESS = "${address}"
+  })()}
+</>
+`;
 
+                    let readFunctions = abi.filter((f) => f.type == "function" && f.stateMutability == "view");
+                    let writeFunctions = abi.filter((f) => f.type == "function" && f.stateMutability != "view");
+                    let events = abi.filter((f) => f.type == "event");
+                    readFunctions.forEach(element => {
+                        text += `### ${element.name}
+
+<ContractRead address={CONTRACT_ADDRESS} abi={[${JSON.stringify(element)}]} />
+
+`
+                    });
+                    console.log("ABI", abi)
+                    setContent(text)
+                    setRendered(text)
                 } else {
                     console.log(router.query, getExampleURL(template))
                     let f = await axios.get(getExampleURL(template))

@@ -6,7 +6,7 @@ import HeaderMetadata from '@/components/commons/headerMetadata';
 import { useRouter } from 'next/router'
 import axios from 'axios';
 
-export default function EditorPage({ source }) {
+export default function WizardNFTCollection({ source }) {
 
     const router = useRouter()
 
@@ -52,7 +52,7 @@ export default function EditorPage({ source }) {
 
     return (
         <div className='wizard_parent'>
-            <HeaderMetadata title="NFT Ccollection wizard | Fast Dapp" description="Create an home page for your NFT collection." />
+            <HeaderMetadata title="NFT Collection wizard | Fast Dapp" description="Create an home page for your NFT collection." />
 
             <div className=" px-6 py-24 sm:py-32 lg:px-8">
                 <div className="mx-auto max-w-2xl text-center">
