@@ -49,7 +49,7 @@ import "./FastDappTestToken.sol";
 
 contract FastDappTestTokenStaking {
     FastDappTestToken public immutable token;
-    uint256 public immutable rewardsPerHour = 1000; // 0.01%
+    uint256 public immutable rewardsPerHour = 2000; // 0.01%
 
     event Deposit(address sender, uint256 amount);
     event Withdraw(address sender, uint256 amount);
