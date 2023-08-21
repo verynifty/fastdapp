@@ -122,6 +122,11 @@ authors: grands_marquis
                     let readFunctions = abi.filter((f) => f.type == "function" && f.stateMutability == "view");
                     let writeFunctions = abi.filter((f) => f.type == "function" && f.stateMutability != "view");
                     let events = abi.filter((f) => f.type == "event");
+                    if (readFunctions.length > 0) {
+                        text += `
+## Contract Read
+`
+                    }
                     readFunctions.forEach(element => {
                         let args = []
                         element.inputs.forEach(input => {
@@ -130,6 +135,22 @@ authors: grands_marquis
                         text += `### ${element.name}
 
 <ContractRead address={CONTRACT_ADDRESS} abi={[${JSON.stringify(element)}]} args={${JSON.stringify(args)}} />
+
+`
+                    });
+                    if (writeFunctions.length > 0) {
+                        text += `
+## Contract Write
+`
+                    }
+                    writeFunctions.forEach(element => {
+                        let args = []
+                        element.inputs.forEach(input => {
+                            args.push(getDefaultValue(input.type))
+                        })
+                        text += `### ${element.name}
+
+<ContractWrite address={CONTRACT_ADDRESS} abi={[${JSON.stringify(element)}]} args={${JSON.stringify(args)}} />
 
 `
                     });
