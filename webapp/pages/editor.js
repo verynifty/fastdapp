@@ -43,6 +43,28 @@ export default function EditorPage({ source }) {
         return ("https://raw.githubusercontent.com/verynifty/etherpage/main/examples/" + (templateName == null ? 'simple' : templateName) + ".md")
     }
 
+    function getDefaultValue(type) {
+        if (type.includes("int")) {
+            return 0;
+        }
+        if (type.includes("bool")) {
+            return true;
+        }
+        if (type.includes("string")) {
+            return "";
+        }
+        if (type == "bytes") {
+            return "";
+        }
+        if (type.includes("bytes")) {
+            let lenght = parseInt(type.slice(5));
+            return "0".repeat(lenght);
+        }
+        if (type.includes("address")) {
+            return "0x0000000000000000000000000000000000000000"
+        }
+    }
+
 
     useEffect(() => {
         async function load() {
@@ -94,21 +116,30 @@ authors: grands_marquis
     CONTRACT_ADDRESS = "${address}"
   })()}
 </>
+
 `;
 
                     let readFunctions = abi.filter((f) => f.type == "function" && f.stateMutability == "view");
                     let writeFunctions = abi.filter((f) => f.type == "function" && f.stateMutability != "view");
                     let events = abi.filter((f) => f.type == "event");
                     readFunctions.forEach(element => {
+                        let args = []
+                        element.inputs.forEach(input => {
+                            args.push(getDefaultValue(input.type))
+                        })
                         text += `### ${element.name}
 
-<ContractRead address={CONTRACT_ADDRESS} abi={[${JSON.stringify(element)}]} />
+<ContractRead address={CONTRACT_ADDRESS} abi={[${JSON.stringify(element)}]} args={${JSON.stringify(args)}} />
 
 `
                     });
                     console.log("ABI", abi)
-                    setContent(text)
-                    setRendered(text)
+                    let formatted = prettier.format(text, {
+                        parser: "mdx",
+                        plugins: [markdownParser, parserBable],
+                    });
+                    setContent(formatted)
+                    setRendered(formatted)
                 } else {
                     console.log(router.query, getExampleURL(template))
                     let f = await axios.get(getExampleURL(template))

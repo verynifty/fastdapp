@@ -7,10 +7,47 @@ const ContractRead = (props) => {
     const [error, setError] = React.useState();
     const [isLoaded, setIsLoaded] = React.useState(false);
 
+    function getFunctionName() {
+        let functionName = props.functionName;
+        if (functionName == null) {
+            functionName = props.abi[0].name;
+        }
+        return functionName;
+    }
+
+    function getFunction() {
+        return props.abi.find((element) => element.name === getFunctionName() && element.type === "function");
+    }
+
+    function getDefaultValue(type) {
+        if (type.includes("int")) {
+            return 0;
+        }
+        if (type.includes("bool")) {
+            return true;
+        }
+        if (type.includes("string")) {
+            return "";
+        }
+        if (type == "bytes") {
+            return "";
+        }
+        if (type.includes("bytes")) {
+            let lenght = parseInt(type.slice(5));
+            console.log("LENNNN", lenght)
+            return "0".repeat(lenght);
+        }
+        if (type.includes("address")) {
+            return "0x0000000000000000000000000000000000000000"
+        }
+    }
+
+
+
     // This will run only once
     useEffect(() => {
         async function read() {
-            let functionName = props.functionName;
+            let functionName = getFunctionName();
             if (functionName == null) {
                 functionName = props.abi[0].name;
             }
@@ -20,6 +57,16 @@ const ContractRead = (props) => {
                     abi: props.abi,
                     functionName: props.functionName,
                 })
+                let args = props.args;
+                /*
+                if (args == null) {
+                    args = [];
+                    let functionInputs = getFunction().inputs;
+                    for (const input of functionInputs) {
+                        args.push(getDefaultValue(input.type));
+                    }
+                }
+                */
                 const res = await readContract({
                     address: props.address,
                     abi: props.abi,
