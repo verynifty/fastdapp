@@ -109,7 +109,19 @@ export default function EditorPage({ source }) {
                     let text = `---
 chain: 11155111
 authors: grands_marquis
+theme: dark
+title: My Dapp
+description: Here is my Dapp built on FastDapp
 ---
+<!---
+ This code was generated from the ABI and is meant to be a starting point to build your app.
+
+ TODO:
+ * Change the chain ID at the top of the code to match the chain your contract is at.
+ * Remove functions you don't need.
+ * Change the theme (https://docs.fastdapp.xyz/docs/style/themes) or style with your own CSS/Tailwind.
+-->
+
 <>
   {(() => {
     // You can declare reactive variables
@@ -125,6 +137,8 @@ authors: grands_marquis
                     if (readFunctions.length > 0) {
                         text += `
 ## Contract Read
+
+Here are the read functions of your contract. You can use them to display data from your contract.
 `
                     }
                     readFunctions.forEach(element => {
@@ -141,6 +155,8 @@ authors: grands_marquis
                     if (writeFunctions.length > 0) {
                         text += `
 ## Contract Write
+
+Here are the write functions of your contract. You can use them to send transactions to your contract.
 `
                     }
                     writeFunctions.forEach(element => {
