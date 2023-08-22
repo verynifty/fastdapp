@@ -24,7 +24,7 @@ export function Header() {
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li><a href="/editor">✍ Editor</a></li>
           <li><a href="https://docs.fastdapp.xyz/docs/intro">📖 Docs</a></li>
-          <li><a href="https://docs.fastdapp.xyz/blog">📢 Blog</a></li>
+          <li><a href="/wizard">Wizard</a></li>
           </ul>
         </div>
         <a href="/"><Image className='m-l-5 h-12 w-auto'  src={logo} /></a>
@@ -33,7 +33,7 @@ export function Header() {
         <ul className="menu menu-horizontal px-1">
           <li><a href="/editor">Editor</a></li>
           <li><a href="https://docs.fastdapp.xyz/docs/intro">Docs</a></li>
-          <li><a href="https://docs.fastdapp.xyz/blog">Blog</a></li>
+          <li><a href="/wizard">Wizard</a></li>
         </ul>
       </div>
       <div className="navbar-end">
