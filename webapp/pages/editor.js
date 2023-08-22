@@ -107,7 +107,7 @@ export default function EditorPage({ source }) {
                     let abi = JSON.parse(window.sessionStorage.getItem('wizard_' + params.get("contract_address").toLocaleLowerCase()));
                     let address = params.get("contract_address");
                     let text = `---
-chain: 11155111
+chain: 1
 authors: grands_marquis
 theme: dark
 title: My Dapp
