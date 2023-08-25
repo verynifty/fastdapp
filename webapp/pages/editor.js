@@ -170,7 +170,6 @@ Here are the write functions of your contract. You can use them to send transact
 
 `
                     });
-                    console.log("ABI", abi)
                     let formatted = prettier.format(text, {
                         parser: "mdx",
                         plugins: [markdownParser, parserBable],
@@ -178,12 +177,17 @@ Here are the write functions of your contract. You can use them to send transact
                     setContent(formatted)
                     setRendered(formatted)
                 } else {
-                    console.log(router.query, getExampleURL(template))
-                    let f = await axios.get(getExampleURL(template))
-                    setContent(f.data)
-                    setRendered(f.data)
+                    let codeToLoad;
+                    // we check if we have a saved code in localstorage
+                    if (template == null && window.localStorage.getItem('editor_saved_code') != null) {
+                        codeToLoad = window.localStorage.getItem('editor_saved_code');
+                    } else {
+                        let f = await axios.get(getExampleURL(template));
+                        codeToLoad = f.data;
+                    }
+                    setContent(codeToLoad);
+                    setRendered(codeToLoad);
                 }
-
                 setIsLoaded(true)
                 console.log("LOADED")
             } catch (error) {
@@ -274,11 +278,12 @@ Here are the write functions of your contract. You can use them to send transact
     }
 
     function handleRender() {
+        const content = getContent();
         toast.success("Rendered!")
-        setRendered(getContent())
+        setRendered(content)
+        window.localStorage.setItem('editor_saved_code', content);
         setVersion(version + 1)
     }
-
 
     function handleRenderWithContent(value = null) {
         if (value != null) {
@@ -286,6 +291,7 @@ Here are the write functions of your contract. You can use them to send transact
         }
         toast.success("Rendered!")
         setRendered(value)
+        window.localStorage.setItem('editor_saved_code', content);
         setVersion(version + 1)
     }
 
