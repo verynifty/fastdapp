@@ -8,3 +8,7 @@ In this video we'll go through how to create a user interface that lets the user
 
 * [Token contract](https://sepolia.etherscan.io/address/0x90b8ff52b4dc225acf5c9a2409f92d1e062f39f3)
 * [Staking contract](https://sepolia.etherscan.io/address/0xf179dfb2313085a12d403f587ae9e47a259264c8)
+
+### Source code:
+
+https://raw.githubusercontent.com/verynifty/fastdapp/main/examples/tutorial_staking.md
