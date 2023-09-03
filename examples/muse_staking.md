@@ -263,7 +263,7 @@ theme: dark
            <p class="text-sm md:text-base text-right">In claim window?: {res[3] + ""}</p>
         </div>
       )}
-    />
+    /> 
     <p class="text-sm md:text-base col-span-2 text-center mt-2">
     <ContractWrite
       address={TOKEN_ADDRESS}
