@@ -14,7 +14,9 @@ theme: dark
     />
   </div>
   <div class="800 p-2 rounded">
-    <AddressDisplay address={userAddress} />
+    <PleaseConnect>
+    <   AddressDisplay address={userAddress} />
+    </PleaseConnect>
   </div>
 </div>
 
