@@ -37,6 +37,7 @@ theme: dark
   </div>
 </div>
 
+<PleaseConnect>
 <div class="flex justify-center p-4">
   <div class="text-center">
     <div class="grid grid-cols-2 gap-4">
@@ -153,8 +154,8 @@ theme: dark
       args={[userAddress]}
       render={(res) => (
         <div>
-          <div>sMuse balance: {res[0] + ""}</div>
-          <div>Muse value {res[1] + ""}</div>
+          <div>sMuse balance: <TokenAmount token={SMUSE_ADDRESS} amount={res[0]} /></div>
+          <div>Muse value <TokenAmount token={TOKEN_ADDRESS} amount={res[1]} /></div>
         </div>
       )}
     />
@@ -166,8 +167,8 @@ theme: dark
     <h1 class="text-3xl font-pacifico mb-2">Unstake</h1>
     <p class="text-sm">
       You will need to do 1 transaction to start the unstake timer below. Once
-      the 10 day cooldown is over and you are within the 2 days, you will do 1 more transaction to claim your
-      Muse
+      the 10 day cooldown is over and you are within the 2 days, you will do 1
+      more transaction to claim your Muse
     </p>
     <ContractWrite
       address={TOKEN_ADDRESS}
@@ -199,7 +200,8 @@ theme: dark
       amount you wish to unstake and complete the transaction.
     </p>
     <p class="text-red-400 text-sm">
-      If you miss the window you will need to start the whole process over again.
+      If you miss the window you will need to start the whole process over
+      again.
     </p>
   </div>
 </div>
@@ -284,5 +286,7 @@ theme: dark
     />
     </p>
   </div>
+
 </div>
+</PleaseConnect>
 </body>
