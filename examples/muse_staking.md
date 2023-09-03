@@ -195,7 +195,7 @@ theme: dark
 <div class="flex justify-center p-4">
   <div class="text-center">
     <p class="text-grey-400 text-sm">
-      See below to check on time until you are able to withdrawl and if you are
+      See below to check on time until you are able to withdrawal and if you are
       in that 2 day window. Once you are in the two day window just input the
       amount you wish to unstake and complete the transaction.
     </p>
@@ -259,7 +259,7 @@ theme: dark
       args={[userAddress]}
       render={(res) => (
          <div class="grid grid-cols-2 gap-4">
-          <p class="text-sm md:text-base">Time until you can complete withdrawl: {res[2] + ""}</p>
+          <p class="text-sm md:text-base">Time until you can complete withdrawal: {res[2] + ""}</p>
            <p class="text-sm md:text-base text-right">In claim window?: {res[3] + ""}</p>
         </div>
       )}
