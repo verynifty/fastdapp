@@ -23,8 +23,8 @@ export function Header() {
           </label>
           <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
           <li><a href="/editor">✍ Editor</a></li>
-          <li><a href="https://docs.fastdapp.xyz/docs/intro">📖 Docs</a></li>
-          <li><a href="/wizard">Wizard</a></li>
+          <li><a href="https://docs.fastdapp.xyz/docs/intro" target='_blank'>📖 Docs</a></li>
+          <li><a href="/wizard" >Wizard</a></li>
           </ul>
         </div>
         <a href="/"><Image className='m-l-5 h-12 w-auto'  src={logo} /></a>
@@ -32,7 +32,7 @@ export function Header() {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
           <li><a href="/editor">Editor</a></li>
-          <li><a href="https://docs.fastdapp.xyz/docs/intro">Docs</a></li>
+          <li><a href="https://docs.fastdapp.xyz/docs/intro" target='_blank'>Docs</a></li>
           <li><a href="/wizard">Wizard</a></li>
         </ul>
       </div>
