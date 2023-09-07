@@ -229,7 +229,6 @@ Here are the write functions of your contract. You can use them to send transact
             // Method that will be executed when the action is triggered.
             // @param editor The editor instance is passed in as a convenience
             run: function (ed) {
-                console.log("RUN", ed.getValue())
                 console.log(ctx, ed)
                 handleRenderWithContent(ed.getValue())
             },

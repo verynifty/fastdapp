@@ -10,6 +10,8 @@ Fast Dapp is a web application that enables you to create websites for your DAPP
 
 Get started with [the tutorial to build an ERC20 approval manager](https://docs.fastdapp.xyz/docs/tutorials/getting_started).
 
+If you prefer going with videos, check [how to build an ERC20 token staking app](https://docs.fastdapp.xyz/docs/tutorials/token_staking_video).
+
 :::info This is beta!
 
 This app, documentation and everything around is still in early stage. Join the conversation on Discord if you'd like to share feedback or contribute!
