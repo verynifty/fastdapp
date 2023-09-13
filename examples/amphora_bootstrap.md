@@ -38,7 +38,7 @@ authors: grands_marquis
 
 <h1>Treasury Bootstrap Conversion System</h1>
 
-The following page is for the Amphora Protocol treasury bootstrap conversion system located at <AddressDisplay address="0x268d16fBbCe5cc427e4b26478141302B408CceF7"/> and deployed by <AddressDisplay address="0xe35aadB1C84D9804dAaC0aE6e5433E1890B10A33" />.
+The following page is for the <a href="https://amphorafinance.com/" target="_blank" >Amphora Protocol</a> treasury bootstrap conversion system located at <AddressDisplay address="0x268d16fBbCe5cc427e4b26478141302B408CceF7"/> and deployed by <AddressDisplay address="0xe35aadB1C84D9804dAaC0aE6e5433E1890B10A33" />.
 
 The Treasury Bootstrap Conversion System allows users to convert SNX, cvxCRV, BAL, CRV or USDA into AMPH tokens directly.
 
