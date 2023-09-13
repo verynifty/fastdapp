@@ -61,7 +61,7 @@ The tokens convert at fixed rates outlined below, with SNX and USDA both recievi
 <h1>Convert your tokens to AMPH</h1>
 
 <PleaseConnect>
-You own: <TokenBalance token={TOKEN} address={userAddress} />
+You own: <TokenBalance token={AMPH} address={userAddress} />
 
 <>
   {TOKENS.map((token, i) => {
