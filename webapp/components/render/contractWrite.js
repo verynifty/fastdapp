@@ -99,6 +99,7 @@ const WriteContract = (props) => {
         let tx = null;
         try {
             let args = [];
+            let abiInputs = getFunction().inputs;
             for (const [index, arg] of argsStateValues.entries()) {
                 if (argsStateTokens[index] != null) {
                     let nb = parseFloat(arg);
@@ -107,10 +108,19 @@ const WriteContract = (props) => {
                     }
                     // this is a token so we need the decimals
                     args.push(parseUnits(nb + "", argsStateTokens[index].decimals));
+                } else if (abiInputs[index].hidden) {
+                    // When the input is hidden we can fetch the value from the props as the value could be a reactive variable
+                    let nb = parseFloat(props.args[index]);
+                    if (isNaN(nb)) {
+                        args.push(props.args[index] + "");
+                    } else {
+                        args.push(props.args[index]);
+                    }
                 } else {
                     args.push(arg);
                 }
             }
+            console.log(args)
             rawTransaction = ({ address: props.address, abi: props.abi, functionName: getFunction().name, args: args, value: parseEther(value + "") })
             tx = usePrepareContractWrite(rawTransaction);
             if (tx.error) {
@@ -140,14 +150,7 @@ const WriteContract = (props) => {
         } else {
             argsStateApprovals.push(null);
         }
-
     }
-
-
-
-    useEffect(() => {
-        console.log("useEffect", props.args)
-    }, [props.args]);
 
 
     function makeApprovals() {
