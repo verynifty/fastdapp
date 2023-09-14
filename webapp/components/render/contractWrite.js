@@ -67,7 +67,7 @@ const WriteContract = (props) => {
         for (const [index, arg] of argsStateApprovals.entries()) {
             if (arg != null) {
                 console.log("Checking approval", arg, argsStateValues[index])
-                const approved = await checkApproval(argsStateTokens[index].address,  argsStateApprovals[index], parseUnits(argsStateValues[index] + "", argsStateTokens[index].decimals));
+                const approved = await checkApproval(argsStateTokens[index].address, argsStateApprovals[index], parseUnits(argsStateValues[index] + "", argsStateTokens[index].decimals));
                 if (!approved) {
                     setIsWantingApproval({
                         token: argsStateTokens[index],
@@ -86,7 +86,7 @@ const WriteContract = (props) => {
         //   console.log("beforeClick", argsStateApprovals);
         if (props.onTransactionMined != null) {
             try {
-                await props.onTransactionMined(minedTx,rawTransaction)
+                await props.onTransactionMined(minedTx, rawTransaction)
             } catch (error) {
                 console.error("Error in onTransactionMined", error)
             }
@@ -106,7 +106,7 @@ const WriteContract = (props) => {
                         nb = 0;
                     }
                     // this is a token so we need the decimals
-                    args.push(parseUnits(nb + "", argsStateTokens[index].decimals) );
+                    args.push(parseUnits(nb + "", argsStateTokens[index].decimals));
                 } else {
                     args.push(arg);
                 }
@@ -143,10 +143,11 @@ const WriteContract = (props) => {
 
     }
 
-    // This will run only once
-    useEffect(() => {
 
-    }, []);
+
+    useEffect(() => {
+        console.log("useEffect", props.args)
+    }, [props.args]);
 
 
     function makeApprovals() {
