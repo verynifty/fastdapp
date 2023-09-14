@@ -42,7 +42,9 @@ const ContractRead = (props) => {
         }
     }
 
-
+    useEffect(() => {
+        console.log("ARGS", props.args)
+    }, props.args);
 
     // This will run only once
     useEffect(() => {
