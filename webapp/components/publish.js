@@ -25,6 +25,7 @@ const Publish = (props) => {
             new File([blob], filename)
         ]
         const cid = await client.put(files)
+        console.log(cid)
         let path = "ipfs://" + cid + "/" + filename;
         while (true) {
             console.log("checking if file is uploaded")
