@@ -16,11 +16,8 @@ function classNames(...classes) {
 }
 
 const WriteContract = (props) => {
-    const [balance, setBalance] = React.useState(0);
     const [value, setValue] = React.useState(props.valueAmount != null ? props.valueAmount : "0");
 
-    const [formatted, setFormatted] = React.useState("");
-    const [symbol, setSymbol] = React.useState("");
     const [isWantingApproval, setIsWantingApproval] = React.useState(null);
     let rawTransaction;
 
@@ -83,11 +80,16 @@ const WriteContract = (props) => {
             let approval = props.ERC20Approvals;
             const approved = await checkApproval(approval.token, approval.spender, approval.amount != null ? approval.amount + "" : "1");
             if (!approved) {
+                const token = await fetchToken({
+                    address: approval.token,
+                  })
                 setIsWantingApproval({
-                    token: approval.token,
+                    token: token,
                     spender: approval.spender,
                     amount: approval.amount
                 })
+                console.log("approvalId", approvalId);
+                console.log(isWantingApproval)
                 setApprovalId(approvalId + 1);
                 return false;
             }
