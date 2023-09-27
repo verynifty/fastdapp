@@ -14,10 +14,13 @@ authors: grands_marquis
 
 <ContractWrite 
 address={TOKEN}
-abi={ABIs.ERC20}  functionName="transfer" args={[userAddress, 1]}
+abi={ABIs.ERC20}  
+functionName="transfer" 
+args={[userAddress, 1]}
 ERC20Approvals={{
     token: TOKEN,
     spender: SPENDER
-}} />
+}}
+ />
 </div>
 </div>
