@@ -125,7 +125,7 @@ While you can build your own ERC20 approval UI using the `ContractWrite` compone
 />
 ```
 
-## Alternative way
+#### Alternative way
 
 When the function you'd like to call doesn't have a token amount as input, you can add the ERC20Approvals property with the token address and the address of the contract that needs the approval: 
 
