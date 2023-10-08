@@ -125,6 +125,30 @@ While you can build your own ERC20 approval UI using the `ContractWrite` compone
 />
 ```
 
+## Alternative way
+
+When the function you'd like to call doesn't have a token amount as input, you can add the ERC20Approvals property with the token address and the address of the contract that needs the approval: 
+
+```
+<ContractWrite
+  address={STAKING_ADDRESS}
+  abi={[
+    {
+      inputs: [
+      ],
+      name: "depositAll",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ]}
+  ERC20Approvals={{
+    token: TOKEN_ADDRESS,
+    spender: STAKING_ADDRESS
+  }}
+/>
+```
+
 ### How to force the choice between predefined values?
 
 It is possible to force the input field to be an HTML select by providing a `selectChoices` property in the ABI input. This will render a single choice select in the form like:
