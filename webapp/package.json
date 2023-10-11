@@ -19,6 +19,7 @@
     "@headlessui/react": "^1.7.14",
     "@heroicons/react": "^2.0.18",
     "@mdx-js/runtime": "^1.6.22",
+    "@measured/puck": "^0.9.0",
     "@monaco-editor/react": "^4.5.1",
     "@rainbow-me/rainbowkit": "^1.0.8",
     "@reservoir0x/reservoir-kit-ui": "^1.4.0",
