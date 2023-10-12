@@ -23,7 +23,7 @@ import { VerticalSpace, VerticalSpaceProps } from "components/visualblocks/Verti
 // Create puck component config
 const config = {
     components: {
-        /*ButtonGroup,
+        ButtonGroup,
         Card,
         Columns,
         Hero,
@@ -32,33 +32,7 @@ const config = {
         Logos,
         Stats,
         Text,
-        VerticalSpace, */
-        Heading: {
-            fields: {
-                title: { type: "text" },
-            },
-            defaultProps: {
-                title: "Heading",
-            },
-            render: ({ title }) => (
-                <div>
-                    <h1 class="text-xl">{title}</h1>
-                </div>
-            ),
-        },
-        Paragraph: {
-            fields: {
-                content: { type: "text" },
-            },
-            defaultProps: {
-                content: "This is some paragraph text",
-            },
-            render: ({ content }) => (
-                <div>
-                    <p>{content}</p>
-                </div>
-            ),
-        },
+        VerticalSpace, 
         ContractWrite: {
             fields: {
                 abi: { type: "text" },

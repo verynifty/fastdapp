@@ -3,7 +3,7 @@ import React from "react";
 import { ComponentConfig } from "@measured/puck";
 import { Heading as _Heading } from "puck/components/Heading";
 import type { HeadingProps as _HeadingProps } from "puck/components/Heading";
-import { Section } from "../../components/Section";
+import { Section } from "components/visualblocks/Section";
 
 export type HeadingProps = {
   align: "left" | "center" | "right";

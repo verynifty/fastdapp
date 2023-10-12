@@ -4,7 +4,7 @@ import { ComponentConfig } from "@measured/puck";
 import styles from "./styles.module.css";
 import { getClassNameFactory } from "puck/lib";
 import { Button } from "puck/components/Button";
-import { Section } from "../../components/Section";
+import { Section } from "components/visualblocks/Section";
 
 const getClassName = getClassNameFactory("ButtonGroup", styles);
 
