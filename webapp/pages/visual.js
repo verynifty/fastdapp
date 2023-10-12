@@ -2,12 +2,12 @@ import { default as React, useState, useEffect } from 'react';
 
 import Head from 'next/head'
 
-import { Puck } from "@measured/puck";
+import { Puck } from "puck";
 import "@measured/puck/dist/index.css";
 
 import ContractWrite from 'components/render/contractWrite';
 
-/*
+
 import { ButtonGroup, ButtonGroupProps } from "components/visualblocks/ButtonGroup";
 import { Card, CardProps } from "components/visualblocks/Card";
 import { Columns, ColumnsProps } from "components/visualblocks/Columns";
@@ -18,7 +18,7 @@ import { Logos, LogosProps } from "components/visualblocks/Logos";
 import { Stats, StatsProps } from "components/visualblocks/Stats";
 import { Text, TextProps } from "components/visualblocks/Text";
 import { VerticalSpace, VerticalSpaceProps } from "components/visualblocks/VerticalSpace";
-*/
+
 
 // Create puck component config
 const config = {
@@ -33,7 +33,7 @@ const config = {
         Stats,
         Text,
         VerticalSpace, */
-        HeadingBlock: {
+        Heading: {
             fields: {
                 title: { type: "text" },
             },

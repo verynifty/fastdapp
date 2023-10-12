@@ -1,8 +1,8 @@
 import React from "react";
-import { ComponentConfig } from "@measured/puck/types/Config";
+import { ComponentConfig } from "puck/types/Config";
 import styles from "./styles.module.css";
-import { getClassNameFactory } from "@measured/puck/lib";
-import { DropZone } from "@measured/puck/components/DropZone";
+import { getClassNameFactory } from "puck/lib";
+import { DropZone } from "puck/components/DropZone";
 import { Section } from "../../components/Section";
 
 const getClassName = getClassNameFactory("Flex", styles);

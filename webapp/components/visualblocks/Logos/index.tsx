@@ -2,7 +2,7 @@
 import React from "react";
 import { ComponentConfig } from "@measured/puck";
 import styles from "./styles.module.css";
-import { getClassNameFactory } from "@measured/puck/lib";
+import { getClassNameFactory } from "puck/lib";
 import { Section } from "../../components/Section";
 
 const getClassName = getClassNameFactory("Logos", styles);

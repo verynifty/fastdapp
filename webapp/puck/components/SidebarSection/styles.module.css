@@ -1,0 +1,58 @@
+.SidebarSection {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  color: black;
+}
+
+.SidebarSection:last-of-type {
+  flex-grow: 1;
+}
+
+.SidebarSection-title {
+  background: white;
+  padding: 16px;
+  border-bottom: 1px solid var(--puck-color-grey-8);
+  overflow-x: auto;
+}
+
+.SidebarSection-content {
+  border-bottom: 1px solid var(--puck-color-grey-8);
+  padding: 16px;
+}
+
+.SidebarSection--noPadding .SidebarSection-content {
+  padding: 0px;
+}
+
+.SidebarSection:last-of-type .SidebarSection-content {
+  border-bottom: none;
+  flex-grow: 1;
+}
+
+.SidebarSection-breadcrumbLabel {
+  color: var(--puck-color-azure-3);
+  flex-shrink: 0;
+}
+
+.SidebarSection-breadcrumbLabel:hover {
+  color: var(--puck-color-azure-4);
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+.SidebarSection-breadcrumbs {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+}
+
+.SidebarSection-breadcrumb {
+  align-items: center;
+  display: flex;
+  gap: 4px;
+}
+
+.SidebarSection-heading {
+  padding-right: 16px;
+}
