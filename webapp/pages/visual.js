@@ -30,7 +30,7 @@ const config = {
         Heading,
         Flex,
         Logos,
-        Stats,
+        // Stats,
         Text,
         VerticalSpace, 
         ContractWrite: {
