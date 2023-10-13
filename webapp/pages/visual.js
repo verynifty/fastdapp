@@ -2,7 +2,8 @@ import { default as React, useState, useEffect } from 'react';
 
 import Head from 'next/head'
 
-import { Puck } from "puck";
+import { Puck, Render } from "puck";
+
 import "@measured/puck/dist/index.css";
 
 import ContractWrite from 'components/render/contractWrite';
@@ -32,15 +33,15 @@ const config = {
         Logos,
         // Stats,
         Text,
-        VerticalSpace, 
+        VerticalSpace,
         ContractWrite: {
             fields: {
-                abi: { type: "text" },
+                abi: { type: "textarea" },
                 address: { type: "text" },
 
             },
             defaultProps: {
-                abi:     `{
+                abi: `{
                     "constant": false,
                     "inputs": [
                         {
@@ -49,7 +50,8 @@ const config = {
                         },
                         {
                             "name": "_value",
-                            "type": "uint256"
+                            "type": "uint256",
+                            "token": "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81"
                         }
                     ],
                     "name": "transfer",
@@ -74,24 +76,54 @@ const config = {
     },
 };
 
-// Describe the initial data
-const initialData = {
-    content: [],
-    root: {},
-};
-
-// Save the data to your database
-const save = (data) => { };
-
 
 export default function Visual() {
+
+
+    // Describe the initial data
+    const initialData = {
+        content: [],
+        root: {},
+    };
+
+
+
+    const [content, setContent] = useState(initialData);
+    const [editMode, setEditMode] = useState(true);
+
+    // Save the data to your database
+    const save = (data) => { };
+
+    const onDataChanged = (data) => {
+        setContent(data);
+    }
+
+    const previewButtonClicked = () => {
+        setEditMode(!editMode);
+    }
+
+    function showEditor() {
+        if (editMode) {
+            return (
+                <Puck config={config} data={initialData} onPublish={save} onChange={onDataChanged} />
+            )
+        } else {
+            return (
+                <Render config={config} data={content} />
+            )
+        }
+    }
+
     return (
-        <React.Fragment>
+        <React.Fragment >
             <Head>
                 <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.1/dist/full.css" rel="stylesheet" type="text/css" />
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
-            <Puck config={config} data={initialData} onPublish={save} />
+            <div data-theme="light" style={{ 'position': 'relative' }}>
+                {showEditor()}  
+                <button onClick={previewButtonClicked} style={{ 'position': 'absolute', 'top': 10, 'left': 5 }} className="btn">Preview</button>
+            </div>
         </React.Fragment>
     )
 }
