@@ -5,24 +5,20 @@ const storage = new ThirdwebStorage({
     secretKey: process.env.NEXT_PUBLIC_THIRDWEB_SECRET,
 });
 
-export const config = {
-    runtime: 'edge',
-};
 
-export default async function handler(request) {
+export default async function handler(request, result) {
     try {
         // get content from request body
-        const { content } = await request.body.json();
-        // upload content to thirdweb storage
+        console.log(request.body);
+        const content = request.body
         const uri = await storage.upload(content);
         console.log(uri);
-        return new Response(uri, {
-            status: 200,
-        });
+        //const url = await storage.resolveScheme("ipfs://example");
+        //console.log(url);
+
+        result.status(200).json({ uri, url });
     } catch (e) {
         console.log(`${e.message}`);
-        return new Response(`Failed to generate the image`, {
-            status: 500,
-        });
+        result.status(500).json({ error: `${e.message}` });
     }
 }

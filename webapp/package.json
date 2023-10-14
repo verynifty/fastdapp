@@ -26,7 +26,7 @@
     "@tailwindcss/forms": "^0.5.3",
     "@tailwindcss/typography": "^0.5.9",
     "@testing-library/react": "^14.0.0",
-    "@thirdweb-dev/storage": "github:thirdweb-dev/storage",
+    "@thirdweb-dev/storage": "2.0.0",
     "@types/deep-diff": "^1.0.3",
     "@types/event-emitter": "^0.3.3",
     "@types/jest": "^29.5.4",

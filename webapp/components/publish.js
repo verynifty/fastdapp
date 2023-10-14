@@ -22,8 +22,10 @@ const Publish = (props) => {
         console.log(props.content)
         let res = await axios.post('/api/ipfs/upload', props.content);
         console.log(res)
-        return;
-        let path = "ipfs://" + cid + "/" + filename;
+        let path = res.data.uri;
+        let urlSplit = path.split('/')
+        let cid = urlSplit[2]
+        let filename = urlSplit[3]
         while (true) {
             console.log("checking if file is uploaded")
             try {
