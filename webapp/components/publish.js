@@ -3,8 +3,6 @@ import { Web3Storage } from 'web3.storage'
 var hash = require('object-hash');
 import { useRouter } from 'next/router'
 import axios from 'axios';
-import { Web3Storage } from 'web3.storage'
-
 
 const Publish = (props) => {
     const [isLoading, setIsLoading] = React.useState(false);
