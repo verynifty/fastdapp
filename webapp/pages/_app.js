@@ -116,10 +116,10 @@ function MyApp({ Component, pageProps }) {
   const [availableChains, setAvailableChains] = useState([
     mainnet,
     base,
-    optimism,
+   // optimism,
     arbitrum,
     polygon,
-    zora,
+   // zora,
     goerli,
     sepolia,
     avalanche,
@@ -136,18 +136,18 @@ function MyApp({ Component, pageProps }) {
   );
 
   const { connectors } = getDefaultWallets({
-    appName: 'test',
+    appName: 'FastDapp',
     projectId: process.env.NEXT_PUBLIC_WALLET_CONNECT_PROJECT_ID,
     chains
   });
 
 
-  let [wagmiConfig, setWagmiConfig] = React.useState(createConfig({
+  let wagmiConfig = createConfig({
     autoConnect: true,
     connectors,
     publicClient,
     webSocketPublicClient
-  }));
+  });
 
   useEffect(() => {
 
