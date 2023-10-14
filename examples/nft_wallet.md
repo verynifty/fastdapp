@@ -10,7 +10,7 @@ authors: grands_marquis
             }
             params={{
               headers: {
-                "x-api-key": "e4e7b08f1807492e91301de85728ce2e",
+                "x-api-key": "0f7d7b10d31641b8a99cbf9a7d61899d",
               },
             }}
             renderFunction={(res) => (
