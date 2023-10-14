@@ -3,6 +3,9 @@ import { Web3Storage } from 'web3.storage'
 var hash = require('object-hash');
 import { useRouter } from 'next/router'
 import axios from 'axios';
+const { Readable } = require("stream");
+const pinataSDK = require('@pinata/sdk');
+
 
 const Publish = (props) => {
     const [isLoading, setIsLoading] = React.useState(false);
@@ -18,6 +21,47 @@ const Publish = (props) => {
 
     async function upload() {
         setIsLoading(true);
+        console.log(props.content)
+
+        const formData = new FormData();
+        const src = "path/to/file.png";
+        const readable = Readable.from([props.content])
+        console.log(readable)
+        formData.append('file', readable)
+        
+        const pinataMetadata = JSON.stringify({
+          name: 'APIFile',
+        });
+        formData.append('pinataMetadata', pinataMetadata);
+    
+        try{
+          const res = await axios.post("https://api.pinata.cloud/pinning/pinFileToIPFS", formData, {
+            maxBodyLength: "Infinity",
+            headers: {
+              'Content-Type': `multipart/form-data; boundary=${formData._boundary}`,
+              'Authorization': `Bearer ${process.env.NEXT_PUBLIC_PINATA_API_KEY}`
+            }
+          });
+          console.log(res.data);
+        } catch (error) {
+          console.log(error);
+        }
+        return
+        const pinata = new pinataSDK({ pinataJWTKey: process.env.NEXT_PUBLIC_PINATA_API_KEY });
+
+        const options = {
+            pinataMetadata: {
+                name: hash(props.content) + ".json",
+            },
+            pinataOptions: {
+                cidVersion: 0
+            }
+        };
+        console.log(options)
+        console.log(readable)
+        const res = await pinata.pinFileToIPFS(readable, options);
+        console.log(res)
+        return
         const obj = { content: props.content }
         const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
         let filename = hash(obj) + '.json';
