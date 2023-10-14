@@ -3,6 +3,7 @@ import { Web3Storage } from 'web3.storage'
 var hash = require('object-hash');
 import { useRouter } from 'next/router'
 import axios from 'axios';
+import { Web3Storage } from 'web3.storage'
 
 
 const Publish = (props) => {
@@ -19,28 +20,25 @@ const Publish = (props) => {
 
     async function upload() {
         setIsLoading(true);
-        console.log(props.content)
-        let res = await axios.post('/api/ipfs/upload', props.content);
-        console.log(res)
-        let path = res.data.uri;
-        let urlSplit = path.split('/')
-        let cid = urlSplit[2]
-        let filename = urlSplit[3]
-        while (true) {
-            console.log("checking if file is uploaded")
-            try {
-                await new Promise(r => setTimeout(r, 1000));
-                let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
-                let f = await axios.get(file_url)
-                setIPFS(path)
-                setPageLink("https://fastdapp.xyz/app/" + encodeURIComponent(path))
-                setIsLoading(false);
-                setIsUploaded(true);
-                return;
-            } catch (error) {
-                console.log("File not uploaded yet...")
-            }
-        }
+        const obj = { content: props.content }
+        const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
+        let filename = hash(obj) + '.json';
+        const files = [
+            new File([blob], filename)
+        ]
+        const cid = await client.put(files)
+        console.log(cid)
+        let path = "ipfs://" + cid + "/" + filename;
+        await new Promise(r => setTimeout(r, 3000));
+
+
+        let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
+        let f = await axios.get(file_url)
+        setIPFS(path)
+        setPageLink("https://fastdapp.xyz/app/" + encodeURIComponent(path))
+        setIsLoading(false);
+        setIsUploaded(true);
+
     }
 
     function content() {

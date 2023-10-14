@@ -73,7 +73,7 @@
     "use-debounce": "^9.0.4",
     "viem": "^1.0.6",
     "wagmi": "^1.2.1",
-    "web3.storage": "^4.5.4",
+    "web3.storage": "^4.5.5",
     "yaml-front-matter": "^4.1.1"
   },
   "devDependencies": {

@@ -16,7 +16,7 @@ export default async function handler(request, result) {
         //const url = await storage.resolveScheme("ipfs://example");
         //console.log(url);
 
-        result.status(200).json({ uri, url });
+        result.status(200).json({ uri });
     } catch (e) {
         console.log(`${e.message}`);
         result.status(500).json({ error: `${e.message}` });
