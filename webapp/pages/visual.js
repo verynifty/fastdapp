@@ -20,6 +20,8 @@ import { Stats, StatsProps } from "components/visualblocks/Stats";
 import { Text, TextProps } from "components/visualblocks/Text";
 import { VerticalSpace, VerticalSpaceProps } from "components/visualblocks/VerticalSpace";
 
+import { getAccount } from '@wagmi/core';
+
 
 // Create puck component config
 const config = {
@@ -67,11 +69,13 @@ const config = {
                 }`,
                 address: "0xb6ca7399b4f9ca56fc27cbff44f4d2e4eef1fc81"
             },
-            render: ({ abi, address }) => (
-                <div>
-                    <ContractWrite address={address} abi={[JSON.parse(abi)]} />
-                </div>
-            ),
+            render: function ({ abi, address }) {
+                return (
+                    <div>
+                        <ContractWrite address={address} abi={[JSON.parse(abi)]} />
+                    </div>
+                )
+            },
         }
     },
 };
@@ -86,7 +90,8 @@ export default function Visual() {
         root: {},
     };
 
-
+    // const account = await getAccount();
+    // userAddress = account.address;
 
     const [content, setContent] = useState(initialData);
     const [editMode, setEditMode] = useState(true);
@@ -121,7 +126,7 @@ export default function Visual() {
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
             <div data-theme="light" style={{ 'position': 'relative' }}>
-                {showEditor()}  
+                {showEditor()}
                 <button onClick={previewButtonClicked} style={{ 'position': 'absolute', 'top': 10, 'left': 5 }} className="btn">Preview</button>
             </div>
         </React.Fragment>
