@@ -176,6 +176,12 @@ Here are the write functions of your contract. You can use them to send transact
                     });
                     setContent(formatted)
                     setRendered(formatted)
+                } else if (template != "erc6551") {
+                    const contract_address = params.get("contract_address");
+                    const asset_address = params.get("asset_address");
+                    let f = await axios.get(getExampleURL("nft_collection"))
+                    let text = f.data;
+                    
                 } else {
                     let codeToLoad;
                     // we check if we have a saved code in localstorage
