@@ -181,8 +181,8 @@ Here are the write functions of your contract. You can use them to send transact
                     const asset_address = params.get("asset_address");
                     let f = await axios.get(getExampleURL("erc4626_wizard"))
                     let text = f.data;
-                    text = text.replaceAll("__CONTRACT_ADDRESS__", contract_address)
-                    text = text.replaceAll("__ASSET_ADDRESS__", asset_address)
+                    text = text.replaceAll("__ERC4626_ADDRESS__", contract_address)
+                    text = text.replaceAll("__ERC4626_ASSET__", asset_address)
                     let formatted = prettier.format(text, {
                         parser: "mdx",
                         plugins: [markdownParser, parserBable],
