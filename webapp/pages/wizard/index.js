@@ -33,6 +33,11 @@ export default function Wizard({ source }) {
             description: "Create an home page for your NFT collection.",
             href: "/wizard/nft_collection"
         },
+        {
+            title: "ERC4626 Tokenized Vault Standard",
+            description: "Create a page for your ERC4626 contract that enables user to deposit and withraw the asset.",
+            href: "/wizard/erc4626"
+        },
     ]
 
     return (
