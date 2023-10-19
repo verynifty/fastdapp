@@ -153,6 +153,18 @@ authors: grands_marquis
           />
         </h1>
       </div>
+      <div className="stat">
+        <div className="stat-title">Your balance</div>
+            <div className="stat-value">
+                <TokenBalance token={ERC4626_ASSET} address={userAddress} />
+            </div>
+        </div>
+        <div className="stat">
+            <div className="stat-title">Your shares</div>
+            <div className="stat-value">
+                <TokenBalance token={ERC4626_ADDRESS} address={userAddress} />
+            </div>
+    </div>
       <div className="px-4 py-5 sm:p-6">
         <h1>Deposit</h1>
         <ContractWrite
