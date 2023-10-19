@@ -1,6 +1,7 @@
 ---
 chain: [1]
 authors: grands_marquis
+theme: dark
 ---
 
 <>
