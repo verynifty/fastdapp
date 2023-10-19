@@ -1,159 +1,201 @@
 ---
-chain: 1
+chain: [1,10,42161,137]
 authors: grands_marquis
+theme: aqua
 ---
 
-<>
+<div class="p-5">
   {(() => {
-    DAIAddress = "0x6b175474e89094c44da98b954eedeac495271d0f";
-    DAIPotAddress = "0x197E90f9FAD81970bA7976f33CbD77088E5D7cf7";
-    DAIPotABI = [
+    AAVE_POOL_DATA_PROVIDER_ADDRESSES = {
+        1: "0x7B4EB56E7CD4b454BA8ff71E4518426369a138a3",
+        10: "0xbd83DdBE37fc91923d59C8c1E0bDe0CccCa332d5",
+        42161: "0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654",
+        137: "0x69FA688f1Dc47d4B5d8029D5a35FB7a548310654"
+    }
+    AAVE_POOL_DATA_PROVIDER = AAVE_POOL_DATA_PROVIDER_ADDRESSES[connectedChain.id];
+    AAAVE_POOL_DATA_PROVIDER_ABI = [
+  {
+    "inputs": [
+      
+    ],
+    "name": "getAllReservesTokens",
+    "outputs": [
       {
-        constant: true,
-        inputs: [],
-        name: "dsr",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        payable: false,
-        stateMutability: "view",
-        type: "function",
-      },
+        "components": [
+          {
+            "internalType": "string",
+            "name": "symbol",
+            "type": "string"
+          },
+          {
+            "internalType": "address",
+            "name": "tokenAddress",
+            "type": "address"
+          }
+        ],
+        "internalType": "struct IPoolDataProvider.TokenData[]",
+        "name": "",
+        "type": "tuple[]"
+      }
+    ],
+    "stateMutability": "view",
+    "type": "function"
+  }
     ];
-    SavingsDaiAddress = "0x83f20f44975d03b1b09e64809b757c47f942beea";
-    SavingsDaiABI = [
+    AAVE_POOL_ADDRESSES = {
+        1: "0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2",
+        10: "0x794a61358d6845594f94dc1db02a252b5b4814ad",
+        42161: "0x794a61358D6845594F94dc1DB02A252b5b4814aD",
+        137: "0x794a61358D6845594F94dc1DB02A252b5b4814aD"
+    }
+    AAVE_POOL = AAVE_POOL_ADDRESSES[connectedChain.id];
+    AAVE_POOL_ABI = [
       {
         inputs: [
           {
-            internalType: "uint256",
-            name: "assets",
-            type: "uint256",
-            token: DAIAddress,
-            ERC20Allow: SavingsDaiAddress,
-          },
-          {
             internalType: "address",
-            name: "receiver",
+            name: "asset",
             type: "address",
-            hidden: true,
           },
         ],
-        name: "deposit",
-        outputs: [{ internalType: "uint256", name: "shares", type: "uint256" }],
-        stateMutability: "nonpayable",
-        type: "function",
-      },
-      {
-        inputs: [{ internalType: "address", name: "owner", type: "address" }],
-        name: "maxRedeem",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
+        name: "getReserveData",
+        outputs: [
+          {
+            components: [
+              {
+                components: [
+                  {
+                    internalType: "uint256",
+                    name: "data",
+                    type: "uint256",
+                  },
+                ],
+                internalType: "struct DataTypes.ReserveConfigurationMap",
+                name: "configuration",
+                type: "tuple",
+              },
+              {
+                internalType: "uint128",
+                name: "liquidityIndex",
+                type: "uint128",
+              },
+              {
+                internalType: "uint128",
+                name: "currentLiquidityRate",
+                type: "uint128",
+              },
+              {
+                internalType: "uint128",
+                name: "variableBorrowIndex",
+                type: "uint128",
+              },
+              {
+                internalType: "uint128",
+                name: "currentVariableBorrowRate",
+                type: "uint128",
+              },
+              {
+                internalType: "uint128",
+                name: "currentStableBorrowRate",
+                type: "uint128",
+              },
+              {
+                internalType: "uint40",
+                name: "lastUpdateTimestamp",
+                type: "uint40",
+              },
+              {
+                internalType: "uint16",
+                name: "id",
+                type: "uint16",
+              },
+              {
+                internalType: "address",
+                name: "aTokenAddress",
+                type: "address",
+              },
+              {
+                internalType: "address",
+                name: "stableDebtTokenAddress",
+                type: "address",
+              },
+              {
+                internalType: "address",
+                name: "variableDebtTokenAddress",
+                type: "address",
+              },
+              {
+                internalType: "address",
+                name: "interestRateStrategyAddress",
+                type: "address",
+              },
+              {
+                internalType: "uint128",
+                name: "accruedToTreasury",
+                type: "uint128",
+              },
+              {
+                internalType: "uint128",
+                name: "unbacked",
+                type: "uint128",
+              },
+              {
+                internalType: "uint128",
+                name: "isolationModeTotalDebt",
+                type: "uint128",
+              },
+            ],
+            internalType: "struct DataTypes.ReserveData",
+            name: "",
+            type: "tuple",
+          },
+        ],
         stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          { internalType: "uint256", name: "DAI to deposit", type: "uint256" },
-        ],
-        name: "previewRedeem",
-        outputs: [{ internalType: "uint256", name: "", type: "uint256" }],
-        stateMutability: "view",
-        type: "function",
-      },
-      {
-        inputs: [
-          {
-            internalType: "uint256",
-            name: "sDAI to withdraw",
-            type: "uint256",
-            token: SavingsDaiAddress,
-          },
-          {
-            internalType: "address",
-            name: "receiver",
-            type: "address",
-            hidden: true,
-          },
-          {
-            internalType: "address",
-            name: "owner",
-            type: "address",
-            hidden: true,
-          },
-        ],
-        name: "redeem",
-        outputs: [{ internalType: "uint256", name: "assets", type: "uint256" }],
-        stateMutability: "nonpayable",
         type: "function",
       },
     ];
   })()}
-</>
 
-<center class="p-5">
-<ContractRead
-  address={DAIPotAddress}
-  abi={DAIPotABI}
-  functionName="dsr"
-  returnValue={function (dsr) {
-    // We convert DSR to yearly
-    dsr = Math.round(
-      parseInt(((dsr - BigInt(1e27)) * BigInt(31536000)) / BigInt(10e23)) / 10
-    );
-    return <h1>Earn {dsr + ""}% on your DAI with the DAI saving rates</h1>;
-  }}
-/>
+<h1>AAVE</h1>
 
-## Deposit
+Aave is a decentralized non-custodial liquidity protocol where users can participate as depositors or borrowers. Depositors provide liquidity to the market to earn a passive income, while borrowers are able to borrow in an overcollateralized (perpetually) or undercollateralized (one-block liquidity) fashion.
 
-By depositing, you will get sDAI. sDAI is similar to DAI but with the added benefit of earning interest. You can use it just like DAI - own, transfer, and use it in the DeFi ecosystem. Swapping between sDAI and DAI incurs no additional costs and no slippage as is deposited or withdrawn from the DSR contract.
-<div class="mt-10">
-
-<ContractWrite
-  address={SavingsDaiAddress}
-  abi={SavingsDaiABI}
-  functionName="deposit"
-  args={[0, userAddress]}
-/>
-</div>
-
-## Withdraw
-
-Exchange your sDAI into DAI.
+## Markets
 
 <ContractRead
-  address={SavingsDaiAddress}
-  abi={SavingsDaiABI}
-  functionName="maxRedeem"
-  args={[userAddress]}
-  returnValue={(maxRedeemable) => (
-    <div>
-      <ContractRead
-        address={SavingsDaiAddress}
-        abi={SavingsDaiABI}
-        functionName="previewRedeem"
-        args={[maxRedeemable]}
-        returnValue={(redeemPreview) => (
-          <div>
-            You currently have{" "}
-            <TokenAmount token={SavingsDaiAddress} amount={maxRedeemable} /> = <TokenAmount token={DAIAddress} amount={redeemPreview} /> in the DAI
-            saving module.
-            <div class="mt-10">
-            <ContractWrite
-              address={SavingsDaiAddress}
-              abi={SavingsDaiABI}
-              functionName="redeem"
-              args={[maxRedeemable + "", userAddress, userAddress]}
-            /></div>
-          </div>
-        )}
-      />
-    </div>
-  )}
-/>
+address={AAVE_POOL_DATA_PROVIDER}
+abi={AAAVE_POOL_DATA_PROVIDER_ABI}
+functionName="getAllReservesTokens"
+args={[]}
+render={
+(reserveTokens) => (
+<div>
+<ul>
+{reserveTokens.map(token =>
+    <li key={token.tokenAddress}>
+      <a href={`/app/aave_pool?token=${token.tokenAddress}`}>{token.symbol} - APY <ContractRead
+address={AAVE_POOL}
+abi={AAVE_POOL_ABI}
+functionName="getReserveData"
+args={[token.tokenAddress]}
+render={
+(poolInfos) => (
+<span>{parseInt(parseInt(poolInfos.currentLiquidityRate) / 10e21) / 1000}%</span>)} /></a>
+</li>
+)}
+</ul>
+
 <div class="mt-10 alert">
   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-info shrink-0 w-6 h-6"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-  <span>This app was built in 150 Lines of code</span>
+  <span>This app was built in less than 200 Lines of code</span>
   <div>
-    <a href="https://docs.fastdapp.xyz/docs/templates/dai-saving" class="btn btn-sm">Show the code</a>
+    <a href="https://docs.fastdapp.xyz/docs/templates/aave" class="btn btn-sm">Show the code</a>
     <a href="https://fastdapp.xyz/" class="btn btn-sm btn-primary">Build yours</a>
   </div>
 </div>
-</center>
+</div>
+        )
+    }
+/>
+
+</div>
