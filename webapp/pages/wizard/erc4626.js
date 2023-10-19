@@ -12,10 +12,10 @@ export default function WizardNFTCollection({ source }) {
     const router = useRouter()
 
 
-    const [address, setAddress] = useState(``);
-    const [asset, setAsset] = useState(``);
+    const [address, setAddress] = useState(`0x83f20f44975d03b1b09e64809b757c47f942beea`);
+    const [asset, setAsset] = useState(`0x6b175474e89094c44da98b954eedeac495271d0f`);
 
-    const [isCorrect, setIsCorrect] = useState(false);
+    const [isCorrect, setIsCorrect] = useState(true);
 
     useEffect(() => {
         console.log("useEffect")
@@ -79,7 +79,7 @@ export default function WizardNFTCollection({ source }) {
                     <p className="text-base font-semibold leading-7 text-secondary">Got a minute?</p>
                     <h2 className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-6xl">Create your ERC4626 staking page</h2>
                     <p className="mt-6 text-lg leading-8 ">
-                        Type your ERC4626 address and generate a beautiful home page for your NFT collection. We'll search opensea for your collection information and create an customizable page for you to share.
+                        Type your ERC4626 address and generate a beautiful home page for any ERC4626 vault.
                     </p>
                     <div className="grid mt-5 p-5 card bg-neutral rounded-box place-items-center">
 
