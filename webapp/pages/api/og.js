@@ -13,8 +13,8 @@ export default function handler(request) {
         const hasTitle = searchParams.has('title');
         const title = hasTitle
             ? searchParams.get('title')?.slice(0, 100)
-            : 'FastDapp';
-        const hasSubTitle = searchParams.has('title');
+            : '';
+        const hasSubTitle = searchParams.has('subtitle');
         const subtitle = hasSubTitle
             ? searchParams.get('subtitle')?.slice(0, 100)
             : '';
