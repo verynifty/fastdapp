@@ -45,7 +45,7 @@ theme: dark
                 </span>
               </td>
               <th>
-                <button className="btn btn-ghost btn-xs">details</button>
+                <a className="btn btn-ghost btn-xs" href={`/app/erc4626?address=${vault.address}&token=${vault.token.address}`}>details</a>
               </th>
             </tr>
           ))}
