@@ -25,7 +25,7 @@ const APICall = (props) => {
         if (!isLoaded) {
             return (<center><span class="loading loading-spinner loading-md"></span></center>)
         } else if (typeof props.renderFunction === 'function') {
-            return (<span>{props.renderFunction(result)}</span>)
+            return (<>{props.renderFunction(result)}</>)
         } else {
             return (<span>{JSON.stringify(result)}</span>)
         }
