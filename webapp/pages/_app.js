@@ -20,7 +20,8 @@ import {
   sepolia,
   avalanche,
   zora,
-  bsc
+  bsc,
+  holesky
 } from 'wagmi/chains';
 
 const base = {
@@ -124,7 +125,8 @@ function MyApp({ Component, pageProps }) {
     sepolia,
     avalanche,
     altcoinchain,
-    bsc
+    bsc,
+    holesky
   ]);
 
   const { chains, publicClient, webSocketPublicClient } = configureChains(
