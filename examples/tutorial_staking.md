@@ -167,3 +167,29 @@ You currently own <TokenBalance token={TOKEN_ADDRESS} address={userAddress}
     },
   ]}
 />
+
+<ContractWrite
+  address={TOKEN_ADDRESS}
+  buttonText="Remove approval"
+  args={[STAKING_ADDRESS, "0"]}
+  abi={[
+    {
+      inputs: [
+        {
+          name: "_spender",
+          type: "address",
+          hidden: true
+        },
+        {
+          name: "_value",
+          type: "uint256",
+          hidden: true
+        },
+      ],
+      name: "approve",
+      outputs: [],
+      stateMutability: "nonpayable",
+      type: "function",
+    },
+  ]}
+/>
