@@ -31,6 +31,13 @@ const SendTransactionButton = (props) => {
 
     const onClickSend = async () => {
         setIsLoading(true);
+        let transactionRequest = props.preparedTransaction;
+        if (typeof transactionRequest === 'function') {
+            console.log("TRANSACTION REQUEST IS FUNCTION")
+            transactionRequest = await transactionRequest();
+            console.log("TRANSACTION was called", transactionRequest)
+
+        }
         if (props.onBeforeSendTransaction != null) {
             let onBefore = await props.onBeforeSendTransaction();
             if (!onBefore) {    
@@ -38,7 +45,6 @@ const SendTransactionButton = (props) => {
                 return;
             }
         }
-        let transactionRequest = props.preparedTransaction;
         console.log("TRANSACTION REQUEST", transactionRequest)
         if (transactionRequest != null && transactionRequest.isError) {
             setIsLoading(false);
@@ -48,23 +54,38 @@ const SendTransactionButton = (props) => {
         }
         try {
             let tx = null;
+            let functionName = "";
+            let from = "";
+            let to = "";
             console.log(transactionRequest)
-            if (transactionRequest.config.request != null && transactionRequest.config.request.abi != null) {
+            if (transactionRequest.config != null && transactionRequest.config.request != null && transactionRequest.config.request.abi != null) {
                 // THis is a contract write
                 tx = await writeContract(
                     transactionRequest.config.request
                 );
+                functionName = transactionRequest.data.request.functionName;
+                from = transactionRequest.data.request.account.address;
+                to = transactionRequest.data.request.address;
+            } else if (transactionRequest.config == null && transactionRequest.request != null) {
+                console.log("We write the contract")
+                tx = await writeContract(
+                    transactionRequest.request
+                );
+                functionName = transactionRequest.request.functionName;
+                from = transactionRequest.request.account.address;
+                to = transactionRequest.request.address;
             } else {
                 // This is a simple value send
                 tx = await sendTransaction(
                     transactionRequest.config
                 );
             }
+            console.log(tx)
             saEvent('transaction_sent', {
                 tx_hahs: tx.hash,
-                functionName: transactionRequest.data.request.functionName,
-                from: transactionRequest.data.request.account.address,
-                to: transactionRequest.data.request.address,
+                functionName: functionName,
+                from: from,
+                to: to,
                 chain: chain.id,
                 sent_at: new Date()
             })

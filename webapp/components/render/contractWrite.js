@@ -1,6 +1,6 @@
 import { default as React, Fragment, useState, useRef, useEffect } from 'react';
-import { usePrepareContractWrite, useAccount } from 'wagmi'
-import { fetchToken, getContract } from '@wagmi/core'
+import {  useAccount } from 'wagmi'
+import { fetchToken, getContract, prepareWriteContract } from '@wagmi/core'
 import { useToken } from 'wagmi'
 import { parseEther, parseUnits } from 'viem'
 import DateTimePicker from 'react-datetime-picker';
@@ -29,7 +29,14 @@ const WriteContract = (props) => {
     const argsStateTokens = [];
     const argsStateApprovals = [];
 
+    const [preparedTransaction, setPreparedTransaction] = useState(null);
+
     const [approvalId, setApprovalId] = useState(0);
+
+        // This will run only once
+        useEffect(() => {
+            getPreparedTransaction();
+        }, []);
 
     function getFunction() {
         if (props.functionName == null) {
@@ -53,7 +60,8 @@ const WriteContract = (props) => {
     }
 
     async function onBeforeSendTransaction() {
-        //   console.log("beforeClick", argsStateApprovals);
+        console.log("beforeClick", argsStateApprovals);
+        await getPreparedTransaction();
         if (props.onBeforeSendTransaction != null) {
             try {
                 await props.onBeforeSendTransaction()
@@ -110,7 +118,7 @@ const WriteContract = (props) => {
 
 
 
-    function getPreparedTransaction() {
+    async function getPreparedTransaction() {
         let tx = null;
         try {
             let args = [];
@@ -137,7 +145,8 @@ const WriteContract = (props) => {
             }
             console.log(args)
             rawTransaction = ({ address: props.address, abi: props.abi, functionName: getFunction().name, args: args, value: parseEther(value + "") })
-            tx = usePrepareContractWrite(rawTransaction);
+            tx = await prepareWriteContract(rawTransaction);
+            console.log("tx", tx)
             if (tx.error) {
                 console.error("There is an error", tx)
             }
@@ -145,7 +154,8 @@ const WriteContract = (props) => {
             console.error("Error")
             console.error(e)
         }
-        return tx;
+        setPreparedTransaction(tx);
+        return preparedTransaction;
     }
 
     for (const [index, input] of getFunction().inputs.entries()) {
@@ -296,7 +306,7 @@ const WriteContract = (props) => {
             {makePayable()}
             {makeApprovals()}
             <div className="mt-2">
-                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : getFunction().name} transactionDescription={getFunction().name} preparedTransaction={getPreparedTransaction()} />
+                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : getFunction().name} transactionDescription={getFunction().name} preparedTransaction={getPreparedTransaction} />
             </div>
         </span >
     );
