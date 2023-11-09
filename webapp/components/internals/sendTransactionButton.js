@@ -31,13 +31,6 @@ const SendTransactionButton = (props) => {
 
     const onClickSend = async () => {
         setIsLoading(true);
-        let transactionRequest = props.preparedTransaction;
-        if (typeof transactionRequest === 'function') {
-            console.log("TRANSACTION REQUEST IS FUNCTION")
-            transactionRequest = await transactionRequest();
-            console.log("TRANSACTION was called", transactionRequest)
-
-        }
         if (props.onBeforeSendTransaction != null) {
             let onBefore = await props.onBeforeSendTransaction();
             if (!onBefore) {    
@@ -45,6 +38,7 @@ const SendTransactionButton = (props) => {
                 return;
             }
         }
+        let transactionRequest = props.preparedTransaction;
         console.log("TRANSACTION REQUEST", transactionRequest)
         if (transactionRequest != null && transactionRequest.isError) {
             setIsLoading(false);

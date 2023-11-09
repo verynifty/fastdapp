@@ -155,7 +155,7 @@ const WriteContract = (props) => {
             console.error(e)
         }
         setPreparedTransaction(tx);
-        return preparedTransaction;
+        return tx;
     }
 
     for (const [index, input] of getFunction().inputs.entries()) {
@@ -180,7 +180,7 @@ const WriteContract = (props) => {
 
     function makeApprovals() {
         if (isWantingApproval != null) {
-            return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} amount={isWantingApproval.amount} />);
+            return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} amount={isWantingApproval.amount} onTransactionMined={getPreparedTransaction} />);
         }
     }
 
@@ -306,7 +306,7 @@ const WriteContract = (props) => {
             {makePayable()}
             {makeApprovals()}
             <div className="mt-2">
-                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : getFunction().name} transactionDescription={getFunction().name} preparedTransaction={getPreparedTransaction} />
+                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : getFunction().name} transactionDescription={getFunction().name} preparedTransaction={preparedTransaction} />
             </div>
         </span >
     );

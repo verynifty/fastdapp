@@ -4,7 +4,10 @@ import ContractWrite from 'components/render/contractWrite';
 const ERC20ApprovalModal = (props) => {
   const [isOpen, setIsOpen] = React.useState(true);
 
-  function closeModal() {
+  async function closeModal() {
+    if (props.onTransactionMined != null) {
+      await props.onTransactionMined();
+    }
     setIsOpen(false);
   }
 
