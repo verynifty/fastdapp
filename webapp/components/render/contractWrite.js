@@ -1,5 +1,5 @@
 import { default as React, Fragment, useState, useRef, useEffect } from 'react';
-import {  useAccount } from 'wagmi'
+import { useAccount } from 'wagmi'
 import { fetchToken, getContract, prepareWriteContract } from '@wagmi/core'
 import { useToken } from 'wagmi'
 import { parseEther, parseUnits } from 'viem'
@@ -33,10 +33,10 @@ const WriteContract = (props) => {
 
     const [approvalId, setApprovalId] = useState(0);
 
-        // This will run only once
-        useEffect(() => {
-            getPreparedTransaction();
-        }, []);
+    // This will run only once
+    useEffect(() => {
+        getPreparedTransaction();
+    }, []);
 
     function getFunction() {
         if (props.functionName == null) {
@@ -90,7 +90,7 @@ const WriteContract = (props) => {
             if (!approved) {
                 const token = await fetchToken({
                     address: approval.token,
-                  })
+                })
                 setIsWantingApproval({
                     token: token,
                     spender: approval.spender,
@@ -143,7 +143,7 @@ const WriteContract = (props) => {
                     args.push(arg);
                 }
             }
-            console.log(args)
+            // console.log(args)
             rawTransaction = ({ address: props.address, abi: props.abi, functionName: getFunction().name, args: args, value: parseEther(value + "") })
             tx = await prepareWriteContract(rawTransaction);
             console.log("tx", tx)
@@ -155,7 +155,7 @@ const WriteContract = (props) => {
             console.error(e)
         }
         setPreparedTransaction(tx);
-        return tx;
+        return preparedTransaction;
     }
 
     for (const [index, input] of getFunction().inputs.entries()) {
@@ -306,7 +306,7 @@ const WriteContract = (props) => {
             {makePayable()}
             {makeApprovals()}
             <div className="mt-2">
-                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : getFunction().name} transactionDescription={getFunction().name} preparedTransaction={preparedTransaction} />
+                <SendTransactionButton onTransactionMined={onTransactionMined} onBeforeSendTransaction={onBeforeSendTransaction} text={props.buttonText != null ? props.buttonText : getFunction().name} transactionDescription={getFunction().name} preparedTransaction={getPreparedTransaction} />
             </div>
         </span >
     );

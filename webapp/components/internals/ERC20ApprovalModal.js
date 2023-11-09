@@ -5,10 +5,11 @@ const ERC20ApprovalModal = (props) => {
   const [isOpen, setIsOpen] = React.useState(true);
 
   async function closeModal() {
+    setIsOpen(false);
     if (props.onTransactionMined != null) {
+      await new Promise(r => setTimeout(r, 1000));
       await props.onTransactionMined();
     }
-    setIsOpen(false);
   }
 
   async function getInfo() {

@@ -39,6 +39,10 @@ const SendTransactionButton = (props) => {
             }
         }
         let transactionRequest = props.preparedTransaction;
+        // check if transactionRequest is a function
+        if (typeof transactionRequest === 'function') {
+            transactionRequest = await transactionRequest();
+        }
         console.log("TRANSACTION REQUEST", transactionRequest)
         if (transactionRequest != null && transactionRequest.isError) {
             setIsLoading(false);
