@@ -176,7 +176,7 @@ Here are the write functions of your contract. You can use them to send transact
                     });
                     setContent(formatted)
                     setRendered(formatted)
-                } else if (template != "erc6551") {
+                } else if (params.get("wizard") == "erc4626") {
                     const contract_address = params.get("contract_address");
                     const asset_address = params.get("asset_address");
                     let f = await axios.get(getExampleURL("erc4626_wizard"))
@@ -294,6 +294,7 @@ Here are the write functions of your contract. You can use them to send transact
         const content = getContent();
         toast.success("Rendered!")
         setRendered(content)
+        console.log("SET CONTENT", content);
         window.localStorage.setItem('editor_saved_code', content);
         setVersion(version + 1)
     }
@@ -304,6 +305,7 @@ Here are the write functions of your contract. You can use them to send transact
         }
         toast.success("Rendered!")
         setRendered(value)
+        console.log("SET CONTENT", content);
         window.localStorage.setItem('editor_saved_code', value);
         setVersion(version + 1)
     }
