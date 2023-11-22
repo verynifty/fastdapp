@@ -3,7 +3,7 @@ import { default as React } from 'react';
 class RenderErrorWrapper extends React.Component {
   constructor(props) {
     super(props)
-
+    
     // Define a state variable to track whether is an error or not
     this.state = { hasError: false, error: null, errorInfo: null }
   }
@@ -15,7 +15,7 @@ class RenderErrorWrapper extends React.Component {
   componentDidCatch(error, errorInfo) {
     // You can use your own error logging service here
     console.log({ error, errorInfo })
-    this.state.error = error;
+    this.setState({ error, hasError: true })
   }
 
   componentDidUpdate(prevProps) {
@@ -36,6 +36,7 @@ class RenderErrorWrapper extends React.Component {
           <h1 class="text-3xl font-bold text-primary mb-4">Oops! An error occurred.</h1>
           <div class="w-full max-w-xs md:max-w-md bg-neutral p-4 mb-4 overflow-auto">
             <pre class="text-sm font-mono rounded  p-4 ">
+              {this.state.err}
               <code>{this.state.error != null ? this.state.error.message : ""} </code>
             </pre>
           </div>
