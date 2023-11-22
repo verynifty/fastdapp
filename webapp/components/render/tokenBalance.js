@@ -1,6 +1,6 @@
 import { default as React, useState, useRef, useEffect } from 'react';
-import { fetchBalance } from '@wagmi/core'
-
+import { fetchBalance, readContract } from '@wagmi/core'
+import ERC1155ABI from 'ABIS/ERC1155.json';
 
 const TokenBalance = (props) => {
     const [balance, setBalance] = React.useState(0);
@@ -25,24 +25,46 @@ const TokenBalance = (props) => {
                 setIsLoaded(true);
                 return;
             }
-            try {
-                const balance = await fetchBalance({
-                    address: props.address,
-                    token: props.token,
-                })
-                setRaw(balance);
-                setBalance(balance.value);
-                if (parseFloat(balance.formatted) > 1) {
-                    setFormatted(parseInt(parseFloat(balance.formatted) * 1000)/ 1000);
-                } else {
-                    setFormatted(balance.formatted);
+            if (props.tokenID == null) { // this is erc20
+                try {
+                    const balance = await fetchBalance({
+                        address: props.address,
+                        token: props.token,
+                    })
+                    setRaw(balance);
+                    setBalance(balance.value);
+                    if (parseFloat(balance.formatted) > 1) {
+                        setFormatted(parseInt(parseFloat(balance.formatted) * 1000) / 1000);
+                    } else {
+                        setFormatted(balance.formatted);
+                    }
+                    setSymbol(balance.symbol);
+                } catch (error) {
+                    console.error("TokenBalance Error", error)
+                    setFormatted("Error: token doesn't exist or is in a different network?");
                 }
-                setSymbol(balance.symbol);
-            } catch (error) {
-                console.error("TokenBalance Error", error)
-                setFormatted("Error: token doesn't exist or is in a different network?");
+                setIsLoaded(true);
+            } else { // this is ERC1155
+                console.log(ERC1155ABI)
+                const balance = await readContract({
+                    address: props.token,
+                    abi: ERC1155ABI,
+                    functionName: "balanceOf",
+                    args: [props.address, props.tokenID]
+                });
+                console.log("FFFF",balance)
+                setRaw(balance.toString());
+                setBalance(balance.toString());
+                setFormatted(balance.toString());
+                let symbol = await readContract({
+                    address: props.token,
+                    abi: ERC1155ABI,
+                    functionName: "symbol",
+                });
+                console.log("Symbol", symbol)
+                setSymbol(symbol);
+                setIsLoaded(true);
             }
-            setIsLoaded(true);
         }
         getBalance();
     }, [props.token, props.address]);
