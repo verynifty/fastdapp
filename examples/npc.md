@@ -103,7 +103,7 @@ theme: retro
   
   <div className="stat">
     <div className="stat-title">Non-Playable Coin (NPC) Balance</div>
-    <div className="stat-value"><ContractRead address={NPC_ERC1155_ADDRESS} abi={ABIs.ERC1155} functionName="balanceOf" args={[userAddress, 1]} /> </div>
+    <div className="stat-value"><TokenBalance address={userAddress} token={NPC_ERC1155_ADDRESS} tokenID="1" /> </div>
   </div>
   
  
