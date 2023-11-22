@@ -1,12 +1,12 @@
 import { default as React, Fragment, useState, useRef, useEffect } from 'react';
-import { useAccount } from 'wagmi'
-import { fetchToken, getContract, prepareWriteContract } from '@wagmi/core'
-import { useToken } from 'wagmi'
+import { useAccount, useToken } from 'wagmi'
+import { fetchToken, getContract, prepareWriteContract, readContract } from '@wagmi/core'
 import { parseEther, parseUnits } from 'viem'
 import DateTimePicker from 'react-datetime-picker';
 import 'react-calendar/dist/Calendar.css';
 import TokenBalance from 'components/render/tokenBalance';
 import ERC20ABI from 'ABIS/ERC20.json';
+import ERC1155ABI from 'ABIS/ERC1155.json';
 
 import SendTransactionButton from 'components/internals/sendTransactionButton';
 import ERC20ApprovalModal from 'components/internals/ERC20ApprovalModal';
@@ -27,6 +27,7 @@ const WriteContract = (props) => {
     const argsStateValues = [];
     const argsStateSetters = [];
     const argsStateTokens = [];
+    const argsStateERC1155 = [];
     const argsStateApprovals = [];
 
     const [preparedTransaction, setPreparedTransaction] = useState(null);
@@ -158,25 +159,46 @@ const WriteContract = (props) => {
         return preparedTransaction;
     }
 
-    for (const [index, input] of getFunction().inputs.entries()) {
-        const [value, setter] = React.useState(args[index]);
-        argsStateValues.push(value);
-        argsStateSetters.push(setter);
-        if (input.type === "uint256" && input.token != null) {
-            const { data, isError, isLoading } = useToken({
-                address: input.token,
-            })
-            argsStateTokens.push(data);
-        } else {
-            argsStateTokens.push(null);
-        }
-        if (input.type === "uint256" && input.ERC20Allow != null) {
-            argsStateApprovals.push(input.ERC20Allow);
-        } else {
-            argsStateApprovals.push(null);
-        }
+
+    async function load() {
+        for (const [index, input] of getFunction().inputs.entries()) {
+            const [value, setter] = React.useState(args[index]);
+            argsStateValues.push(value);
+            argsStateSetters.push(setter);
+            if (input.type === "uint256" && input.token != null) {
+                if (input.tokenID != null) { // this is ERC1155
+                    let symbol = await readContract({
+                        address: input.token,
+                        abi: ERC1155ABI,
+                        functionName: "symbol",
+                    });
+                    argsStateTokens.push({
+                        address: input.token,
+                        symbol: symbol,
+                        decimals: 0,
+                    });
+                    argsStateERC1155.push(input.tokenID);
+                } else { // this is ERC20
+                    const { data, isError, isLoading } = useToken({
+                        address: input.token,
+                    })
+                    argsStateTokens.push(data);
+                    argsStateERC1155.push(null);
+                }
+            } else {
+                argsStateTokens.push(null);
+                argsStateERC1155.push(null);
+            }
+            if (input.type === "uint256" && input.ERC20Allow != null) {
+                argsStateApprovals.push(input.ERC20Allow);
+            } else {
+                argsStateApprovals.push(null);
+            }
+        }    
     }
 
+    load();
+    
 
     function makeApprovals() {
         if (isWantingApproval != null) {
@@ -251,12 +273,32 @@ const WriteContract = (props) => {
                                     </div>
                                 </div>
                             )
-                        } else if (input.type === "uint256" && input.token != null) {
+                        } else if (input.type === "uint256" && input.token != null && input.tokenID == null) {
                             return (
                                 <div className="form-control w-full ">
                                     <label className="label">
                                         <span className="label-text">{input.name}</span>
                                         {(typeof address !== 'undefined' && argsStateTokens[index] != null) && <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted)} address={address} token={argsStateTokens[index].address} /></span>  </span>}
+                                    </label>
+                                    <div className='join'>
+                                        <input type="text"
+                                            value={argsStateValues[index]}
+                                            onChange={e => argsStateSetters[index](e.target.value)}
+                                            name="token_amount"
+                                            id="token_amount"
+                                            className="input input-bordered w-full join-item" placeholder="0.00"></input>
+                                        <button className="btn btn-disabled join-item rounded-r-full">{(argsStateTokens[index] != null ? argsStateTokens[index].symbol : '')}</button>
+                                    </div>
+                                </div>
+                            )
+                        } else if (input.type === "uint256" && input.token != null && input.tokenID != null) {
+                            return (
+                                <div className="form-control w-full ">
+                                    tokenID
+                                    <label className="label">
+                                        <span className="label-text">{input.name}</span>
+                                        {JSON.stringify(argsStateTokens) + " " + JSON.stringify(argsStateERC1155)}
+                                        {(typeof address !== 'undefined' && argsStateTokens[index] != null) && <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted)} address={address} token={argsStateTokens[index].address} tokenID={argsStateERC1155[index]} /></span>  </span>}
                                     </label>
                                     <div className='join'>
                                         <input type="text"

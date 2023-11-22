@@ -45,14 +45,12 @@ const TokenBalance = (props) => {
                 }
                 setIsLoaded(true);
             } else { // this is ERC1155
-                console.log(ERC1155ABI)
                 const balance = await readContract({
                     address: props.token,
                     abi: ERC1155ABI,
                     functionName: "balanceOf",
                     args: [props.address, props.tokenID]
                 });
-                console.log("FFFF",balance)
                 setRaw(balance.toString());
                 setBalance(balance.toString());
                 setFormatted(balance.toString());
@@ -61,7 +59,6 @@ const TokenBalance = (props) => {
                     abi: ERC1155ABI,
                     functionName: "symbol",
                 });
-                console.log("Symbol", symbol)
                 setSymbol(symbol);
                 setIsLoaded(true);
             }
