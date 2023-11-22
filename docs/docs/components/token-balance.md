@@ -5,9 +5,10 @@ sidebar_position: 5
 
 # Token Balance (ERC20/ERC1155)
 
-Display the ERC20 token balance of an address.
+## ERC20
 
-## Example
+Display the ERC20 token balance of an address:
+
 
 ```
     <TokenBalance 
@@ -19,6 +20,7 @@ Display the ERC20 token balance of an address.
 ## ERC1155
 
 Additionally you can query for the token balance of ERC1155 assets by providing a token id:
+
 
 ```
     <TokenBalance 
