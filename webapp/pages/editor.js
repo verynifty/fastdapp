@@ -70,7 +70,7 @@ export default function EditorPage({ source }) {
         async function load() {
             try {
                 const params = new URLSearchParams(window.location.search) // id=123
-                let template = params.get('template') // 123 
+                let template = params.get('template');
                 if (params.get("wizard") == 'nft_collection') {
                     const contract_address = params.get("contract_address");
                     let f = await axios.get(getExampleURL("nft_collection"))
@@ -220,7 +220,7 @@ Here are the write functions of your contract. You can use them to send transact
 
         editor.addAction({
             // An unique identifier of the contributed action.
-            id: "my-unique-id",
+            id: "render",
 
             // A label of the action that will be presented to the user.
             label: "Render",
@@ -304,7 +304,7 @@ Here are the write functions of your contract. You can use them to send transact
         }
         toast.success("Rendered!")
         setRendered(value)
-        window.localStorage.setItem('editor_saved_code', content);
+        window.localStorage.setItem('editor_saved_code', value);
         setVersion(version + 1)
     }
 
