@@ -183,7 +183,6 @@ const WriteContract = (props) => {
                         decimals: 1,
                     });
                     argsStateERC1155.push(input.tokenID);
-                    console.log("TOKENIDDDDD", input, argsStateERC1155, argsStateTokens)
                 } else { // this is ERC20
                     const { data, isError, isLoading } = useToken({
                         address: input.token,

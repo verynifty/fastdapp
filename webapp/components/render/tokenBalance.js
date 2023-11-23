@@ -10,7 +10,6 @@ const TokenBalance = (props) => {
     const [raw, setRaw] = React.useState(null);
 
     function handleClick() {
-        console.log("Clicked")
         if (props.componentClicked != null) {
             props.componentClicked(raw);
         }
@@ -18,7 +17,6 @@ const TokenBalance = (props) => {
 
     // This will run only once
     useEffect(() => {
-        console.log("useEffect TOKENBALANCE")
         async function getBalance() {
             if (props.address == null) {
                 setFormatted("Not connected");
