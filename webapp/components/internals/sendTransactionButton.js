@@ -31,19 +31,26 @@ const SendTransactionButton = (props) => {
 
     const onClickSend = async () => {
         setIsLoading(true);
-        if (props.onBeforeSendTransaction != null) {
-            let onBefore = await props.onBeforeSendTransaction();
-            if (!onBefore) {    
-                setIsLoading(false);
-                return;
+        try {
+
+            if (props.onBeforeSendTransaction != null) {
+                let onBefore = await props.onBeforeSendTransaction();
+                if (!onBefore) {
+                    setIsLoading(false);
+                    return;
+                }
             }
+        } catch (error) {
+            toast.error(error.shortMessage);
         }
+
         let transactionRequest = props.preparedTransaction;
         // check if transactionRequest is a function
+
         if (typeof transactionRequest === 'function') {
             transactionRequest = await transactionRequest();
         }
-        console.log("TRANSACTION REQUEST", transactionRequest)
+
         if (transactionRequest != null && transactionRequest.isError) {
             setIsLoading(false);
             if (transactionRequest.error.shortMessage != null) {
@@ -110,7 +117,6 @@ const SendTransactionButton = (props) => {
                 await props.onTransactionMined(data);
             }
         } catch (error) {
-            console.log(error)
             setIsLoading(false);
         }
     }
@@ -118,7 +124,7 @@ const SendTransactionButton = (props) => {
     const button = () => {
         if (isDisconnected) {
             return (<ConnectButton />)
-        } 
+        }
         else if (!isLoading) {
             return (
                 <button onClick={onClickSend} className="btn">

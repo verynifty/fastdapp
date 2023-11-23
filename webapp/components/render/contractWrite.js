@@ -65,7 +65,6 @@ const WriteContract = (props) => {
 
     async function onBeforeSendTransaction() {
         console.log("beforeClick", argsStateApprovals);
-        await getPreparedTransaction();
         if (props.onBeforeSendTransaction != null) {
             try {
                 await props.onBeforeSendTransaction()
@@ -106,6 +105,7 @@ const WriteContract = (props) => {
                 return false;
             }
         }
+        await getPreparedTransaction(true);
         return true
     }
 
@@ -120,9 +120,7 @@ const WriteContract = (props) => {
         }
     }
 
-
-
-    async function getPreparedTransaction() {
+    async function getPreparedTransaction(throwError = false) {
         let tx = null;
         try {
             let args = [];
@@ -147,16 +145,12 @@ const WriteContract = (props) => {
                     args.push(arg);
                 }
             }
-            // console.log(args)
             rawTransaction = ({ address: props.address, abi: props.abi, functionName: getFunction().name, args: args, value: parseEther(value + "") })
             tx = await prepareWriteContract(rawTransaction);
-            console.log("tx", tx)
-            if (tx.error) {
-                console.error("There is an error", tx)
-            }
         } catch (e) {
-            console.error("Error")
-            console.error(e)
+            if (throwError) {
+                throw e;
+            }
         }
         setPreparedTransaction(tx);
         return preparedTransaction;
