@@ -1,5 +1,5 @@
 import { default as React, Fragment, useState, useRef, useEffect } from 'react';
-import { useAccount, useToken } from 'wagmi'
+import { useAccount, useContractRead, useToken } from 'wagmi'
 import { fetchToken, getContract, prepareWriteContract, readContract } from '@wagmi/core'
 import { parseEther, parseUnits } from 'viem'
 import DateTimePicker from 'react-datetime-picker';
@@ -19,6 +19,7 @@ const WriteContract = (props) => {
     const [value, setValue] = React.useState(props.valueAmount != null ? props.valueAmount : "0");
 
     const [isWantingApproval, setIsWantingApproval] = React.useState(null);
+
     let rawTransaction;
 
     const { address, isConnecting, isDisconnected } = useAccount()
@@ -29,6 +30,8 @@ const WriteContract = (props) => {
     const argsStateTokens = [];
     const argsStateERC1155 = [];
     const argsStateApprovals = [];
+
+
 
     const [preparedTransaction, setPreparedTransaction] = useState(null);
 
@@ -159,25 +162,28 @@ const WriteContract = (props) => {
         return preparedTransaction;
     }
 
+    for (const [index, input] of getFunction().inputs.entries()) {
+        const [value, setter] = React.useState(args[index]);
+        argsStateValues.push(value);
+        argsStateSetters.push(setter);
+    }
 
     async function load() {
         for (const [index, input] of getFunction().inputs.entries()) {
-            const [value, setter] = React.useState(args[index]);
-            argsStateValues.push(value);
-            argsStateSetters.push(setter);
             if (input.type === "uint256" && input.token != null) {
                 if (input.tokenID != null) { // this is ERC1155
-                    let symbol = await readContract({
+                    let { data, isError, isLoading } =  useContractRead({
                         address: input.token,
                         abi: ERC1155ABI,
                         functionName: "symbol",
                     });
                     argsStateTokens.push({
                         address: input.token,
-                        symbol: symbol,
-                        decimals: 0,
+                        symbol: data,
+                        decimals: 1,
                     });
                     argsStateERC1155.push(input.tokenID);
+                    console.log("TOKENIDDDDD", input, argsStateERC1155, argsStateTokens)
                 } else { // this is ERC20
                     const { data, isError, isLoading } = useToken({
                         address: input.token,
@@ -194,11 +200,11 @@ const WriteContract = (props) => {
             } else {
                 argsStateApprovals.push(null);
             }
-        }    
+        }
     }
 
+
     load();
-    
 
     function makeApprovals() {
         if (isWantingApproval != null) {
@@ -294,10 +300,8 @@ const WriteContract = (props) => {
                         } else if (input.type === "uint256" && input.token != null && input.tokenID != null) {
                             return (
                                 <div className="form-control w-full ">
-                                    tokenID
                                     <label className="label">
                                         <span className="label-text">{input.name}</span>
-                                        {JSON.stringify(argsStateTokens) + " " + JSON.stringify(argsStateERC1155)}
                                         {(typeof address !== 'undefined' && argsStateTokens[index] != null) && <span className="label-text-alt ">your balance: <span className='underline cursor-pointer'><TokenBalance componentClicked={balance => console.log("CLICKKKED") || argsStateSetters[index](balance.formatted)} address={address} token={argsStateTokens[index].address} tokenID={argsStateERC1155[index]} /></span>  </span>}
                                     </label>
                                     <div className='join'>
@@ -341,6 +345,7 @@ const WriteContract = (props) => {
             </div>
         )
     }
+
 
     return (
         <span>

@@ -45,22 +45,29 @@ const TokenBalance = (props) => {
                 }
                 setIsLoaded(true);
             } else { // this is ERC1155
-                const balance = await readContract({
-                    address: props.token,
-                    abi: ERC1155ABI,
-                    functionName: "balanceOf",
-                    args: [props.address, props.tokenID]
-                });
-                setRaw(balance.toString());
-                setBalance(balance.toString());
-                setFormatted(balance.toString());
-                let symbol = await readContract({
-                    address: props.token,
-                    abi: ERC1155ABI,
-                    functionName: "symbol",
-                });
-                setSymbol(symbol);
+                try {
+                    const balance = await readContract({
+                        address: props.token,
+                        abi: ERC1155ABI,
+                        functionName: "balanceOf",
+                        args: [props.address, props.tokenID]
+                    });
+                    setRaw(balance.toString());
+                    setBalance(balance.toString());
+                    setFormatted(balance.toString());
+                    let symbol = await readContract({
+                        address: props.token,
+                        abi: ERC1155ABI,
+                        functionName: "symbol",
+                    });
+                    setSymbol(symbol);
+                    setIsLoaded(true);
+                } catch (error) {
+                    console.error("TokenBalance Error", error)
+                    setFormatted("Error: token doesn't exist or is in a different network?");
+                }
                 setIsLoaded(true);
+
             }
         }
         getBalance();
