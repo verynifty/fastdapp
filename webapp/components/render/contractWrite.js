@@ -125,11 +125,11 @@ const WriteContract = (props) => {
         for (const [index, arg] of argsStateERC1155Approvals.entries()) {
             if (arg != null) {
                 console.log("Checking approval", arg, argsStateValues[index])
-                const approved = await checkApproval1155(argsStateTokens[index].address, argsStateApprovals[index]);
+                const approved = await checkApproval1155(argsStateTokens[index].address, argsStateERC1155Approvals[index]);
                 if (!approved) {
                     setIsWantingApproval({
                         token: argsStateTokens[index],
-                        spender: argsStateApprovals[index],
+                        spender: argsStateERC1155Approvals[index],
                         type: "ERC1155"
                     })
                     setApprovalId(approvalId + 1);

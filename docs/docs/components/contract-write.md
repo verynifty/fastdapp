@@ -98,7 +98,7 @@ You can add a `token` property on the input. The form will directly convert the 
 />
 ```
 
-### How to handle token approvals
+### How to handle ERC20 token approvals
 
 While you can build your own ERC20 approval UI using the `ContractWrite` component itself. The preferred way to handle token approvals is to add the `ERC20Allow` property with the address that will spend the allowance to the input that represent the number of tokens to be transferred.
 
@@ -148,6 +148,10 @@ When the function you'd like to call doesn't have a token amount as input, you c
   }}
 />
 ```
+
+### How to handle ERC1155 token approvals
+
+In a similar way as ERC20 token you can use `ERC1155Allow` property with the address that will spend the allowance.
 
 ### How to force the choice between predefined values?
 

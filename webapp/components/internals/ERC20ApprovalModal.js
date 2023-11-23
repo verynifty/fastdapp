@@ -25,6 +25,7 @@ const ERC20ApprovalModal = (props) => {
   }, [props.approvalId, props.token, props.address, props.isWantingApproval]);
 
   function makeApproval() {
+    console.log([props.spender, true],props.token);
     if (props.type == "ERC20") {
       return (
         <ContractWrite address={props.token.address} abi={[
@@ -52,40 +53,32 @@ const ERC20ApprovalModal = (props) => {
             "payable": false,
             "stateMutability": "nonpayable",
             "type": "function",
-            "buttonText": "Approve"
           }
-        ]} functionName="approve" args={[props.spender, "115792089237316195423570985008687907853269984665640564039457584007913129639935"]} onTransactionMined={closeModal} />
+        ]} buttonText="Approve" functionName="approve" args={[props.spender, "115792089237316195423570985008687907853269984665640564039457584007913129639935"]} onTransactionMined={closeModal} />
       )
     } else if(props.type == "ERC1155") {
       return (
         <ContractWrite address={props.token.address} abi={[
           {
-            "constant": false,
             "inputs": [
-              {
-                "name": "_spender",
-                "type": "address",
-                "hidden": true
-              },
-              {
-                "name": "Amount to approve:",
-                "type": "uint256",
-                "hidden": true
-              }
+                {
+                    "internalType": "address",
+                    "name": "operator",
+                    "type": "address"
+                },
+                {
+                    "internalType": "bool",
+                    "name": "approved",
+                    "type": "bool",
+                    hidden: true
+                }
             ],
             "name": "setApprovalForAll",
-            "outputs": [
-              {
-                "name": "",
-                "type": "bool"
-              }
-            ],
-            "payable": false,
+            "outputs": [],
             "stateMutability": "nonpayable",
             "type": "function",
-            "buttonText": "Approve"
-          }
-        ]} functionName="setApprovalForAll" args={[props.spender, true]} onTransactionMined={closeModal} />
+        },
+        ]} buttonText="Approve" functionName="setApprovalForAll" args={[props.spender, true]} onTransactionMined={closeModal} />
       )
     }
   }
