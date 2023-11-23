@@ -5,6 +5,7 @@ import { parseEther, parseUnits } from 'viem'
 import DateTimePicker from 'react-datetime-picker';
 import 'react-calendar/dist/Calendar.css';
 import TokenBalance from 'components/render/tokenBalance';
+
 import ERC20ABI from 'ABIS/ERC20.json';
 import ERC1155ABI from 'ABIS/ERC1155.json';
 
@@ -30,6 +31,7 @@ const WriteContract = (props) => {
     const argsStateTokens = [];
     const argsStateERC1155 = [];
     const argsStateApprovals = [];
+    const argsStateERC1155Approvals = [];
 
 
 
@@ -49,6 +51,18 @@ const WriteContract = (props) => {
         return props.abi.find((element) => element.name === props.functionName && element.type === "function");
     }
 
+    function checkApproval1155(token, spender) {
+        return new Promise((resolve, reject) => {
+            const contract = getContract({
+                address: token,
+                abi: ERC1155ABI
+            })
+            contract.read.isApprovedForAll([address, spender]).then((allowed) => {
+                resolve(allowed);
+            });
+        });
+    }
+    
     // check if the ERC20 token is approved to be spent
     function checkApproval(token, spender, amount) {
         return new Promise((resolve, reject) => {
@@ -81,6 +95,7 @@ const WriteContract = (props) => {
                         token: argsStateTokens[index],
                         amount: argsStateValues[index],
                         spender: argsStateApprovals[index],
+                        type: "ERC20"
                     })
                     setApprovalId(approvalId + 1);
                     return false;
@@ -97,7 +112,8 @@ const WriteContract = (props) => {
                 setIsWantingApproval({
                     token: token,
                     spender: approval.spender,
-                    amount: approval.amount
+                    amount: approval.amount,
+                    type: "ERC20"
                 })
                 console.log("approvalId", approvalId);
                 console.log(isWantingApproval)
@@ -105,12 +121,28 @@ const WriteContract = (props) => {
                 return false;
             }
         }
+
+        for (const [index, arg] of argsStateERC1155Approvals.entries()) {
+            if (arg != null) {
+                console.log("Checking approval", arg, argsStateValues[index])
+                const approved = await checkApproval1155(argsStateTokens[index].address, argsStateApprovals[index]);
+                if (!approved) {
+                    setIsWantingApproval({
+                        token: argsStateTokens[index],
+                        spender: argsStateApprovals[index],
+                        type: "ERC1155"
+                    })
+                    setApprovalId(approvalId + 1);
+                    return false;
+                }
+            }
+        }
+
         await getPreparedTransaction(true);
         return true
     }
 
     async function onTransactionMined(minedTx) {
-        //   console.log("beforeClick", argsStateApprovals);
         if (props.onTransactionMined != null) {
             try {
                 await props.onTransactionMined(minedTx, rawTransaction)
@@ -193,6 +225,11 @@ const WriteContract = (props) => {
             } else {
                 argsStateApprovals.push(null);
             }
+            if (input.type === "uint256" && input.ERC1155Allow != null) {
+                argsStateERC1155Approvals.push(input.ERC1155Allow);
+            } else {
+                argsStateERC1155Approvals.push(null);
+            }
         }
     }
 
@@ -201,7 +238,7 @@ const WriteContract = (props) => {
 
     function makeApprovals() {
         if (isWantingApproval != null) {
-            return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} amount={isWantingApproval.amount} onTransactionMined={getPreparedTransaction} />);
+            return (<ERC20ApprovalModal approvalId={approvalId} approval={isWantingApproval} token={isWantingApproval.token} spender={isWantingApproval.spender} amount={isWantingApproval.amount} type={isWantingApproval.type} onTransactionMined={getPreparedTransaction} />);
         }
     }
 

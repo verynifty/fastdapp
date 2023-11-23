@@ -24,11 +24,9 @@ const ERC20ApprovalModal = (props) => {
     getInfo();
   }, [props.approvalId, props.token, props.address, props.isWantingApproval]);
 
-  return (
-    <dialog id="approval_modal" className={`modal ${isOpen ? "modal-open" : ""} `}>
-      <form method="dialog" className="modal-box">
-        <h3 className="text-lg font-bold">Approval required</h3>
-        <p className="py-4">You need to approve your {props.token.symbol} to be spent by {props.spender}.</p>
+  function makeApproval() {
+    if (props.type == "ERC20") {
+      return (
         <ContractWrite address={props.token.address} abi={[
           {
             "constant": false,
@@ -57,6 +55,47 @@ const ERC20ApprovalModal = (props) => {
             "buttonText": "Approve"
           }
         ]} functionName="approve" args={[props.spender, "115792089237316195423570985008687907853269984665640564039457584007913129639935"]} onTransactionMined={closeModal} />
+      )
+    } else if(props.type == "ERC1155") {
+      return (
+        <ContractWrite address={props.token.address} abi={[
+          {
+            "constant": false,
+            "inputs": [
+              {
+                "name": "_spender",
+                "type": "address",
+                "hidden": true
+              },
+              {
+                "name": "Amount to approve:",
+                "type": "uint256",
+                "hidden": true
+              }
+            ],
+            "name": "setApprovalForAll",
+            "outputs": [
+              {
+                "name": "",
+                "type": "bool"
+              }
+            ],
+            "payable": false,
+            "stateMutability": "nonpayable",
+            "type": "function",
+            "buttonText": "Approve"
+          }
+        ]} functionName="setApprovalForAll" args={[props.spender, true]} onTransactionMined={closeModal} />
+      )
+    }
+  }
+
+  return (
+    <dialog id="approval_modal" className={`modal ${isOpen ? "modal-open" : ""} `}>
+      <form method="dialog" className="modal-box">
+        <h3 className="text-lg font-bold">Approval required</h3>
+        <p className="py-4">You need to approve your {props.token.symbol} to be spent by {props.spender}.</p>
+        {makeApproval()}
       </form>
       <form method="dialog" className="modal-backdrop">
         <button onClick={closeModal}>close</button>

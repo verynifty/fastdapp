@@ -29,6 +29,8 @@ theme: retro
             internalType: "uint256",
             name: "Amount",
             type: "uint256",
+            token: NPC_ERC1155_ADDRESS,
+            tokenID: "1"
           },
         ],
         name: "Transform",
@@ -110,10 +112,10 @@ theme: retro
   
 </div>
 <h2>From ERC20 to ERC1155</h2>
-<ContractWrite address={NPC_ADDRESS} abi={NPC_ABI} functionName="Respawn" />
+<ContractWrite address={NPC_ADDRESS} abi={NPC_ABI} functionName="Respawn" args={[0]} />
 <h2>From ERC1155 to ERC20</h2>
 
-<ContractWrite address={NPC_ADDRESS} abi={NPC_ABI} functionName="Transform" />
+<ContractWrite address={NPC_ADDRESS} abi={NPC_ABI} functionName="Transform" args={[0]} />
   
     <div class="flex justify-center space-x-4">
     <div class="card shadow-lg rounded-lg overflow-hidden">
