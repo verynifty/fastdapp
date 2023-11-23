@@ -70,7 +70,7 @@ const ERC20ApprovalModal = (props) => {
                     "internalType": "bool",
                     "name": "approved",
                     "type": "bool",
-                    hidden: true
+                    "hidden": true
                 }
             ],
             "name": "setApprovalForAll",

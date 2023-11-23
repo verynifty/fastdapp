@@ -29,6 +29,7 @@ const WriteContract = (props) => {
     const argsStateValues = [];
     const argsStateSetters = [];
     const argsStateTokens = [];
+    const argsStateTokensIgnoreDecimals = [];
     const argsStateERC1155 = [];
     const argsStateApprovals = [];
     const argsStateERC1155Approvals = [];
@@ -62,7 +63,7 @@ const WriteContract = (props) => {
             });
         });
     }
-    
+
     // check if the ERC20 token is approved to be spent
     function checkApproval(token, spender, amount) {
         return new Promise((resolve, reject) => {
@@ -163,12 +164,21 @@ const WriteContract = (props) => {
                     if (isNaN(nb)) {
                         nb = 0;
                     }
-                    // this is a token so we need the decimals
-                    args.push(parseUnits(nb + "", argsStateTokens[index].decimals));
+                    if (argsStateTokensIgnoreDecimals[index]) {
+                        args.push(nb + "");
+                    } else {
+                        // this is a token so we need the decimals
+                        args.push(parseUnits(nb + "", argsStateTokens[index].decimals));
+                    }
+
                 } else if (abiInputs[index].hidden) {
                     // When the input is hidden we can fetch the value from the props as the value could be a reactive variable
-                    let nb = parseFloat(props.args[index]);
-                    if (isNaN(nb)) {
+                    let val = props.args[index];
+                    let nb = parseFloat(val);
+                    if (val + "" === "true" || val + "" === "false") {
+                        args.push(val);
+                    }
+                    else if (isNaN(nb)) {
                         args.push(props.args[index] + "");
                     } else {
                         args.push(props.args[index]);
@@ -178,6 +188,9 @@ const WriteContract = (props) => {
                 }
             }
             rawTransaction = ({ address: props.address, abi: props.abi, functionName: getFunction().name, args: args, value: parseEther(value + "") })
+            if (throwError) {
+                console.log("Preparing transaction: ", rawTransaction);
+            }
             tx = await prepareWriteContract(rawTransaction);
         } catch (e) {
             if (throwError) {
@@ -198,7 +211,7 @@ const WriteContract = (props) => {
         for (const [index, input] of getFunction().inputs.entries()) {
             if (input.type === "uint256" && input.token != null) {
                 if (input.tokenID != null) { // this is ERC1155
-                    let { data, isError, isLoading } =  useContractRead({
+                    let { data, isError, isLoading } = useContractRead({
                         address: input.token,
                         abi: ERC1155ABI,
                         functionName: "symbol",
@@ -206,19 +219,22 @@ const WriteContract = (props) => {
                     argsStateTokens.push({
                         address: input.token,
                         symbol: data,
-                        decimals: 1,
+                        decimals: 0,
                     });
                     argsStateERC1155.push(input.tokenID);
+                    argsStateTokensIgnoreDecimals.push(false);
                 } else { // this is ERC20
                     const { data, isError, isLoading } = useToken({
                         address: input.token,
                     })
                     argsStateTokens.push(data);
+                    argsStateTokensIgnoreDecimals.push(input.tokenIgnoreDecimals != null && input.tokenIgnoreDecimals != false);
                     argsStateERC1155.push(null);
                 }
             } else {
                 argsStateTokens.push(null);
                 argsStateERC1155.push(null);
+                rgsStateTokensIgnoreDecimals.push(null);
             }
             if (input.type === "uint256" && input.ERC20Allow != null) {
                 argsStateApprovals.push(input.ERC20Allow);
