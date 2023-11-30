@@ -2,6 +2,7 @@
 import React, { useRef, Suspense, useEffect } from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
+import { Header } from '@/components/Header'
 
 import Render from 'components/render';
 import { Web3Storage } from 'web3.storage'
@@ -103,15 +104,18 @@ export default function Page({ source }) {
   //             {ipfsMessage()}
 
   return (
-    <div>
-      <Head>
-        <title>Fast Dapp - {router.query.ipfs}</title>
-        <meta
-          name="Fast Dapp - Editor"
-          content=" create websites for your DAPP in a few minutes."
-        />
-      </Head>
-      {render()}
-    </div>
+    <>
+      <Header />
+      <div>
+        <Head>
+          <title>Fast Dapp - {router.query.ipfs}</title>
+          <meta
+            name="Fast Dapp - Editor"
+            content=" create websites for your DAPP in a few minutes."
+          />
+        </Head>
+        {render()}
+      </div>
+    </>
   )
 }

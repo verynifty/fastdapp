@@ -1,6 +1,7 @@
 import { default as React, useState, useEffect } from 'react';
 
 import Head from 'next/head'
+import { Header } from '@/components/Header'
 
 import { Puck, Render } from "puck";
 
@@ -121,6 +122,7 @@ export default function Visual() {
 
     return (
         <React.Fragment >
+            <Header />
             <Head>
                 <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.1/dist/full.css" rel="stylesheet" type="text/css" />
                 <script src="https://cdn.tailwindcss.com"></script>

@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import HeaderMetadata from '@/components/commons/headerMetadata';
+import { Header } from '@/components/Header'
 
 import { useRouter } from 'next/router'
 import axios from 'axios';
@@ -51,6 +52,8 @@ export default function WizardNFTCollection({ source }) {
     }
 
     return (
+        <>
+      <Header />
         <div className='wizard_parent'>
             <HeaderMetadata title="NFT Collection wizard | Fast Dapp" description="Create an home page for your NFT collection." />
 
@@ -80,5 +83,6 @@ export default function WizardNFTCollection({ source }) {
             </div>
 
         </div>
+        </>
     )
 }

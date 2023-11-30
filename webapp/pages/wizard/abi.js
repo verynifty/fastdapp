@@ -6,6 +6,8 @@ import HeaderMetadata from '@/components/commons/headerMetadata';
 import Link from 'next/link'
 import { useRouter } from 'next/router'
 import axios from 'axios';
+import { Header } from '@/components/Header'
+
 
 export default function WizardABI({ source }) {
 
@@ -48,45 +50,48 @@ export default function WizardABI({ source }) {
     }
 
     return (
-        <div className='wizard_parent'>
-            <HeaderMetadata title="ABI wizard | Fast Dapp" description="Create an home page for your NFT collection." />
+        <>
+            <Header />
+            <div className='wizard_parent'>
+                <HeaderMetadata title="ABI wizard | Fast Dapp" description="Create an home page for your NFT collection." />
 
-            <div className=" px-6 py-24 sm:py-32 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <p className="text-base font-semibold leading-7 text-secondary">Have an ABI?</p>
-                    <h2 className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-6xl">Generate your frontend</h2>
-                    <p className="mt-6 text-lg leading-8 ">
-                        Type your contract address and ABI to get your frontend bootstrapped!
-                    </p>
-                    <div className="grid mt-5 p-5 card bg-neutral rounded-box place-items-center">
+                <div className=" px-6 py-24 sm:py-32 lg:px-8">
+                    <div className="mx-auto max-w-2xl text-center">
+                        <p className="text-base font-semibold leading-7 text-secondary">Have an ABI?</p>
+                        <h2 className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-6xl">Generate your frontend</h2>
+                        <p className="mt-6 text-lg leading-8 ">
+                            Type your contract address and ABI to get your frontend bootstrapped!
+                        </p>
+                        <div className="grid mt-5 p-5 card bg-neutral rounded-box place-items-center">
 
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">Contract address:</span>
-                                <span className="label-text-alt"></span>
-                            </label>
-                            <input type="text" value={address} onChange={e => setAddress(e.target.value)} placeholder="0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d" className="input input-bordered w-full" />
-                            <label className="label">
-                                <span className="label-text-alt"></span>
-                                <span className="label-text-alt"></span>
-                            </label>
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">Contract address:</span>
+                                    <span className="label-text-alt"></span>
+                                </label>
+                                <input type="text" value={address} onChange={e => setAddress(e.target.value)} placeholder="0xbc4ca0eda7647a8ab7c2061c2e118a18a936f13d" className="input input-bordered w-full" />
+                                <label className="label">
+                                    <span className="label-text-alt"></span>
+                                    <span className="label-text-alt"></span>
+                                </label>
+                            </div>
+                            <div class="form-control w-full">
+                                <label class="label">
+                                    <span class="label-text">ABI</span>
+                                    <span class="label-text-alt"></span>
+                                </label>
+                                <textarea class="textarea textarea-bordered h-24" placeholder="[]" value={abi} onChange={e => setAbi(e.target.value)}></textarea>
+                                <label class="label">
+                                    <span class="label-text-alt"></span>
+                                    <span class="label-text-alt"></span>
+                                </label>
+                            </div>
+                            {Button()}
                         </div>
-                        <div class="form-control w-full">
-                            <label class="label">
-                                <span class="label-text">ABI</span>
-                                <span class="label-text-alt"></span>
-                            </label>
-                            <textarea class="textarea textarea-bordered h-24" placeholder="[]" value={abi} onChange={e => setAbi(e.target.value)}></textarea>
-                            <label class="label">
-                                <span class="label-text-alt"></span>
-                                <span class="label-text-alt"></span>
-                            </label>
-                        </div>
-                        {Button()}
                     </div>
                 </div>
-            </div>
 
-        </div>
+            </div>
+        </>
     )
 }

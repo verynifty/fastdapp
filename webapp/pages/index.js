@@ -10,19 +10,10 @@ import { PrimaryFeatures } from '@/components/PrimaryFeatures'
 import { SecondaryFeatures } from '@/components/SecondaryFeatures'
 import { Dapps } from '@/components/Dapps'
 
-/*
-        <CallToAction />
-        <Testimonials />
-        <Pricing />
-        <Faqs />
-
-        / main
-              <Footer />
-
-*/
 export default function Home() {
   return (
     <>
+      <Header />
       <main>
         <Hero />
         <PrimaryFeatures />

@@ -5,7 +5,7 @@ import HeaderMetadata from '@/components/commons/headerMetadata';
 
 import { useRouter } from 'next/router'
 import { readContract } from '@wagmi/core'
-
+import { Header } from '@/components/Header'
 
 export default function WizardNFTCollection({ source }) {
 
@@ -71,34 +71,35 @@ export default function WizardNFTCollection({ source }) {
     }
 
     return (
-        <div className='wizard_parent'>
-            <HeaderMetadata title="ERC4626 wizard | Fast Dapp" description="Create an home page for your NFT collection." />
+        <>
+            <Header />
+            <div className='wizard_parent'>
+                <HeaderMetadata title="ERC4626 wizard | Fast Dapp" description="Create an home page for your NFT collection." />
+                <div className=" px-6 py-24 sm:py-32 lg:px-8">
+                    <div className="mx-auto max-w-2xl text-center">
+                        <p className="text-base font-semibold leading-7 text-secondary">Got a minute?</p>
+                        <h2 className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-6xl">Create your ERC4626 staking page</h2>
+                        <p className="mt-6 text-lg leading-8 ">
+                            Type your ERC4626 address and generate a beautiful home page for any ERC4626 vault.
+                        </p>
+                        <div className="grid mt-5 p-5 card bg-neutral rounded-box place-items-center">
 
-            <div className=" px-6 py-24 sm:py-32 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <p className="text-base font-semibold leading-7 text-secondary">Got a minute?</p>
-                    <h2 className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-6xl">Create your ERC4626 staking page</h2>
-                    <p className="mt-6 text-lg leading-8 ">
-                        Type your ERC4626 address and generate a beautiful home page for any ERC4626 vault.
-                    </p>
-                    <div className="grid mt-5 p-5 card bg-neutral rounded-box place-items-center">
-
-                        <div className="form-control w-full">
-                            <label className="label">
-                                <span className="label-text">ERC4626 contract address:</span>
-                                <span className="label-text-alt"></span>
-                            </label>
-                            <input type="text" value={address} onChange={e => setAddress(e.target.value)} placeholder="0x83f20f44975d03b1b09e64809b757c47f942beea" className="input input-bordered w-full" />
-                            <label className="label">
-                                <span className="label-text-alt"></span>
-                                <span className="label-text-alt"></span>
-                            </label>
+                            <div className="form-control w-full">
+                                <label className="label">
+                                    <span className="label-text">ERC4626 contract address:</span>
+                                    <span className="label-text-alt"></span>
+                                </label>
+                                <input type="text" value={address} onChange={e => setAddress(e.target.value)} placeholder="0x83f20f44975d03b1b09e64809b757c47f942beea" className="input input-bordered w-full" />
+                                <label className="label">
+                                    <span className="label-text-alt"></span>
+                                    <span className="label-text-alt"></span>
+                                </label>
+                            </div>
+                            {Button()}
                         </div>
-                        {Button()}
                     </div>
                 </div>
             </div>
-
-        </div>
+        </>
     )
 }

@@ -109,7 +109,6 @@ const theme = lightTheme({
   primaryHoverColor: "#252ea5",
 })
 
-import { Header } from '@/components/Header'
 
 
 function MyApp({ Component, pageProps }) {
@@ -185,7 +184,6 @@ function MyApp({ Component, pageProps }) {
           <RainbowKitProvider chains={chains} theme={darkTheme()} showRecentTransactions={true}>
             <div class="h-screen">
               <Toaster position="top-right" />
-              <Header />
               <Component {...pageProps} />
             </div>
           </RainbowKitProvider>

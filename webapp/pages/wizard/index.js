@@ -2,6 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import HeaderMetadata from '@/components/commons/headerMetadata';
+import { Header } from '@/components/Header'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -41,23 +42,25 @@ export default function Wizard({ source }) {
     ]
 
     return (
-        <div className='wizard_parent'>
-            <HeaderMetadata title="Wizards | Fast Dapp" description="Tools to kickstart your FastDapp project." />
+        <>
+            <Header />
+            <div className='wizard_parent'>
+                <HeaderMetadata title="Wizards | Fast Dapp" description="Tools to kickstart your FastDapp project." />
 
-            <div className=" px-6 py-24 sm:py-32 lg:px-8">
-                <div className="mx-auto max-w-2xl text-center">
-                    <h2 className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-6xl">Wizards</h2>
-                    <p className="mt-6 text-lg leading-8 ">
-                        Tools to kickstart your FastDapp project.
-                    </p>
-                    <ul class="menu menu-lg divide-y bg-neutral w-full rounded-box mt-5 ">
-                        {actions.map((action, actionIdx) => (
-                              <li><a href={action.href}><strong className='mx-2'>{action.title}:</strong> {action.description}</a></li>
-                        ))}
-                    </ul>
+                <div className=" px-6 py-24 sm:py-32 lg:px-8">
+                    <div className="mx-auto max-w-2xl text-center">
+                        <h2 className="mt-2 text-4xl font-bold tracking-tight text-primary sm:text-6xl">Wizards</h2>
+                        <p className="mt-6 text-lg leading-8 ">
+                            Tools to kickstart your FastDapp project.
+                        </p>
+                        <ul class="menu menu-lg divide-y bg-neutral w-full rounded-box mt-5 ">
+                            {actions.map((action, actionIdx) => (
+                                <li><a href={action.href}><strong className='mx-2'>{action.title}:</strong> {action.description}</a></li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
-
-        </div>
+        </>
     )
 }

@@ -2,6 +2,8 @@ const prettier = require("prettier");
 const markdownParser = require("prettier/parser-markdown");
 const parserBable = require("prettier/parser-babel");
 
+import { Header } from '@/components/Header'
+
 import React, { useEffect, useRef, useState } from 'react';
 import HeaderMetadata from '@/components/commons/headerMetadata';
 
@@ -342,49 +344,52 @@ Here are the write functions of your contract. You can use them to send transact
 
 
     return (
-        <div className='editor_parent'>
-            <HeaderMetadata title="Editor | Fast Dapp" description="Create frontends for your web3 apps in minutes!" />
+        <>
+            <Header />
+            <div className='editor_parent'>
+                <HeaderMetadata title="Editor | Fast Dapp" description="Create frontends for your web3 apps in minutes!" />
 
 
-            <Hotkeys
-                keyName="ctrl+enter,command+enter"
-                onKeyDown={onKeyDown.bind(this)}
-                onKeyUp={onKeyUp.bind(this)}
-            >
-                <Publish content={rendered} />
-                <div className="bg-gradient-to-r from-primary to-secondary p-2 md:flex md:items-center md:justify-between" style={{ "height": "2rem" }}>
-                    <div className="min-w-0 flex-1">
-                        <h2 className="text-xl font-bold  text-white sm:truncate  sm:tracking-tight">
-                            Editor
-                        </h2>
-                    </div>
-                    <div className="mt-4 flex md:ml-4 md:mt-0">
-                        <button
-                            onClick={handleRender}
-                            className="btn btn-xs btn-outline"
-                        >
-                            Render
-                        </button>
-                        <label for="my_modal_7" className="btn ml-2 btn-xs btn-outline">Publish</label>
-                    </div>
-                </div>
-                <PanelGroup direction="horizontal" className=" editor_container">
-                    <Panel defaultSize={50} ref={renderViewRef}>
-                        <div className=" h-full overflow-auto">
-                            <PleaseConnect>
-                                <RenderErrorWrapper version={version}>
-                                    <Render content={rendered} />
-                                </RenderErrorWrapper>
-                            </PleaseConnect>
+                <Hotkeys
+                    keyName="ctrl+enter,command+enter"
+                    onKeyDown={onKeyDown.bind(this)}
+                    onKeyUp={onKeyUp.bind(this)}
+                >
+                    <Publish content={rendered} />
+                    <div className="bg-gradient-to-r from-primary to-secondary p-2 md:flex md:items-center md:justify-between" style={{ "height": "2rem" }}>
+                        <div className="min-w-0 flex-1">
+                            <h2 className="text-xl font-bold  text-white sm:truncate  sm:tracking-tight">
+                                Editor
+                            </h2>
                         </div>
-                    </Panel>
-                    <PanelResizeHandler className='' />
-                    <Panel className=" h-full overflow-auto bg-base-200">
-                        {RightPanel()}
-                    </Panel>
+                        <div className="mt-4 flex md:ml-4 md:mt-0">
+                            <button
+                                onClick={handleRender}
+                                className="btn btn-xs btn-outline"
+                            >
+                                Render
+                            </button>
+                            <label for="my_modal_7" className="btn ml-2 btn-xs btn-outline">Publish</label>
+                        </div>
+                    </div>
+                    <PanelGroup direction="horizontal" className=" editor_container">
+                        <Panel defaultSize={50} ref={renderViewRef}>
+                            <div className=" h-full overflow-auto">
+                                <PleaseConnect>
+                                    <RenderErrorWrapper version={version}>
+                                        <Render content={rendered} />
+                                    </RenderErrorWrapper>
+                                </PleaseConnect>
+                            </div>
+                        </Panel>
+                        <PanelResizeHandler className='' />
+                        <Panel className=" h-full overflow-auto bg-base-200">
+                            {RightPanel()}
+                        </Panel>
 
-                </PanelGroup>
-            </Hotkeys>
-        </div>
+                    </PanelGroup>
+                </Hotkeys>
+            </div>
+        </>
     )
 }
