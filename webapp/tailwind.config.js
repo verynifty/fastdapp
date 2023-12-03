@@ -37,6 +37,21 @@ module.exports = {
           "base-content": "#FCFCFC"
         },
       },
+      {
+        aquaprime: {
+          "primary": "#F6FF00",
+          "base-content": "#FFFFFF",
+          "secondary": "#202123",
+          "accent": "#1fb2a6",
+          "neutral": "#202123",
+          "base-100": "#3B1C56",
+          "info": "#3abff8",
+          "success": "#36d399",
+          "warning": "#fbbd23",
+          "error": "#f87272",
+          "base-content": "#FCFCFC"
+        },
+      },
       "light",
       "dark",
       "cupcake",
