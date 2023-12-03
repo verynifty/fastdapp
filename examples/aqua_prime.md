@@ -6,18 +6,10 @@ defaultClass: none
 ---
 
 <div class="w-full text-white">
-  <section class="relative w-full py-12 md:py-24 lg:py-32 ">
-    <div class="  grid gap-6 px-4 md:px-6 grid-cols-3">
-      <img
-        class="h-full absolute left-0 top-0"
-        src="https://iili.io/JzWAwEF.png"
-      />
-      <img
-        class="h-full absolute right-0 top-0"
-        src="https://iili.io/JzW5wJa.png"
-      />
-      <div class=""></div>
-      <div class="flex flex-col items-center text-center justify-center space-y-4">
+  <section class="relative w-full  ">
+    <div class="grid grid-cols-3">
+      <img class="h-full  hidden md:block" src="https://iili.io/JzWAwEF.png" />
+      <div class="items-center text-center justify-center space-y-4">
         <h1 class="text-6xl font-bold">EMBARK ON YOUR JOURNEY</h1>
         <h2 class="text-4xl">TTRPG INSPIRED COLLABORATIVE STORY TELLING</h2>
         <p class="text-5xl drop-shadow-lg">
@@ -34,7 +26,10 @@ defaultClass: none
           MINT NOW
         </label>
       </div>
-      <div class=""></div>
+      <img
+        class="h-full hidden md:block"
+        src="https://iili.io/JzW5wJa.png"
+      />
     </div>
   </section>
 </div>
