@@ -25,7 +25,7 @@ defaultClass: none
           src="https://iili.io/JzDClbs.png"
         />
       </div>
-      <div class="items-center text-center justify-center space-y-4">
+      <div class="items-center text-center justify-center pt-8 pb-8">
         <h1 class="text-6xl text-white font-bold">EMBARK ON YOUR JOURNEY</h1>
         <h2 class="text-4xl">TTRPG INSPIRED COLLABORATIVE STORY TELLING</h2>
         <p class="text-5xl drop-shadow-lg">
@@ -54,7 +54,7 @@ defaultClass: none
         </svg>
         <img
           class="absolute right-0 bottom-0 max-h-full mt-10"
-          src="https://iili.io/JzDClbs.png"
+          src="https://iili.io/JzDRneV.png"
         />
       </div>
     </div>
