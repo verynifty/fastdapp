@@ -122,6 +122,7 @@ const Render = (props) => {
         let content = parsedFront.__content;
         // remove tabs at begining of line
         content = content.replace(/\t/g, "");
+        content = content.replace(/(^[ \t]*\n)/gm, "")
         setContent(content);
         if (parsedFront.defaultClass != null) {
             setDefaultClass(parsedFront.defaultClass);
