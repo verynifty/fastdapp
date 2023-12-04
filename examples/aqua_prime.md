@@ -8,9 +8,25 @@ defaultClass: none
 <div class="w-full text-white">
   <section class="relative w-full  ">
     <div class="grid grid-cols-3">
-      <img class="h-full  hidden md:block" src="https://iili.io/JzWAwEF.png" />
+      <div class="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="100%"
+          height="100%"
+          viewBox="0 0 688 578"
+          fill="none"
+          class="h-full w-full"
+          preserveAspectRatio="none"
+        >
+          <path d="M457.778 0H6.10352e-05V578H688L457.778 0Z" fill="#F6FF00" />
+        </svg>
+        <img
+          class="absolute left-0 bottom-0 max-h-full mt-10"
+          src="https://iili.io/JzDClbs.png"
+        />
+      </div>
       <div class="items-center text-center justify-center space-y-4">
-        <h1 class="text-6xl font-bold">EMBARK ON YOUR JOURNEY</h1>
+        <h1 class="text-6xl text-white font-bold">EMBARK ON YOUR JOURNEY</h1>
         <h2 class="text-4xl">TTRPG INSPIRED COLLABORATIVE STORY TELLING</h2>
         <p class="text-5xl drop-shadow-lg">
           Aqua Prime: The Economic Escape Odyssey
@@ -26,10 +42,21 @@ defaultClass: none
           MINT NOW
         </label>
       </div>
-      <img
-        class="h-full hidden md:block"
-        src="https://iili.io/JzW5wJa.png"
-      />
+      <div class="relative">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 687 578"
+          fill="none"
+          class="h-full w-full"
+          preserveAspectRatio="none"
+        >
+          <path d="M229.887 0H687V578H0L229.887 0Z" fill="#F6FF00" />
+        </svg>
+        <img
+          class="absolute right-0 bottom-0 max-h-full mt-10"
+          src="https://iili.io/JzDClbs.png"
+        />
+      </div>
     </div>
   </section>
 </div>
