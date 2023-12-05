@@ -165,7 +165,7 @@ const WriteContract = (props) => {
                         nb = 0;
                     }
                     if (argsStateTokensIgnoreDecimals[index]) {
-                        args.push(nb + "");
+                        args.push(arg);
                     } else {
                         // this is a token so we need the decimals
                         args.push(parseUnits(arg, argsStateTokens[index].decimals));
