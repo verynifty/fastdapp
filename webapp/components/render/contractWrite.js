@@ -170,7 +170,6 @@ const WriteContract = (props) => {
                         // this is a token so we need the decimals
                         args.push(parseUnits(nb + "", argsStateTokens[index].decimals));
                     }
-
                 } else if (abiInputs[index].hidden) {
                     // When the input is hidden we can fetch the value from the props as the value could be a reactive variable
                     let val = props.args[index];

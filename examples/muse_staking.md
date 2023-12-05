@@ -173,23 +173,17 @@ theme: dark
       more transaction to claim your Muse
     </p>
     <ContractWrite
-      address={TOKEN_ADDRESS}
+      address={STAKING_ADDRESS}
       abi={[
         {
           inputs: [],
-          name: "Start unstake timer",
+          name: "startUnstake",
           outputs: [],
           stateMutability: "nonpayable",
           type: "function",
         },
-        {
-          inputs: [],
-          name: "symbol",
-          outputs: [{ internalType: "string", name: "", type: "string" }],
-          stateMutability: "view",
-          type: "function",
-        },
       ]}
+      buttonText="Start unstake timer"
     />
   </div>
 </div>
