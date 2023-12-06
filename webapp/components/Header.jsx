@@ -7,13 +7,32 @@ import { Button } from '@/components/Button'
 import { Container } from '@/components/Container'
 import { Logo } from '@/components/Logo'
 import { NavLink } from '@/components/NavLink'
+import { default as React, useState, useRef, useEffect } from 'react';
 
 import { ConnectButton } from '@rainbow-me/rainbowkit';
 
 import Image from 'next/image'
 import logo from '@/images/logo.svg'
 
-export function Header() {
+const Header = (props) => {
+  
+  function getLogo() {
+    if (props.headerLogo != null && props.headerLogo != "") {
+      return <img className='m-l-5 h-12 w-auto' src={props.headerLogo} />
+    }
+    else {
+      return <Image className='m-l-5 h-12 w-auto'  src={logo} />
+    }
+  }
+  function getLogoLink() {
+    if (props.headerLogoLink != null && props.headerLogoLink != "") {
+      return props.headerLogoLink
+    }
+    else {
+      return "/"
+    }
+  }
+
   return (
     <div className="navbar bg-base-100 h-16" >
       <div className="navbar-start">
@@ -27,7 +46,7 @@ export function Header() {
           <li><a href="/wizard" >Wizard</a></li>
           </ul>
         </div>
-        <a href="/"><Image className='m-l-5 h-12 w-auto'  src={logo} /></a>
+        <a href={getLogoLink()}>{getLogo()}</a>
       </div>
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">
@@ -42,3 +61,5 @@ export function Header() {
     </div>
   )
 }
+
+export default Header;

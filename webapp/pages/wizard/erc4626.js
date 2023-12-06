@@ -5,7 +5,7 @@ import HeaderMetadata from '@/components/commons/headerMetadata';
 
 import { useRouter } from 'next/router'
 import { readContract } from '@wagmi/core'
-import { Header } from '@/components/Header'
+import Header from '@/components/Header'
 
 export default function WizardNFTCollection({ source }) {
 

@@ -2,7 +2,7 @@
 
 import React, { useEffect, useRef, useState } from 'react';
 import HeaderMetadata from '@/components/commons/headerMetadata';
-import { Header } from '@/components/Header'
+import Header from '@/components/Header'
 
 import Link from 'next/link'
 import { useRouter } from 'next/router'

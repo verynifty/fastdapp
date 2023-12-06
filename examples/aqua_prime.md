@@ -3,6 +3,8 @@ chain: 1
 authors: grands_marquis
 theme: aquaprime
 defaultClass: none
+headerLogo: https://iili.io/JzDClbs.png
+headerLogoLink: https://google.com
 ---
 
 <div class="w-full text-white">

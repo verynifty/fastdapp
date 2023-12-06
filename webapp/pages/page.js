@@ -2,7 +2,7 @@
 import React, { useRef, Suspense, useEffect } from 'react';
 import Head from 'next/head'
 import { useRouter } from 'next/router'
-import { Header } from '@/components/Header'
+import Header from '@/components/Header'
 
 import Render from 'components/render';
 import { Web3Storage } from 'web3.storage'

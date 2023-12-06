@@ -5,7 +5,7 @@ import { useRouter } from 'next/router'
 import Render from 'components/render';
 import { Web3Storage } from 'web3.storage'
 import axios from 'axios';
-import { Header } from '@/components/Header'
+import Header from '@/components/Header'
 
 
 import HeaderMetadata from '@/components/commons/headerMetadata';

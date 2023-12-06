@@ -2,7 +2,7 @@ const prettier = require("prettier");
 const markdownParser = require("prettier/parser-markdown");
 const parserBable = require("prettier/parser-babel");
 
-import { Header } from '@/components/Header'
+import Header  from '@/components/Header'
 
 import React, { useEffect, useRef, useState } from 'react';
 import HeaderMetadata from '@/components/commons/headerMetadata';

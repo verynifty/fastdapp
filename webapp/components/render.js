@@ -38,6 +38,8 @@ import ERC20ABI from 'ABIS/ERC20.json';
 import ERC721ABI from 'ABIS/ERC721.json';
 import ERC1155ABI from 'ABIS/ERC1155.json';
 
+import Header from '@/components/Header'
+
 function formatAddress(address) {
     return (
         address.substring(0, 6) +
@@ -88,6 +90,8 @@ const Render = (props) => {
     const [requiredChain, setRequiredChain] = React.useState(null);
     const [theme, setTheme] = React.useState("light");
     const [defaultClass, setDefaultClass] = React.useState("prose");
+    const [headerLogo, setHeaderLogo] = React.useState("");
+    const [headerLogoLink, setHeaderLogoLink] = React.useState("");
 
     const { chain } = useNetwork()
     const { chains, error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
@@ -134,6 +138,12 @@ const Render = (props) => {
             setRequiredChain([parsedFront.chain]);
         } else {
             setRequiredChain(parsedFront.chain);
+        }
+        if (parsedFront.headerLogo != null) {
+            setHeaderLogo(parsedFront.headerLogo);
+        }
+        if (parsedFront.headerLogoLink != null) {
+            setHeaderLogoLink(parsedFront.headerLogoLink);
         }
         // console.log("Required chain:", requiredChain)
         setTheme(parsedFront.theme != null ? parsedFront.theme : "light");
@@ -197,6 +207,7 @@ const Render = (props) => {
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
             <div className="" data-theme={theme} class="min-h-full">
+                <Header headerLogo={headerLogo} headerLogoLink={headerLogoLink} />
                 <div className={'mt-0 right-0 max-w-none min-h-full ' + defaultClass}>
                     {getRender()}
                 </div>
