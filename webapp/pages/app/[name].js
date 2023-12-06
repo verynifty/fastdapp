@@ -5,8 +5,6 @@ import { useRouter } from 'next/router'
 import Render from 'components/render';
 import { Web3Storage } from 'web3.storage'
 import axios from 'axios';
-import Header from '@/components/Header'
-
 
 import HeaderMetadata from '@/components/commons/headerMetadata';
 
@@ -79,7 +77,6 @@ export default function TestPage({ source }) {
 
   return (
     <>
-      <Header />
       <div className="app_container">
         <HeaderMetadata title={title} description={description} />
         {render()}
