@@ -5,6 +5,9 @@ theme: aquaprime
 defaultClass: none
 headerLogo: https://iili.io/JzDClbs.png
 headerLogoLink: https://google.com
+headerLinks:
+  about: https://google.com
+  Google: https://google.com
 ---
 
 <div class="w-full text-white">

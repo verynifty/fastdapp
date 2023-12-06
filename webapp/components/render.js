@@ -92,6 +92,7 @@ const Render = (props) => {
     const [defaultClass, setDefaultClass] = React.useState("prose");
     const [headerLogo, setHeaderLogo] = React.useState("");
     const [headerLogoLink, setHeaderLogoLink] = React.useState("");
+    const [headerLinks, setHeaderLinks] = React.useState({});
 
     const { chain } = useNetwork()
     const { chains, error, isLoading, pendingChainId, switchNetwork } = useSwitchNetwork()
@@ -144,6 +145,9 @@ const Render = (props) => {
         }
         if (parsedFront.headerLogoLink != null) {
             setHeaderLogoLink(parsedFront.headerLogoLink);
+        }
+        if (parsedFront.headerLinks != null) {
+            setHeaderLinks(parsedFront.headerLinks);
         }
         // console.log("Required chain:", requiredChain)
         setTheme(parsedFront.theme != null ? parsedFront.theme : "light");
@@ -207,7 +211,7 @@ const Render = (props) => {
                 <script src="https://cdn.tailwindcss.com"></script>
             </Head>
             <div className="" data-theme={theme} class="min-h-full">
-                <Header headerLogo={headerLogo} headerLogoLink={headerLogoLink} />
+                <Header headerLogo={headerLogo} headerLogoLink={headerLogoLink} headerLinks={headerLinks} />
                 <div className={'mt-0 right-0 max-w-none min-h-full ' + defaultClass}>
                     {getRender()}
                 </div>
