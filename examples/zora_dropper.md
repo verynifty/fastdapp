@@ -127,7 +127,7 @@ theme: synthwave
     <h3 class="text-gray-200 text-lg pl-7 text-start">Example:</h3>
     <div class="mockup-window border-base-400 bg-base-300 mx-auto max-w-[777px]">
       <p class="w-full text-center text-purple-500 font-semibold px-8">
-        https://fastdapp.xyz/cid.json?nft=0xd22fdb0fb70911b784<wbr></wbr>851a5dccaae8b04bed551a<wbr></wbr>&erc=721
+        https://fastdapp.xyz/app/zora_dropper?nft=0xd22fdb0fb70911b784<wbr></wbr>851a5dccaae8b04bed551a<wbr></wbr>&erc=721
       </p>
     </div>
   </div>
