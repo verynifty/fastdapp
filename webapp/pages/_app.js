@@ -119,7 +119,7 @@ function MyApp({ Component, pageProps }) {
    // optimism,
     arbitrum,
     polygon,
-   // zora,
+    zora,
     goerli,
     sepolia,
     avalanche,
