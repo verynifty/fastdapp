@@ -233,7 +233,7 @@ const WriteContract = (props) => {
             } else {
                 argsStateTokens.push(null);
                 argsStateERC1155.push(null);
-                rgsStateTokensIgnoreDecimals.push(null);
+                argsStateTokensIgnoreDecimals.push(null);
             }
             if (input.type === "uint256" && input.ERC20Allow != null) {
                 argsStateApprovals.push(input.ERC20Allow);
