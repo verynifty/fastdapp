@@ -8,6 +8,7 @@ sidebar_position: 2
 A javascript object containing often used ABIs:
 * ERC20
 * ERC721
+* ERC1155
 
 ## Example
 

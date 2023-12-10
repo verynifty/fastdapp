@@ -1,6 +1,6 @@
 ---
 sidebar_label: 'Themes'
-sidebar_position: 1
+sidebar_position: 2
 ---
 
 # Themes for your apps
