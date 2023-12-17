@@ -7,7 +7,10 @@ const nextConfig = {
       return config;
     },
     env: {
-    }
+    },
+    experimental: {
+      externalDir: true,
+    },
   };
   
   module.exports = nextConfig;
