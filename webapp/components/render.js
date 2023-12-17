@@ -9,7 +9,7 @@ import Head from 'next/head'
 import Moment from 'react-moment';
 import toast from 'react-hot-toast';
 
-import AddressDisplay from 'components/render/addressDisplay';
+import AddressDisplay from '../../fastdapp-kit/components/addressDisplay';
 import DisplayVariable from 'components/render/displayVariable';
 import BlockNumber from 'components/render/blockNumber';
 import SendTransaction from 'components/render/sendTransaction';
