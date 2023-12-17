@@ -8,9 +8,6 @@ const nextConfig = {
     },
     env: {
     },
-    experimental: {
-      externalDir: true,
-    },
   };
   
   module.exports = nextConfig;
