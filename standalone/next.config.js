@@ -7,6 +7,8 @@ const nextConfig = {
       return config;
     },
     env: {
+      title: "My App",
+      description: "My App description",
     },
   };
   

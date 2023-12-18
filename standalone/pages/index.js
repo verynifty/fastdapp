@@ -45,7 +45,7 @@ export default function Home() {
               <p class="text-white absolute left-[5px] top-[8px] text-center z-13 leading-4 pr-px pl-0.5 m-0 flex items-center text-[0.833rem]">
                 <a href="https://glados.bot/" class="text-white no-underline hover:cursor-pointer hover:outline-none hover:text-black hover:ease-in hover:transition-all hover:duration-[0.4s]">
                   ←
-                  Home </a>
+                  {process.env.title} </a>
               </p>
 
               <a href="https://glados.bot/" rel="home" itemscope="" itemtype="http://schema.org/Brand" class="cursor-pointer text-black hover:ease-in hover:transition-all hover:duration-[0.4s]">

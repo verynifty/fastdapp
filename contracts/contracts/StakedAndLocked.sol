@@ -7,8 +7,8 @@ import {SafeTransferLib} from "solmate/src/utils/SafeTransferLib.sol";
 
 contract Staking is ERC4626 {
 
-    uint256 public constant cooldownPeriod = 10 days;
-    uint256 public constant unstakePeriod = 2 days;
+    uint256 public constant cooldownPeriod = 1 hours;
+    uint256 public constant unstakePeriod = 1 hours;
     mapping(address => uint256) public userCooldown;
 
     constructor(ERC20 _token, string memory _name, string memory _symbol) ERC4626(_token, _name, _symbol) {}
