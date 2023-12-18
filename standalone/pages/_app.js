@@ -12,78 +12,8 @@ import Head from 'next/head'
 import { getDefaultWallets, RainbowKitProvider, darkTheme } from '@rainbow-me/rainbowkit';
 import { configureChains, createConfig, WagmiConfig, useProvider } from 'wagmi';
 import {
-  arbitrum,
-  goerli,
   mainnet,
-  optimism,
-  polygon,
-  sepolia,
-  avalanche,
-  zora,
-  bsc,
-  holesky
 } from 'wagmi/chains';
-
-const base = {
-  id: 8453,
-  network: 'base',
-  name: 'Base',
-  nativeCurrency: { name: 'Base', symbol: 'ETH', decimals: 18 },
-  iconUrl: 'https://altcoinsbox.com/wp-content/uploads/2023/02/base-logo-in-blue.svg',
-  rpcUrls: {
-    default: {
-      http: ['https://developer-access-mainnet.base.org'],
-    },
-    public: {
-      http: ['https://developer-access-mainnet.base.org'],
-    },
-  },
-  blockExplorers: {
-    blockscout: {
-      name: 'Basescout',
-      url: 'https://base.blockscout.com',
-    },
-    default: {
-      name: 'Basescan',
-      url: 'https://basescan.org',
-    },
-    etherscan: {
-      name: 'Basescan',
-      url: 'https://basescan.org',
-    },
-  },
-  contracts: {
-    multicall3: {
-      address: '0xca11bde05977b3631167028862be2a173976ca11',
-      blockCreated: 5022,
-    },
-  },
-}
-
-const altcoinchain = {
-  id: 2330,
-  network: 'altcoinchain',
-  name: 'Altcoin Chain',
-  nativeCurrency: { name: 'altcoinchain', symbol: 'ALT', decimals: 18 },
-  iconUrl: 'https://avatars.githubusercontent.com/u/115709361?s=200&v=4',
-  rpcUrls: {
-    default: {
-      http: ['https://rpc0.altcoinchain.org/rpc'],
-    },
-    public: {
-      http: ['https://rpc0.altcoinchain.org/rpc'],
-    },
-  },
-  blockExplorers: {
-    default: {
-      name: 'Expedition',
-      url: 'http://expedition.altcoinchain.org/',
-    },
-  },
-  contracts: {
-
-  },
-}
 
 
 
@@ -115,17 +45,6 @@ function MyApp({ Component, pageProps }) {
 
   const [availableChains, setAvailableChains] = useState([
     mainnet,
-    base,
-   // optimism,
-    arbitrum,
-    polygon,
-    zora,
-    goerli,
-    sepolia,
-    avalanche,
-    altcoinchain,
-    bsc,
-    holesky
   ]);
 
   const { chains, publicClient, webSocketPublicClient } = configureChains(
@@ -157,7 +76,7 @@ function MyApp({ Component, pageProps }) {
   }, []);
 
   return (
-    <div data-theme="fastdapp" >
+    <div data-theme="mytheme">
       <Head>
         <meta property="og:url" content="https://fastdapp.xyz" />
         <meta property="og:type" content="website" />
