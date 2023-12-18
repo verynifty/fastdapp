@@ -78,13 +78,12 @@ function MyApp({ Component, pageProps }) {
   return (
     <div data-theme="mytheme">
       <Head>
-        <meta property="og:url" content="https://fastdapp.xyz" />
+        <meta property="og:url" content={process.env.url} />
         <meta property="og:type" content="website" />
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Fast Dapp" />
-        <meta name="twitter:description" content="Create web3 frontends in minutes" />
-        <meta name="twitter:image" content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />
-      </Head>
+        <meta name="twitter:title" content={process.env.title} />
+        <meta name="twitter:description" content={process.env.description} />
+        <meta name="twitter:image" content="https://fastdapp.xyz/api/og?title=Fast%20Dapp&subtitle=Create%20websites%20for%20your%20DAPP%20in%20minutes." />      </Head>
       <HeaderMetadata />
       <ReservoirKitProvider
         options={{
