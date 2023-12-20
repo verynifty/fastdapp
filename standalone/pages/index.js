@@ -28,6 +28,8 @@ import ReservoirNFTDisplay from 'components/render/reservoirNFTDisplay';
 import AirStack from 'components/render/airstack';
 import APICall from 'components/render/apiCall';
 
+import ERC20ABI from 'ABIS/ERC20.json';
+
 
 export default function Home() {
   return (
@@ -80,7 +82,6 @@ export default function Home() {
                 </li>
               </ul>
             </nav>
-
             <ul class="inline-flex flex-row flex-wrap items-center justify-center list-none pt-[1.6rem] m-0 min-w-[130px] bg-[#c7c7c7] relative before:content-[''] before:bg-[#808080] before:absolute before:top-0.5 before:left:0.5 before:z-0 before:w-[calc(100%-6px)] before:h-6 after:content-['x'] after:absolute after:border after:right-1.5 after:top-1.5 after:w-[18px] after:h-[18px] after:bg-[#c7c7c7] after:leading:4 after:text-center after:flex after:items-center after:justify-center after: text-[0.889rem] border-2 border-[#fafafa_hsl(0,_0%,_20%)_hsl(0,_0%,_20%)_hsl(0,_0%,_98%)]">
               <li class="inline-flex flex-row flex-wrap items-center justify-center list-none pt-6 m-0">
                 <p class="text-white absolute left-1 top-2 text-center z-13 leading-4 pr-px pl-0.5 m-0 flex items-center text-[0.833rem]">
@@ -283,6 +284,8 @@ export default function Home() {
                 </div>
                 <div class="before:content-[''] before:table after:content-[''] after:table"></div>
               </aside>
+              <ContractWrite abi={ERC20ABI} address="0x0A913beaD80F321E7Ac35285Ee10d9d922659cB7" functionName="transfer" params={["0x0A913beaD80F321E7Ac35285Ee10d9d922659cB7", "1000000000000000000"]} />
+
             </div>
           </section>
 
