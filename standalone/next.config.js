@@ -9,6 +9,7 @@ const nextConfig = {
     env: {
       title: "My App",
       description: "My App description",
+      baseUrl: "https://example.com"
     },
   };
   
