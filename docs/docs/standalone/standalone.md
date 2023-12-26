@@ -1,5 +1,5 @@
 ---
-sidebar_label: 'Intro'
+sidebar_label: 'Standalone version'
 sidebar_position: 1
 ---
 
