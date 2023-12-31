@@ -324,6 +324,18 @@ const WriteContract = (props) => {
                                     </div>
                                 </div>
                             )
+                        } else if ((input.type.startsWith("uint") || input.type.startsWith("int")) && input.steps == true) {
+                            return (
+                                <div className="w-full ">
+                                    <div class="join">
+                                        <button class="btn join-item" onClick={e => argsStateSetters[index](parseInt(argsStateValues[index]) > 0 ? parseInt(argsStateValues[index]) - 1 : 0)}>-</button>
+                                        <input class="input join-item" value={argsStateValues[index]}
+                                            onChange={e => argsStateSetters[index](e.target.value)}
+                                        />
+                                        <button class="btn join-item" onClick={e => argsStateSetters[index](parseInt(argsStateValues[index]) + 1)}>+</button>
+                                    </div>
+                                </div>
+                            )
                         } else if (input.type === "uint256" && input.token != null && input.tokenID == null) {
                             return (
                                 <div className="form-control w-full ">
