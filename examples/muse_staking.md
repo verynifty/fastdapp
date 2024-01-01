@@ -271,7 +271,7 @@ theme: dark
     /> 
     <p class="text-sm md:text-base col-span-2 text-center mt-2">
     <ContractWrite
-      address={TOKEN_ADDRESS}
+      address={STAKING_ADDRESS}
       abi={[
         {
           inputs: [
