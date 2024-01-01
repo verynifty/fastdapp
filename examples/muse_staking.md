@@ -156,8 +156,12 @@ theme: dark
       args={[userAddress]}
       render={(res) => (
         <div>
-          <div>sMuse balance: <TokenAmount token={SMUSE_ADDRESS} amount={res[0]} /></div>
-          <div>Muse value <TokenAmount token={TOKEN_ADDRESS} amount={res[1]} /></div>
+          <div>
+            sMuse balance: <TokenAmount token={SMUSE_ADDRESS} amount={res[0]} />
+          </div>
+          <div>
+            Muse value <TokenAmount token={TOKEN_ADDRESS} amount={res[1]} />
+          </div>
         </div>
       )}
     />
@@ -255,7 +259,12 @@ theme: dark
       args={[userAddress]}
       render={(res) => (
          <div class="grid grid-cols-2 gap-4">
-          <p class="text-sm md:text-base">Time until you can complete withdrawal: {res[2] + ""}</p>
+          {Math.floor(Date.now() / 1000) < parseInt(res[2]) ?
+            <p class="text-sm md:text-base">Time until you can complete withdrawal:
+                <Moment fromNow unix>
+                    {parseInt(res[2])}
+              </Moment></p>
+            : <></> }
            <p class="text-sm md:text-base text-right">In claim window?: {res[3] + ""}</p>
         </div>
       )}
