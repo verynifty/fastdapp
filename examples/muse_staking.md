@@ -73,7 +73,8 @@ theme: dark
       </p>
       <p class="text-sm md:text-base col-span-2 text-center mt-2">
         <ContractWrite
-          address={TOKEN_ADDRESS}
+          address={STAKING_ADDRESS}
+          buttonText="Stake"
           abi={[
             {
               inputs: [
@@ -85,7 +86,7 @@ theme: dark
                   ERC20Allow: STAKING_ADDRESS,
                 },
               ],
-              name: "Stake",
+              name: "enter",
               outputs: [],
               stateMutability: "nonpayable",
               type: "function",
