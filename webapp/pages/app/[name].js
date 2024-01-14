@@ -33,11 +33,13 @@ export default function TestPage({ source }) {
         if (app_name == null) {
           app_name = "simple";
         }
+        console.log(app_name)
         if (app_name.startsWith("ipfs://")) {
           let urlSplit = app_name.split('/')
           let cid = urlSplit[2]
           let filename = urlSplit[3]
-          let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
+          let file_url = "https://" + cid + ".ipfs.w3s.link/" + (filename != null ? filename : "")
+          console.log(file_url)
           let f = await axios.get(file_url)
           setIsIPFS(true)
           setRendered((f.data).content)
