@@ -1,9 +1,11 @@
 import { NextRequest } from 'next/server';
 import { ThirdwebStorage } from "@thirdweb-dev/storage";
+import { NFTStorage, File } from 'nft.storage'
 
 const storage = new ThirdwebStorage({
     secretKey: process.env.NEXT_PUBLIC_THIRDWEB_SECRET,
 });
+
 
 
 export default async function handler(request, result) {

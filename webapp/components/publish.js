@@ -3,10 +3,12 @@ import { Web3Storage } from 'web3.storage'
 var hash = require('object-hash');
 import { useRouter } from 'next/router'
 import axios from 'axios';
+import { NFTStorage, File } from 'nft.storage'
 
 const Publish = (props) => {
     const [isLoading, setIsLoading] = React.useState(false);
     const client = new Web3Storage({ token: process.env.NEXT_PUBLIC_WEB3STORAGE_TOKEN })
+    const nftstorage = new NFTStorage({ token: process.env.NEXT_PUBLIC_NFT_STORAGE_TOKEN })
     const router = useRouter()
     const [IPFS, setIPFS] = React.useState("");
     const [pageLink, setPageLink] = React.useState("");
@@ -20,22 +22,19 @@ const Publish = (props) => {
         setIsLoading(true);
         const obj = { content: props.content }
         const blob = new Blob([JSON.stringify(obj)], { type: 'application/json' })
+        const cid = await nftstorage.storeBlob(blob)
+        console.log("CID", cid);
         let filename = hash(obj) + '.json';
-        const files = [
-            new File([blob], filename)
-        ]
-        const cid = await client.put(files)
-        console.log(cid)
-        let path = "ipfs://" + cid + "/" + filename;
+        let path = "ipfs://" + cid;
         await new Promise(r => setTimeout(r, 3000));
 
 
-        let file_url = "https://" + cid + ".ipfs.w3s.link/" + filename
-        let f = await axios.get(file_url)
+        let file_url = "https://" + cid + ".ipfs.nftstorage.link";
         setIPFS(path)
         setPageLink("https://fastdapp.xyz/app/" + encodeURIComponent(path))
         setIsLoading(false);
         setIsUploaded(true);
+
 
     }
 
