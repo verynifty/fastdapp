@@ -42,8 +42,6 @@ const ContractRead = (props) => {
         }
     }
 
-
-
     // This will run only once
     useEffect(() => {
         async function read() {
