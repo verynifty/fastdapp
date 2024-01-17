@@ -5,10 +5,11 @@ pragma solidity ^0.8.9;
 import {ERC4626, ERC20} from "solmate/src/mixins/ERC4626.sol";
 import {SafeTransferLib} from "solmate/src/utils/SafeTransferLib.sol";
 
-contract Staking is ERC4626 {
+contract StakingWithTimelock is ERC4626 {
 
-    uint256 public constant cooldownPeriod = 10 days;
-    uint256 public constant unstakePeriod = 2 days;
+    uint256 public constant cooldownPeriod = 10 minutes;
+    uint256 public constant unstakePeriod = 10 minutes;
+
     mapping(address => uint256) public userCooldown;
 
     constructor(ERC20 _token, string memory _name, string memory _symbol) ERC4626(_token, _name, _symbol) {}
@@ -32,5 +33,9 @@ contract Staking is ERC4626 {
 
     function afterDeposit(uint256 assets, uint256 shares) internal override {
         super.afterDeposit(assets, shares);
+    }
+
+    function userInfo(address account) public view returns (uint256 _startCoolDown, uint256 _endCoolDown, bool _canWithdraw) {
+        return (userCooldown[account], userCooldown[account] + cooldownPeriod, canWithdraw(account));
     }
 }
