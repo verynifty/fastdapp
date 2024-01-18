@@ -7,8 +7,8 @@ import {SafeTransferLib} from "solmate/src/utils/SafeTransferLib.sol";
 
 contract StakingWithTimelock is ERC4626 {
 
-    uint256 public constant cooldownPeriod = 10 minutes;
-    uint256 public constant unstakePeriod = 10 minutes;
+    uint256 public constant cooldownPeriod = 5 minutes;
+    uint256 public constant unstakePeriod = 15 minutes;
 
     mapping(address => uint256) public userCooldown;
 
