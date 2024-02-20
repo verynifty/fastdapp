@@ -8,7 +8,7 @@ const hre = require("hardhat");
 
 async function main() {
   console.log("Deploying")
-  const ct = await hre.ethers.deployContract("FastDappName");
+  const ct = await hre.ethers.deployContract("TESTNFT");
 
   await ct.waitForDeployment();
   console.log("Deployed at:", ct.target)
