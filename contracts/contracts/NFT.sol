@@ -19,9 +19,11 @@ contract TESTNFT is ERC721 {
         _safeMint(to, tokenId);
     }
 
-    function mint(uint256 _quantity) public {
+    function mint(uint256 _quantity) public payable {
         for (uint256 i = 0; i < _quantity; i++) {
             _safeMint(msg.sender, _nextTokenId++);
         }
+        (bool sent, bytes memory data) = msg.sender.call{value: msg.value}("");
+        require(sent, "Failed to send Ether");
     }
 }
