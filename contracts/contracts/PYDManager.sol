@@ -96,9 +96,9 @@ import "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
 import "openzeppelin-contracts/contracts/proxy/Clones.sol";
 
 contract PYDManager {
-    mapping(address => PYDProxy) public vaults;
-    ILIDO public lido = ILIDO(0xae7ab96520DE3A18E5e111B5EaAb095312D7fE84);
+
     IAAVE public aave = IAAVE(0x87870Bca3F3fD6335C3F4ce8392D69350B4fA4E2);
+
     PYDProxy public proxyImplementation;
 
     constructor() {
@@ -110,14 +110,6 @@ contract PYDManager {
         require(vaults[_owner] == PYDProxy(address(0)), "Already created");
         vaults[_owner] = PYDProxy(Clones.clone(address(proxyImplementation)));
         vaults[_owner].init(_owner);
-    }
-
-    // This is just a helper that enable user to deposit ETH directly and submitting it to Lido for stETH
-    function depositETHWithLido(PYDProxy _vault) public payable {
-        require(msg.value > 0, "Deposit must be greater than 0");
-        lido.submit{value: msg.value}(address(this));
-        lido.approve(address(_vault), lido.balanceOf(address(this)));
-        _vault.delegateDeposit(msg.sender, lido, lido.balanceOf(address(this)));
     }
 
     // This is just a helper that enable user to deposit ERC20 that are available on Aave to supply
