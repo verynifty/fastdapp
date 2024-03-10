@@ -92,8 +92,8 @@ interface IAAVE {
     ) external view returns (ReserveData memory);
 }
 
-import "openzeppelin-contracts/contracts/token/ERC20/IERC20.sol";
-import "openzeppelin-contracts/contracts/proxy/Clones.sol";
+import "@openzeppelin/contracts/token/ERC20/IERC20.sol";
+import "@openzeppelin/contracts/proxy/Clones.sol";
 
 contract PYDManager {
 
