@@ -14,12 +14,15 @@ contract PYDProxy {
 
     uint256 public totalDeposits;
     uint256 public totalWithdrawn;
+    uint256 public totalDonated;
+
     IERC20 public asset;
 
     event Deposit(address indexed _user, uint256 _amount);
     event WithdrawDeposit(address indexed _user, uint256 _amount);
     event WithdrawRewards(address indexed _user, uint256 _amount);
-    
+    event Donation(address indexed _user, uint256 _amount);
+
     constructor() {}
 
     function init(address _owner, address _asset) public {
@@ -34,10 +37,17 @@ contract PYDProxy {
         owner = _owner;
     }
 
+    function donate(uint256 _amount) public {
+        asset.transferFrom(msg.sender, address(this), _amount);
+        points[msg.sender] += _amount;
+        totalDonated += _amount;
+        emit Donation(msg.sender, _amount);
+    }
+
     // deposit a token for donating yield in the vault
     // token must be a rebasing ERC20 token such as Lido's stETH or AAVE's aUSDC..
     function _deposit( uint256 _amount, address _from, address _to) internal {
-        points[_to] += (getTotalRewards() - lastDeposit[_to]) * (deposits[_to] / totalDeposits);
+        points[_to] += ((getTotalRewards() - lastDeposit[_to]) * (deposits[_to] * 100000 / totalDeposits)) / 100000;
         asset.transferFrom(_from, address(this), _amount);
         deposits[_to] += _amount;
         totalDeposits += _amount;
@@ -74,11 +84,11 @@ contract PYDProxy {
 
     // Get how much token were accrued by the pool owner
     function getTotalRewards() public view returns (uint256){
-        return asset.balanceOf(address(this)) - totalDeposits + totalWithdrawn;
+        return asset.balanceOf(address(this)) - totalDeposits + totalWithdrawn - totalDonated;
     }
 
     function getInfo(address user) public view returns (IERC20 _asset, uint256 _totalDeposits, uint256 _myDeposit, uint256 _pendingRewards, uint256 _totalWithdrawn){
-        return (asset, totalDeposits, deposits[user], getRewards(), totalWithdrawn);
+        return (asset, totalDeposits, deposits[user], getTotalRewards(), totalWithdrawn);
     }
 
     function withdrawDonations() public {
@@ -94,7 +104,7 @@ contract PYDProxy {
     }
 
     function getPoints(address _user) public view returns (uint256){
-        return deposits[_user];
+        return points[_user] + ;
     }
 
 }
