@@ -9,7 +9,11 @@ contract PYDProxy {
     address public manager;
 
     mapping(address => uint256) public deposits;
+    mapping(address => uint256) public lastDeposit;
+    mapping(address => uint256) public points;
+
     uint256 public totalDeposits;
+    uint256 public totalWithdrawn;
     IERC20 public asset;
 
     event Deposit(address indexed _user, uint256 _amount);
@@ -33,6 +37,7 @@ contract PYDProxy {
     // deposit a token for donating yield in the vault
     // token must be a rebasing ERC20 token such as Lido's stETH or AAVE's aUSDC..
     function _deposit( uint256 _amount, address _from, address _to) internal {
+        points[_to] += (getTotalRewards() - lastDeposit[_to]) * (deposits[_to] / totalDeposits);
         asset.transferFrom(_from, address(this), _amount);
         deposits[_to] += _amount;
         totalDeposits += _amount;
@@ -68,15 +73,15 @@ contract PYDProxy {
     }
 
     // Get how much token were accrued by the pool owner
-    function getRewards() public view returns (uint256){
-        return asset.balanceOf(address(this)) - totalDeposits;
+    function getTotalRewards() public view returns (uint256){
+        return asset.balanceOf(address(this)) - totalDeposits + totalWithdrawn;
     }
 
-    function getInfo(address user) public view returns (IERC20 _asset, uint256 _totalDeposits, uint256 _myDeposit, uint256 _rewards){
-        return (asset, totalDeposits, deposits[user], getRewards());
+    function getInfo(address user) public view returns (IERC20 _asset, uint256 _totalDeposits, uint256 _myDeposit, uint256 _pendingRewards, uint256 _totalWithdrawn){
+        return (asset, totalDeposits, deposits[user], getRewards(), totalWithdrawn);
     }
 
-    function withdrawRewards() public {
+    function withdrawDonations() public {
         require(msg.sender == owner, "Only owner can withdraw rewards");
         uint256 _amount = getRewards();
         // We take a 0.3% fee on the rewards
@@ -84,7 +89,12 @@ contract PYDProxy {
         // Transfer fee to Muse DAO multisig
         asset.transfer(0x6fBa46974b2b1bEfefA034e236A32e1f10C5A148, fee);
         asset.transfer(msg.sender, _amount - fee);
+        totalWithdrawn += _amount;
         emit WithdrawRewards(msg.sender, _amount);
+    }
+
+    function getPoints(address _user) public view returns (uint256){
+        return deposits[_user];
     }
 
 }
