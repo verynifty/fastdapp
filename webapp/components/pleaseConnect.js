@@ -22,7 +22,7 @@ const PleaseConnect = (props) => {
 
         </div>);
     console.log("PleaseConnect", address);
-    return props.children;
+    return <div suppressHydrationWarning={true}>props.children</div>;
 }
 
 
